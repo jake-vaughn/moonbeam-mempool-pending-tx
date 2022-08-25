@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es2020",
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "dist"
+        // optional:
+        // "suppressImplicitAnyIndexErrors": true
+    },
+    "include": [
+        "./scripts",
+        "./test",
+        "./deploy",
+        "./utils",
+    ],
+    "files": [
+        "./hardhat.config.ts",
+        "./helper-hardhat-config.ts"
+    ]
+}
