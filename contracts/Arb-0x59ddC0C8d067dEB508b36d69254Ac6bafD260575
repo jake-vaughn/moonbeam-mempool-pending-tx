@@ -1,0 +1,121 @@
+# Palkeoramix decompiler. 
+
+def storage:
+  stor0 is addr at storage 0
+
+def unknown3edbbe0f(): # not payable
+  stop
+
+def _fallback() payable: # default function
+  revert
+
+def unknown7b85d13e(uint256 _param1): # not payable
+  require calldata.size - 4 >=′ 32
+  idx = 0
+  while idx < _param1:
+      if idx == -1:
+          revert with 'NH{q', 17
+      idx = idx + 1
+      continue 
+
+def unknownb742f295(): # not payable
+  require calldata.size - 4 >=′ 128
+  require cd[4] <= 18446744073709551615
+  require cd[4] + 35 <′ calldata.size
+  require ('cd', 4).length <= 18446744073709551615
+  require cd[4] + (32 * ('cd', 4).length) + 36 <= calldata.size
+  require cd[36] <= 18446744073709551615
+  require cd[36] + 35 <′ calldata.size
+  require ('cd', 36).length <= 18446744073709551615
+  require cd[36] + (32 * ('cd', 36).length) + 36 <= calldata.size
+  require cd[68] <= 18446744073709551615
+  require cd[68] + 35 <′ calldata.size
+  require ('cd', 68).length <= 18446744073709551615
+  require cd[68] + (32 * ('cd', 68).length) + 36 <= calldata.size
+  idx = 0
+  s = cd[4] + 36
+  t = 260
+  while idx < ('cd', 4).length:
+      require cd[s] == addr(cd[s])
+      mem[t] = addr(cd[s])
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  mem[(32 * ('cd', 4).length) + 260] = ('cd', 36).length
+  idx = 0
+  s = cd[36] + 36
+  t = (32 * ('cd', 4).length) + 292
+  while idx < ('cd', 36).length:
+      require cd[s] == addr(cd[s])
+      mem[t] = addr(cd[s])
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 68).length <= 0x7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  require ext_code.size(stor0)
+  call stor0.0xb742f295 with:
+       gas gas_remaining wei
+      args Array(len=('cd', 4).length, data=mem[260 len (32 * ('cd', 4).length) + (32 * ('cd', 36).length) + 32], ('cd', 68).length, call.data[cd[68] + 36 len 32 * ('cd', 68).length]), (32 * ('cd', 4).length) + 160, (32 * ('cd', 4).length) + (32 * ('cd', 36).length) + 192, cd[100]
+
+def unknowndf04c315(): # not payable
+  require calldata.size - 4 >=′ 128
+  require cd[36] <= 18446744073709551615
+  require cd[36] + 35 <′ calldata.size
+  require ('cd', 36).length <= 18446744073709551615
+  require cd[36] + (32 * ('cd', 36).length) + 36 <= calldata.size
+  require cd[68] <= 18446744073709551615
+  require cd[68] + 35 <′ calldata.size
+  require ('cd', 68).length <= 18446744073709551615
+  require cd[68] + (32 * ('cd', 68).length) + 36 <= calldata.size
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + (32 * ('cd', 100).length) + 36 <= calldata.size
+  mem[96] = 0xdf04c31500000000000000000000000000000000000000000000000000000000
+  mem[100] = cd[4]
+  mem[132] = 128
+  mem[228] = ('cd', 36).length
+  idx = 0
+  s = cd[36] + 36
+  t = 260
+  while idx < ('cd', 36).length:
+      require cd[s] == addr(cd[s])
+      mem[t] = addr(cd[s])
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  mem[164] = (32 * ('cd', 36).length) + 160
+  mem[(32 * ('cd', 36).length) + 260] = ('cd', 68).length
+  idx = 0
+  s = cd[68] + 36
+  t = (32 * ('cd', 36).length) + 292
+  while idx < ('cd', 68).length:
+      require cd[s] == addr(cd[s])
+      mem[t] = addr(cd[s])
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  mem[196] = (32 * ('cd', 36).length) + (32 * ('cd', 68).length) + 192
+  mem[(32 * ('cd', 36).length) + (32 * ('cd', 68).length) + 292] = ('cd', 100).length
+  require ('cd', 100).length <= 0x7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  mem[(32 * ('cd', 36).length) + (32 * ('cd', 68).length) + 324 len 32 * ('cd', 100).length] = call.data[cd[100] + 36 len 32 * ('cd', 100).length]
+  mem[(32 * ('cd', 100).length) + (32 * ('cd', 36).length) + (32 * ('cd', 68).length) + 324] = 0
+  require ext_code.size(stor0)
+  call stor0.0xdf04c315 with:
+       gas gas_remaining wei
+      args cd[4], Array(len=('cd', 36).length, data=mem[260 len (32 * ('cd', 36).length) + (32 * ('cd', 68).length) + 32], ('cd', 100).length, call.data[cd[100] + 36 len 32 * ('cd', 100).length]), (32 * ('cd', 36).length) + 160, (32 * ('cd', 36).length) + (32 * ('cd', 68).length) + 192
+  if ext_call.success:
+      mem[96 len return_data.size] = ext_call.return_data[0 len return_data.size]
+      mem[64] = ceil32(return_data.size) + 96
+      require return_data.size >=′ 32
+      require mem[96 len 4], Mask(224, 32, cd[4]) >> 32 <= 18446744073709551615
+      require mem[96 len 4], Mask(224, 32, cd[4]) >> 32 + 127 <′ return_data.size + 96
+      if mem[mem[96 len 4], Mask(224, 32, cd[4]) >> 32 + 96] > 18446744073709551615:
+          revert with 'NH{q', 65
+      if ceil32(return_data.size) + (32 * mem[mem[96 len 4], Mask(224, 32, cd[4]) >> 32 + 96]) + 128 > 18446744073709551615 or (32 * mem[mem[96 len 4], Mask(224, 32, cd[4]) >> 32 + 96]) + 32 < 0:
+          revert with 'NH{q', 65
+      require return_data.size >= mem[96 len 4], Mask(224, 32, cd[4]) >> 32 + (32 * mem[mem[96 len 4], Mask(224, 32, cd[4]) >> 32 + 96]) + 32

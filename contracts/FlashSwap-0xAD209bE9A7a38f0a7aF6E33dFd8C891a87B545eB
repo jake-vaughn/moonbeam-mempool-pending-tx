@@ -1,0 +1,1432 @@
+# Palkeoramix decompiler. 
+#
+#  I failed with these: 
+#  - unknownb742f295(?)
+#  All the rest is below.
+#
+
+def storage:
+  stor0 is addr at storage 0
+
+def unknown6dbf2fa0(uint256 _param1, uint256 _param2, array _param3) payable: 
+  require calldata.size - 4 >=′ 96
+  require _param1 == addr(_param1)
+  require _param3 <= 18446744073709551615
+  require _param3 + 35 <′ calldata.size
+  require _param3.length <= 18446744073709551615
+  require _param3 + _param3.length + 36 <= calldata.size
+  require caller == stor0
+  require addr(_param1)
+  call addr(_param1) with:
+     value _param2 wei
+       gas gas_remaining wei
+      args _param3[all]
+  require ext_call.success
+  if not return_data.size:
+      return ' '
+  return Array(len=return_data.size, data=ext_call.return_data[0 len return_data.size])
+
+def unknownfb584f2d(uint256 _param1, uint256 _param2): # not payable
+  require calldata.size - 4 >=′ 64
+  require _param1 == addr(_param1)
+  require caller == stor0
+  require ext_code.size(addr(_param1))
+  static call addr(_param1).balanceOf(address tokenOwner) with:
+          gas gas_remaining wei
+         args this.address
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >=′ 32
+  if ext_call.return_data[0]:
+      require ext_code.size(addr(_param1))
+      call addr(_param1).transfer(address to, uint256 tokens) with:
+           gas gas_remaining wei
+          args stor0, _param2
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >=′ 32
+      require ext_call.return_data[0] == bool(ext_call.return_data[0])
+
+def unknowndf04c315(): # not payable
+  require calldata.size - 4 >=′ 128
+  require cd[36] <= 18446744073709551615
+  require cd[36] + 35 <′ calldata.size
+  require ('cd', 36).length <= 18446744073709551615
+  require cd[36] + (32 * ('cd', 36).length) + 36 <= calldata.size
+  require cd[68] <= 18446744073709551615
+  require cd[68] + 35 <′ calldata.size
+  require ('cd', 68).length <= 18446744073709551615
+  require cd[68] + (32 * ('cd', 68).length) + 36 <= calldata.size
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + (32 * ('cd', 100).length) + 36 <= calldata.size
+  if ('cd', 36).length < 2:
+      revert with 0, 'Path is retarded'
+  if ('cd', 36).length > 18446744073709551615:
+      revert with 0, 65
+  if 0 >= ('cd', 36).length:
+      revert with 0, 50
+  mem[(32 * ('cd', 100).length) + (32 * ('cd', 68).length) + (32 * ('cd', 36).length) + 224] = cd[4]
+  if not ('cd', 36).length:
+      if var105001 < 1:
+          revert with 0, 17
+      if var109002 >= var109001:
+          if 0 >= ('cd', 36).length:
+              revert with 0, 50
+          require ('cd', 36)[0] == addr(('cd', 36)[0])
+          mem[(32 * ('cd', 100).length) + (32 * ('cd', 68).length) + (64 * ('cd', 36).length) + 228] = this.address
+          require ext_code.size(addr(('cd', 36)[0]))
+          static call addr(('cd', 36)[0]).balanceOf(address tokenOwner) with:
+                  gas gas_remaining wei
+                 args mem[(32 * ('cd', 100).length) + (32 * ('cd', 68).length) + (64 * ('cd', 36).length) + 228 len (127 * ('cd', 36).length) + 32]
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >=′ 32
+  else:
+      if var106001 < 1:
+          revert with 0, 17
+      if var110002 >= var110001:
+          if 0 >= ('cd', 36).length:
+              revert with 0, 50
+          require ('cd', 36)[0] == addr(('cd', 36)[0])
+          mem[(32 * ('cd', 100).length) + (32 * ('cd', 68).length) + (64 * ('cd', 36).length) + 228] = this.address
+          require ext_code.size(addr(('cd', 36)[0]))
+          static call addr(('cd', 36)[0]).balanceOf(address tokenOwner) with:
+                  gas gas_remaining wei
+                 args mem[(32 * ('cd', 100).length) + (32 * ('cd', 68).length) + (64 * ('cd', 36).length) + 228 len (127 * ('cd', 36).length) + 32]
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >=′ 32
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def unknown10d1e85c(uint256 _param1, array _param2): # not payable
+  require calldata.size - 4 >=′ 128
+  require _param1 == addr(_param1)
+  require _param2 <= 18446744073709551615
+  require _param2 + 35 <′ calldata.size
+  if _param2.length > 18446744073709551615:
+      revert with 0, 65
+  if ceil32(_param2.length) + 128 < 96 or ceil32(_param2.length) + 128 > 18446744073709551615:
+      revert with 0, 65
+  mem[96] = _param2.length
+  require _param2 + _param2.length + 36 <= calldata.size
+  mem[128 len _param2.length] = _param2[all]
+  mem[_param2.length + 128] = 0
+  require _param2.length >=′ 96
+  _3 = mem[128]
+  require mem[128] <= 18446744073709551615
+  require mem[128] + 159 <′ _param2.length + 128
+  _4 = mem[mem[128] + 128]
+  if mem[mem[128] + 128] > 18446744073709551615:
+      revert with 0, 65
+  if (32 * mem[mem[128] + 128]) + 160 < 128 or ceil32(_param2.length) + (32 * mem[mem[128] + 128]) + 160 > 18446744073709551615:
+      revert with 0, 65
+  mem[64] = ceil32(_param2.length) + (32 * mem[mem[128] + 128]) + 160
+  mem[ceil32(_param2.length) + 128] = mem[mem[128] + 128]
+  require _param2.length + 32 >= _3 + (32 * _4) + 64
+  mem[ceil32(_param2.length) + 160 len 32 * _4] = mem[_3 + 160 len 32 * _4]
+  _139 = mem[160]
+  require mem[160] <= 18446744073709551615
+  require mem[160] + 159 <′ _param2.length + 128
+  _140 = mem[mem[160] + 128]
+  if mem[mem[160] + 128] > 18446744073709551615:
+      revert with 0, 65
+  _141 = mem[64]
+  if mem[64] + (32 * mem[mem[160] + 128]) + 32 < mem[64] or mem[64] + (32 * mem[mem[160] + 128]) + 32 > 18446744073709551615:
+      revert with 0, 65
+  mem[64] = mem[64] + (32 * mem[mem[160] + 128]) + 32
+  mem[_141] = mem[mem[160] + 128]
+  require _param2.length + 32 >= _139 + (32 * _140) + 64
+  idx = 0
+  s = _139 + 160
+  t = _141 + 32
+  while idx < _140:
+      require mem[s] == mem[s + 12 len 20]
+      mem[t] = mem[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  _271 = mem[192]
+  require mem[192] <= 18446744073709551615
+  require mem[192] + 159 <′ _param2.length + 128
+  _272 = mem[mem[192] + 128]
+  if mem[mem[192] + 128] > 18446744073709551615:
+      revert with 0, 65
+  _273 = mem[64]
+  if mem[64] + (32 * mem[mem[192] + 128]) + 32 < mem[64] or mem[64] + (32 * mem[mem[192] + 128]) + 32 > 18446744073709551615:
+      revert with 0, 65
+  mem[64] = mem[64] + (32 * mem[mem[192] + 128]) + 32
+  mem[_273] = mem[mem[192] + 128]
+  require _param2.length + 32 >= _271 + (32 * _272) + 64
+  idx = 0
+  s = _271 + 160
+  t = _273 + 32
+  while idx < _272:
+      require mem[s] == mem[s + 12 len 20]
+      mem[t] = mem[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  if 0 >= _272:
+      revert with 0, 50
+  if mem[_273 + 44 len 20] != caller:
+      revert with 0, 'Who the fuck is calling this?'
+  if 1 >= mem[_141]:
+      revert with 0, 50
+  _403 = mem[_141 + 64]
+  if 1 >= _272:
+      revert with 0, 50
+  if 1 >= mem[ceil32(_param2.length) + 128]:
+      revert with 0, 50
+  _408 = mem[ceil32(_param2.length) + 192]
+  mem[mem[64] + 4] = mem[_273 + 76 len 20]
+  mem[mem[64] + 36] = _408
+  require ext_code.size(addr(_403))
+  call addr(_403).transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args mem[mem[64] + 4], _408
+  mem[mem[64]] = ext_call.return_data[0]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  _411 = mem[64]
+  mem[64] = mem[64] + ceil32(return_data.size)
+  require return_data.size >=′ 32
+  require mem[_411] == bool(mem[_411])
+  if var124001 < 1:
+      revert with 0, 17
+  if var128002 < var128001:
+      if var130001 < mem[_141]:
+          if 1 > !var134002:
+              revert with 0, 17
+          _2382 = mem[_141]
+          idx = var136003 + 1
+          s = var136006
+          t = var136009
+          while idx < _2382:
+              if addr(s) == mem[(32 * idx) + _141 + 44 len 20]:
+                  revert with 0, 'UniswapV2Library: IDENTICAL_ADDRESSES'
+              if addr(s) < mem[(32 * idx) + _141 + 44 len 20]:
+                  if not addr(s):
+                      revert with 0, 'UniswapV2Library: ZERO_ADDRESS'
+                  if t >= mem[_141]:
+                      revert with 0, 50
+                  if 1 > !t:
+                      revert with 0, 17
+                  if t + 1 >= mem[ceil32(_param2.length) + 128]:
+                      revert with 0, 50
+                  if mem[(32 * t) + _141 + 44 len 20] == addr(s):
+                      _2398 = mem[(32 * t + 1) + ceil32(_param2.length) + 160]
+                      if mem[_141] < 2:
+                          revert with 0, 17
+                      if t >= mem[_141] - 2:
+                          if t >= mem[_273]:
+                              revert with 0, 50
+                          _2410 = mem[(32 * t) + _273 + 32]
+                          _2415 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2415 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2415 + 36] = 0
+                          mem[_2415 + 68] = _2398
+                          mem[_2415 + 100] = this.address
+                          mem[_2415 + 132] = 128
+                          mem[_2415 + 164] = mem[_2415]
+                          idx = 0
+                          while idx < mem[_2415]:
+                              mem[idx + _2415 + 196] = mem[_2415 + idx + 32]
+                              _2382 = mem[_141]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2415]) <= mem[_2415]:
+                              require ext_code.size(addr(_2410))
+                              call addr(_2410).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2398, addr(this.address), 128, mem[_2415], mem[_2415 + 196 len ceil32(mem[_2415])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_273]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2415 + mem[_2415] + 196] = 0
+                              require ext_code.size(addr(_2410))
+                              call addr(_2410).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2398, addr(this.address), 128, mem[_2415], mem[_2415 + 196 len ceil32(mem[_2415])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 > !t:
+                              revert with 0, 17
+                          if t + 1 >= mem[_273]:
+                              revert with 0, 50
+                          _2422 = mem[(32 * t + 1) + _273 + 32]
+                          if t >= mem[_273]:
+                              revert with 0, 50
+                          _2434 = mem[(32 * t) + _273 + 32]
+                          _2442 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2442 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2442 + 36] = 0
+                          mem[_2442 + 68] = _2398
+                          mem[_2442 + 100] = addr(_2422)
+                          mem[_2442 + 132] = 128
+                          mem[_2442 + 164] = mem[_2442]
+                          idx = 0
+                          while idx < mem[_2442]:
+                              mem[idx + _2442 + 196] = mem[_2442 + idx + 32]
+                              _2382 = mem[_141]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2442]) <= mem[_2442]:
+                              require ext_code.size(addr(_2434))
+                              call addr(_2434).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2398, addr(_2422), 128, mem[_2442], mem[_2442 + 196 len ceil32(mem[_2442])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_273]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2442 + mem[_2442] + 196] = 0
+                              require ext_code.size(addr(_2434))
+                              call addr(_2434).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2398, addr(_2422), 128, mem[_2442], mem[_2442 + 196 len ceil32(mem[_2442])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                  else:
+                      _2399 = mem[(32 * t + 1) + ceil32(_param2.length) + 160]
+                      if mem[_141] < 2:
+                          revert with 0, 17
+                      if t >= mem[_141] - 2:
+                          if t >= mem[_273]:
+                              revert with 0, 50
+                          _2411 = mem[(32 * t) + _273 + 32]
+                          _2417 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2417 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2417 + 36] = _2399
+                          mem[_2417 + 68] = 0
+                          mem[_2417 + 100] = this.address
+                          mem[_2417 + 132] = 128
+                          mem[_2417 + 164] = mem[_2417]
+                          idx = 0
+                          while idx < mem[_2417]:
+                              mem[idx + _2417 + 196] = mem[_2417 + idx + 32]
+                              _2382 = mem[_141]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2417]) <= mem[_2417]:
+                              require ext_code.size(addr(_2411))
+                              call addr(_2411).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2399, 0, addr(this.address), 128, mem[_2417], mem[_2417 + 196 len ceil32(mem[_2417])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_273]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2417 + mem[_2417] + 196] = 0
+                              require ext_code.size(addr(_2411))
+                              call addr(_2411).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2399, 0, addr(this.address), 128, mem[_2417], mem[_2417 + 196 len ceil32(mem[_2417])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 > !t:
+                              revert with 0, 17
+                          if t + 1 >= mem[_273]:
+                              revert with 0, 50
+                          _2424 = mem[(32 * t + 1) + _273 + 32]
+                          if t >= mem[_273]:
+                              revert with 0, 50
+                          _2436 = mem[(32 * t) + _273 + 32]
+                          _2443 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2443 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2443 + 36] = _2399
+                          mem[_2443 + 68] = 0
+                          mem[_2443 + 100] = addr(_2424)
+                          mem[_2443 + 132] = 128
+                          mem[_2443 + 164] = mem[_2443]
+                          idx = 0
+                          while idx < mem[_2443]:
+                              mem[idx + _2443 + 196] = mem[_2443 + idx + 32]
+                              _2382 = mem[_141]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2443]) <= mem[_2443]:
+                              require ext_code.size(addr(_2436))
+                              call addr(_2436).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2399, 0, addr(_2424), 128, mem[_2443], mem[_2443 + 196 len ceil32(mem[_2443])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_273]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2443 + mem[_2443] + 196] = 0
+                              require ext_code.size(addr(_2436))
+                              call addr(_2436).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2399, 0, addr(_2424), 128, mem[_2443], mem[_2443 + 196 len ceil32(mem[_2443])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              else:
+                  if not mem[(32 * idx) + _141 + 44 len 20]:
+                      revert with 0, 'UniswapV2Library: ZERO_ADDRESS'
+                  if t >= mem[_141]:
+                      revert with 0, 50
+                  if 1 > !t:
+                      revert with 0, 17
+                  if t + 1 >= mem[ceil32(_param2.length) + 128]:
+                      revert with 0, 50
+                  if mem[(32 * t) + _141 + 44 len 20] == mem[(32 * idx) + _141 + 44 len 20]:
+                      _2400 = mem[(32 * t + 1) + ceil32(_param2.length) + 160]
+                      if mem[_141] < 2:
+                          revert with 0, 17
+                      if t >= mem[_141] - 2:
+                          if t >= mem[_273]:
+                              revert with 0, 50
+                          _2412 = mem[(32 * t) + _273 + 32]
+                          _2419 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2419 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2419 + 36] = 0
+                          mem[_2419 + 68] = _2400
+                          mem[_2419 + 100] = this.address
+                          mem[_2419 + 132] = 128
+                          mem[_2419 + 164] = mem[_2419]
+                          idx = 0
+                          while idx < mem[_2419]:
+                              mem[idx + _2419 + 196] = mem[_2419 + idx + 32]
+                              _2382 = mem[_141]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2419]) <= mem[_2419]:
+                              require ext_code.size(addr(_2412))
+                              call addr(_2412).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2400, addr(this.address), 128, mem[_2419], mem[_2419 + 196 len ceil32(mem[_2419])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_273]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2419 + mem[_2419] + 196] = 0
+                              require ext_code.size(addr(_2412))
+                              call addr(_2412).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2400, addr(this.address), 128, mem[_2419], mem[_2419 + 196 len ceil32(mem[_2419])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 > !t:
+                              revert with 0, 17
+                          if t + 1 >= mem[_273]:
+                              revert with 0, 50
+                          _2426 = mem[(32 * t + 1) + _273 + 32]
+                          if t >= mem[_273]:
+                              revert with 0, 50
+                          _2438 = mem[(32 * t) + _273 + 32]
+                          _2444 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2444 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2444 + 36] = 0
+                          mem[_2444 + 68] = _2400
+                          mem[_2444 + 100] = addr(_2426)
+                          mem[_2444 + 132] = 128
+                          mem[_2444 + 164] = mem[_2444]
+                          idx = 0
+                          while idx < mem[_2444]:
+                              mem[idx + _2444 + 196] = mem[_2444 + idx + 32]
+                              _2382 = mem[_141]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2444]) <= mem[_2444]:
+                              require ext_code.size(addr(_2438))
+                              call addr(_2438).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2400, addr(_2426), 128, mem[_2444], mem[_2444 + 196 len ceil32(mem[_2444])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_273]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2444 + mem[_2444] + 196] = 0
+                              require ext_code.size(addr(_2438))
+                              call addr(_2438).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2400, addr(_2426), 128, mem[_2444], mem[_2444 + 196 len ceil32(mem[_2444])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                  else:
+                      _2401 = mem[(32 * t + 1) + ceil32(_param2.length) + 160]
+                      if mem[_141] < 2:
+                          revert with 0, 17
+                      if t >= mem[_141] - 2:
+                          if t >= mem[_273]:
+                              revert with 0, 50
+                          _2413 = mem[(32 * t) + _273 + 32]
+                          _2421 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2421 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2421 + 36] = _2401
+                          mem[_2421 + 68] = 0
+                          mem[_2421 + 100] = this.address
+                          mem[_2421 + 132] = 128
+                          mem[_2421 + 164] = mem[_2421]
+                          idx = 0
+                          while idx < mem[_2421]:
+                              mem[idx + _2421 + 196] = mem[_2421 + idx + 32]
+                              _2382 = mem[_141]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2421]) <= mem[_2421]:
+                              require ext_code.size(addr(_2413))
+                              call addr(_2413).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2401, 0, addr(this.address), 128, mem[_2421], mem[_2421 + 196 len ceil32(mem[_2421])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_273]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2421 + mem[_2421] + 196] = 0
+                              require ext_code.size(addr(_2413))
+                              call addr(_2413).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2401, 0, addr(this.address), 128, mem[_2421], mem[_2421 + 196 len ceil32(mem[_2421])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 > !t:
+                              revert with 0, 17
+                          if t + 1 >= mem[_273]:
+                              revert with 0, 50
+                          _2428 = mem[(32 * t + 1) + _273 + 32]
+                          if t >= mem[_273]:
+                              revert with 0, 50
+                          _2440 = mem[(32 * t) + _273 + 32]
+                          _2445 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2445 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2445 + 36] = _2401
+                          mem[_2445 + 68] = 0
+                          mem[_2445 + 100] = addr(_2428)
+                          mem[_2445 + 132] = 128
+                          mem[_2445 + 164] = mem[_2445]
+                          idx = 0
+                          while idx < mem[_2445]:
+                              mem[idx + _2445 + 196] = mem[_2445 + idx + 32]
+                              _2382 = mem[_141]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2445]) <= mem[_2445]:
+                              require ext_code.size(addr(_2440))
+                              call addr(_2440).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2401, 0, addr(_2428), 128, mem[_2445], mem[_2445 + 196 len ceil32(mem[_2445])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_273]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2445 + mem[_2445] + 196] = 0
+                              require ext_code.size(addr(_2440))
+                              call addr(_2440).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2401, 0, addr(_2428), 128, mem[_2445], mem[_2445 + 196 len ceil32(mem[_2445])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_141] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_141] - 1:
+                                  if 0 >= mem[_141]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_141]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              ('le', 1, ('not', ('add', 1, ('var', 2))))
+              _2382 = mem[_141]
+              idx = t + 2
+              s = mem[(32 * t + 1) + _141 + 32]
+              t = t + 1
+              continue 
+      revert with 0, 50
+  if 0 >= mem[_141]:
+      revert with 0, 50
+  _898 = mem[_141 + 32]
+  if 0 >= _272:
+      revert with 0, 50
+  if 0 >= mem[ceil32(_param2.length) + 128]:
+      revert with 0, 50
+  _903 = mem[ceil32(_param2.length) + 160]
+  mem[mem[64] + 4] = mem[_273 + 44 len 20]
+  mem[mem[64] + 36] = _903
+  require ext_code.size(addr(_898))
+  call addr(_898).transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args mem[mem[64] + 4], _903
+  mem[mem[64]] = ext_call.return_data[0]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  _908 = mem[64]
+  mem[64] = mem[64] + ceil32(return_data.size)
+  require return_data.size >=′ 32
+  require mem[_908] == bool(mem[_908])
+
+def _fallback() payable: # default function
+  require 4 <= calldata.size
+  require calldata.size <= calldata.size
+  require calldata.size - 4 >=′ 128
+  require _param1 == addr(_param1)
+  require _param2 <= 18446744073709551615
+  require _param2 + 35 <′ calldata.size
+  if _param2.length > 18446744073709551615:
+      revert with 0, 65
+  if ceil32(_param2.length) + 128 < 96 or ceil32(_param2.length) + 128 > 18446744073709551615:
+      revert with 0, 65
+  mem[96] = _param2.length
+  require _param2 + _param2.length + 36 <= calldata.size
+  mem[128 len _param2.length] = _param2[all]
+  mem[_param2.length + 128] = 0
+  require _param2.length >=′ 96
+  _3 = mem[128]
+  require mem[128] <= 18446744073709551615
+  require mem[128] + 159 <′ _param2.length + 128
+  _4 = mem[mem[128] + 128]
+  if mem[mem[128] + 128] > 18446744073709551615:
+      revert with 0, 65
+  if (32 * mem[mem[128] + 128]) + 160 < 128 or ceil32(_param2.length) + (32 * mem[mem[128] + 128]) + 160 > 18446744073709551615:
+      revert with 0, 65
+  mem[64] = ceil32(_param2.length) + (32 * mem[mem[128] + 128]) + 160
+  mem[ceil32(_param2.length) + 128] = mem[mem[128] + 128]
+  require _param2.length + 32 >= _3 + (32 * _4) + 64
+  mem[ceil32(_param2.length) + 160 len 32 * _4] = mem[_3 + 160 len 32 * _4]
+  _140 = mem[160]
+  require mem[160] <= 18446744073709551615
+  require mem[160] + 159 <′ _param2.length + 128
+  _141 = mem[mem[160] + 128]
+  if mem[mem[160] + 128] > 18446744073709551615:
+      revert with 0, 65
+  _142 = mem[64]
+  if mem[64] + (32 * mem[mem[160] + 128]) + 32 < mem[64] or mem[64] + (32 * mem[mem[160] + 128]) + 32 > 18446744073709551615:
+      revert with 0, 65
+  mem[64] = mem[64] + (32 * mem[mem[160] + 128]) + 32
+  mem[_142] = mem[mem[160] + 128]
+  require _param2.length + 32 >= _140 + (32 * _141) + 64
+  idx = 0
+  s = _140 + 160
+  t = _142 + 32
+  while idx < _141:
+      require mem[s] == mem[s + 12 len 20]
+      mem[t] = mem[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  _273 = mem[192]
+  require mem[192] <= 18446744073709551615
+  require mem[192] + 159 <′ _param2.length + 128
+  _274 = mem[mem[192] + 128]
+  if mem[mem[192] + 128] > 18446744073709551615:
+      revert with 0, 65
+  _275 = mem[64]
+  if mem[64] + (32 * mem[mem[192] + 128]) + 32 < mem[64] or mem[64] + (32 * mem[mem[192] + 128]) + 32 > 18446744073709551615:
+      revert with 0, 65
+  mem[64] = mem[64] + (32 * mem[mem[192] + 128]) + 32
+  mem[_275] = mem[mem[192] + 128]
+  require _param2.length + 32 >= _273 + (32 * _274) + 64
+  idx = 0
+  s = _273 + 160
+  t = _275 + 32
+  while idx < _274:
+      require mem[s] == mem[s + 12 len 20]
+      mem[t] = mem[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  if 0 >= _274:
+      revert with 0, 50
+  if mem[_275 + 44 len 20] != caller:
+      revert with 0, 'Who the fuck is calling this?'
+  if 1 >= mem[_142]:
+      revert with 0, 50
+  _406 = mem[_142 + 64]
+  if 1 >= _274:
+      revert with 0, 50
+  if 1 >= mem[ceil32(_param2.length) + 128]:
+      revert with 0, 50
+  _411 = mem[ceil32(_param2.length) + 192]
+  mem[mem[64] + 4] = mem[_275 + 76 len 20]
+  mem[mem[64] + 36] = _411
+  require ext_code.size(addr(_406))
+  call addr(_406).transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args mem[mem[64] + 4], _411
+  mem[mem[64]] = ext_call.return_data[0]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  _414 = mem[64]
+  mem[64] = mem[64] + ceil32(return_data.size)
+  require return_data.size >=′ 32
+  require mem[_414] == bool(mem[_414])
+  if var128001 < 1:
+      revert with 0, 17
+  if var132002 < var132001:
+      if var134001 < mem[_142]:
+          if 1 > !var138002:
+              revert with 0, 17
+          _2470 = mem[_142]
+          idx = var140003 + 1
+          s = var140006
+          t = var140009
+          while idx < _2470:
+              if addr(s) == mem[(32 * idx) + _142 + 44 len 20]:
+                  revert with 0, 'UniswapV2Library: IDENTICAL_ADDRESSES'
+              if addr(s) < mem[(32 * idx) + _142 + 44 len 20]:
+                  if not addr(s):
+                      revert with 0, 'UniswapV2Library: ZERO_ADDRESS'
+                  if t >= mem[_142]:
+                      revert with 0, 50
+                  if 1 > !t:
+                      revert with 0, 17
+                  if t + 1 >= mem[ceil32(_param2.length) + 128]:
+                      revert with 0, 50
+                  if mem[(32 * t) + _142 + 44 len 20] == addr(s):
+                      _2486 = mem[(32 * t + 1) + ceil32(_param2.length) + 160]
+                      if mem[_142] < 2:
+                          revert with 0, 17
+                      if t >= mem[_142] - 2:
+                          if t >= mem[_275]:
+                              revert with 0, 50
+                          _2498 = mem[(32 * t) + _275 + 32]
+                          _2503 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2503 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2503 + 36] = 0
+                          mem[_2503 + 68] = _2486
+                          mem[_2503 + 100] = this.address
+                          mem[_2503 + 132] = 128
+                          mem[_2503 + 164] = mem[_2503]
+                          idx = 0
+                          while idx < mem[_2503]:
+                              mem[idx + _2503 + 196] = mem[_2503 + idx + 32]
+                              _2470 = mem[_142]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2503]) <= mem[_2503]:
+                              require ext_code.size(addr(_2498))
+                              call addr(_2498).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2486, addr(this.address), 128, mem[_2503], mem[_2503 + 196 len ceil32(mem[_2503])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_275]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2503 + mem[_2503] + 196] = 0
+                              require ext_code.size(addr(_2498))
+                              call addr(_2498).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2486, addr(this.address), 128, mem[_2503], mem[_2503 + 196 len ceil32(mem[_2503])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 > !t:
+                              revert with 0, 17
+                          if t + 1 >= mem[_275]:
+                              revert with 0, 50
+                          _2510 = mem[(32 * t + 1) + _275 + 32]
+                          if t >= mem[_275]:
+                              revert with 0, 50
+                          _2522 = mem[(32 * t) + _275 + 32]
+                          _2530 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2530 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2530 + 36] = 0
+                          mem[_2530 + 68] = _2486
+                          mem[_2530 + 100] = addr(_2510)
+                          mem[_2530 + 132] = 128
+                          mem[_2530 + 164] = mem[_2530]
+                          idx = 0
+                          while idx < mem[_2530]:
+                              mem[idx + _2530 + 196] = mem[_2530 + idx + 32]
+                              _2470 = mem[_142]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2530]) <= mem[_2530]:
+                              require ext_code.size(addr(_2522))
+                              call addr(_2522).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2486, addr(_2510), 128, mem[_2530], mem[_2530 + 196 len ceil32(mem[_2530])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_275]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2530 + mem[_2530] + 196] = 0
+                              require ext_code.size(addr(_2522))
+                              call addr(_2522).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2486, addr(_2510), 128, mem[_2530], mem[_2530 + 196 len ceil32(mem[_2530])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                  else:
+                      _2487 = mem[(32 * t + 1) + ceil32(_param2.length) + 160]
+                      if mem[_142] < 2:
+                          revert with 0, 17
+                      if t >= mem[_142] - 2:
+                          if t >= mem[_275]:
+                              revert with 0, 50
+                          _2499 = mem[(32 * t) + _275 + 32]
+                          _2505 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2505 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2505 + 36] = _2487
+                          mem[_2505 + 68] = 0
+                          mem[_2505 + 100] = this.address
+                          mem[_2505 + 132] = 128
+                          mem[_2505 + 164] = mem[_2505]
+                          idx = 0
+                          while idx < mem[_2505]:
+                              mem[idx + _2505 + 196] = mem[_2505 + idx + 32]
+                              _2470 = mem[_142]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2505]) <= mem[_2505]:
+                              require ext_code.size(addr(_2499))
+                              call addr(_2499).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2487, 0, addr(this.address), 128, mem[_2505], mem[_2505 + 196 len ceil32(mem[_2505])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_275]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2505 + mem[_2505] + 196] = 0
+                              require ext_code.size(addr(_2499))
+                              call addr(_2499).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2487, 0, addr(this.address), 128, mem[_2505], mem[_2505 + 196 len ceil32(mem[_2505])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 > !t:
+                              revert with 0, 17
+                          if t + 1 >= mem[_275]:
+                              revert with 0, 50
+                          _2512 = mem[(32 * t + 1) + _275 + 32]
+                          if t >= mem[_275]:
+                              revert with 0, 50
+                          _2524 = mem[(32 * t) + _275 + 32]
+                          _2531 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2531 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2531 + 36] = _2487
+                          mem[_2531 + 68] = 0
+                          mem[_2531 + 100] = addr(_2512)
+                          mem[_2531 + 132] = 128
+                          mem[_2531 + 164] = mem[_2531]
+                          idx = 0
+                          while idx < mem[_2531]:
+                              mem[idx + _2531 + 196] = mem[_2531 + idx + 32]
+                              _2470 = mem[_142]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2531]) <= mem[_2531]:
+                              require ext_code.size(addr(_2524))
+                              call addr(_2524).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2487, 0, addr(_2512), 128, mem[_2531], mem[_2531 + 196 len ceil32(mem[_2531])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_275]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2531 + mem[_2531] + 196] = 0
+                              require ext_code.size(addr(_2524))
+                              call addr(_2524).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2487, 0, addr(_2512), 128, mem[_2531], mem[_2531 + 196 len ceil32(mem[_2531])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              else:
+                  if not mem[(32 * idx) + _142 + 44 len 20]:
+                      revert with 0, 'UniswapV2Library: ZERO_ADDRESS'
+                  if t >= mem[_142]:
+                      revert with 0, 50
+                  if 1 > !t:
+                      revert with 0, 17
+                  if t + 1 >= mem[ceil32(_param2.length) + 128]:
+                      revert with 0, 50
+                  if mem[(32 * t) + _142 + 44 len 20] == mem[(32 * idx) + _142 + 44 len 20]:
+                      _2488 = mem[(32 * t + 1) + ceil32(_param2.length) + 160]
+                      if mem[_142] < 2:
+                          revert with 0, 17
+                      if t >= mem[_142] - 2:
+                          if t >= mem[_275]:
+                              revert with 0, 50
+                          _2500 = mem[(32 * t) + _275 + 32]
+                          _2507 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2507 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2507 + 36] = 0
+                          mem[_2507 + 68] = _2488
+                          mem[_2507 + 100] = this.address
+                          mem[_2507 + 132] = 128
+                          mem[_2507 + 164] = mem[_2507]
+                          idx = 0
+                          while idx < mem[_2507]:
+                              mem[idx + _2507 + 196] = mem[_2507 + idx + 32]
+                              _2470 = mem[_142]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2507]) <= mem[_2507]:
+                              require ext_code.size(addr(_2500))
+                              call addr(_2500).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2488, addr(this.address), 128, mem[_2507], mem[_2507 + 196 len ceil32(mem[_2507])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_275]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2507 + mem[_2507] + 196] = 0
+                              require ext_code.size(addr(_2500))
+                              call addr(_2500).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2488, addr(this.address), 128, mem[_2507], mem[_2507 + 196 len ceil32(mem[_2507])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 > !t:
+                              revert with 0, 17
+                          if t + 1 >= mem[_275]:
+                              revert with 0, 50
+                          _2514 = mem[(32 * t + 1) + _275 + 32]
+                          if t >= mem[_275]:
+                              revert with 0, 50
+                          _2526 = mem[(32 * t) + _275 + 32]
+                          _2532 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2532 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2532 + 36] = 0
+                          mem[_2532 + 68] = _2488
+                          mem[_2532 + 100] = addr(_2514)
+                          mem[_2532 + 132] = 128
+                          mem[_2532 + 164] = mem[_2532]
+                          idx = 0
+                          while idx < mem[_2532]:
+                              mem[idx + _2532 + 196] = mem[_2532 + idx + 32]
+                              _2470 = mem[_142]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2532]) <= mem[_2532]:
+                              require ext_code.size(addr(_2526))
+                              call addr(_2526).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2488, addr(_2514), 128, mem[_2532], mem[_2532 + 196 len ceil32(mem[_2532])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_275]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2532 + mem[_2532] + 196] = 0
+                              require ext_code.size(addr(_2526))
+                              call addr(_2526).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, _2488, addr(_2514), 128, mem[_2532], mem[_2532 + 196 len ceil32(mem[_2532])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                  else:
+                      _2489 = mem[(32 * t + 1) + ceil32(_param2.length) + 160]
+                      if mem[_142] < 2:
+                          revert with 0, 17
+                      if t >= mem[_142] - 2:
+                          if t >= mem[_275]:
+                              revert with 0, 50
+                          _2501 = mem[(32 * t) + _275 + 32]
+                          _2509 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2509 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2509 + 36] = _2489
+                          mem[_2509 + 68] = 0
+                          mem[_2509 + 100] = this.address
+                          mem[_2509 + 132] = 128
+                          mem[_2509 + 164] = mem[_2509]
+                          idx = 0
+                          while idx < mem[_2509]:
+                              mem[idx + _2509 + 196] = mem[_2509 + idx + 32]
+                              _2470 = mem[_142]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2509]) <= mem[_2509]:
+                              require ext_code.size(addr(_2501))
+                              call addr(_2501).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2489, 0, addr(this.address), 128, mem[_2509], mem[_2509 + 196 len ceil32(mem[_2509])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_275]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2509 + mem[_2509] + 196] = 0
+                              require ext_code.size(addr(_2501))
+                              call addr(_2501).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2489, 0, addr(this.address), 128, mem[_2509], mem[_2509 + 196 len ceil32(mem[_2509])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 > !t:
+                              revert with 0, 17
+                          if t + 1 >= mem[_275]:
+                              revert with 0, 50
+                          _2516 = mem[(32 * t + 1) + _275 + 32]
+                          if t >= mem[_275]:
+                              revert with 0, 50
+                          _2528 = mem[(32 * t) + _275 + 32]
+                          _2533 = mem[64]
+                          mem[64] = mem[64] + 32
+                          mem[_2533 + 32] = 0x22c0d9f00000000000000000000000000000000000000000000000000000000
+                          mem[_2533 + 36] = _2489
+                          mem[_2533 + 68] = 0
+                          mem[_2533 + 100] = addr(_2516)
+                          mem[_2533 + 132] = 128
+                          mem[_2533 + 164] = mem[_2533]
+                          idx = 0
+                          while idx < mem[_2533]:
+                              mem[idx + _2533 + 196] = mem[_2533 + idx + 32]
+                              _2470 = mem[_142]
+                              idx = idx + 32
+                              continue 
+                          if ceil32(mem[_2533]) <= mem[_2533]:
+                              require ext_code.size(addr(_2528))
+                              call addr(_2528).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2489, 0, addr(_2516), 128, mem[_2533], mem[_2533 + 196 len ceil32(mem[_2533])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  if 0 >= mem[_275]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  revert with 0, 17
+                          else:
+                              mem[_2533 + mem[_2533] + 196] = 0
+                              require ext_code.size(addr(_2528))
+                              call addr(_2528).0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args _2489, 0, addr(_2516), 128, mem[_2533], mem[_2533 + 196 len ceil32(mem[_2533])]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if t == -1:
+                                  revert with 0, 17
+                              if mem[_142] < 1:
+                                  revert with 0, 17
+                              if t + 1 >= mem[_142] - 1:
+                                  if 0 >= mem[_142]:
+                                      revert with 0, 50
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if t + 1 >= mem[_142]:
+                                  revert with 0, 50
+                              if 1 > !(t + 1):
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              ('le', 1, ('not', ('add', 1, ('var', 2))))
+              _2470 = mem[_142]
+              idx = t + 2
+              s = mem[(32 * t + 1) + _142 + 32]
+              t = t + 1
+              continue 
+      revert with 0, 50
+  if 0 >= mem[_142]:
+      revert with 0, 50
+  _905 = mem[_142 + 32]
+  if 0 >= _274:
+      revert with 0, 50
+  if 0 >= mem[ceil32(_param2.length) + 128]:
+      revert with 0, 50
+  _910 = mem[ceil32(_param2.length) + 160]
+  mem[mem[64] + 4] = mem[_275 + 44 len 20]
+  mem[mem[64] + 36] = _910
+  require ext_code.size(addr(_905))
+  call addr(_905).transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args mem[mem[64] + 4], _910
+  mem[mem[64]] = ext_call.return_data[0]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  _915 = mem[64]
+  mem[64] = mem[64] + ceil32(return_data.size)
+  require return_data.size >=′ 32
+  require mem[_915] == bool(mem[_915])
+  return memory
+    from 128
+     len mem[96]
