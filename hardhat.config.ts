@@ -8,7 +8,7 @@ import "hardhat-gas-reporter"
 import "solidity-coverage"
 import { HardhatUserConfig } from "hardhat/config"
 
-const MOONBEAM_RPC_URL = process.env.MOONBEAM_RPC_URL || "https://rpc.ankr.com/moonbeam"
+const MOONBEAM_RPC_URL = process.env.MOONBEAM_RPC_URL || "https://rpc.api.moonbeam.network"
 const RINKEBY_RPC_URL =
     process.env.RINKEBY_RPC_URL || "https://eth-rinkeby.alchemyapi.io/v2/your-api-key"
 const PRIVATE_KEY = process.env.PRIVATE_KEY
