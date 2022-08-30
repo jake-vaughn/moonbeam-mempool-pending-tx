@@ -3,54 +3,53 @@ import { ethers } from "hardhat"
 var wsProvider = new ethers.providers.WebSocketProvider("ws://127.0.0.1:9944")
 
 async function main() {
-    console.log("Running getPendingTx...")
+    console.log("Running mirror0x2372ContractBot...")
 
     const rpcProvider = ethers.provider
     // const blockNum = await wsProvider.getBlockNumber()
     // const block = await wsProvider.getBlock(blockNum)
     // console.log(block)
 
-    const limCook = await rpcProvider.getSigner(0)
+    const mirrorBot0x2372 = await rpcProvider.getSigner(1)
 
-    console.log(await limCook.getAddress())
+    console.log(await mirrorBot0x2372.getAddress())
 
     wsProvider.on("pending", (tx) => {
         wsProvider.getTransaction(tx).then(async function (transaction) {
             const toAddr: string = transaction.to ? transaction.to : ""
-            if (toAddr == "0x59ddC0C8d067dEB508b36d69254Ac6bafD260575") {
-                console.log(`transaction: ${transaction.hash}`)
+            if (toAddr == "0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C") {
+                console.log(`Transaction ${transaction.hash}`)
                 // console.log(`gasLimit: ${transaction.gasLimit?.toString()}`)
                 // console.log(`gasPrice: ${transaction.gasPrice?.toString()}`)
                 // console.log(`maxFeePerGas: ${transaction.maxFeePerGas?.toString()}`)
                 // console.log(`maxPriorityFeePerGas: ${transaction.maxPriorityFeePerGas?.toString()}`)
 
+                const sendTx = await mirrorBot0x2372.sendTransaction({
+                    to: "0x726714e8457aCbD729805223616Ec5A6D8C7193A",
+                    data: transaction.data,
+                    gasLimit: 1000000,
+                    maxFeePerGas: 121500000000,
+                    maxPriorityFeePerGas: 2100000000,
+                })
+                console.log(`Sending my own ${sendTx.hash}`)
+
                 try {
-                    const gasEstimate = await limCook.estimateGas({
-                        to: "0xc8367169672C4289797a29Bf8Bc7854804EE39F6",
+                    const gasEstimate = await mirrorBot0x2372.estimateGas({
+                        to: "0x726714e8457aCbD729805223616Ec5A6D8C7193A",
                         data: transaction.data,
                     })
                     console.log(`Gas Estimate: ${gasEstimate}`)
-                    if (gasEstimate.toNumber() < 35000) {
-                        const sendTx = await limCook.sendTransaction({
-                            to: "0xc8367169672C4289797a29Bf8Bc7854804EE39F6",
-                            data: transaction.data,
-                            gasLimit: 500000,
-                            maxFeePerGas: 121500000000,
-                            maxPriorityFeePerGas: 2100000000,
-                        })
-                        console.log(`\nSending my own ${sendTx.hash}`)
-                    }
-                    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`)
                 } catch (e) {
                     console.log("tx will likely revert")
                 }
+
+                console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`)
             }
         })
     })
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+// Able to use async/await everywhere and properly handle errors.
 main().catch((error) => {
     console.error(error)
     process.exitCode = 1
