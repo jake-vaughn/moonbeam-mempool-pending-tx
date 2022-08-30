@@ -16,8 +16,10 @@ async function main() {
 
     wsProvider.on("pending", (tx) => {
         wsProvider.getTransaction(tx).then(async function (transaction) {
-            const toAddr: string = transaction.to ? transaction.to : ""
-            if (toAddr == "0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C") {
+            if (
+                transaction != null &&
+                transaction.to == "0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C"
+            ) {
                 console.log(`Transaction ${transaction.hash}`)
                 // console.log(`gasLimit: ${transaction.gasLimit?.toString()}`)
                 // console.log(`gasPrice: ${transaction.gasPrice?.toString()}`)

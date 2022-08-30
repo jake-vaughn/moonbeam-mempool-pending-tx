@@ -5,8 +5,9 @@
         "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "dist"
+        "outDir": "dist",
         // optional:
+        "strictNullChecks": true
         // "suppressImplicitAnyIndexErrors": true
     },
     "include": [

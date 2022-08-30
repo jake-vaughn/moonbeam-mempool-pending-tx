@@ -15,9 +15,11 @@ async function main() {
     console.log(await limCook.getAddress())
 
     wsProvider.on("pending", (tx) => {
-        wsProvider.getTransaction(tx).then(async function (transaction) {
-            const toAddr: string = transaction.to ? transaction.to : ""
-            if (toAddr == "0x59ddC0C8d067dEB508b36d69254Ac6bafD260575") {
+        wsProvider.getTransaction(tx).then(async function (transaction?) {
+            if (
+                transaction != null &&
+                transaction.to == "0x59ddC0C8d067dEB508b36d69254Ac6bafD260575"
+            ) {
                 console.log(`transaction: ${transaction.hash}`)
                 // console.log(`gasLimit: ${transaction.gasLimit?.toString()}`)
                 // console.log(`gasPrice: ${transaction.gasPrice?.toString()}`)
