@@ -9,17 +9,15 @@ import "solidity-coverage"
 import { HardhatUserConfig } from "hardhat/config"
 
 const MOONBEAM_RPC_URL = process.env.MOONBEAM_RPC_URL || "https://rpc.api.moonbeam.network"
-const RINKEBY_RPC_URL =
-    process.env.RINKEBY_RPC_URL || "https://eth-rinkeby.alchemyapi.io/v2/your-api-key"
-const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
-const PRIVATE_KEY2 = process.env.PRIVATE_KEY2 || ""
+const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL || "https://eth-rinkeby.alchemyapi.io/v2/your-api-key"
+const MNEMONIC = process.env.MNEMONIC || "your mnemonic"
 
 // Your API key for Etherscan, obtain one at https://etherscan.io/
 const MOONSCAN_API_KEY = process.env.MOONSCAN_API_KEY || "Your etherscan API key"
 const REPORT_GAS = process.env.REPORT_GAS || false
 
 const config: HardhatUserConfig = {
-    defaultNetwork: "hardhat",
+    defaultNetwork: "moonbeam",
     networks: {
         hardhat: {
             // // If you want to do some forking, uncomment this
@@ -33,15 +31,11 @@ const config: HardhatUserConfig = {
         },
         moonbeam: {
             url: MOONBEAM_RPC_URL,
-            accounts: [PRIVATE_KEY, PRIVATE_KEY2],
+            accounts: {
+                mnemonic: MNEMONIC,
+            },
             saveDeployments: true,
             chainId: 1284,
-        },
-        rinkeby: {
-            url: RINKEBY_RPC_URL,
-            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-            saveDeployments: true,
-            chainId: 4,
         },
     },
     etherscan: {
