@@ -14,7 +14,7 @@ async function mevBot() {
     console.log(
         chalk.green(`Running mevBot...\n`),
         `mevBotSignerAddr: ${chalk.cyan(mevBotSignerAddr)}\n`,
-        `Waiting for a memPoolTx Target...`
+        `Waiting for a memPoolTx target...`
     )
 
     wsProvider.on("pending", (txHash) => {
@@ -24,8 +24,8 @@ async function mevBot() {
                     const mevBotGasEstimate = await mevBotSigner.estimateGas({
                         to: "0x726714e8457aCbD729805223616Ec5A6D8C7193A",
                         data: memPoolTx.data,
-                        // gasLimit: 1000000,
-                        // maxFeePerGas: 121500000000,
+                        gasLimit: 1500000,
+                        maxFeePerGas: 200000000000,
                         // maxPriorityFeePerGas: 2100000000,
                     })
 
@@ -33,25 +33,14 @@ async function mevBot() {
                         const mevBotTx = await mevBotSigner.sendTransaction({
                             to: "0x726714e8457aCbD729805223616Ec5A6D8C7193A",
                             data: memPoolTx.data,
-                            gasLimit: 1000000,
-                            maxFeePerGas: 121500000000,
+                            gasLimit: 1500000,
+                            maxFeePerGas: 200000000000,
                             maxPriorityFeePerGas: 2100000000,
                         })
 
                         const memPoolTxReceipt = await handleWait(memPoolTx)
                         const mevBotTxReceipt = await handleWait(mevBotTx)
-                        console.log(
-                            `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n`,
-                            chalk.green(`Transaction Sent!\n`),
-                            `memPoolTxReceipt blockNumber: ${chalk.yellow(memPoolTxReceipt?.blockNumber)}\n`,
-                            `mevBotTxReceipt blockNumber:  ${chalk.yellow(mevBotTxReceipt?.blockNumber)}\n`,
-                            `memPoolTxReceipt transactionHash: ${chalk.cyan(memPoolTxReceipt?.transactionHash)}\n`,
-                            `mevBotTxReceipt transactionHash:  ${chalk.cyan(mevBotTxReceipt?.transactionHash)}\n`,
-                            `mevBotTx estimateGas:    ${chalk.yellow(mevBotGasEstimate)}\n`,
-                            `mevBotTxReceipt gasUsed: ${chalk.yellow(mevBotTxReceipt?.gasUsed)}\n`,
-                            `memPoolTxReceipt status: ${chalk.yellow(memPoolTxReceipt?.status)}\n`,
-                            `mevBotTxReceipt status:  ${chalk.yellow(mevBotTxReceipt?.status)}\n`
-                        )
+                        receiptLogger(memPoolTxReceipt, mevBotTxReceipt, mevBotGasEstimate)
                     }
                 } catch (err) {
                     const memPoolTxReceipt = await handleWait(memPoolTx)
@@ -61,9 +50,9 @@ async function mevBot() {
                         `pending listener failed with error\n`,
                         err,
                         chalk.green(`\nMempool Transaction was`),
-                        `memPoolTxReceipt blockNumber: ${chalk.yellow(memPoolTxReceipt?.blockNumber)}\n`,
-                        `memPoolTxReceipt transactionHash: ${chalk.cyan(memPoolTxReceipt?.transactionHash)}\n`,
-                        `memPoolTxReceipt status: ${chalk.yellow(memPoolTxReceipt?.status)}\n`
+                        `memPoolTxReceipt blockNumber: ${chalk.yellow(memPoolTxReceipt.blockNumber)}\n`,
+                        `memPoolTxReceipt transactionHash: ${chalk.cyan(memPoolTxReceipt.transactionHash)}\n`,
+                        `memPoolTxReceipt status: ${chalk.yellow(memPoolTxReceipt.status)}\n`
                     )
                 }
             }
@@ -80,9 +69,28 @@ async function handleWait(tx: TransactionResponse) {
             const txReceipt: TransactionReceipt = error.receipt
             return txReceipt
         }
-        console.log(`handleWait failed with error\n`, error)
-        return undefined
+        console.log(`handleWait failed to handle error\n`)
+        throw error
     }
+}
+
+function receiptLogger(
+    memPoolTxReceipt: TransactionReceipt,
+    mevBotTxReceipt: TransactionReceipt,
+    mevBotGasEstimate: BigNumber
+) {
+    console.log(
+        `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n`,
+        chalk.green(`Transactions Mined!\n`),
+        // `memPoolTxReceipt transactionHash: ${chalk.cyan(memPoolTxReceipt.transactionHash)}\n`,
+        // `mevBotTxReceipt transactionHash:  ${chalk.cyan(mevBotTxReceipt.transactionHash)}\n`,
+        `memPoolTxReceipt blockNumber: ${chalk.yellow(memPoolTxReceipt.blockNumber)}\n`,
+        `mevBotTxReceipt blockNumber:  ${chalk.yellow(mevBotTxReceipt.blockNumber)}\n`,
+        `memPoolTxReceipt status: ${chalk.yellow(memPoolTxReceipt.status)}\n`,
+        `mevBotTxReceipt status:  ${chalk.yellow(mevBotTxReceipt.status)}\n`
+        // `mevBotTx estimateGas:    ${chalk.yellow(mevBotGasEstimate)}\n`,
+        // `mevBotTxReceipt gasUsed: ${chalk.yellow(mevBotTxReceipt.gasUsed)}\n`
+    )
 }
 
 // Able to use async/await everywhere and properly handle errors.
