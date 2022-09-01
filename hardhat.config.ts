@@ -35,7 +35,7 @@ const config: HardhatUserConfig = {
                 mnemonic: MNEMONIC,
                 path: "m/44'/60'/0'/0",
                 initialIndex: 0,
-                count: 51,
+                count: 100,
             },
             saveDeployments: true,
             chainId: 1284,
@@ -57,18 +57,21 @@ const config: HardhatUserConfig = {
     },
     namedAccounts: {
         deployer: {
-            default: 0, // here this will by default take the first account as deployer
-            1: 0, // similarly on mainnet it will take the first account as deployer. Note though that depending on how hardhat network are configured, the account 0 on one network can be different than on another
+            default: 1, // Account 1 from mnemonic is deployer
+            1284: 1,
         },
-        user1: {
-            default: 1,
-            1: 1,
+        fallback: {
+            default: 0, // Account 0 is where failed code falls back to
+            1284: 0,
         },
     },
     solidity: {
         compilers: [
             {
                 version: "0.8.9",
+            },
+            {
+                version: "0.4.24",
             },
         ],
     },

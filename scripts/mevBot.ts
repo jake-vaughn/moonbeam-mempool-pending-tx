@@ -1,8 +1,9 @@
 import { ethers, network } from "hardhat"
 import { BigNumber } from "ethers"
 import { JsonRpcSigner, Provider, TransactionReceipt, TransactionResponse } from "@ethersproject/providers"
-import { networkConfig, targetContractItem, type2AddressMatch } from "../helper-hardhat-config"
+import { networkConfig, targetContractItem } from "../helper-hardhat-config"
 import chalk from "chalk"
+import { getErrorMessage } from "../utils/getErrorMessage"
 
 const rpcProvider = ethers.provider
 const chainId = network.config.chainId!
@@ -36,7 +37,7 @@ async function mevBot() {
                                 chalk.green(`type 99 found\n`),
                                 `Target name: ${target.name}\n`,
                                 `Block Number: ${chalk.cyan(await rpcProvider.getBlockNumber())}`,
-                                `From ${memPoolTx.from.toLowerCase()}`
+                                `From ${memPoolTx.from}`
                             )
                             break
                         default:
@@ -51,7 +52,7 @@ async function mevBot() {
 
 async function type1(memPoolTx: TransactionResponse, target: targetContractItem) {
     try {
-        const mevBotSigner = rpcProvider.getSigner(target.signers[0])
+        const mevBotSigner = rpcProvider.getSigner(target.signers[memPoolTx.from])
         const blockNumDesired = (await rpcProvider.getBlockNumber()) + 1
         const mevBotGasEstimate = await mevBotSigner.estimateGas({
             to: target.copyContractAddr,
@@ -78,7 +79,7 @@ async function type1(memPoolTx: TransactionResponse, target: targetContractItem)
 
 async function type2(memPoolTx: TransactionResponse, target: targetContractItem) {
     try {
-        const signerIdx = type2AddressMatch[memPoolTx.from.toLowerCase()]
+        const signerIdx = target.signers[memPoolTx.from]
         if (signerIdx == undefined) {
             throw new Error("Unknown Address Called in a type 2 transaction")
         }
@@ -88,15 +89,15 @@ async function type2(memPoolTx: TransactionResponse, target: targetContractItem)
             to: target.copyContractAddr,
             data: memPoolTx.data,
             gasLimit: 500000,
-            maxFeePerGas: 200000000000,
-            maxPriorityFeePerGas: 2100000000,
+            maxFeePerGas: memPoolTx.maxFeePerGas!.toNumber() + 1000000000,
+            maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas!.toNumber() + 1000000000,
         })
 
         // console.log(
         //     `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n`,
         //     `memPoolTx.hash: ${chalk.cyan(memPoolTx.hash)}\n`,
         //     `estimateGas: ${chalk.yellow(mevBotGasEstimate)}\n`,
-        //     `memPoolTx.from: ${chalk.cyan(memPoolTx.from.toLowerCase())} \n`,
+        //     `memPoolTx.from: ${chalk.cyan(memPoolTx.from)} \n`,
         //     `Index ${chalk.yellow(signerIdx)}\n`,
         //     `signer: ${chalk.cyan(await mevBotSigner.getAddress())}\n`,
         //     `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n`
@@ -107,8 +108,8 @@ async function type2(memPoolTx: TransactionResponse, target: targetContractItem)
                 to: target.copyContractAddr,
                 data: memPoolTx.data,
                 gasLimit: 500000,
-                maxFeePerGas: 200000000000,
-                maxPriorityFeePerGas: 2100000000,
+                maxFeePerGas: memPoolTx.maxFeePerGas!.toNumber() + 1000000000,
+                maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas!.toNumber() + 1000000000,
             })
             await receiptLogger(target, memPoolTx, mevBotTx, mevBotGasEstimate, blockNumDesired)
         }
@@ -159,19 +160,19 @@ async function receiptLogger(
 }
 
 async function errorLogger(err: unknown, target: targetContractItem, memPoolTx: TransactionResponse) {
-    const signerIdx = type2AddressMatch[memPoolTx.from.toLowerCase()]
+    const signerIdx = target.signers[memPoolTx.from]
     const mevBotSigner = rpcProvider.getSigner(signerIdx)
     const memPoolTxReceipt = await handleWait(memPoolTx)
     console.log(
         chalk.redBright(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n`),
         chalk.redBright(`Pending listener failed with error:\n`),
-        err,
+        getErrorMessage(err),
         chalk.redBright(`\n\nTarge Name: ${target.name}\n`),
         `memPoolTxReceipt transactionHash: ${chalk.cyan(memPoolTxReceipt.transactionHash)}\n`,
         `memPoolTxReceipt blockNumber: ${chalk.yellow(memPoolTxReceipt.blockNumber)}\n`,
         `memPoolTxReceipt status: ${chalk.yellow(memPoolTxReceipt.status)}\n`,
         `\n`,
-        `memPoolTx.from: ${chalk.cyan(memPoolTx.from.toLowerCase())} \n`,
+        `memPoolTx.from: ${chalk.cyan(memPoolTx.from)} \n`,
         `Index ${chalk.yellow(signerIdx)}\n`,
         `signer: ${chalk.cyan(await mevBotSigner.getAddress())}\n`,
         chalk.redBright(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n`)
