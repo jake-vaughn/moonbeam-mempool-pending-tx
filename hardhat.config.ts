@@ -33,6 +33,9 @@ const config: HardhatUserConfig = {
             url: MOONBEAM_RPC_URL,
             accounts: {
                 mnemonic: MNEMONIC,
+                path: "m/44'/60'/0'/0",
+                initialIndex: 0,
+                count: 51,
             },
             saveDeployments: true,
             chainId: 1284,
