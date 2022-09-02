@@ -1,23 +1,22 @@
 {
-    "compilerOptions": {
-        "target": "es2020",
-        "module": "commonjs",
-        "strict": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "outDir": "dist",
-        // optional:
-        "strictNullChecks": true
-        // "suppressImplicitAnyIndexErrors": true
-    },
-    "include": [
-        "./scripts",
-        "./test",
-        "./deploy",
-        "./utils",
-    ],
-    "files": [
-        "./hardhat.config.ts",
-        "./helper-hardhat-config.ts"
-    ]
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es6"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2020"
+  },
+  "exclude": ["node_modules"],
+  "files": ["./hardhat.config.ts", "./helper-hardhat-config.ts"],
+  "include": ["src/**/*", "test/**/*", "tasks/**/*"]
 }
