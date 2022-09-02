@@ -17,7 +17,7 @@ const MOONSCAN_API_KEY = process.env.MOONSCAN_API_KEY || "Your etherscan API key
 const REPORT_GAS = process.env.REPORT_GAS || false
 
 const config: HardhatUserConfig = {
-    defaultNetwork: "moonbeam",
+    defaultNetwork: "hardhat",
     networks: {
         hardhat: {
             // // If you want to do some forking, uncomment this
@@ -72,6 +72,12 @@ const config: HardhatUserConfig = {
             },
             {
                 version: "0.4.24",
+            },
+            {
+                version: "0.6.6",
+            },
+            {
+                version: "0.4.18",
             },
         ],
     },

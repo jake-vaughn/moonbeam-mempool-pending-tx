@@ -9,7 +9,7 @@ const targetContracts = networkConfig[chainId].targetContracts
 const targetContractSigners = targetContracts["0x2541300Dff59926F0855016e861A1426fb547037"].signers
 const AMOUNT_TO_DISTRIBUTE = ethers.utils.parseEther("0.01")
 
-async function bulkSend() {
+async function bulkSendEth() {
     const { deployer } = await getNamedAccounts()
     const bulkSend: BulkSend = await ethers.getContract("BulkSend", deployer)
     let addresses: string[] = []
@@ -38,13 +38,13 @@ async function bulkSend() {
         ethers.utils.formatEther(AMOUNT_TO_DISTRIBUTE.mul(BigNumber.from(addresses.length)))
     )
 
-    // const tx = await bulkSend.bulkSendEth(addresses, amounts, {
-    //     value: AMOUNT_TO_DISTRIBUTE.mul(BigNumber.from(addresses.length)),
-    // })
-    // console.log(tx)
+    const tx = await bulkSend.bulkSendEth(addresses, amounts, {
+        value: AMOUNT_TO_DISTRIBUTE.mul(BigNumber.from(addresses.length)),
+    })
+    console.log(tx)
 }
 
-bulkSend().catch((error) => {
+bulkSendEth().catch((error) => {
     console.error(error)
     process.exitCode = 1
 })

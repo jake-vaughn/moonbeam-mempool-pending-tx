@@ -28,8 +28,8 @@ async function mevBot() {
                         case 1:
                             await type1(memPoolTx, target)
                             break
-                        case 2:
-                            await type2(memPoolTx, target)
+                        case 3:
+                            await target3(memPoolTx, target)
                             break
                         case 99:
                             console.log(
@@ -77,7 +77,7 @@ async function type1(memPoolTx: TransactionResponse, target: targetContractItem)
     }
 }
 
-async function type2(memPoolTx: TransactionResponse, target: targetContractItem) {
+async function target3(memPoolTx: TransactionResponse, target: targetContractItem) {
     try {
         const signerIdx = target.signers[memPoolTx.from]
         if (signerIdx == undefined) {

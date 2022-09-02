@@ -33,6 +33,12 @@ export interface targetContractItem {
 }
 
 export const networkConfig: networkConfigInfo = {
+    31337: {
+        name: "hardhat",
+        blockConfirmations: 1,
+        websocket: "",
+        targetContracts: {},
+    },
     1284: {
         name: "moonbeam",
         blockConfirmations: 1,
@@ -60,11 +66,11 @@ export const networkConfig: networkConfigInfo = {
                 active: true,
             },
             "0x2541300Dff59926F0855016e861A1426fb547037": {
-                name: "Type 2",
-                type: 2,
-                copyContractAddr: "0x8b8f84c8913eb2cdbf8b552c035ef397e1f0c225",
+                name: "Target 3",
+                type: 3,
+                copyContractAddr: "0x5F31BAaE1B7adb9E28C33010B7b923C031a963B8",
                 signers: {
-                    // 50 addresses for Type 2
+                    // 50 addresses
                     "0xd7178258b69Bcace33502285fe0D5094611dD4e1": 11,
                     "0x3235463b966275914d5Bf85c4754dCfD2a4BD695": 12,
                     "0x3567779aB5FF236BFFf34851BF4aB8AF5611C9ed": 13,
