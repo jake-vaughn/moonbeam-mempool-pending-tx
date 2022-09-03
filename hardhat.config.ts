@@ -1,10 +1,12 @@
 import "@nomicfoundation/hardhat-toolbox"
 import { config as dotenvConfig } from "dotenv"
-import type { HardhatUserConfig } from "hardhat/config"
+import "hardhat-deploy"
+import { HardhatUserConfig } from "hardhat/config"
 import type { NetworkUserConfig } from "hardhat/types"
 import { resolve } from "path"
 
 import "./tasks/accounts"
+import "./tasks/topUpAccounts"
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env"
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
@@ -77,6 +79,7 @@ const config: HardhatUserConfig = {
       bsc: process.env.BSCSCAN_API_KEY || "",
       goerli: process.env.ETHERSCAN_API_KEY || "",
       mainnet: process.env.ETHERSCAN_API_KEY || "",
+      moonbeam: process.env.MOONSCAN_API_KEY || "",
       optimisticEthereum: process.env.OPTIMISM_API_KEY || "",
       polygon: process.env.POLYGONSCAN_API_KEY || "",
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
@@ -92,11 +95,20 @@ const config: HardhatUserConfig = {
     src: "./contracts",
     // token: MATIC
   },
+  mocha: {
+    timeout: 200000, // 200 seconds max for running tests
+  },
   networks: {
     hardhat: {
       accounts: {
+        count: 100,
         mnemonic,
+        path: "m/44'/60'/0'/0",
       },
+      // // If you want to do some forking, uncomment this
+      //   forking: {
+      //     url: chainRpcUrl,
+      //   },
       chainId: chainIds.hardhat,
     },
     localhost: {
@@ -111,6 +123,16 @@ const config: HardhatUserConfig = {
     optimism: getChainConfig("optimism-mainnet"),
     "polygon-mainnet": getChainConfig("polygon-mainnet"),
     "polygon-mumbai": getChainConfig("polygon-mumbai"),
+  },
+  namedAccounts: {
+    zero: {
+      // signer call with unknown falls back to this address
+      default: 0,
+    },
+    deployer: {
+      // Take the second account as deployer
+      default: 1,
+    },
   },
   paths: {
     artifacts: "./artifacts",

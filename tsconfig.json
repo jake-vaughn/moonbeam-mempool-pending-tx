@@ -18,5 +18,5 @@
   },
   "exclude": ["node_modules"],
   "files": ["./hardhat.config.ts", "./helper-hardhat-config.ts"],
-  "include": ["src/**/*", "test/**/*", "tasks/**/*"]
+  "include": ["deploy/**/*", "src/**/*", "test/**/*", "tasks/**/*", "./hardhat.config.ts"]
 }
