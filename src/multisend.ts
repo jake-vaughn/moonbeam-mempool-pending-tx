@@ -43,12 +43,12 @@ export async function topUpEth(
     return
   }
 
-  const tx = await bulkSend.bulkSendEth(addrList, amountList, {
-    value: totalSendAmount,
-  })
+  // const tx = await bulkSend.bulkSendEth(addrList, amountList, {
+  //   value: totalSendAmount,
+  // })
 
-  // console.log(tx)
+  // // console.log(tx)
 
-  const txReceipt = await tx.wait()
-  return txReceipt
+  // const txReceipt = await tx.wait()
+  // return txReceipt
 }

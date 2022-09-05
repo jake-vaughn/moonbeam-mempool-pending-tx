@@ -1,98 +1,39 @@
-import { createLogger, format, transports } from "winston"
+import chalk from "chalk"
+import path from "path"
+import winston from "winston"
 
-export const logger = createLogger({
-  level: "info",
+const { format, transports } = winston
+
+const logFormat = format.printf(
+  info =>
+    `${chalk.whiteBright(info.timestamp)} ${info.level} [${info.label}]: ${info.message}` +
+    (info.metadata.Chain ? `\nChain: ` + chalk.cyanBright(info.metadata.Chain) : "") +
+    (info.metadata.name ? `\nname: ` + info.metadata.name : "") +
+    (info.metadata.memPoolHash ? `\nmemPoolHash: ` + chalk.cyanBright(info.metadata.memPoolHash) : "") +
+    (info.metadata.mevBotHash ? `\nmevBotHash: ` + chalk.cyanBright(info.metadata.mevBotHash) : ""),
+)
+
+export const logger = winston.createLogger({
+  level: process.env.NODE_ENV === "production" ? "info" : "debug",
   format: format.combine(
-    format.timestamp({
-      format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    format.errors({ stack: true }),
-    format.splat(),
-    format.json(),
+    format.label({ label: path.basename("../mevBot", ".ts") }),
+    format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+    // Format the metadata object
+    format.metadata({ fillExcept: ["message", "level", "timestamp", "label"] }),
   ),
-  defaultMeta: { service: "mevBot" },
   transports: [
-    //
-    // - Write to all logs with level `info` and below to `quick-start-combined.log`.
-    // - Write all logs error (and below) to `quick-start-error.log`.
-    //
-    new transports.File({ filename: "./logs/mevBot.log", level: "error" }),
-    new transports.File({ filename: "./logs/mevBot.log" }),
-  ],
-})
-
-//
-// If we're not in production then **ALSO** log to the `console`
-// with the colorized simple format.
-//
-if (process.env.NODE_ENV !== "production") {
-  logger.add(
     new transports.Console({
-      format: format.combine(format.colorize(), format.simple()),
+      format: format.combine(format.colorize(), logFormat),
     }),
-  )
-}
-
-// // ***************
-// // Allows for JSON logging
-// // ***************
-
-// logger.log({
-//   level: "info",
-//   message: "Pass an object and this works",
-//   additional: "properties",
-//   are: "passed along",
-// })
-
-// logger.info({
-//   message: "Use a helper method if you want",
-//   additional: "properties",
-//   are: "passed along",
-// })
-
-// // ***************
-// // Allows for parameter-based logging
-// // ***************
-
-// logger.log("info", "Pass a message and this works", {
-//   additional: "properties",
-//   are: "passed along",
-// })
-
-// logger.info("Use a helper method if you want", {
-//   additional: "properties",
-//   are: "passed along",
-// })
-
-// // ***************
-// // Allows for string interpolation
-// // ***************
-
-// // info: test message my string {}
-// logger.log("info", "test message %s", "my string")
-
-// // info: test message 123 {}
-// logger.log("info", "test message %d", 123)
-
-// // info: test message first second {number: 123}
-// logger.log("info", "test message %s, %s", "first", "second", { number: 123 })
-
-// // prints "Found error at %s"
-// logger.info("Found %s at %s", "error", new Date())
-// logger.info("Found %s at %s", "error", new Error("chill winston"))
-// logger.info("Found %s at %s", "error", /WUT/)
-// logger.info("Found %s at %s", "error", true)
-// logger.info("Found %s at %s", "error", 100.0)
-// logger.info("Found %s at %s", "error", ["1, 2, 3"])
-
-// // ***************
-// // Allows for logging Error instances
-// // ***************
-
-// logger.warn(new Error("Error passed as info"))
-// logger.log("error", new Error("Error passed as message"))
-
-// logger.warn("Maybe important error: ", new Error("Error passed as meta"))
-// logger.log("error", "Important error: ", new Error("Error passed as meta"))
-
-// logger.error(new Error("Error as info"))
+    new transports.File({
+      filename: "logs/mevBot.log",
+      format: format.combine(
+        // Render in one line in your log file.
+        // If you use prettyPrint() here it will be really
+        // difficult to exploit your logs files afterwards.
+        format.json(),
+      ),
+    }),
+  ],
+  exitOnError: false,
+})
