@@ -8,7 +8,7 @@ import { topUpEth } from "../src/multisend"
 task("topUpAccounts", "Sends 0.01 eth to all active signers", async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
   const targets = networkConfig[hre.network.config.chainId!].targetContracts
   const addressList: string[] = []
-  const AMOUNT_TO_SEND = parseEther(".02")
+  const AMOUNT_TO_SEND = parseEther("1.5")
   const { deployer } = await hre.getNamedAccounts()
   const deploySig = await hre.ethers.provider.getSigner(deployer)
 

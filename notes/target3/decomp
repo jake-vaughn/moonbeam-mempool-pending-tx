@@ -70,7 +70,7 @@ def unknownc0ce282a(): # not payable
       continue 
 
 def unknowna2abe54e(): # not payable
-  require calldata.size - 4 >=ΓÇ▓ 192
+  require calldata.size - 4 >=ΓÇ▓ 192 # 3 * 64
   require cd == cd[4]
   require cd == cd[36]
   require cd == bool(cd[68])

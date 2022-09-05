@@ -6,6 +6,7 @@ import type { NetworkUserConfig } from "hardhat/types"
 import { resolve } from "path"
 
 import "./tasks/accounts"
+import "./tasks/sendEth"
 import "./tasks/topUpAccounts"
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env"
@@ -152,21 +153,13 @@ const config: HardhatUserConfig = {
           },
           // Disable the optimizer when debugging
           // https://hardhat.org/hardhat-network/#solidity-optimizer-support
-          optimizer: {
-            enabled: true,
-            runs: 800,
-          },
+          optimizer: { enabled: true, runs: 800 },
         },
       },
-      {
-        version: "0.6.6",
-      },
-      {
-        version: "0.4.24",
-      },
-      {
-        version: "0.4.18",
-      },
+      { version: "0.6.12" },
+      { version: "0.6.6" },
+      { version: "0.4.24" },
+      { version: "0.4.18" },
     ],
   },
   typechain: {

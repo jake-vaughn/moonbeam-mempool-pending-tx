@@ -12,6 +12,7 @@ export async function topUpEth(
   hre: HardhatRuntimeEnvironment,
 ) {
   // console.log(signer, await signer.getAddress())
+  // console.log(hre.ethers.provider)
 
   const bulkSend: BulkSend = await hre.ethers.getContract("BulkSend", signer)
   // console.log(bulkSend)
@@ -45,6 +46,8 @@ export async function topUpEth(
   const tx = await bulkSend.bulkSendEth(addrList, amountList, {
     value: totalSendAmount,
   })
+
+  // console.log(tx)
 
   const txReceipt = await tx.wait()
   return txReceipt

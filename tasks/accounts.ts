@@ -8,7 +8,7 @@ task("accounts", "Prints the list of accounts", async (_taskArgs, hre: HardhatRu
   let i = 0
   for (const account of accounts) {
     const addr = await account.getAddress()
-    console.log(i, ":", addr, await formatEther(await hre.ethers.provider.getBalance(addr)))
+    console.log(i, ":", addr, " balance: ", await formatEther(await hre.ethers.provider.getBalance(addr)))
     i++
   }
 })

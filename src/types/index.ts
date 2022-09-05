@@ -3,9 +3,12 @@
 /* tslint:disable */
 
 /* eslint-disable */
+import type * as defi from "./defi";
 import type * as interfaces from "./interfaces";
 import type * as multisendSol from "./multisend.sol";
 import type * as tokens from "./tokens";
+
+export type { defi };
 
 export type { interfaces };
 
@@ -13,6 +16,20 @@ export type { multisendSol };
 
 export type { tokens };
 export * as factories from "./factories";
+export type { FlareRouter02 } from "./defi/FlareRouter02.sol/FlareRouter02";
+export { FlareRouter02__factory } from "./factories/defi/FlareRouter02.sol/FlareRouter02__factory";
+export type { IERC20Flare } from "./defi/FlareRouter02.sol/IERC20Flare";
+export { IERC20Flare__factory } from "./factories/defi/FlareRouter02.sol/IERC20Flare__factory";
+export type { IFlareFactory } from "./defi/FlareRouter02.sol/IFlareFactory";
+export { IFlareFactory__factory } from "./factories/defi/FlareRouter02.sol/IFlareFactory__factory";
+export type { IFlarePair } from "./defi/FlareRouter02.sol/IFlarePair";
+export { IFlarePair__factory } from "./factories/defi/FlareRouter02.sol/IFlarePair__factory";
+export type { IFlareRouter01 } from "./defi/FlareRouter02.sol/IFlareRouter01";
+export { IFlareRouter01__factory } from "./factories/defi/FlareRouter02.sol/IFlareRouter01__factory";
+export type { IFlareRouter02 } from "./defi/FlareRouter02.sol/IFlareRouter02";
+export { IFlareRouter02__factory } from "./factories/defi/FlareRouter02.sol/IFlareRouter02__factory";
+export type { IWETH } from "./defi/FlareRouter02.sol/IWETH";
+export { IWETH__factory } from "./factories/defi/FlareRouter02.sol/IWETH__factory";
 export type { IERC20 } from "./interfaces/IERC20";
 export { IERC20__factory } from "./factories/interfaces/IERC20__factory";
 export type { ITarget3 } from "./interfaces/ITarget3";
@@ -21,5 +38,13 @@ export type { BulkSend } from "./multisend.sol/BulkSend";
 export { BulkSend__factory } from "./factories/multisend.sol/BulkSend__factory";
 export type { Token } from "./multisend.sol/Token";
 export { Token__factory } from "./factories/multisend.sol/Token__factory";
+export type { FlareERC20 } from "./tokens/FlarePair.sol/FlareERC20";
+export { FlareERC20__factory } from "./factories/tokens/FlarePair.sol/FlareERC20__factory";
+export type { FlarePair } from "./tokens/FlarePair.sol/FlarePair";
+export { FlarePair__factory } from "./factories/tokens/FlarePair.sol/FlarePair__factory";
+export type { IFlareCallee } from "./tokens/FlarePair.sol/IFlareCallee";
+export { IFlareCallee__factory } from "./factories/tokens/FlarePair.sol/IFlareCallee__factory";
+export type { IMigrator } from "./tokens/FlarePair.sol/IMigrator";
+export { IMigrator__factory } from "./factories/tokens/FlarePair.sol/IMigrator__factory";
 export type { WETH9 } from "./tokens/WETH9";
 export { WETH9__factory } from "./factories/tokens/WETH9__factory";
