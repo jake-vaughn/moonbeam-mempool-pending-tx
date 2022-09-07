@@ -129,3 +129,5 @@ export const networkConfig: networkConfigInfo = {
 }
 
 export const developmentChains = ["hardhat", "localhost"]
+
+export const moonbeamBlastWssUrl: string | undefined = "wss://moonbeam-rpc.dwellir.com"

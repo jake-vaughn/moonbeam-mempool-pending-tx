@@ -3,25 +3,30 @@ import chalk from "chalk"
 import { BigNumber, Signer } from "ethers"
 import hre from "hardhat"
 
-import { networkConfig, targetContractItem } from "../helper-hardhat-config"
+import { moonbeamBlastWssUrl, networkConfig, targetContractItem } from "../helper-hardhat-config"
+import { logHumanReadable } from "./logHumanReadable"
 import { getErrorMessage } from "./utils/getErrorMessage"
-import { logger } from "./utils/logger"
+import { logger, mevBotTransportFile } from "./utils/logger"
 
 const ethers = hre.ethers
 const chainId = hre.network.config.chainId!
-const wsProvider = new hre.ethers.providers.WebSocketProvider(networkConfig[chainId].websocket!)
+const wsProvider = new hre.ethers.providers.WebSocketProvider(moonbeamBlastWssUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
 let txFound: number = 0
 let txReported: number = 0
 
 async function mevBot() {
-  logger.debug(`Running: mevBot `, {
+  mevBotTransportFile.on("logged", async function (info) {
+    await logHumanReadable(info)
+  })
+  logger.log("debug", `Running: mevBot `, {
     Chain: networkConfig[chainId].name,
     RpcProvider: ethers.provider.connection.url,
     WsProvider: networkConfig[chainId].websocket,
   })
 
   wsProvider.on("pending", txHash => {
+    // console.log(txHash)
     wsProvider.getTransaction(txHash).then(async function (memPoolTx) {
       if (memPoolTx != null && memPoolTx.to! in targetContracts && targetContracts[memPoolTx.to!].active) {
         const target = targetContracts[memPoolTx.to!]
@@ -108,6 +113,8 @@ async function tempLog(target: targetContractItem, memPoolTx: TransactionRespons
   logger.debug(`${txReported}/${txFound}:`, {
     memPoolHash: memPoolTx.hash,
     mevBotHash: mevBotTx.hash,
+    txReported: txReported,
+    txFound: txFound,
     name: target.name,
     type: target.type,
     from: memPoolTx.from,
@@ -118,19 +125,16 @@ async function tempLog(target: targetContractItem, memPoolTx: TransactionRespons
 }
 
 async function tempErrorLog(
-  error: unknown,
+  err: unknown,
   target: targetContractItem,
   memPoolTx: TransactionResponse,
   mevBotTx?: TransactionResponse,
 ) {
   txReported++
-  logger.error(
-    `${txFound}/${txReported}:`,
-    {
-      memPoolHash: `${memPoolTx.hash}`,
-    },
-    error,
-  )
+  logger.error(`${txFound}/${txReported}:`, {
+    memPoolHash: `${memPoolTx.hash}`,
+    error: err,
+  })
 }
 mevBot().catch(error => {
   logger.error(error)

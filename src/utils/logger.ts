@@ -13,7 +13,41 @@ const logFormat = format.printf(
     (info.metadata.mevBotHash ? `\nmevBotHash: ` + chalk.cyanBright(info.metadata.mevBotHash) : ""),
 )
 
+export const mevBotTransportConsole = new transports.Console({
+  format: format.combine(format.colorize(), logFormat),
+})
+
+export const mevBotTransportFile = new transports.File({
+  filename: "logs/mevBot.log",
+  format: format.combine(
+    // Render in one line in your log file.
+    // If you use prettyPrint() here it will be really
+    // difficult to exploit your logs files afterwards.
+    format.json(),
+  ),
+})
+
 export const logger = winston.createLogger({
+  level: process.env.NODE_ENV === "production" ? "info" : "debug",
+  format: format.combine(
+    format.label({ label: path.basename("../mevBot", ".ts") }),
+    format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+    // Format the metadata object
+    format.metadata({ fillExcept: ["message", "level", "timestamp", "label"] }),
+  ),
+  transports: [mevBotTransportFile],
+  exitOnError: false,
+})
+
+const logFormatHumanReadable = format.printf(
+  info =>
+    `${info.timestamp} : ${info.message}` +
+    (info.metadata.blockPosition ? ` blockPosition: ` + info.metadata.blockPosition : "") +
+    (info.metadata.memHash ? ` memHash: https://moonscan.io/tx/` + info.metadata.memHash : "") +
+    (info.metadata.mevHash ? ` mevHash: https://moonscan.io/tx/` + info.metadata.mevHash : ""),
+)
+
+export const loggerHumanReadable = winston.createLogger({
   level: process.env.NODE_ENV === "production" ? "info" : "debug",
   format: format.combine(
     format.label({ label: path.basename("../mevBot", ".ts") }),
@@ -23,16 +57,11 @@ export const logger = winston.createLogger({
   ),
   transports: [
     new transports.Console({
-      format: format.combine(format.colorize(), logFormat),
+      format: format.combine(format.colorize(), logFormatHumanReadable),
     }),
     new transports.File({
-      filename: "logs/mevBot.log",
-      format: format.combine(
-        // Render in one line in your log file.
-        // If you use prettyPrint() here it will be really
-        // difficult to exploit your logs files afterwards.
-        format.json(),
-      ),
+      filename: "logs/mevBotReceipts.log",
+      format: format.combine(logFormatHumanReadable),
     }),
   ],
   exitOnError: false,
