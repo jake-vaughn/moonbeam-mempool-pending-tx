@@ -11,10 +11,10 @@ import { logger, loggerHumanReadable, mevBotTransportFile } from "./utils/logger
 
 let txLogged = 0
 let txLogFound = 0
-let txLogCalled = -1
+let txLogCalled = 0
 
 export async function logHumanReadable(info: any) {
-  console.log(info.message, info.metadata)
+  // console.log(info.message, info.metadata)
   txLogCalled++
   if (
     typeof info.metadata === "object" &&
@@ -33,21 +33,34 @@ export async function logHumanReadable(info: any) {
     const md = info.metadata
     const memHash = md.memPoolHash
     const mevHash = md.mevBotHash
-    const memReceipt = await ethers.provider.waitForTransaction(memHash, 6)
-    const mevReceipt = await ethers.provider.waitForTransaction(mevHash, 6)
+    const memReceipt = await ethers.provider.waitForTransaction(memHash)
+    const mevReceipt = await ethers.provider.waitForTransaction(mevHash)
+
+    let memSuccess = "false"
+    let mevSuccess = "false"
+
+    if (memReceipt.logs.length != 0) {
+      memSuccess = "true"
+      console.log(memReceipt.logs.at(0)!.data)
+      console.log(memReceipt.logs.at(memReceipt.logs.length - 1)!.data)
+    }
+
+    if (mevReceipt.logs.length != 0) {
+      mevSuccess = "true"
+    }
 
     if (memReceipt != null && mevReceipt != null) {
       let blockPosition: string
       if (memReceipt.blockNumber == mevReceipt.blockNumber) {
         if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
-          blockPosition = `Same Block: index Ahead memIdx: ${memReceipt.transactionIndex} vs mevIdx: ${mevReceipt.transactionIndex}`
+          blockPosition = `Ahead [Index] ${memReceipt.transactionIndex - mevReceipt.transactionIndex}`
         } else {
-          blockPosition = `Same Block: index Behind memIdx: ${memReceipt.transactionIndex} vs mevIdx: ${mevReceipt.transactionIndex}`
+          blockPosition = `Behind [Index] ${mevReceipt.transactionIndex - memReceipt.transactionIndex}`
         }
       } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
-        blockPosition = `Ahead by ${memReceipt.blockNumber - mevReceipt.blockNumber} blocks`
+        blockPosition = `Ahead [Block] ${memReceipt.blockNumber - mevReceipt.blockNumber}`
       } else {
-        blockPosition = `Behind by ${mevReceipt.blockNumber - memReceipt.blockNumber} blocks`
+        blockPosition = `Behind [Block] ${mevReceipt.blockNumber - memReceipt.blockNumber}`
       }
 
       const statusWithColor = mevReceipt.status
@@ -56,7 +69,7 @@ export async function logHumanReadable(info: any) {
 
       txLogged++
       await loggerHumanReadable.debug(
-        `${md.name}: ${txLogCalled} ${txLogged}/${txLogFound} ${info.metadata.txReported}/${info.metadata.txFound}`,
+        `${md.name}: mem:[${memSuccess}] mev:[${mevSuccess}] - ${txLogCalled} ${txLogged}/${txLogFound} ${info.metadata.txReported}/${info.metadata.txFound}`,
         {
           memHash: memReceipt.transactionHash,
           mevHash: mevReceipt.transactionHash,

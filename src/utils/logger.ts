@@ -6,11 +6,12 @@ const { format, transports } = winston
 
 const logFormat = format.printf(
   info =>
-    `${chalk.whiteBright(info.timestamp)} ${info.level} [${info.label}]: ${info.message}` +
-    (info.metadata.Chain ? `\nChain: ` + chalk.cyanBright(info.metadata.Chain) : "") +
-    (info.metadata.name ? `\nname: ` + info.metadata.name : "") +
-    (info.metadata.memPoolHash ? `\nmemPoolHash: ` + chalk.cyanBright(info.metadata.memPoolHash) : "") +
-    (info.metadata.mevBotHash ? `\nmevBotHash: ` + chalk.cyanBright(info.metadata.mevBotHash) : ""),
+    `${info.message}` +
+    (info.metadata.Chain ? ` Chain: ` + info.metadata.Chain : "") +
+    (info.metadata.name ? ` name: ` + info.metadata.name : "") +
+    (info.metadata.blockFound ? ` blockFound: ` + info.metadata.blockFound : ""),
+  // (info.metadata.memPoolHash ? `\nmemPoolHash: ` + chalk.cyanBright(info.metadata.memPoolHash) : "") +
+  // (info.metadata.mevBotHash ? `\nmevBotHash: ` + chalk.cyanBright(info.metadata.mevBotHash) : ""),
 )
 
 export const mevBotTransportConsole = new transports.Console({
@@ -19,12 +20,7 @@ export const mevBotTransportConsole = new transports.Console({
 
 export const mevBotTransportFile = new transports.File({
   filename: "logs/mevBot.log",
-  format: format.combine(
-    // Render in one line in your log file.
-    // If you use prettyPrint() here it will be really
-    // difficult to exploit your logs files afterwards.
-    format.json(),
-  ),
+  format: format.combine(format.json()),
 })
 
 export const logger = winston.createLogger({
@@ -35,13 +31,14 @@ export const logger = winston.createLogger({
     // Format the metadata object
     format.metadata({ fillExcept: ["message", "level", "timestamp", "label"] }),
   ),
-  transports: [mevBotTransportFile],
+  transports: [mevBotTransportConsole, mevBotTransportFile],
   exitOnError: false,
 })
 
+// Human Readable
 const logFormatHumanReadable = format.printf(
   info =>
-    `${info.timestamp} : ${info.message}` +
+    `${info.timestamp} ${info.message}` +
     (info.metadata.blockPosition ? ` blockPosition: ` + info.metadata.blockPosition : "") +
     (info.metadata.memHash ? ` memHash: https://moonscan.io/tx/` + info.metadata.memHash : "") +
     (info.metadata.mevHash ? ` mevHash: https://moonscan.io/tx/` + info.metadata.mevHash : ""),
@@ -56,9 +53,9 @@ export const loggerHumanReadable = winston.createLogger({
     format.metadata({ fillExcept: ["message", "level", "timestamp", "label"] }),
   ),
   transports: [
-    new transports.Console({
-      format: format.combine(format.colorize(), logFormatHumanReadable),
-    }),
+    // new transports.Console({
+    //   format: format.combine(format.colorize(), logFormatHumanReadable),
+    // }),
     new transports.File({
       filename: "logs/mevBotReceipts.log",
       format: format.combine(logFormatHumanReadable),

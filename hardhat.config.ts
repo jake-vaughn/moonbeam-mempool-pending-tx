@@ -6,6 +6,7 @@ import type { NetworkUserConfig } from "hardhat/types"
 import { resolve } from "path"
 
 import "./tasks/accounts"
+import "./tasks/addressMapping"
 import "./tasks/sendEth"
 import "./tasks/topUpAccounts"
 

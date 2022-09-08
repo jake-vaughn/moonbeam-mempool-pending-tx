@@ -3,14 +3,14 @@ import chalk from "chalk"
 import { BigNumber, Signer } from "ethers"
 import hre from "hardhat"
 
-import { moonbeamBlastWssUrl, networkConfig, targetContractItem } from "../helper-hardhat-config"
+import { moonbeamBlastWssUrl, moonbeamWsUrl, networkConfig, targetContractItem } from "../helper-hardhat-config"
 import { logHumanReadable } from "./logHumanReadable"
 import { getErrorMessage } from "./utils/getErrorMessage"
 import { logger, mevBotTransportFile } from "./utils/logger"
 
 const ethers = hre.ethers
 const chainId = hre.network.config.chainId!
-const wsProvider = new hre.ethers.providers.WebSocketProvider(moonbeamBlastWssUrl!)
+const wsProvider = new hre.ethers.providers.WebSocketProvider(moonbeamWsUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
 let txFound: number = 0
 let txReported: number = 0
@@ -19,7 +19,7 @@ async function mevBot() {
   mevBotTransportFile.on("logged", async function (info) {
     await logHumanReadable(info)
   })
-  logger.log("debug", `Running: mevBot `, {
+  console.log("debug", `Running: mevBot `, {
     Chain: networkConfig[chainId].name,
     RpcProvider: ethers.provider.connection.url,
     WsProvider: networkConfig[chainId].websocket,
@@ -113,6 +113,7 @@ async function tempLog(target: targetContractItem, memPoolTx: TransactionRespons
   logger.debug(`${txReported}/${txFound}:`, {
     memPoolHash: memPoolTx.hash,
     mevBotHash: mevBotTx.hash,
+    blockFound: ethers.provider.blockNumber,
     txReported: txReported,
     txFound: txFound,
     name: target.name,

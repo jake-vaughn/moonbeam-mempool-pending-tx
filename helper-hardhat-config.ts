@@ -45,7 +45,7 @@ export const networkConfig: networkConfigInfo = {
     websocket: process.env.MOONBEAM_WS_URL || "ws://127.0.0.1:9944",
     targetContracts: {
       "0x59ddC0C8d067dEB508b36d69254Ac6bafD260575": {
-        name: "First Target",
+        name: "Target[1]",
         type: 1,
         copyContractAddr: "0xc8367169672C4289797a29Bf8Bc7854804EE39F6",
         signers: {
@@ -56,7 +56,7 @@ export const networkConfig: networkConfigInfo = {
         active: false,
       },
       "0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C": {
-        name: "Second Target",
+        name: "Target[2]",
         type: 1,
         copyContractAddr: "0x726714e8457aCbD729805223616Ec5A6D8C7193A",
         signers: {
@@ -66,7 +66,7 @@ export const networkConfig: networkConfigInfo = {
         active: true,
       },
       "0x2541300Dff59926F0855016e861A1426fb547037": {
-        name: "Target 3",
+        name: "Target[3]",
         type: 3,
         copyContractAddr: "0x5F31BAaE1B7adb9E28C33010B7b923C031a963B8",
         signers: {
@@ -129,5 +129,7 @@ export const networkConfig: networkConfigInfo = {
 }
 
 export const developmentChains = ["hardhat", "localhost"]
+
+export const moonbeamWsUrl: string | undefined = "ws://127.0.0.1:9944"
 
 export const moonbeamBlastWssUrl: string | undefined = "wss://moonbeam-rpc.dwellir.com"
