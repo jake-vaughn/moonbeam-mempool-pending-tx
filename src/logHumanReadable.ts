@@ -18,7 +18,7 @@ export async function logHumanReadable(info: any) {
 
     if (
       typeof md !== "object" ||
-      md !== null ||
+      md === null ||
       !("from" in md) ||
       !("memPoolHash" in md) ||
       !("mevBotHash" in md) ||
@@ -69,10 +69,7 @@ export async function logHumanReadable(info: any) {
     )
   } catch (err) {
     txLogged++
-    loggerHumanReadable.error(`${txLogged}/${txLogFound}`, {
-      error: err,
-      info: info,
-    })
+    loggerHumanReadable.error(`${txLogged}/${txLogFound} ` + err + "INFO:" + JSON.stringify(info))
   }
   return
 }
