@@ -38,10 +38,11 @@ export const logger = winston.createLogger({
 // Human Readable
 const logFormatHumanReadable = format.printf(
   info =>
-    `${info.timestamp} ${info.message}` +
-    (info.metadata.blockPosition ? ` blockPosition: ` + info.metadata.blockPosition : "") +
-    (info.metadata.memHash ? ` memHash: https://moonscan.io/tx/` + info.metadata.memHash : "") +
-    (info.metadata.mevHash ? ` mevHash: https://moonscan.io/tx/` + info.metadata.mevHash : ""),
+    `${info.timestamp} ` +
+    (info.metadata.blockPosition ? info.metadata.blockPosition : "") +
+    `${info.message} ` +
+    (info.metadata.memHash ? ` https://moonscan.io/tx/` + info.metadata.memHash : "") +
+    (info.metadata.mevHash ? ` https://moonscan.io/tx/` + info.metadata.mevHash : ""),
 )
 
 export const loggerHumanReadable = winston.createLogger({

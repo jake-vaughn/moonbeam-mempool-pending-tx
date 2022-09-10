@@ -45,6 +45,10 @@ export async function topUpEth(
 
   // const tx = await bulkSend.bulkSendEth(addrList, amountList, {
   //   value: totalSendAmount,
+  //   // gasLimit: 1500000,
+  //   // maxFeePerGas: 350000000000,
+  //   // maxPriorityFeePerGas: 350000000000,
+  //   // nonce: 18,
   // })
 
   // // console.log(tx)

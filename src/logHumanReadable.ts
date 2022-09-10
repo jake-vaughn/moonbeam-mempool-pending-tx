@@ -38,29 +38,49 @@ export async function logHumanReadable(info: any) {
 
     let memSuccess = "false"
     let mevSuccess = "false"
+    let memEarned = "0"
+    let mevEarned = "0"
 
-    if (memReceipt.logs.length != 0) {
-      memSuccess = "true"
-      console.log(memReceipt.logs.at(0)!.data)
-      console.log(memReceipt.logs.at(memReceipt.logs.length - 1)!.data)
-    }
+    try {
+      if (memReceipt.logs.length != 0) {
+        memSuccess = "true"
+        if (info.metadata.type == 3) {
+          const wadSentHex = memReceipt.logs.at(0)!.data
+          const amount1OutHex = ethers.utils.hexDataSlice(memReceipt.logs.at(memReceipt.logs.length - 1)!.data, 32 * 3)
+          // console.log(wadSentHex, `\n`, amount1OutHex)
+          // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
+          memEarned = ethers.utils.formatEther(BigNumber.from(wadSentHex))
+          memEarned = memEarned.slice(0, memEarned.length - 16)
+        }
+      }
 
-    if (mevReceipt.logs.length != 0) {
-      mevSuccess = "true"
+      if (mevReceipt.logs.length != 0) {
+        mevSuccess = "true"
+        if (info.metadata.type == 3) {
+          const wadSentHex = memReceipt.logs.at(0)!.data
+          const amount1OutHex = ethers.utils.hexDataSlice(memReceipt.logs.at(memReceipt.logs.length - 1)!.data, 32 * 3)
+          // console.log(wadSentHex, `\n`, amount1OutHex)
+          // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
+          mevEarned = ethers.utils.formatEther(BigNumber.from(wadSentHex))
+          mevEarned = mevEarned.slice(0, mevEarned.length - 16)
+        }
+      }
+    } catch (error) {
+      console.log(`${info.metadata.memHash} wrong format`)
     }
 
     if (memReceipt != null && mevReceipt != null) {
       let blockPosition: string
       if (memReceipt.blockNumber == mevReceipt.blockNumber) {
         if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
-          blockPosition = `Ahead [Index] ${memReceipt.transactionIndex - mevReceipt.transactionIndex}`
+          blockPosition = `AHEAD [${memReceipt.transactionIndex - mevReceipt.transactionIndex}] Index `
         } else {
-          blockPosition = `Behind [Index] ${mevReceipt.transactionIndex - memReceipt.transactionIndex}`
+          blockPosition = `BEHIND [${mevReceipt.transactionIndex - memReceipt.transactionIndex}] Index `
         }
       } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
-        blockPosition = `Ahead [Block] ${memReceipt.blockNumber - mevReceipt.blockNumber}`
+        blockPosition = `AHEAD [${memReceipt.blockNumber - mevReceipt.blockNumber}] Block `
       } else {
-        blockPosition = `Behind [Block] ${mevReceipt.blockNumber - memReceipt.blockNumber}`
+        blockPosition = `BEHIND [${mevReceipt.blockNumber - memReceipt.blockNumber}] Block `
       }
 
       const statusWithColor = mevReceipt.status

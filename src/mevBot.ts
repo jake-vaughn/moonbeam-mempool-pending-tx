@@ -19,6 +19,7 @@ async function mevBot() {
   mevBotTransportFile.on("logged", async function (info) {
     await logHumanReadable(info)
   })
+
   console.log("debug", `Running: mevBot `, {
     Chain: networkConfig[chainId].name,
     RpcProvider: ethers.provider.connection.url,
@@ -87,20 +88,32 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
     if (signerIdx == undefined) {
       throw new Error("Unknown From Address")
     }
+    const wadSentHex = ethers.utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
+    const glmrSent = ethers.utils.formatEther(wadSentHex)
+    // console.log(
+    //   glmrSent,
+    //   ethers.utils.formatEther(BigNumber.from("424000000000000000000")),
+    //   BigNumber.from(wadSentHex).lte(BigNumber.from("424000000000000000000")),
+    // )
+
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
 
-    const mevBotTx = await mevBotSigner.sendTransaction({
-      to: target.copyContractAddr,
+    if (BigNumber.from(wadSentHex).lte(BigNumber.from("424000000000000000000"))) {
+      const mevBotTx = await mevBotSigner.sendTransaction({
+        to: target.copyContractAddr,
 
-      gasLimit: 750000,
+        gasLimit: 750000,
 
-      data: memPoolTx.data,
+        data: memPoolTx.data,
 
-      maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
-      maxFeePerGas: memPoolTx.maxFeePerGas,
-    })
+        nonce: await mevBotSigner.getTransactionCount(),
+        maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+        maxFeePerGas: memPoolTx.maxFeePerGas,
+      })
 
-    await tempLog(target, memPoolTx, mevBotTx)
+      await tempLog(target, memPoolTx, mevBotTx)
+    }
+
     return
   } catch (err) {
     await tempErrorLog(err, target, memPoolTx)
@@ -132,7 +145,7 @@ async function tempErrorLog(
   mevBotTx?: TransactionResponse,
 ) {
   txReported++
-  logger.error(`${txFound}/${txReported}:`, {
+  logger.error(`${txReported}/${txFound}: ${target.name} error`, {
     memPoolHash: `${memPoolTx.hash}`,
     error: err,
   })
