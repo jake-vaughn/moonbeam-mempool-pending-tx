@@ -1,129 +1,95 @@
-import { TransactionReceipt, TransactionResponse } from "@ethersproject/providers"
+import { Log } from "@ethersproject/providers"
 import chalk from "chalk"
 import { BigNumber } from "ethers"
-import { ethers, network } from "hardhat"
-import { createLogger, format, transports } from "winston"
-
-import { logger, loggerHumanReadable, mevBotTransportFile } from "./utils/logger"
+import { ethers } from "hardhat"
 
 // import { networkConfig, targetContractItem } from "../../helper-hardhat-config"
-// import { getErrorMessage } from "./getErrorMessage"
+import { getErrorMessage } from "./utils/getErrorMessage"
+import { loggerHumanReadable } from "./utils/logger"
 
 let txLogged = 0
 let txLogFound = 0
-let txLogCalled = 0
 
 export async function logHumanReadable(info: any) {
-  // console.log(info.message, info.metadata)
-  txLogCalled++
-  if (
-    typeof info.metadata === "object" &&
-    info.metadata !== null &&
-    "from" in info.metadata &&
-    "memPoolHash" in info.metadata &&
-    "mevBotHash" in info.metadata &&
-    "txReported" in info.metadata &&
-    "txFound" in info.metadata &&
-    "name" in info.metadata &&
-    "signer" in info.metadata &&
-    "to" in info.metadata &&
-    "type" in info.metadata
-  ) {
-    txLogFound++
+  txLogFound++
+  try {
+    // console.log(info.message, md)
     const md = info.metadata
+
+    if (
+      typeof md !== "object" ||
+      md !== null ||
+      !("from" in md) ||
+      !("memPoolHash" in md) ||
+      !("mevBotHash" in md) ||
+      !("txReported" in md) ||
+      !("txFound" in md) ||
+      !("name" in md) ||
+      !("signer" in md) ||
+      !("to" in md) ||
+      !("type" in md)
+    ) {
+      throw new Error("error type of log does not match")
+    }
+
     const memHash = md.memPoolHash
     const mevHash = md.mevBotHash
-    const memReceipt = await ethers.provider.waitForTransaction(memHash)
-    const mevReceipt = await ethers.provider.waitForTransaction(mevHash)
 
-    let memSuccess = "false"
-    let mevSuccess = "false"
-    let memEarned = "0"
-    let mevEarned = "0"
+    const memReceipt = await ethers.provider.waitForTransaction(memHash, 1, 600000)
+    const mevReceipt = await ethers.provider.waitForTransaction(mevHash, 1, 600000)
 
-    try {
-      if (memReceipt.logs.length != 0) {
-        memSuccess = "true"
-        if (info.metadata.type == 3) {
-          const wadSentHex = memReceipt.logs.at(0)!.data
-          const amount1OutHex = ethers.utils.hexDataSlice(memReceipt.logs.at(memReceipt.logs.length - 1)!.data, 32 * 3)
-          // console.log(wadSentHex, `\n`, amount1OutHex)
-          // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
-          memEarned = ethers.utils.formatEther(BigNumber.from(wadSentHex))
-          memEarned = memEarned.slice(0, memEarned.length - 16)
-        }
-      }
+    const [memSuccess, memWadSent] = receiptLogParse(memReceipt.logs)
+    const [mevSuccess, mevWadSent] = receiptLogParse(mevReceipt.logs)
 
-      if (mevReceipt.logs.length != 0) {
-        mevSuccess = "true"
-        if (info.metadata.type == 3) {
-          const wadSentHex = memReceipt.logs.at(0)!.data
-          const amount1OutHex = ethers.utils.hexDataSlice(memReceipt.logs.at(memReceipt.logs.length - 1)!.data, 32 * 3)
-          // console.log(wadSentHex, `\n`, amount1OutHex)
-          // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
-          mevEarned = ethers.utils.formatEther(BigNumber.from(wadSentHex))
-          mevEarned = mevEarned.slice(0, mevEarned.length - 16)
-        }
-      }
-    } catch (error) {
-      console.log(`${info.metadata.memHash} wrong format`)
-    }
-
-    if (memReceipt != null && mevReceipt != null) {
-      let blockPosition: string
-      if (memReceipt.blockNumber == mevReceipt.blockNumber) {
-        if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
-          blockPosition = `AHEAD [${memReceipt.transactionIndex - mevReceipt.transactionIndex}] Index `
-        } else {
-          blockPosition = `BEHIND [${mevReceipt.transactionIndex - memReceipt.transactionIndex}] Index `
-        }
-      } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
-        blockPosition = `AHEAD [${memReceipt.blockNumber - mevReceipt.blockNumber}] Block `
+    let blockPosition: string
+    if (memReceipt.blockNumber == mevReceipt.blockNumber) {
+      if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
+        blockPosition = `AHEAD [${memReceipt.transactionIndex - mevReceipt.transactionIndex}] Index `
       } else {
-        blockPosition = `BEHIND [${mevReceipt.blockNumber - memReceipt.blockNumber}] Block `
+        blockPosition = `BEHIND [${mevReceipt.transactionIndex - memReceipt.transactionIndex}] Index `
       }
-
-      const statusWithColor = mevReceipt.status
-        ? chalk.greenBright(mevReceipt.status)
-        : chalk.redBright(mevReceipt.status)
-
-      txLogged++
-      await loggerHumanReadable.debug(
-        `${md.name}: mem:[${memSuccess}] mev:[${mevSuccess}] - ${txLogCalled} ${txLogged}/${txLogFound} ${info.metadata.txReported}/${info.metadata.txFound}`,
-        {
-          memHash: memReceipt.transactionHash,
-          mevHash: mevReceipt.transactionHash,
-          blockPosition: blockPosition,
-        },
-      )
-
-      // console.log(
-      //   `
-      //     `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`,
-      //   )}\n` +
-      //     ``Target Name: ${md.name}`)}\n` +
-      //     `memReceipt transactionHash: ${chalk.cyan(memReceipt.transactionHash)}\n` +
-      //     `mevReceipt transactionHash: ${chalk.cyan(mevReceipt.transactionHash)}\n` +
-      //     // `Blocks Behind Detected: ${chalk.yellow(mevReceipt.blockNumber - blockNumDesired!)}\n`+
-      //     `memReceipt blockNumber: ${chalk.yellow(memReceipt.blockNumber)}\n` +
-      //     `mevReceipt blockNumber: ${chalk.yellow(mevReceipt.blockNumber)}\n` +
-      //     `${blockPosition}\n` +
-      //     `memReceipt status: ${chalk.yellow(memReceipt.status)}\n` +
-      //     `mevReceipt status: ${statusWithColor}\n` +
-      //     // `mevBotTx estimateGas: ${chalk.yellow(mevBotGasEstimate)}\n` +
-      //     `mevReceipt gasUsed: ${chalk.yellow(mevReceipt.gasUsed)}\n` +
-      //     `
-      //       `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`,
-      //     )}\n`,
-      // )
+    } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
+      blockPosition = `AHEAD [${memReceipt.blockNumber - mevReceipt.blockNumber}] Block `
     } else {
-      await loggerHumanReadable.debug(
-        `Failed to find me. ${md.name}: ${txLogCalled} ${txLogged}/${txLogFound} ${info.metadata.txReported}/${info.metadata.txFound}`,
-        info,
-      )
+      blockPosition = `BEHIND [${mevReceipt.blockNumber - memReceipt.blockNumber}] Block `
     }
-    return
+
+    const statusWithColor = mevReceipt.status
+      ? chalk.greenBright(mevReceipt.status)
+      : chalk.redBright(mevReceipt.status)
+
+    txLogged++
+    await loggerHumanReadable.debug(
+      `${md.name}: [${memSuccess} ${memWadSent}] [${mevSuccess} ${mevWadSent}] - ${txLogged}/${txLogFound} ${md.txReported}/${md.txFound}`,
+      {
+        blockPosition: blockPosition,
+        memHash: memReceipt.transactionHash,
+        mevHash: mevReceipt.transactionHash,
+      },
+    )
+  } catch (err) {
+    txLogged++
+    loggerHumanReadable.error(`${txLogged}/${txLogFound}`, {
+      error: err,
+      info: info,
+    })
   }
+  return
+}
+
+function receiptLogParse(logs: Log[]): [boolean, string] {
+  let wadSent = "0"
+  if (logs.length == 0) {
+    return [false, wadSent]
+  }
+  const wadSentHex = logs.at(0)!.data
+  const amount1OutHex = ethers.utils.hexDataSlice(logs.at(logs.length - 1)!.data, 32 * 3)
+  // console.log(wadSentHex, `\n`, amount1OutHex)
+  // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
+  wadSent = ethers.utils.formatEther(BigNumber.from(wadSentHex))
+  wadSent = wadSent.slice(0, wadSent.length - 16)
+
+  return [true, wadSent]
 }
 
 // async function receiptLogger(
@@ -216,3 +182,23 @@ export async function logHumanReadable(info: any) {
 //     throw error
 //   }
 // }
+
+// console.log(
+//   `
+//     `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`,
+//   )}\n` +
+//     ``Target Name: ${md.name}`)}\n` +
+//     `memReceipt transactionHash: ${chalk.cyan(memReceipt.transactionHash)}\n` +
+//     `mevReceipt transactionHash: ${chalk.cyan(mevReceipt.transactionHash)}\n` +
+//     // `Blocks Behind Detected: ${chalk.yellow(mevReceipt.blockNumber - blockNumDesired!)}\n`+
+//     `memReceipt blockNumber: ${chalk.yellow(memReceipt.blockNumber)}\n` +
+//     `mevReceipt blockNumber: ${chalk.yellow(mevReceipt.blockNumber)}\n` +
+//     `${blockPosition}\n` +
+//     `memReceipt status: ${chalk.yellow(memReceipt.status)}\n` +
+//     `mevReceipt status: ${statusWithColor}\n` +
+//     // `mevBotTx estimateGas: ${chalk.yellow(mevBotGasEstimate)}\n` +
+//     `mevReceipt gasUsed: ${chalk.yellow(mevReceipt.gasUsed)}\n` +
+//     `
+//       `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`,
+//     )}\n`,
+// )

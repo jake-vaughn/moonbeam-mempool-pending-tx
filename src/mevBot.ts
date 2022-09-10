@@ -145,7 +145,7 @@ async function tempErrorLog(
   mevBotTx?: TransactionResponse,
 ) {
   txReported++
-  logger.error(`${txReported}/${txFound}: ${target.name} error`, {
+  logger.error(`${txReported}/${txFound}: ${target.name}`, {
     memPoolHash: `${memPoolTx.hash}`,
     error: err,
   })
