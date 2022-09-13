@@ -29,14 +29,14 @@ export async function logHumanReadable(info: any) {
       !("to" in md) ||
       !("type" in md)
     ) {
-      throw new Error("error type of log does not match")
+      throw new Error("type of log does not match")
     }
 
     const memHash = md.memPoolHash
     const mevHash = md.mevBotHash
 
-    const memReceipt = await ethers.provider.waitForTransaction(memHash, 1, 600000)
-    const mevReceipt = await ethers.provider.waitForTransaction(mevHash, 1, 600000)
+    const memReceipt = await ethers.provider.waitForTransaction(memHash, 1, 350000)
+    const mevReceipt = await ethers.provider.waitForTransaction(mevHash, 1, 300000)
 
     const [memSuccess, memWadSent] = receiptLogParse(memReceipt.logs)
     const [mevSuccess, mevWadSent] = receiptLogParse(mevReceipt.logs)
@@ -69,7 +69,7 @@ export async function logHumanReadable(info: any) {
     )
   } catch (err) {
     txLogged++
-    loggerHumanReadable.error(`${txLogged}/${txLogFound} ` + err + "INFO:" + JSON.stringify(info))
+    loggerHumanReadable.error(`${txLogged}/${txLogFound} ` + err + " INFO:" + JSON.stringify(info))
   }
   return
 }

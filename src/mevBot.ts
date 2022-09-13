@@ -98,7 +98,9 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
 
-    if (BigNumber.from(wadSentHex).lte(BigNumber.from("424000000000000000000"))) {
+    console.log()
+
+    if (BigNumber.from(wadSentHex).lte(BigNumber.from("469000000000000000000"))) {
       const mevBotTx = await mevBotSigner.sendTransaction({
         to: target.copyContractAddr,
 

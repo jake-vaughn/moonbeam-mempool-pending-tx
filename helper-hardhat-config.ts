@@ -63,7 +63,7 @@ export const networkConfig: networkConfigInfo = {
           // 1 address for Second Target
           "0xE4ef74629a9da7DFd2a940c4BFBA56D3B8110769": 10,
         },
-        active: true,
+        active: false,
       },
       "0x2541300Dff59926F0855016e861A1426fb547037": {
         name: "Target[3]",
