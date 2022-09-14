@@ -33,8 +33,8 @@ async function mevBot() {
         const target = targetContracts[memPoolTx.to!]
         txFound++
         switch (target.type) {
-          case 1:
-            await type1(memPoolTx, target)
+          case 2:
+            await target2(memPoolTx, target)
             break
           case 3:
             await target3(memPoolTx, target)
@@ -42,7 +42,7 @@ async function mevBot() {
           case 99:
             break
           default:
-            logger.info("Something wrong")
+            logger.info("target.type case default")
             break
         }
       }
@@ -50,7 +50,7 @@ async function mevBot() {
   })
 }
 
-async function type1(memPoolTx: TransactionResponse, target: targetContractItem) {
+async function target2(memPoolTx: TransactionResponse, target: targetContractItem) {
   try {
     const signerIdx = target.signers[memPoolTx.from]
     if (signerIdx == undefined) {
@@ -89,25 +89,13 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
       throw new Error("Unknown From Address")
     }
     const wadSentHex = ethers.utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
-    const glmrSent = ethers.utils.formatEther(wadSentHex)
-    // console.log(
-    //   glmrSent,
-    //   ethers.utils.formatEther(BigNumber.from("424000000000000000000")),
-    //   BigNumber.from(wadSentHex).lte(BigNumber.from("424000000000000000000")),
-    // )
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
-
-    console.log()
-
-    if (BigNumber.from(wadSentHex).lte(BigNumber.from("469000000000000000000"))) {
+    if (BigNumber.from(wadSentHex).lte(BigNumber.from("506000000000000000000"))) {
       const mevBotTx = await mevBotSigner.sendTransaction({
         to: target.copyContractAddr,
-
         gasLimit: 750000,
-
         data: memPoolTx.data,
-
         nonce: await mevBotSigner.getTransactionCount(),
         maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
         maxFeePerGas: memPoolTx.maxFeePerGas,

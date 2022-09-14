@@ -35,15 +35,28 @@ export const logger = winston.createLogger({
   exitOnError: false,
 })
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Human Readable
 const logFormatHumanReadable = format.printf(
   info =>
     `${info.timestamp} ` +
-    (info.metadata.blockPosition ? info.metadata.blockPosition : "") +
     `${info.message} ` +
+    (info.metadata.status ? ` ${info.metadata.status}` : "") +
+    (info.metadata.blockPosition ? ` ${info.metadata.blockPosition}` : "") +
+    (info.metadata.logId ? ` ${info.metadata.logId}` : "") +
     (info.metadata.memHash ? ` https://moonscan.io/tx/` + info.metadata.memHash : "") +
     (info.metadata.mevHash ? ` https://moonscan.io/tx/` + info.metadata.mevHash : ""),
 )
+
+export const logHumanReadableTransportFile = new transports.File({
+  filename: "logs/mevBotReceipts.log",
+  format: format.combine(logFormatHumanReadable),
+})
+
+export const target3Transport = new transports.File({
+  filename: "logs/target3Receipts.log",
+  format: format.combine(logFormatHumanReadable),
+})
 
 export const loggerHumanReadable = winston.createLogger({
   level: process.env.NODE_ENV === "production" ? "info" : "debug",
@@ -53,14 +66,6 @@ export const loggerHumanReadable = winston.createLogger({
     // Format the metadata object
     format.metadata({ fillExcept: ["message", "level", "timestamp", "label"] }),
   ),
-  transports: [
-    // new transports.Console({
-    //   format: format.combine(format.colorize(), logFormatHumanReadable),
-    // }),
-    new transports.File({
-      filename: "logs/mevBotReceipts.log",
-      format: format.combine(logFormatHumanReadable),
-    }),
-  ],
+  transports: [logHumanReadableTransportFile],
   exitOnError: false,
 })

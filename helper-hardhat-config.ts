@@ -57,7 +57,7 @@ export const networkConfig: networkConfigInfo = {
       },
       "0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C": {
         name: "Target[2]",
-        type: 1,
+        type: 2,
         copyContractAddr: "0x726714e8457aCbD729805223616Ec5A6D8C7193A",
         signers: {
           // 1 address for Second Target

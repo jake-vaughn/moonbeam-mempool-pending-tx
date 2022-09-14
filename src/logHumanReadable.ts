@@ -1,17 +1,13 @@
-import { Log } from "@ethersproject/providers"
+import { Log, TransactionReceipt } from "@ethersproject/providers"
 import chalk from "chalk"
 import { BigNumber } from "ethers"
 import { ethers } from "hardhat"
 
 // import { networkConfig, targetContractItem } from "../../helper-hardhat-config"
 import { getErrorMessage } from "./utils/getErrorMessage"
-import { loggerHumanReadable } from "./utils/logger"
-
-let txLogged = 0
-let txLogFound = 0
+import { loggerHumanReadable, target3Transport } from "./utils/logger"
 
 export async function logHumanReadable(info: any) {
-  txLogFound++
   try {
     // console.log(info.message, md)
     const md = info.metadata
@@ -32,62 +28,65 @@ export async function logHumanReadable(info: any) {
       throw new Error("type of log does not match")
     }
 
-    const memHash = md.memPoolHash
-    const mevHash = md.mevBotHash
-
-    const memReceipt = await ethers.provider.waitForTransaction(memHash, 1, 350000)
-    const mevReceipt = await ethers.provider.waitForTransaction(mevHash, 1, 300000)
-
-    const [memSuccess, memWadSent] = receiptLogParse(memReceipt.logs)
-    const [mevSuccess, mevWadSent] = receiptLogParse(mevReceipt.logs)
+    const [memReceipt, memSuccess] = await receiptWaitHandler(md.memPoolHash)
+    const [mevReceipt, mevSuccess] = await receiptWaitHandler(md.mevBotHash)
 
     let blockPosition: string
-    if (memReceipt.blockNumber == mevReceipt.blockNumber) {
-      if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
-        blockPosition = `AHEAD [${memReceipt.transactionIndex - mevReceipt.transactionIndex}] Index `
-      } else {
-        blockPosition = `BEHIND [${mevReceipt.transactionIndex - memReceipt.transactionIndex}] Index `
-      }
-    } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
-      blockPosition = `AHEAD [${memReceipt.blockNumber - mevReceipt.blockNumber}] Block `
+    if (memReceipt == undefined || mevReceipt == undefined) {
+      blockPosition = "Tx was dropped"
     } else {
-      blockPosition = `BEHIND [${mevReceipt.blockNumber - memReceipt.blockNumber}] Block `
+      if (memReceipt.blockNumber == mevReceipt.blockNumber) {
+        if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
+          blockPosition = `AHEAD  [${memReceipt.transactionIndex - mevReceipt.transactionIndex}] Index `
+        } else {
+          blockPosition = `BEHIND [${mevReceipt.transactionIndex - memReceipt.transactionIndex}] Index `
+        }
+      } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
+        blockPosition = `AHEAD  [${memReceipt.blockNumber - mevReceipt.blockNumber}] Block `
+      } else {
+        blockPosition = `BEHIND [${mevReceipt.blockNumber - memReceipt.blockNumber}] Block `
+      }
     }
 
-    const statusWithColor = mevReceipt.status
-      ? chalk.greenBright(mevReceipt.status)
-      : chalk.redBright(mevReceipt.status)
-
-    txLogged++
-    await loggerHumanReadable.debug(
-      `${md.name}: [${memSuccess} ${memWadSent}] [${mevSuccess} ${mevWadSent}] - ${txLogged}/${txLogFound} ${md.txReported}/${md.txFound}`,
-      {
-        blockPosition: blockPosition,
-        memHash: memReceipt.transactionHash,
-        mevHash: mevReceipt.transactionHash,
-      },
-    )
+    await loggerHumanReadable.debug(`${md.name}:`, {
+      status: `[${memSuccess}] [${mevSuccess}]`,
+      blockPosition: blockPosition,
+      logId: `${md.txReported}/${md.txFound}`,
+      memHash: md.memPoolHash,
+      mevHash: md.mevBotHash,
+    })
   } catch (err) {
-    txLogged++
-    loggerHumanReadable.error(`${txLogged}/${txLogFound} ` + err + " INFO:" + JSON.stringify(info))
+    loggerHumanReadable.error(err + " INFO:" + JSON.stringify(info))
   }
   return
 }
 
-function receiptLogParse(logs: Log[]): [boolean, string] {
-  let wadSent = "0"
-  if (logs.length == 0) {
-    return [false, wadSent]
+async function receiptWaitHandler(hash: any): Promise<[TransactionReceipt | undefined, string]> {
+  try {
+    const receipt = await ethers.provider.waitForTransaction(hash, 1, 1694200)
+    if (receipt.logs.length == 0) {
+      return [receipt, "F"]
+    }
+    return [receipt, "T"]
+  } catch (error) {
+    return [undefined, "D"]
   }
-  const wadSentHex = logs.at(0)!.data
-  const amount1OutHex = ethers.utils.hexDataSlice(logs.at(logs.length - 1)!.data, 32 * 3)
-  // console.log(wadSentHex, `\n`, amount1OutHex)
-  // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
-  wadSent = ethers.utils.formatEther(BigNumber.from(wadSentHex))
-  wadSent = wadSent.slice(0, wadSent.length - 16)
-
-  return [true, wadSent]
 }
+
+// function receiptLogParse(logs: Log[]): [string, string] {
+//   let wadSent = "0"
+//   if (logs.length == 0) {
+//     return ["failed", wadSent]
+//   }
+//   const wadSentHex = logs.at(0)!.data
+//   const amount1OutHex = ethers.utils.hexDataSlice(logs.at(logs.length - 1)!.data, 32 * 3)
+//   // console.log(wadSentHex, `\n`, amount1OutHex)
+//   // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
+//   wadSent = ethers.utils.formatEther(BigNumber.from(wadSentHex))
+//   wadSent = wadSent.slice(0, wadSent.length - 16)
+
+//   return ["success", wadSent]
+// }
 
 // async function receiptLogger(
 //   target: targetContractItem,
