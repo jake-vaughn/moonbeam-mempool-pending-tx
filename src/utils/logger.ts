@@ -40,7 +40,7 @@ export const logger = winston.createLogger({
 const logFormatHumanReadable = format.printf(
   info =>
     `${info.timestamp} ` +
-    `${info.message} ` +
+    `${info.message}` +
     (info.metadata.status ? ` ${info.metadata.status}` : "") +
     (info.metadata.blockPosition ? ` ${info.metadata.blockPosition}` : "") +
     (info.metadata.logId ? ` ${info.metadata.logId}` : "") +

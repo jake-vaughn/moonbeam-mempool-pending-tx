@@ -1,0 +1,508 @@
+# Palkeoramix decompiler. 
+
+def _fallback() payable: # default function
+  revert
+
+def unknown10d1e85c() payable: 
+  require calldata.size - 4 >=′ 128
+  require cd[4] == addr(cd[4])
+  require cd[36] == cd[36]
+  require cd[68] == cd[68]
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + ('cd', 100).length + 36 <= calldata.size
+  require ('cd', 100).length >=′ 224
+  require ('cd', 100)[0] == ('cd', 100)[0]
+  require ('cd', 100)[1] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[1] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[1] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 < 96:
+      revert with 'NH{q', 65
+  require ('cd', 100)[1] + (32 * cd[(cd[100] + ('cd', 100)[1] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[1] + 68
+  t = 128
+  while idx < cd[(cd[100] + ('cd', 100)[1] + 36)]:
+      require cd[s] == addr(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[2] == addr(('cd', 100)[2])
+  require ('cd', 100)[3] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[3] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[3] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 < 97:
+      revert with 'NH{q', 65
+  require ('cd', 100)[3] + (32 * cd[(cd[100] + ('cd', 100)[3] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[3] + 68
+  t = floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 129
+  while idx < cd[(cd[100] + ('cd', 100)[3] + 36)]:
+      require cd[s] == uint16(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[4] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[4] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[4] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 < 98:
+      revert with 'NH{q', 65
+  require ('cd', 100)[4] + (32 * cd[(cd[100] + ('cd', 100)[4] + 36)]) + 68 <= ('cd', 100).length + 36
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def unknown226dc882() payable: 
+  require calldata.size - 4 >=′ 128
+  require cd[4] == addr(cd[4])
+  require cd[36] == cd[36]
+  require cd[68] == cd[68]
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + ('cd', 100).length + 36 <= calldata.size
+  require ('cd', 100).length >=′ 224
+  require ('cd', 100)[0] == ('cd', 100)[0]
+  require ('cd', 100)[1] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[1] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[1] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 < 96:
+      revert with 'NH{q', 65
+  require ('cd', 100)[1] + (32 * cd[(cd[100] + ('cd', 100)[1] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[1] + 68
+  t = 128
+  while idx < cd[(cd[100] + ('cd', 100)[1] + 36)]:
+      require cd[s] == addr(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[2] == addr(('cd', 100)[2])
+  require ('cd', 100)[3] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[3] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[3] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 < 97:
+      revert with 'NH{q', 65
+  require ('cd', 100)[3] + (32 * cd[(cd[100] + ('cd', 100)[3] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[3] + 68
+  t = floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 129
+  while idx < cd[(cd[100] + ('cd', 100)[3] + 36)]:
+      require cd[s] == uint16(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[4] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[4] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[4] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 < 98:
+      revert with 'NH{q', 65
+  require ('cd', 100)[4] + (32 * cd[(cd[100] + ('cd', 100)[4] + 36)]) + 68 <= ('cd', 100).length + 36
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def unknown84800812() payable: 
+  require calldata.size - 4 >=′ 128
+  require cd[4] == addr(cd[4])
+  require cd[36] == cd[36]
+  require cd[68] == cd[68]
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + ('cd', 100).length + 36 <= calldata.size
+  require ('cd', 100).length >=′ 224
+  require ('cd', 100)[0] == ('cd', 100)[0]
+  require ('cd', 100)[1] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[1] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[1] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 < 96:
+      revert with 'NH{q', 65
+  require ('cd', 100)[1] + (32 * cd[(cd[100] + ('cd', 100)[1] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[1] + 68
+  t = 128
+  while idx < cd[(cd[100] + ('cd', 100)[1] + 36)]:
+      require cd[s] == addr(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[2] == addr(('cd', 100)[2])
+  require ('cd', 100)[3] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[3] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[3] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 < 97:
+      revert with 'NH{q', 65
+  require ('cd', 100)[3] + (32 * cd[(cd[100] + ('cd', 100)[3] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[3] + 68
+  t = floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 129
+  while idx < cd[(cd[100] + ('cd', 100)[3] + 36)]:
+      require cd[s] == uint16(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[4] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[4] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[4] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 < 98:
+      revert with 'NH{q', 65
+  require ('cd', 100)[4] + (32 * cd[(cd[100] + ('cd', 100)[4] + 36)]) + 68 <= ('cd', 100).length + 36
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def unknown99f9fa51() payable: 
+  require calldata.size - 4 >=′ 128
+  require cd[4] == addr(cd[4])
+  require cd[36] == cd[36]
+  require cd[68] == cd[68]
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + ('cd', 100).length + 36 <= calldata.size
+  require ('cd', 100).length >=′ 224
+  require ('cd', 100)[0] == ('cd', 100)[0]
+  require ('cd', 100)[1] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[1] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[1] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 < 96:
+      revert with 'NH{q', 65
+  require ('cd', 100)[1] + (32 * cd[(cd[100] + ('cd', 100)[1] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[1] + 68
+  t = 128
+  while idx < cd[(cd[100] + ('cd', 100)[1] + 36)]:
+      require cd[s] == addr(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[2] == addr(('cd', 100)[2])
+  require ('cd', 100)[3] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[3] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[3] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 < 97:
+      revert with 'NH{q', 65
+  require ('cd', 100)[3] + (32 * cd[(cd[100] + ('cd', 100)[3] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[3] + 68
+  t = floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 129
+  while idx < cd[(cd[100] + ('cd', 100)[3] + 36)]:
+      require cd[s] == uint16(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[4] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[4] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[4] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 < 98:
+      revert with 'NH{q', 65
+  require ('cd', 100)[4] + (32 * cd[(cd[100] + ('cd', 100)[4] + 36)]) + 68 <= ('cd', 100).length + 36
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def unknownd3f7e539() payable: 
+  require calldata.size - 4 >=′ 128
+  require cd[4] == addr(cd[4])
+  require cd[36] == cd[36]
+  require cd[68] == cd[68]
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + ('cd', 100).length + 36 <= calldata.size
+  require ('cd', 100).length >=′ 224
+  require ('cd', 100)[0] == ('cd', 100)[0]
+  require ('cd', 100)[1] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[1] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[1] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 < 96:
+      revert with 'NH{q', 65
+  require ('cd', 100)[1] + (32 * cd[(cd[100] + ('cd', 100)[1] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[1] + 68
+  t = 128
+  while idx < cd[(cd[100] + ('cd', 100)[1] + 36)]:
+      require cd[s] == addr(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[2] == addr(('cd', 100)[2])
+  require ('cd', 100)[3] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[3] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[3] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 < 97:
+      revert with 'NH{q', 65
+  require ('cd', 100)[3] + (32 * cd[(cd[100] + ('cd', 100)[3] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[3] + 68
+  t = floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 129
+  while idx < cd[(cd[100] + ('cd', 100)[3] + 36)]:
+      require cd[s] == uint16(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[4] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[4] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[4] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 < 98:
+      revert with 'NH{q', 65
+  require ('cd', 100)[4] + (32 * cd[(cd[100] + ('cd', 100)[4] + 36)]) + 68 <= ('cd', 100).length + 36
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def unknowndf9aee68() payable: 
+  require calldata.size - 4 >=′ 128
+  require cd[4] == addr(cd[4])
+  require cd[36] == cd[36]
+  require cd[68] == cd[68]
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + ('cd', 100).length + 36 <= calldata.size
+  require ('cd', 100).length >=′ 224
+  require ('cd', 100)[0] == ('cd', 100)[0]
+  require ('cd', 100)[1] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[1] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[1] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 97 < 96:
+      revert with 'NH{q', 65
+  require ('cd', 100)[1] + (32 * cd[(cd[100] + ('cd', 100)[1] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[1] + 68
+  t = 128
+  while idx < cd[(cd[100] + ('cd', 100)[1] + 36)]:
+      require cd[s] == addr(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[2] == addr(('cd', 100)[2])
+  require ('cd', 100)[3] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[3] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[3] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + 98 < 97:
+      revert with 'NH{q', 65
+  require ('cd', 100)[3] + (32 * cd[(cd[100] + ('cd', 100)[3] + 36)]) + 68 <= ('cd', 100).length + 36
+  idx = 0
+  s = cd[100] + ('cd', 100)[3] + 68
+  t = floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + 129
+  while idx < cd[(cd[100] + ('cd', 100)[3] + 36)]:
+      require cd[s] == uint16(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require ('cd', 100)[4] <= 18446744073709551615
+  require cd[100] + ('cd', 100)[4] + 67 <′ cd[100] + ('cd', 100).length + 36
+  if cd[(cd[100] + ('cd', 100)[4] + 36)] > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(cd[(cd[100] + ('cd', 100)[1] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[3] + 36)]) + floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 > 18446744073709551615 or floor32(cd[(cd[100] + ('cd', 100)[4] + 36)]) + 99 < 98:
+      revert with 'NH{q', 65
+  require ('cd', 100)[4] + (32 * cd[(cd[100] + ('cd', 100)[4] + 36)]) + 68 <= ('cd', 100).length + 36
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def unknown7e42811d() payable: 
+  require calldata.size - 4 >=′ 192
+  require cd[4] == cd[4]
+  require cd[36] <= 18446744073709551615
+  require cd[36] + 35 <′ calldata.size
+  if ('cd', 36).length > 18446744073709551615:
+      revert with 'NH{q', 65
+  if floor32(('cd', 36).length) + 97 > 18446744073709551615 or floor32(('cd', 36).length) + 97 < 96:
+      revert with 'NH{q', 65
+  mem[96] = ('cd', 36).length
+  require cd[36] + (32 * ('cd', 36).length) + 36 <= calldata.size
+  idx = 0
+  s = cd[36] + 36
+  t = 128
+  while idx < ('cd', 36).length:
+      require cd[s] == addr(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require cd[68] <= 18446744073709551615
+  require cd[68] + 35 <′ calldata.size
+  require ('cd', 68).length <= 18446744073709551615
+  require cd[68] + (32 * ('cd', 68).length) + 36 <= calldata.size
+  require cd[100] <= 18446744073709551615
+  require cd[100] + 35 <′ calldata.size
+  require ('cd', 100).length <= 18446744073709551615
+  require cd[100] + (32 * ('cd', 100).length) + 36 <= calldata.size
+  require cd[132] == uint8(cd[132])
+  require cd[164] <= 18446744073709551615
+  require cd[164] + 35 <′ calldata.size
+  require ('cd', 164).length <= 18446744073709551615
+  require cd[164] + (32 * ('cd', 164).length) + 36 <= calldata.size
+  if ('cd', 36).length <= 0:
+      revert with 0, 'invalid run inputs'
+  if ('cd', 100).length <= 0:
+      revert with 0, 'invalid run inputs'
+  if ('cd', 36).length != ('cd', 100).length:
+      revert with 0, 'invalid run inputs'
+  if 2 * ('cd', 36).length > 18446744073709551615:
+      revert with 'NH{q', 65
+  mem[floor32(('cd', 36).length) + 97] = 2 * ('cd', 36).length
+  mem[64] = floor32(('cd', 36).length) + (64 * ('cd', 36).length) + 129
+  if not ('cd', 36).length:
+      idx = 0
+      while idx < ('cd', 36).length:
+          if idx >= mem[96]:
+              revert with 'NH{q', 50
+          if idx >= mem[96]:
+              revert with 'NH{q', 50
+          mem[(32 * idx) + 128] = addr(mem[(32 * idx) + 128] xor caller)
+          if idx >= mem[96]:
+              revert with 'NH{q', 50
+          if idx >= ('cd', 100).length:
+              revert with 'NH{q', 50
+          require cd[((32 * idx) + cd[100] + 36)] == uint16(cd[((32 * idx) + cd[100] + 36)])
+          require ext_code.size(mem[(32 * idx) + 140 len 20])
+          static call mem[(32 * idx) + 140 len 20].getReserves() with:
+                  gas gas_remaining wei
+          if uint16(cd[((32 * idx) + cd[100] + 36)]) == 2:
+              mem[mem[64] len 64] = ext_call.return_data[0 len 64]
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              _237 = mem[64]
+              mem[64] = mem[64] + ceil32(return_data.size)
+              require return_data.size >=′ 64
+              _241 = mem[_237]
+              require mem[_237] == mem[_237 + 18 len 14]
+              require mem[_237 + 32] == mem[_237 + 50 len 14]
+              if 2 * idx >= mem[floor32(('cd', 36).length) + 97]:
+                  revert with 'NH{q', 50
+              if 2 * idx > -2:
+                  revert with 'NH{q', 17
+              if (2 * idx) + 1 >= mem[floor32(('cd', 36).length) + 97]:
+                  revert with 'NH{q', 50
+              mem[(32 * (2 * idx) + 1) + floor32(('cd', 36).length) + 129] = mem[_237 + 50 len 14]
+              mem[(64 * idx) + floor32(('cd', 36).length) + 129] = Mask(112, 0, _241)
+          else:
+              mem[mem[64] len 96] = ext_call.return_data[0 len 96]
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              _236 = mem[64]
+              mem[64] = mem[64] + ceil32(return_data.size)
+              require return_data.size >=′ 96
+              _240 = mem[_236]
+              require mem[_236] == mem[_236 + 18 len 14]
+              require mem[_236 + 32] == mem[_236 + 50 len 14]
+              require mem[_236 + 64] == mem[_236 + 92 len 4]
+              if 2 * idx >= mem[floor32(('cd', 36).length) + 97]:
+                  revert with 'NH{q', 50
+              if 2 * idx > -2:
+                  revert with 'NH{q', 17
+              if (2 * idx) + 1 >= mem[floor32(('cd', 36).length) + 97]:
+                  revert with 'NH{q', 50
+              mem[(32 * (2 * idx) + 1) + floor32(('cd', 36).length) + 129] = mem[_236 + 50 len 14]
+              mem[(64 * idx) + floor32(('cd', 36).length) + 129] = Mask(112, 0, _240)
+          if idx == -1:
+              revert with 'NH{q', 17
+          idx = idx + 1
+          continue 
+      if mem[floor32(('cd', 36).length) + 97] < 2:
+          revert with 'NH{q', 17
+      if var202001 >= mem[floor32(('cd', 36).length) + 97]:
+          revert with 'NH{q', 50
+      if var202006 and mem[(32 * var202001) + floor32(('cd', 36).length) + 147 len 14] > -1 / var202006:
+          revert with 'NH{q', 17
+  else:
+      mem[floor32(('cd', 36).length) + 129 len 64 * ('cd', 36).length] = call.data[calldata.size len 64 * ('cd', 36).length]
+      idx = 0
+      while idx < ('cd', 36).length:
+          if idx >= mem[96]:
+              revert with 'NH{q', 50
+          if idx >= mem[96]:
+              revert with 'NH{q', 50
+          mem[(32 * idx) + 128] = addr(mem[(32 * idx) + 128] xor caller)
+          if idx >= mem[96]:
+              revert with 'NH{q', 50
+          if idx >= ('cd', 100).length:
+              revert with 'NH{q', 50
+          require cd[((32 * idx) + cd[100] + 36)] == uint16(cd[((32 * idx) + cd[100] + 36)])
+          require ext_code.size(mem[(32 * idx) + 140 len 20])
+          static call mem[(32 * idx) + 140 len 20].getReserves() with:
+                  gas gas_remaining wei
+          if uint16(cd[((32 * idx) + cd[100] + 36)]) == 2:
+              mem[mem[64] len 64] = ext_call.return_data[0 len 64]
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              _239 = mem[64]
+              mem[64] = mem[64] + ceil32(return_data.size)
+              require return_data.size >=′ 64
+              _243 = mem[_239]
+              require mem[_239] == mem[_239 + 18 len 14]
+              require mem[_239 + 32] == mem[_239 + 50 len 14]
+              if 2 * idx >= mem[floor32(('cd', 36).length) + 97]:
+                  revert with 'NH{q', 50
+              if 2 * idx > -2:
+                  revert with 'NH{q', 17
+              if (2 * idx) + 1 >= mem[floor32(('cd', 36).length) + 97]:
+                  revert with 'NH{q', 50
+              mem[(32 * (2 * idx) + 1) + floor32(('cd', 36).length) + 129] = mem[_239 + 50 len 14]
+              mem[(64 * idx) + floor32(('cd', 36).length) + 129] = Mask(112, 0, _243)
+          else:
+              mem[mem[64] len 96] = ext_call.return_data[0 len 96]
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              _238 = mem[64]
+              mem[64] = mem[64] + ceil32(return_data.size)
+              require return_data.size >=′ 96
+              _242 = mem[_238]
+              require mem[_238] == mem[_238 + 18 len 14]
+              require mem[_238 + 32] == mem[_238 + 50 len 14]
+              require mem[_238 + 64] == mem[_238 + 92 len 4]
+              if 2 * idx >= mem[floor32(('cd', 36).length) + 97]:
+                  revert with 'NH{q', 50
+              if 2 * idx > -2:
+                  revert with 'NH{q', 17
+              if (2 * idx) + 1 >= mem[floor32(('cd', 36).length) + 97]:
+                  revert with 'NH{q', 50
+              mem[(32 * (2 * idx) + 1) + floor32(('cd', 36).length) + 129] = mem[_238 + 50 len 14]
+              mem[(64 * idx) + floor32(('cd', 36).length) + 129] = Mask(112, 0, _242)
+          if idx == -1:
+              revert with 'NH{q', 17
+          idx = idx + 1
+          continue 
+      if mem[floor32(('cd', 36).length) + 97] < 2:
+          revert with 'NH{q', 17
+      if var203001 >= mem[floor32(('cd', 36).length) + 97]:
+          revert with 'NH{q', 50
+      if var203006 and mem[(32 * var203001) + floor32(('cd', 36).length) + 147 len 14] > -1 / var203006:
+          revert with 'NH{q', 17
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+

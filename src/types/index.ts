@@ -3,10 +3,13 @@
 /* tslint:disable */
 
 /* eslint-disable */
+import type * as bulkSendSol from "./BulkSend.sol";
 import type * as defi from "./defi";
 import type * as interfaces from "./interfaces";
 import type * as multisendSol from "./multisend.sol";
 import type * as tokens from "./tokens";
+
+export type { bulkSendSol };
 
 export type { defi };
 
@@ -16,6 +19,10 @@ export type { multisendSol };
 
 export type { tokens };
 export * as factories from "./factories";
+export type { BulkSend } from "./BulkSend.sol/BulkSend";
+export { BulkSend__factory } from "./factories/BulkSend.sol/BulkSend__factory";
+export type { Token } from "./BulkSend.sol/Token";
+export { Token__factory } from "./factories/BulkSend.sol/Token__factory";
 export type { FlareRouter02 } from "./defi/FlareRouter02.sol/FlareRouter02";
 export { FlareRouter02__factory } from "./factories/defi/FlareRouter02.sol/FlareRouter02__factory";
 export type { IERC20Flare } from "./defi/FlareRouter02.sol/IERC20Flare";
@@ -34,10 +41,6 @@ export type { IERC20 } from "./interfaces/IERC20";
 export { IERC20__factory } from "./factories/interfaces/IERC20__factory";
 export type { ITarget3 } from "./interfaces/ITarget3";
 export { ITarget3__factory } from "./factories/interfaces/ITarget3__factory";
-export type { BulkSend } from "./multisend.sol/BulkSend";
-export { BulkSend__factory } from "./factories/multisend.sol/BulkSend__factory";
-export type { Token } from "./multisend.sol/Token";
-export { Token__factory } from "./factories/multisend.sol/Token__factory";
 export type { FlareERC20 } from "./tokens/FlarePair.sol/FlareERC20";
 export { FlareERC20__factory } from "./factories/tokens/FlarePair.sol/FlareERC20__factory";
 export type { FlarePair } from "./tokens/FlarePair.sol/FlarePair";

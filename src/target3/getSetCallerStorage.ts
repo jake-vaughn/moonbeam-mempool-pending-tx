@@ -1,7 +1,7 @@
 import { utils } from "ethers"
 import hre from "hardhat"
 
-import { getArrayItem, getMappingItem, getUint256 } from "./utils/solidityStorageUtils"
+import { getArrayItem, getMappingItem, getUint256 } from "../utils/solidityStorageUtils"
 
 const ethers = hre.ethers
 const chainId = hre.network.config.chainId!

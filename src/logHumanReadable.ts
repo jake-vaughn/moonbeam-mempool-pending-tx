@@ -1,11 +1,8 @@
-import { Log, TransactionReceipt } from "@ethersproject/providers"
-import chalk from "chalk"
-import { BigNumber } from "ethers"
+import { TransactionReceipt } from "@ethersproject/providers"
 import { ethers } from "hardhat"
 
 // import { networkConfig, targetContractItem } from "../../helper-hardhat-config"
-import { getErrorMessage } from "./utils/getErrorMessage"
-import { loggerHumanReadable, target3Transport } from "./utils/logger"
+import { loggerHumanReadable } from "./utils/logger"
 
 export async function logHumanReadable(info: any) {
   try {
@@ -25,6 +22,9 @@ export async function logHumanReadable(info: any) {
       !("to" in md) ||
       !("type" in md)
     ) {
+      if (typeof md !== "object" || md === null || !("errMsg" in md)) {
+        throw new Error(md.errMsg)
+      }
       throw new Error("type of log does not match")
     }
 
@@ -37,14 +37,14 @@ export async function logHumanReadable(info: any) {
     } else {
       if (memReceipt.blockNumber == mevReceipt.blockNumber) {
         if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
-          blockPosition = `AHEAD  [${memReceipt.transactionIndex - mevReceipt.transactionIndex}] Index `
+          blockPosition = `AHEAD  [${memReceipt.transactionIndex - mevReceipt.transactionIndex}] Index`
         } else {
-          blockPosition = `BEHIND [${mevReceipt.transactionIndex - memReceipt.transactionIndex}] Index `
+          blockPosition = `BEHIND [${mevReceipt.transactionIndex - memReceipt.transactionIndex}] Index`
         }
       } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
-        blockPosition = `AHEAD  [${memReceipt.blockNumber - mevReceipt.blockNumber}] Block `
+        blockPosition = `AHEAD  [${memReceipt.blockNumber - mevReceipt.blockNumber}] Block`
       } else {
-        blockPosition = `BEHIND [${mevReceipt.blockNumber - memReceipt.blockNumber}] Block `
+        blockPosition = `BEHIND [${mevReceipt.blockNumber - memReceipt.blockNumber}] Block`
       }
     }
 
@@ -63,7 +63,7 @@ export async function logHumanReadable(info: any) {
 
 async function receiptWaitHandler(hash: any): Promise<[TransactionReceipt | undefined, string]> {
   try {
-    const receipt = await ethers.provider.waitForTransaction(hash, 1, 1694200)
+    const receipt = await ethers.provider.waitForTransaction(hash, 1, 600000)
     if (receipt.logs.length == 0) {
       return [receipt, "F"]
     }

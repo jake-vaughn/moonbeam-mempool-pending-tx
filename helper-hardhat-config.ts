@@ -124,6 +124,24 @@ export const networkConfig: networkConfigInfo = {
         },
         active: true,
       },
+      "0xAb9C7a8654b9224E3A741Dc3A4991F2d1b82307A": {
+        name: "Target[4]",
+        type: 4,
+        copyContractAddr: "0x7Ff769F69CEE5A5FB13afb6E2195313Ce3884981",
+        signers: {
+          // ? addresses
+          "0x6df2eA5Ecc8d604A554FcF092A9F939cd8b7F09E": 61,
+          "0xf9e156992644536653b9da48DC1090c74EF904e9": 62,
+          "0x8A3169843fc4fD85201ED558e96217e9eA0BA7e1": 63,
+          "0x9Da53054B8C3002496f5Dd521df1fc515de1d9F3": 64,
+          "0xF02435ea48A5664BE1109C99e79404F463E8499F": 65,
+          // "0x6df2eA5Ecc8d604A554FcF092A9F939cd8b7F09E": 66,
+          // "0x6df2eA5Ecc8d604A554FcF092A9F939cd8b7F09E": 67,
+          // "0x6df2eA5Ecc8d604A554FcF092A9F939cd8b7F09E": 68,
+          // "0x6df2eA5Ecc8d604A554FcF092A9F939cd8b7F09E": 69,
+        },
+        active: true,
+      },
     },
   },
 }
