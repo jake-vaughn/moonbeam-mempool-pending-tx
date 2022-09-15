@@ -1,6 +1,7 @@
 import { TransactionReceipt } from "@ethersproject/providers"
 import { ethers } from "hardhat"
 
+import { getErrorMessage } from "./utils/getErrorMessage"
 // import { networkConfig, targetContractItem } from "../../helper-hardhat-config"
 import { loggerHumanReadable } from "./utils/logger"
 
@@ -22,14 +23,18 @@ export async function logHumanReadable(info: any) {
       !("to" in md) ||
       !("type" in md)
     ) {
-      if (typeof md !== "object" || md === null || !("errMsg" in md)) {
+      if (typeof md === "object" || (md !== null && "errMsg" in md)) {
         throw new Error(md.errMsg)
       }
       throw new Error("type of log does not match")
     }
 
-    const [memReceipt, memSuccess] = await receiptWaitHandler(md.memPoolHash)
-    const [mevReceipt, mevSuccess] = await receiptWaitHandler(md.mevBotHash)
+    const [response1, response2] = await Promise.all([
+      receiptWaitHandler(md.memPoolHash),
+      receiptWaitHandler(md.mevBotHash),
+    ])
+    const [memReceipt, memSuccess] = response1
+    const [mevReceipt, mevSuccess] = response2
 
     let blockPosition: string
     if (memReceipt == undefined || mevReceipt == undefined) {
@@ -37,14 +42,14 @@ export async function logHumanReadable(info: any) {
     } else {
       if (memReceipt.blockNumber == mevReceipt.blockNumber) {
         if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
-          blockPosition = `AHEAD  [${memReceipt.transactionIndex - mevReceipt.transactionIndex}] Index`
+          blockPosition = `Ahd Idx [${memReceipt.transactionIndex - mevReceipt.transactionIndex}]`
         } else {
-          blockPosition = `BEHIND [${mevReceipt.transactionIndex - memReceipt.transactionIndex}] Index`
+          blockPosition = `Bhd Idx [${mevReceipt.transactionIndex - memReceipt.transactionIndex}]`
         }
       } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
-        blockPosition = `AHEAD  [${memReceipt.blockNumber - mevReceipt.blockNumber}] Block`
+        blockPosition = `Ahd Blk [${memReceipt.blockNumber - mevReceipt.blockNumber}]`
       } else {
-        blockPosition = `BEHIND [${mevReceipt.blockNumber - memReceipt.blockNumber}] Block`
+        blockPosition = `Bhd Blk [${mevReceipt.blockNumber - memReceipt.blockNumber}]`
       }
     }
 
@@ -69,6 +74,7 @@ async function receiptWaitHandler(hash: any): Promise<[TransactionReceipt | unde
     }
     return [receipt, "T"]
   } catch (error) {
+    console.log(getErrorMessage(error))
     return [undefined, "D"]
   }
 }

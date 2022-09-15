@@ -132,7 +132,6 @@ async function target4(memPoolTx: TransactionResponse, target: targetContractIte
     })
 
     await tempLog(target, memPoolTx, mevBotTx)
-
     return
   } catch (err) {
     await tempErrorLog(err, target, memPoolTx)
