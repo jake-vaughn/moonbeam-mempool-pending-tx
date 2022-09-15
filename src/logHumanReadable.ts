@@ -1,9 +1,11 @@
-import { TransactionReceipt } from "@ethersproject/providers"
-import { ethers } from "hardhat"
+import { TransactionReceipt, TransactionResponse } from "@ethersproject/providers"
+import hre from "hardhat"
 
 import { getErrorMessage } from "./utils/getErrorMessage"
 // import { networkConfig, targetContractItem } from "../../helper-hardhat-config"
 import { loggerHumanReadable } from "./utils/logger"
+
+const ethers = hre.ethers
 
 export async function logHumanReadable(info: any) {
   try {
@@ -13,15 +15,14 @@ export async function logHumanReadable(info: any) {
     if (
       typeof md !== "object" ||
       md === null ||
-      !("from" in md) ||
-      !("memPoolHash" in md) ||
-      !("mevBotHash" in md) ||
+      !("memPoolTx" in md) ||
+      !("mevBotTx" in md) ||
+      !("blockFound" in md) ||
       !("txReported" in md) ||
       !("txFound" in md) ||
       !("name" in md) ||
-      !("signer" in md) ||
-      !("to" in md) ||
-      !("type" in md)
+      !("type" in md) ||
+      !("signer" in md)
     ) {
       if (typeof md === "object" || (md !== null && "errMsg" in md)) {
         throw new Error(md.errMsg)
@@ -29,36 +30,35 @@ export async function logHumanReadable(info: any) {
       throw new Error("type of log does not match")
     }
 
-    const [response1, response2] = await Promise.all([
-      receiptWaitHandler(md.memPoolHash),
-      receiptWaitHandler(md.mevBotHash),
+    // const receipt1 = await receiptWaitHandler(md.memPoolTx, md.blockFound)
+    // const receipt2 = await receiptWaitHandler(md.mevBotTx, md.blockFound)
+    const [receipt1, receipt2] = await Promise.all([
+      receiptWaitHandler(md.memPoolTx, md.blockFound),
+      receiptWaitHandler(md.mevBotTx, md.blockFound),
     ])
-    const [memReceipt, memSuccess] = response1
-    const [mevReceipt, mevSuccess] = response2
+    const [memReceipt, memSuccess] = receipt1
+    const [mevReceipt, mevSuccess] = receipt2
 
     let blockPosition: string
-    if (memReceipt == undefined || mevReceipt == undefined) {
-      blockPosition = "Tx was dropped"
-    } else {
-      if (memReceipt.blockNumber == mevReceipt.blockNumber) {
-        if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
-          blockPosition = `Ahd Idx [${memReceipt.transactionIndex - mevReceipt.transactionIndex}]`
-        } else {
-          blockPosition = `Bhd Idx [${mevReceipt.transactionIndex - memReceipt.transactionIndex}]`
-        }
-      } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
-        blockPosition = `Ahd Blk [${memReceipt.blockNumber - mevReceipt.blockNumber}]`
+
+    if (memReceipt.blockNumber == mevReceipt.blockNumber) {
+      if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
+        blockPosition = `I🟢[${memReceipt.transactionIndex - mevReceipt.transactionIndex}]`
       } else {
-        blockPosition = `Bhd Blk [${mevReceipt.blockNumber - memReceipt.blockNumber}]`
+        blockPosition = `I🔴[${mevReceipt.transactionIndex - memReceipt.transactionIndex}]`
       }
+    } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
+      blockPosition = `B🟢[${memReceipt.blockNumber - mevReceipt.blockNumber}]`
+    } else {
+      blockPosition = `B🔴[${mevReceipt.blockNumber - memReceipt.blockNumber}]`
     }
 
     await loggerHumanReadable.debug(`${md.name}:`, {
       status: `[${memSuccess}] [${mevSuccess}]`,
       blockPosition: blockPosition,
       logId: `${md.txReported}/${md.txFound}`,
-      memHash: md.memPoolHash,
-      mevHash: md.mevBotHash,
+      memHash: md.memPoolTx.hash,
+      mevHash: md.mevBotTx.hash,
     })
   } catch (err) {
     loggerHumanReadable.error(err + " INFO:" + JSON.stringify(info))
@@ -66,16 +66,46 @@ export async function logHumanReadable(info: any) {
   return
 }
 
-async function receiptWaitHandler(hash: any): Promise<[TransactionReceipt | undefined, string]> {
+async function receiptWaitHandler(
+  response: TransactionResponse,
+  startBlock: number,
+): Promise<[TransactionReceipt, string]> {
   try {
-    const receipt = await ethers.provider.waitForTransaction(hash, 1, 600000)
+    let replacement = undefined
+    replacement = {
+      data: response.data,
+      from: response.from,
+      nonce: response.nonce,
+      to: response.to!,
+      value: response.value,
+      startBlock,
+    }
+
+    const receipt = await ethers.provider._waitForTransaction(response.hash, 1, 0, replacement)
+    // const receipt = await ethers.provider.waitForTransaction(hash, 1, 600000)
     if (receipt.logs.length == 0) {
       return [receipt, "F"]
     }
-    return [receipt, "T"]
-  } catch (error) {
-    console.log(getErrorMessage(error))
-    return [undefined, "D"]
+    return [receipt, "S"]
+  } catch (error: any) {
+    if (error !== null && "reason" in error) {
+      const receipt: TransactionReceipt = error.receipt
+
+      if (error.reason == "transaction failed") {
+        return [receipt, "F"]
+      }
+      if (error.reason == "replaced") {
+        console.log(response.from + " " + error.reason)
+
+        return [receipt, "D"]
+      }
+      console.log("ey2: " + error.reason)
+    }
+
+    // if (errMsg == "timeout exceeded (timeout=600000, code=TIMEOUT, version=providers/5.7.0)") {
+    //   return [undefined, "D"]
+    // }
+    throw error
   }
 }
 
@@ -90,117 +120,3 @@ async function receiptWaitHandler(hash: any): Promise<[TransactionReceipt | unde
 //   // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
 //   wadSent = ethers.utils.formatEther(BigNumber.from(wadSentHex))
 //   wadSent = wadSent.slice(0, wadSent.length - 16)
-
-//   return ["success", wadSent]
-// }
-
-// async function receiptLogger(
-//   target: targetContractItem,
-//   memPoolTx: TransactionResponse,
-//   mevBotTx: TransactionResponse,
-//   mevBotGasEstimate?: BigNumber,
-// ) {
-//   const memPoolTxReceipt = await handleWait(memPoolTx)
-//   const mevBotTxReceipt = await handleWait(mevBotTx)
-//   let blockPosition: string
-//   if (memPoolTxReceipt.blockNumber == mevBotTxReceipt.blockNumber) {
-//     if (memPoolTxReceipt.transactionIndex >= mevBotTxReceipt.transactionIndex) {
-//       blockPosition = `Same Block: index ${chalk.greenBright(`Ahead`)} mevIdx: ${chalk.yellow(
-//         mevBotTxReceipt.transactionIndex,
-//       )} vs memIdx: ${chalk.yellow(memPoolTxReceipt.transactionIndex)}`
-//     } else {
-//       blockPosition = `Same Block: index ${chalk.redBright(`Behind`)} mevIdx: ${chalk.yellow(
-//         mevBotTxReceipt.transactionIndex,
-//       )} vs memIdx: ${chalk.yellow(memPoolTxReceipt.transactionIndex)}`
-//     }
-//   } else if (memPoolTxReceipt.blockNumber >= mevBotTxReceipt.blockNumber) {
-//     blockPosition = `${chalk.greenBright(`Ahead`)} by ${chalk.yellow(
-//       memPoolTxReceipt.blockNumber - mevBotTxReceipt.blockNumber,
-//     )} blocks`
-//   } else {
-//     blockPosition = `${chalk.redBright(`Behind`)} by ${chalk.yellow(
-//       mevBotTxReceipt.blockNumber - memPoolTxReceipt.blockNumber,
-//     )} blocks`
-//   }
-
-//   const statusWithColor = mevBotTxReceipt.status
-//     ? chalk.greenBright(mevBotTxReceipt.status)
-//     : chalk.redBright(mevBotTxReceipt.status)
-
-//   logger.info(
-//     `${chalk.greenBright(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`)}\n` +
-//       `${chalk.greenBright(`Target Name:  ${target.name}`)}\n` +
-//       `memPoolTxReceipt transactionHash: ${chalk.cyan(memPoolTxReceipt.transactionHash)}\n` +
-//       `mevBotTxReceipt transactionHash:  ${chalk.cyan(mevBotTxReceipt.transactionHash)}\n` +
-//       // `Blocks Behind Detected:           ${chalk.yellow(mevBotTxReceipt.blockNumber - blockNumDesired!)}\n`+
-//       `memPoolTxReceipt blockNumber:     ${chalk.yellow(memPoolTxReceipt.blockNumber)}\n` +
-//       `mevBotTxReceipt blockNumber:      ${chalk.yellow(mevBotTxReceipt.blockNumber)}\n` +
-//       `${blockPosition}\n` +
-//       `memPoolTxReceipt status:          ${chalk.yellow(memPoolTxReceipt.status)}\n` +
-//       `mevBotTxReceipt status:           ${statusWithColor}\n` +
-//       `mevBotTx estimateGas:             ${chalk.yellow(mevBotGasEstimate)}\n` +
-//       `mevBotTxReceipt gasUsed:          ${chalk.yellow(mevBotTxReceipt.gasUsed)}\n` +
-//       `${chalk.greenBright(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`)}\n`,
-//   )
-//   return
-// }
-
-// async function errorLogger(err: unknown, target: targetContractItem, memPoolTx: TransactionResponse) {
-//   const signerIdx = target.signers[memPoolTx.from]
-//   const mevBotSigner = ethers.provider.getSigner(signerIdx)
-//   const memPoolTxReceipt = await handleWait(memPoolTx)
-//   if (
-//     getErrorMessage(err) == "execution fatal: Module(ModuleError { index: 51, error: [0, 0, 0, 0], message: None })"
-//   ) {
-//     logger.error(err)
-//   }
-//   logger.error(
-//     `${chalk.redBright(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`)}\n` +
-//       `${chalk.redBright(`Pending listener failed with error:`)}\n` +
-//       getErrorMessage(err) +
-//       chalk.redBright(`\n\nTarge Name: ${target.name}\n`) +
-//       `memPoolTxReceipt transactionHash: ${chalk.cyan(memPoolTxReceipt.transactionHash)}\n` +
-//       `memPoolTxReceipt blockNumber: ${chalk.yellow(memPoolTxReceipt.blockNumber)}\n` +
-//       `memPoolTxReceipt status: ${chalk.yellow(memPoolTxReceipt.status)}\n` +
-//       `\n` +
-//       `memPoolTx.from: ${chalk.cyan(memPoolTx.from)} \n` +
-//       `target.signer: ${chalk.cyan(await mevBotSigner.getAddress())}\n` +
-//       `signerIdx: ${chalk.yellow(signerIdx)}\n` +
-//       `${chalk.redBright(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`)}\n`,
-//   )
-//   return
-// }
-
-// async function handleWait(tx: TransactionResponse) {
-//   try {
-//     const chainId = network.config.chainId!
-//     const txReceipt = await tx.wait(networkConfig[chainId].blockConfirmations)
-//     return txReceipt
-//   } catch (error: any) {
-//     if (error !== null && "receipt" in error) {
-//       const txReceipt: TransactionReceipt = error.receipt
-//       return txReceipt
-//     }
-//     throw error
-//   }
-// }
-
-// console.log(
-//   `
-//     `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`,
-//   )}\n` +
-//     ``Target Name: ${md.name}`)}\n` +
-//     `memReceipt transactionHash: ${chalk.cyan(memReceipt.transactionHash)}\n` +
-//     `mevReceipt transactionHash: ${chalk.cyan(mevReceipt.transactionHash)}\n` +
-//     // `Blocks Behind Detected: ${chalk.yellow(mevReceipt.blockNumber - blockNumDesired!)}\n`+
-//     `memReceipt blockNumber: ${chalk.yellow(memReceipt.blockNumber)}\n` +
-//     `mevReceipt blockNumber: ${chalk.yellow(mevReceipt.blockNumber)}\n` +
-//     `${blockPosition}\n` +
-//     `memReceipt status: ${chalk.yellow(memReceipt.status)}\n` +
-//     `mevReceipt status: ${statusWithColor}\n` +
-//     // `mevBotTx estimateGas: ${chalk.yellow(mevBotGasEstimate)}\n` +
-//     `mevReceipt gasUsed: ${chalk.yellow(mevReceipt.gasUsed)}\n` +
-//     `
-//       `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`,
-//     )}\n`,
-// )

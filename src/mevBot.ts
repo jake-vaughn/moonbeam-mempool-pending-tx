@@ -1,6 +1,5 @@
-import { TransactionReceipt, TransactionResponse } from "@ethersproject/providers"
-import chalk from "chalk"
-import { BigNumber, Signer } from "ethers"
+import { TransactionResponse } from "@ethersproject/providers"
+import { BigNumber } from "ethers"
 import hre from "hardhat"
 
 import { moonbeamBlastWssUrl, moonbeamWsUrl, networkConfig, targetContractItem } from "../helper-hardhat-config"
@@ -19,7 +18,6 @@ async function mevBot() {
   mevBotTransportFile.on("logged", async function (info) {
     await logHumanReadable(info)
   })
-
   console.log("debug", `Running: mevBot `, {
     Chain: networkConfig[chainId].name,
     RpcProvider: ethers.provider.connection.url,
@@ -28,7 +26,7 @@ async function mevBot() {
 
   wsProvider.on("pending", txHash => {
     // console.log(txHash)
-    wsProvider.getTransaction(txHash).then(async function (memPoolTx) {
+    ethers.provider.getTransaction(txHash).then(async function (memPoolTx) {
       if (memPoolTx != null && memPoolTx.to! in targetContracts && targetContracts[memPoolTx.to!].active) {
         const target = targetContracts[memPoolTx.to!]
         txFound++
@@ -124,7 +122,7 @@ async function target4(memPoolTx: TransactionResponse, target: targetContractIte
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
     const mevBotTx = await mevBotSigner.sendTransaction({
       to: target.copyContractAddr,
-      gasLimit: 750000,
+      gasLimit: 590000,
       data: memPoolTx.data,
       nonce: await mevBotSigner.getTransactionCount(),
       maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
@@ -142,15 +140,13 @@ async function target4(memPoolTx: TransactionResponse, target: targetContractIte
 async function tempLog(target: targetContractItem, memPoolTx: TransactionResponse, mevBotTx: TransactionResponse) {
   txReported++
   logger.debug(`${txReported}/${txFound}:`, {
-    memPoolHash: memPoolTx.hash,
-    mevBotHash: mevBotTx.hash,
+    memPoolTx: memPoolTx,
+    mevBotTx: mevBotTx,
     blockFound: ethers.provider.blockNumber,
     txReported: txReported,
     txFound: txFound,
     name: target.name,
     type: target.type,
-    from: memPoolTx.from,
-    to: memPoolTx.to,
     signer: target.signers[memPoolTx.from],
   })
   return
