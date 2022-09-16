@@ -30,8 +30,6 @@ export async function logHumanReadable(info: any) {
       throw new Error("type of log does not match")
     }
 
-    // const receipt1 = await receiptWaitHandler(md.memPoolTx, md.blockFound)
-    // const receipt2 = await receiptWaitHandler(md.mevBotTx, md.blockFound)
     const [receipt1, receipt2] = await Promise.all([
       receiptWaitHandler(md.memPoolTx, md.blockFound),
       receiptWaitHandler(md.mevBotTx, md.blockFound),
@@ -54,14 +52,14 @@ export async function logHumanReadable(info: any) {
     }
 
     await loggerHumanReadable.debug(`${md.name}:`, {
-      status: `[${memSuccess}] [${mevSuccess}]`,
+      status: `${memSuccess} ${mevSuccess}`,
       blockPosition: blockPosition,
       logId: `${md.txReported}/${md.txFound}`,
-      memHash: md.memPoolTx.hash,
-      mevHash: md.mevBotTx.hash,
+      memHash: memReceipt.transactionHash,
+      mevHash: mevReceipt.transactionHash,
     })
   } catch (err) {
-    loggerHumanReadable.error(err + " INFO:" + JSON.stringify(info))
+    loggerHumanReadable.error(getErrorMessage(err) + " INFO:" + JSON.stringify(info))
   }
   return
 }
@@ -82,29 +80,24 @@ async function receiptWaitHandler(
     }
 
     const receipt = await ethers.provider._waitForTransaction(response.hash, 1, 0, replacement)
-    // const receipt = await ethers.provider.waitForTransaction(hash, 1, 600000)
     if (receipt.logs.length == 0) {
-      return [receipt, "F"]
+      return [receipt, "🟥"]
     }
-    return [receipt, "S"]
+    return [receipt, "🟩"]
   } catch (error: any) {
     if (error !== null && "reason" in error) {
       const receipt: TransactionReceipt = error.receipt
 
       if (error.reason == "transaction failed") {
-        return [receipt, "F"]
+        return [receipt, "🟥"]
       }
       if (error.reason == "replaced") {
-        console.log(response.from + " " + error.reason)
-
-        return [receipt, "D"]
+        if (receipt.logs.length == 0) {
+          return [receipt, "❌"]
+        }
+        return [receipt, "❎"]
       }
-      console.log("ey2: " + error.reason)
     }
-
-    // if (errMsg == "timeout exceeded (timeout=600000, code=TIMEOUT, version=providers/5.7.0)") {
-    //   return [undefined, "D"]
-    // }
     throw error
   }
 }
