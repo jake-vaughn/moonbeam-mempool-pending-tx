@@ -92,7 +92,7 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
     const wadSentHex = ethers.utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
-    if (BigNumber.from(wadSentHex).lte(BigNumber.from("506000000000000000000"))) {
+    if (BigNumber.from(wadSentHex).lte(BigNumber.from("532000000000000000000"))) {
       const mevBotTx = await mevBotSigner.sendTransaction({
         to: target.copyContractAddr,
         gasLimit: 750000,

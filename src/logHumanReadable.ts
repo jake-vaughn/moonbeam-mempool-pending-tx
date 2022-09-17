@@ -41,14 +41,14 @@ export async function logHumanReadable(info: any) {
 
     if (memReceipt.blockNumber == mevReceipt.blockNumber) {
       if (memReceipt.transactionIndex >= mevReceipt.transactionIndex) {
-        blockPosition = `I🟢[${memReceipt.transactionIndex - mevReceipt.transactionIndex}]`
+        blockPosition = `✅[${memReceipt.transactionIndex - mevReceipt.transactionIndex}]`
       } else {
-        blockPosition = `I🔴[${mevReceipt.transactionIndex - memReceipt.transactionIndex}]`
+        blockPosition = `❌[${mevReceipt.transactionIndex - memReceipt.transactionIndex}]`
       }
     } else if (memReceipt.blockNumber >= mevReceipt.blockNumber) {
-      blockPosition = `B🟢[${memReceipt.blockNumber - mevReceipt.blockNumber}]`
+      blockPosition = `🟩[${memReceipt.blockNumber - mevReceipt.blockNumber}]`
     } else {
-      blockPosition = `B🔴[${mevReceipt.blockNumber - memReceipt.blockNumber}]`
+      blockPosition = `🟥[${mevReceipt.blockNumber - memReceipt.blockNumber}]`
     }
 
     await loggerHumanReadable.debug(`${md.name}:`, {
@@ -81,21 +81,21 @@ async function receiptWaitHandler(
 
     const receipt = await ethers.provider._waitForTransaction(response.hash, 1, 0, replacement)
     if (receipt.logs.length == 0) {
-      return [receipt, "🟥"]
+      return [receipt, "🔴"]
     }
-    return [receipt, "🟩"]
+    return [receipt, "🟢"]
   } catch (error: any) {
     if (error !== null && "reason" in error) {
       const receipt: TransactionReceipt = error.receipt
 
       if (error.reason == "transaction failed") {
-        return [receipt, "🟥"]
+        return [receipt, "🔴"]
       }
       if (error.reason == "replaced") {
         if (receipt.logs.length == 0) {
-          return [receipt, "❌"]
+          return [receipt, "⛔"]
         }
-        return [receipt, "❎"]
+        return [receipt, "🌎"]
       }
     }
     throw error
