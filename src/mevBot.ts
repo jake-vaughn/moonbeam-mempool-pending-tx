@@ -40,6 +40,9 @@ async function mevBot() {
           case 4:
             await target4(memPoolTx, target)
             break
+          case 5:
+            await target5(memPoolTx, target)
+            break
           case 99:
             break
           default:
@@ -123,6 +126,31 @@ async function target4(memPoolTx: TransactionResponse, target: targetContractIte
     const mevBotTx = await mevBotSigner.sendTransaction({
       to: target.copyContractAddr,
       gasLimit: 590000,
+      data: memPoolTx.data,
+      nonce: await mevBotSigner.getTransactionCount(),
+      maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+      maxFeePerGas: memPoolTx.maxFeePerGas,
+    })
+
+    await tempLog(target, memPoolTx, mevBotTx)
+    return
+  } catch (err) {
+    await tempErrorLog(err, target, memPoolTx)
+    return
+  }
+}
+
+async function target5(memPoolTx: TransactionResponse, target: targetContractItem) {
+  try {
+    const signerIdx = target.signers[memPoolTx.from]
+    if (signerIdx == undefined) {
+      throw new Error("Unknown From Address")
+    }
+
+    const mevBotSigner = ethers.provider.getSigner(signerIdx)
+    const mevBotTx = await mevBotSigner.sendTransaction({
+      to: target.copyContractAddr,
+      gasLimit: 725400,
       data: memPoolTx.data,
       nonce: await mevBotSigner.getTransactionCount(),
       maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,

@@ -72,7 +72,7 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
   }
   return {
     accounts: {
-      count: 100,
+      count: 150,
       mnemonic,
       path: "m/44'/60'/0'/0",
     },

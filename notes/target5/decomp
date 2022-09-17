@@ -1,0 +1,133 @@
+# Palkeoramix decompiler. 
+
+def storage:
+  stor0 is addr at storage 0
+  stor1 is mapping of uint256 at storage 1
+
+def unknown651d75a4(): # not payable
+  require caller == stor0
+  selfdestruct(caller)
+
+def unknown85a909d4(uint256 _param1): # not payable
+  require calldata.size - 4 >=′ 32
+  require _param1 == addr(_param1)
+  require caller == stor0
+  stor1[addr(_param1)] = 1
+
+def unknownb081b4eb(): # not payable
+  require caller == stor0
+  require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+  call 0xacc15dc74880c9944775448304b263d191c6077f.deposit() with:
+     value eth.balance(this.address) wei
+       gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+
+def onTokenTransfer(address _from, uint256 _value, bytes _data): # not payable
+  require calldata.size - 4 >=′ 96
+  require _from == _from
+  require _data <= 18446744073709551615
+  require _data + 35 <′ calldata.size
+  require _data.length <= 18446744073709551615
+  require _data + _data.length + 36 <= calldata.size
+  return 1
+
+def unknownc7e42b1b(uint256 _param1): # not payable
+  require calldata.size - 4 >=′ 32
+  require _param1 == addr(_param1)
+  require caller == stor0
+  require ext_code.size(addr(_param1))
+  static call addr(_param1).balanceOf(address tokenOwner) with:
+          gas gas_remaining wei
+         args this.address
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >=′ 32
+  require ext_code.size(addr(_param1))
+  call addr(_param1).transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args caller, ext_call.return_data[0]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >=′ 32
+  require ext_call.return_data[0] == bool(ext_call.return_data[0])
+
+def unknownec60a6d9(uint256 _param1): # not payable
+  require calldata.size - 4 >=′ 32
+  require _param1 == addr(_param1)
+  require caller == stor0
+  require ext_code.size(addr(_param1))
+  static call addr(_param1).balanceOf(address tokenOwner) with:
+          gas gas_remaining wei
+         args this.address
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >=′ 32
+  mem[ceil32(return_data.size) + 196 len 96] = transfer(address to, uint256 tokens), caller, ext_call.return_data[0], mem[ceil32(return_data.size) + 196 len 28]
+  call addr(_param1).mem[ceil32(return_data.size) + 196 len 4] with:
+       gas gas_remaining wei
+      args mem[ceil32(return_data.size) + 200 len 64]
+
+def unknown68c9718a(array _param1, array _param2, array _param3, uint8 _param4) payable: 
+  require calldata.size - 4 >=′ 128
+  require _param1 <= 18446744073709551615
+  require _param1 + 35 <′ calldata.size
+  require _param1.length <= 18446744073709551615
+  require _param1 + (32 * _param1.length) + 36 <= calldata.size
+  require _param2 <= 18446744073709551615
+  require _param2 + 35 <′ calldata.size
+  require _param2.length <= 18446744073709551615
+  require _param2 + (32 * _param2.length) + 36 <= calldata.size
+  require _param3 <= 18446744073709551615
+  require _param3 + 35 <′ calldata.size
+  require _param3.length <= 18446744073709551615
+  require _param3 + (32 * _param3.length) + 36 <= calldata.size
+  mem[128 len 32 * _param1.length] = call.data[_param1 + 36 len 32 * _param1.length]
+  mem[(32 * _param1.length) + 128] = _param3.length
+  require _param1.length - 1 <= 18446744073709551615
+  if _param1.length - 1:
+      ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+  require 0 < _param1.length
+  if mem[140 len 20]:
+      ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+  require 0 < _param1.length
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def _fallback() payable: # default function
+  if stor1[tx.origin] != 1:
+      stop
+  if calldata.size == 164:
+      require 4 <= calldata.size
+      require calldata.size <= calldata.size
+      require calldata.size - 4 >=′ 96
+      require _param2 <= 18446744073709551615
+      require _param2 + 35 <′ calldata.size
+      require _param2.length <= 18446744073709551615
+      require ceil32(_param2.length) + 128 >= 96 and ceil32(_param2.length) + 128 <= 18446744073709551615
+      require _param2 + _param2.length + 36 <= calldata.size
+      mem[128 len _param2.length] = _param2[all]
+      mem[_param2.length + 128] = 0
+      require _param2.length >=′ 32
+      require mem[128] == mem[140 len 20]
+  else:
+      if calldata.size == 132:
+          stop
+      require 4 <= calldata.size
+      require calldata.size <= calldata.size
+      require calldata.size - 4 >=′ 128
+      require _param1 == addr(_param1)
+      require _param3 <= 18446744073709551615
+      require _param3 + 35 <′ calldata.size
+      require _param3.length <= 18446744073709551615
+      require ceil32(_param3.length) + 128 >= 96 and ceil32(_param3.length) + 128 <= 18446744073709551615
+      mem[96] = _param3.length
+      require _param3 + _param3.length + 36 <= calldata.size
+      mem[128 len _param3.length] = _param3[all]
+      mem[_param3.length + 128] = 0
+      require _param3.length >=′ 96
+      require mem[128] <= 18446744073709551615
+      require mem[128] + 159 <′ _param3.length + 128
+      require mem[mem[128] + 128] <= 18446744073709551615
+      require (32 * mem[mem[128] + 128]) + 160 >= 128 and ceil32(_param3.length) + (32 * mem[mem[128] + 128]) + 160 <= 18446744073709551615
+      require _param3.length + 32 >= mem[128] + (32 * mem[mem[128] + 128]) + 64
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
