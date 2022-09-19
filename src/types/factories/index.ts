@@ -4,5 +4,4 @@
 export * as bulkSendSol from "./BulkSend.sol";
 export * as defi from "./defi";
 export * as interfaces from "./interfaces";
-export * as multisendSol from "./multisend.sol";
 export * as tokens from "./tokens";

@@ -126,7 +126,7 @@ export const networkConfig: networkConfigInfo = {
       },
       "0xAb9C7a8654b9224E3A741Dc3A4991F2d1b82307A": {
         name: "Target[4]",
-        type: 4,
+        type: 1,
         copyContractAddr: "0x7Ff769F69CEE5A5FB13afb6E2195313Ce3884981",
         signers: {
           // ? addresses
@@ -144,7 +144,7 @@ export const networkConfig: networkConfigInfo = {
       },
       "0x2b731E8e2C72cC14628346EB1Bc11ebF1A4ef2e6": {
         name: "Target[5]",
-        type: 5,
+        type: 1,
         copyContractAddr: "0xfda140A05F78DBFB3381C9E878cCdb66043B65BC",
         signers: {
           // 31 addresses

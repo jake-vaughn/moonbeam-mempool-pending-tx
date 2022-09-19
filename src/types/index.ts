@@ -6,7 +6,6 @@
 import type * as bulkSendSol from "./BulkSend.sol";
 import type * as defi from "./defi";
 import type * as interfaces from "./interfaces";
-import type * as multisendSol from "./multisend.sol";
 import type * as tokens from "./tokens";
 
 export type { bulkSendSol };
@@ -14,8 +13,6 @@ export type { bulkSendSol };
 export type { defi };
 
 export type { interfaces };
-
-export type { multisendSol };
 
 export type { tokens };
 export * as factories from "./factories";

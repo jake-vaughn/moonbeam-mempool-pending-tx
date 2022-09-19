@@ -2,6 +2,7 @@ import { JsonRpcSigner } from "@ethersproject/providers"
 import { BigNumber } from "ethers"
 import { formatEther } from "ethers/lib/utils"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
+import yesno from "yesno"
 
 import { BulkSend } from "./types"
 
@@ -11,11 +12,7 @@ export async function topUpEth(
   signer: JsonRpcSigner,
   hre: HardhatRuntimeEnvironment,
 ) {
-  // console.log(signer, await signer.getAddress())
-  // console.log(hre.ethers.provider)
-
   const bulkSend: BulkSend = await hre.ethers.getContract("BulkSend", signer)
-  // console.log(bulkSend)
 
   const addrList: string[] = []
   const amountList: BigNumber[] = []
@@ -29,30 +26,32 @@ export async function topUpEth(
       addrList.push(addr)
       amountList.push(amountToFill)
       totalSendAmount = totalSendAmount.add(amountToFill)
-      // console.log(
-      //   `address:     ${addr}\n`,
-      //   `Ballance:    ${formatEther(addrBalance)}\n`,
-      //   `AmountToFill ${formatEther(amountToFill)}\n`,
-      // )
     }
   }
-  console.log(`Total cost is ${formatEther(totalSendAmount)}`)
+
+  console.log(`Total cost will be ${formatEther(totalSendAmount)}`)
 
   if (totalSendAmount.isZero()) {
     console.log("nothing sent all accounts are topped up")
     return
   }
 
-  // const tx = await bulkSend.bulkSendEth(addrList, amountList, {
-  //   value: totalSendAmount,
-  //   // gasLimit: 1500000,
-  //   // maxFeePerGas: 350000000000,
-  //   // maxPriorityFeePerGas: 350000000000,
-  //   // nonce: 18,
-  // })
+  const ok = await yesno({
+    question: "Do you want to initiate multisend?",
+  })
 
-  // // console.log(tx)
+  if (!ok) {
+    return
+  }
 
-  // const txReceipt = await tx.wait()
-  // return txReceipt
+  const tx = await bulkSend.bulkSendEth(addrList, amountList, {
+    value: totalSendAmount,
+    // gasLimit: 1500000,
+    // maxFeePerGas: 350000000000,
+    // maxPriorityFeePerGas: 350000000000,
+    // nonce: 18,
+  })
+
+  const txReceipt = await tx.wait()
+  return txReceipt
 }

@@ -2,8 +2,8 @@ import { JsonRpcSigner } from "@ethersproject/providers"
 import { BigNumberish } from "ethers"
 import { ethers } from "hardhat"
 
-import { PromiseOrValue } from "../../typechain-types/common"
-import { WETH9 } from "../../typechain-types/tokens/WGLMR.sol"
+import { PromiseOrValue } from "../../../typechain-types/common"
+import { WETH9 } from "../../../typechain-types/tokens/WGLMR.sol"
 
 const WGLMR_ADDRESS = "0xAcc15dC74880C9944775448304B263D191c6077F"
 

@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/multisend.sol": {
+      "content": "pragma solidity 0.4.24;\n\n/**\n * @title SafeMath\n * @dev Math operations with safety checks that revert on error\n */\nlibrary SafeMath {\n    /**\n     * @dev Multiplies two numbers, reverts on overflow.\n     */\n    function mul(uint256 a, uint256 b) internal pure returns (uint256) {\n        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\n        // benefit is lost if 'b' is also tested.\n        // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522\n        if (a == 0) {\n            return 0;\n        }\n\n        uint256 c = a * b;\n        require(c / a == b);\n\n        return c;\n    }\n\n    /**\n     * @dev Integer division of two numbers truncating the quotient, reverts on division by zero.\n     */\n    function div(uint256 a, uint256 b) internal pure returns (uint256) {\n        require(b > 0); // Solidity only automatically asserts when dividing by 0\n        uint256 c = a / b;\n        // assert(a == b * c + a % b); // There is no case in which this doesn't hold\n\n        return c;\n    }\n\n    /**\n     * @dev Subtracts two numbers, reverts on overflow (i.e. if subtrahend is greater than minuend).\n     */\n    function sub(uint256 a, uint256 b) internal pure returns (uint256) {\n        require(b <= a);\n        uint256 c = a - b;\n\n        return c;\n    }\n\n    /**\n     * @dev Adds two numbers, reverts on overflow.\n     */\n    function add(uint256 a, uint256 b) internal pure returns (uint256) {\n        uint256 c = a + b;\n        require(c >= a);\n\n        return c;\n    }\n\n    /**\n     * @dev Divides two numbers and returns the remainder (unsigned integer modulo),\n     * reverts when dividing by zero.\n     */\n    function mod(uint256 a, uint256 b) internal pure returns (uint256) {\n        require(b != 0);\n        return a % b;\n    }\n}\n\ncontract Token {\n    uint8 public decimals;\n\n    function transfer(address _to, uint256 _value) public returns (bool success) {}\n\n    function transferFrom(\n        address _from,\n        address _to,\n        uint256 _value\n    ) public returns (bool success) {}\n\n    function allowance(address _owner, address _spender) public constant returns (uint256 remaining) {}\n}\n\ncontract BulkSend {\n    using SafeMath for uint256;\n\n    address public owner;\n    uint256 public tokenSendFee; // in wei\n    uint256 public ethSendFee; // in wei\n\n    constructor() public payable {\n        owner = msg.sender;\n    }\n\n    modifier onlyOwner() {\n        require(msg.sender == owner);\n        _;\n    }\n\n    function bulkSendEth(address[] addresses, uint256[] amounts) public payable returns (bool success) {\n        uint256 total = 0;\n        for (uint8 i = 0; i < amounts.length; i++) {\n            total = total.add(amounts[i]);\n        }\n\n        //ensure that the ethreum is enough to complete the transaction\n        uint256 requiredAmount = total.add(ethSendFee * 1 wei); //.add(total.div(100));\n        require(msg.value >= (requiredAmount * 1 wei));\n\n        //transfer to each address\n        for (uint8 j = 0; j < addresses.length; j++) {\n            addresses[j].transfer(amounts[j] * 1 wei);\n        }\n\n        //return change to the sender\n        if (msg.value * 1 wei > requiredAmount * 1 wei) {\n            uint256 change = msg.value.sub(requiredAmount);\n            msg.sender.transfer(change * 1 wei);\n        }\n        return true;\n    }\n\n    function getbalance(address addr) public constant returns (uint256 value) {\n        return addr.balance;\n    }\n\n    function deposit() public payable returns (bool) {\n        return true;\n    }\n\n    function withdrawEther(address addr, uint256 amount) public onlyOwner returns (bool success) {\n        addr.transfer(amount * 1 wei);\n        return true;\n    }\n\n    function withdrawToken(\n        Token tokenAddr,\n        address _to,\n        uint256 _amount\n    ) public onlyOwner returns (bool success) {\n        tokenAddr.transfer(_to, _amount);\n        return true;\n    }\n\n    function bulkSendToken(\n        Token tokenAddr,\n        address[] addresses,\n        uint256[] amounts\n    ) public payable returns (bool success) {\n        uint256 total = 0;\n        address multisendContractAddress = this;\n        for (uint8 i = 0; i < amounts.length; i++) {\n            total = total.add(amounts[i]);\n        }\n\n        require(msg.value * 1 wei >= tokenSendFee * 1 wei);\n\n        // check if user has enough balance\n        require(total <= tokenAddr.allowance(msg.sender, multisendContractAddress));\n\n        // transfer token to addresses\n        for (uint8 j = 0; j < addresses.length; j++) {\n            tokenAddr.transferFrom(msg.sender, addresses[j], amounts[j]);\n        }\n        // transfer change back to the sender\n        if (msg.value * 1 wei > (tokenSendFee * 1 wei)) {\n            uint256 change = (msg.value).sub(tokenSendFee);\n            msg.sender.transfer(change * 1 wei);\n        }\n        return true;\n    }\n\n    function setTokenFee(uint256 _tokenSendFee) public onlyOwner returns (bool success) {\n        tokenSendFee = _tokenSendFee;\n        return true;\n    }\n\n    function setEthFee(uint256 _ethSendFee) public onlyOwner returns (bool success) {\n        ethSendFee = _ethSendFee;\n        return true;\n    }\n\n    function destroy(address _to) public onlyOwner {\n        selfdestruct(_to);\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
