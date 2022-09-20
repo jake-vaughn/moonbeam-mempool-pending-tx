@@ -44,6 +44,7 @@ const logFormatHumanReadable = format.printf(
     (info.metadata.status ? ` ${info.metadata.status}` : "") +
     (info.metadata.blockPosition ? ` ${info.metadata.blockPosition}` : "") +
     (info.metadata.logId ? ` ${info.metadata.logId}` : "") +
+    (info.metadata.errMsg ? ` ${info.metadata.errMsg}` : "") +
     (info.metadata.memHash ? ` https://moonscan.io/tx/` + info.metadata.memHash : "") +
     (info.metadata.mevHash ? ` https://moonscan.io/tx/` + info.metadata.mevHash : ""),
 )

@@ -12,22 +12,16 @@ export async function logHumanReadable(info: any) {
     // console.log(info.message, md)
     const md = info.metadata
 
-    if (
-      typeof md !== "object" ||
-      md === null ||
-      !("memPoolTx" in md) ||
-      !("mevBotTx" in md) ||
-      !("blockFound" in md) ||
-      !("txReported" in md) ||
-      !("txFound" in md) ||
-      !("name" in md) ||
-      !("type" in md) ||
-      !("signer" in md)
-    ) {
-      if (typeof md === "object" || (md !== null && "errMsg" in md)) {
-        throw new Error(md.errMsg)
-      }
-      throw new Error("type of log does not match")
+    if ("error" in md) {
+      const receipt1 = await receiptWaitHandler(md.memPoolTx, md.blockFound)
+      const [memReceipt, memSuccess] = receipt1
+
+      await loggerHumanReadable.error(`${md.name}:`, {
+        status: `${memSuccess}`,
+        logId: `${md.txReported}/${md.txFound}`,
+        memHash: memReceipt.transactionHash,
+        errMsg: getErrorMessage(md.error),
+      })
     }
 
     const [receipt1, receipt2] = await Promise.all([

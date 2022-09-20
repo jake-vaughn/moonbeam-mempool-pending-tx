@@ -112,7 +112,7 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
     if (functionHash != "0xa2abe54e") throw new Error("Unknown Function Hash")
 
     const wadSentHex = utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
-    if (BigNumber.from(wadSentHex).gt(BigNumber.from("626000000000000000000"))) return
+    if (BigNumber.from(wadSentHex).gt(BigNumber.from("626000000000000000000"))) throw new Error("Skipped")
 
     const feeEstimate = utils.hexDataSlice(memPoolTx.data, 32 + 4, 32 * 2 + 4)
     console.log(utils.formatEther(feeEstimate), utils.formatUnits(memPoolTx.maxFeePerGas!, "gwei"))
@@ -127,10 +127,8 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
       maxFeePerGas: memPoolTx.maxFeePerGas,
     })
     await tempLog(target, memPoolTx, mevBotTx)
-    return
   } catch (err) {
     await tempErrorLog(err, target, memPoolTx)
-    return
   }
 }
 
@@ -146,19 +144,18 @@ async function tempLog(target: targetContractItem, memPoolTx: TransactionRespons
     type: target.type,
     signer: target.signers[memPoolTx.from],
   })
-  return
 }
 
-async function tempErrorLog(
-  err: unknown,
-  target: targetContractItem,
-  memPoolTx: TransactionResponse,
-  mevBotTx?: TransactionResponse,
-) {
+async function tempErrorLog(err: unknown, target: targetContractItem, memPoolTx: TransactionResponse) {
   txReported++
   logger.error(`${txReported}/${txFound} ${target.name}: error`, {
-    memPoolHash: `${memPoolTx.hash}`,
-    errMsg: getErrorMessage(err),
+    memPoolTx: memPoolTx,
+    blockFound: ethers.provider.blockNumber,
+    txReported: txReported,
+    txFound: txFound,
+    name: target.name,
+    type: target.type,
+    signer: target.signers[memPoolTx.from],
     error: err,
   })
 }
