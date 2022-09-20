@@ -79,7 +79,7 @@ async function receiptWaitHandler(
       startBlock,
     }
 
-    const receipt = await ethers.provider._waitForTransaction(response.hash, 6, 0, replacement)
+    const receipt = await ethers.provider._waitForTransaction(response.hash, 6, 600000, replacement)
     if (receipt.logs.length == 0) {
       return [receipt, "🔴"]
     }
@@ -91,7 +91,7 @@ async function receiptWaitHandler(
       if (error.reason == "transaction failed") {
         return [receipt, "🔴"]
       }
-      if (error.reason == "replaced") {
+      if (error.reason == "replaced" || error.reason == "repriced") {
         if (receipt.logs.length == 0) {
           return [receipt, "⛔"]
         }

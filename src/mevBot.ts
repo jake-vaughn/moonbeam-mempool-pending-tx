@@ -1,5 +1,5 @@
 import { TransactionResponse } from "@ethersproject/providers"
-import { BigNumber } from "ethers"
+import { BigNumber, utils } from "ethers"
 import hre from "hardhat"
 
 import { moonbeamBlastWssUrl, moonbeamWsUrl, networkConfig, targetContractItem } from "../helper-hardhat-config"
@@ -7,21 +7,22 @@ import { logHumanReadable } from "./logHumanReadable"
 import { getErrorMessage } from "./utils/getErrorMessage"
 import { logger, mevBotTransportFile } from "./utils/logger"
 
-const ethers = hre.ethers
-const chainId = hre.network.config.chainId!
-const wsProvider = new hre.ethers.providers.WebSocketProvider(moonbeamWsUrl!)
+const { ethers, network } = hre
+const chainId = network.config.chainId!
+const wsProvider = new ethers.providers.WebSocketProvider(moonbeamWsUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
 let txFound: number = 0
 let txReported: number = 0
 
 async function mevBot() {
-  mevBotTransportFile.on("logged", async function (info) {
-    await logHumanReadable(info)
-  })
   console.log("debug", `Running: mevBot `, {
     Chain: networkConfig[chainId].name,
     RpcProvider: ethers.provider.connection.url,
     WsProvider: networkConfig[chainId].websocket,
+  })
+
+  mevBotTransportFile.on("logged", async function (info) {
+    await logHumanReadable(info)
   })
 
   wsProvider.on("pending", txHash => {
@@ -34,13 +35,8 @@ async function mevBot() {
           case 1:
             await type1(memPoolTx, target)
             break
-          case 2:
-            await target2(memPoolTx, target)
-            break
           case 3:
             await target3(memPoolTx, target)
-            break
-          case 99:
             break
           default:
             logger.info("target.type case default")
@@ -110,25 +106,27 @@ async function target2(memPoolTx: TransactionResponse, target: targetContractIte
 async function target3(memPoolTx: TransactionResponse, target: targetContractItem) {
   try {
     const signerIdx = target.signers[memPoolTx.from]
-    if (signerIdx == undefined) {
-      throw new Error("Unknown From Address")
-    }
-    const wadSentHex = ethers.utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
+    if (signerIdx == undefined) throw new Error("Unknown From Address")
+
+    const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
+    if (functionHash != "0xa2abe54e") throw new Error("Unknown Function Hash")
+
+    const wadSentHex = utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
+    if (BigNumber.from(wadSentHex).gt(BigNumber.from("626000000000000000000"))) return
+
+    const feeEstimate = utils.hexDataSlice(memPoolTx.data, 32 + 4, 32 * 2 + 4)
+    console.log(utils.formatEther(feeEstimate), utils.formatUnits(memPoolTx.maxFeePerGas!, "gwei"))
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
-    if (BigNumber.from(wadSentHex).lte(BigNumber.from("583000000000000000000"))) {
-      const mevBotTx = await mevBotSigner.sendTransaction({
-        to: target.copyContractAddr,
-        gasLimit: 750000,
-        data: memPoolTx.data,
-        nonce: await mevBotSigner.getTransactionCount(),
-        maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
-        maxFeePerGas: memPoolTx.maxFeePerGas,
-      })
-
-      await tempLog(target, memPoolTx, mevBotTx)
-    }
-
+    const mevBotTx = await mevBotSigner.sendTransaction({
+      to: target.copyContractAddr,
+      gasLimit: 725400,
+      data: memPoolTx.data,
+      nonce: await mevBotSigner.getTransactionCount(),
+      maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+      maxFeePerGas: memPoolTx.maxFeePerGas,
+    })
+    await tempLog(target, memPoolTx, mevBotTx)
     return
   } catch (err) {
     await tempErrorLog(err, target, memPoolTx)
@@ -158,12 +156,13 @@ async function tempErrorLog(
   mevBotTx?: TransactionResponse,
 ) {
   txReported++
-  logger.error(`${txReported}/${txFound} ${target.name}: `, {
+  logger.error(`${txReported}/${txFound} ${target.name}: error`, {
     memPoolHash: `${memPoolTx.hash}`,
     errMsg: getErrorMessage(err),
     error: err,
   })
 }
+
 mevBot().catch(error => {
   logger.error(error)
   process.exitCode = 1

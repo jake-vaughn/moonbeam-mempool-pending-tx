@@ -8,7 +8,7 @@ import { topUpEth } from "../src/multisend"
 task("topUpAccounts", "Sends 0.01 eth to all active signers", async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
   const targets = networkConfig[hre.network.config.chainId!].targetContracts
   const addressList: string[] = []
-  const AMOUNT_TO_SEND = parseEther("2")
+  const AMOUNT_TO_SEND = parseEther("5")
   const { deployer } = await hre.getNamedAccounts()
   const deploySig = await hre.ethers.provider.getSigner(deployer)
 
@@ -27,7 +27,5 @@ task("topUpAccounts", "Sends 0.01 eth to all active signers", async (_taskArgs, 
   console.log(`Topping up ${addressList.length} addresses with ${formatEther(AMOUNT_TO_SEND)} Eth`)
 
   const txReceipt = await topUpEth(addressList, AMOUNT_TO_SEND, deploySig, hre)
-  if (txReceipt != undefined) {
-    console.log(`Success ${txReceipt.transactionHash}`)
-  }
+  if (txReceipt != undefined) console.log(`Success ${txReceipt.transactionHash}`)
 })

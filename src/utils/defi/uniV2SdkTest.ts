@@ -18,7 +18,7 @@ async function main() {
   const WGLMR = new Token(chainId, wglmrAddress, wglmrDecimals)
   const DOT = new Token(chainId, dotAddress, dotDecimals)
 
-  const dotWglmrPair = getPair(WGLMR, DOT, stellaFactoryAddr, stellaInitCodeHash)
+  const dotWglmrPair = await getPair(WGLMR, DOT, stellaFactoryAddr, stellaInitCodeHash)
 }
 
 async function getPair(tokenA: Token, tokenB: Token, factoryAddr: string, initCodeHash: string): Promise<Pair> {
