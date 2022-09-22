@@ -4,12 +4,11 @@ import hre from "hardhat"
 
 import { moonbeamBlastWssUrl, moonbeamWsUrl, networkConfig, targetContractItem } from "../helper-hardhat-config"
 import { logHumanReadable } from "./logHumanReadable"
-import { getErrorMessage } from "./utils/getErrorMessage"
 import { logger, mevBotTransportFile } from "./utils/logger"
 
 const { ethers, network } = hre
 const chainId = network.config.chainId!
-const wsProvider = new ethers.providers.WebSocketProvider(moonbeamWsUrl!)
+const wsProvider = new ethers.providers.WebSocketProvider(moonbeamBlastWssUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
 let txFound: number = 0
 let txReported: number = 0
@@ -106,18 +105,14 @@ async function target2(memPoolTx: TransactionResponse, target: targetContractIte
 async function target3(memPoolTx: TransactionResponse, target: targetContractItem) {
   try {
     const signerIdx = target.signers[memPoolTx.from]
-    if (signerIdx == undefined) throw new Error("Unknown From Address")
+    if (signerIdx == undefined) throw new Error("Unknown target.signers[memPoolTx.from]")
 
     const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
-    if (functionHash != "0xa2abe54e") throw new Error("Unknown Function Hash")
+    if (functionHash != "0xa2abe54e") throw new Error("FunctionHash was not 0xa2abe54e")
 
     const wadSentHex = utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
-    if (BigNumber.from(wadSentHex).gt(BigNumber.from("1589000000000000000000"))) throw new Error("Skipped")
-
-    const feeEstimate = utils.hexDataSlice(memPoolTx.data, 32 + 4, 32 * 2 + 4)
-    const maxPriorityFeePerGas = utils.formatUnits(memPoolTx.maxPriorityFeePerGas!, "gwei")
-    const maxFeePerGas = utils.formatUnits(memPoolTx.maxFeePerGas!, "gwei")
-    console.log(utils.formatEther(feeEstimate), maxPriorityFeePerGas, maxFeePerGas)
+    if (BigNumber.from(wadSentHex).gt(BigNumber.from("1600000000000000000000")))
+      throw new Error(`Skipped ${utils.formatEther(wadSentHex)}`)
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
     const mevBotTx = await mevBotSigner.sendTransaction({
@@ -129,6 +124,10 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
       maxFeePerGas: memPoolTx.maxFeePerGas,
     })
     await tempLog(target, memPoolTx, mevBotTx)
+    // const feeEstimate = utils.hexDataSlice(memPoolTx.data, 32 + 4, 32 * 2 + 4)
+    // const maxPriorityFeePerGas = utils.formatUnits(memPoolTx.maxPriorityFeePerGas!, "gwei")
+    // const maxFeePerGas = utils.formatUnits(memPoolTx.maxFeePerGas!, "gwei")
+    // console.log(utils.formatEther(feeEstimate), maxPriorityFeePerGas, maxFeePerGas)
   } catch (err) {
     await tempErrorLog(err, target, memPoolTx)
   }
