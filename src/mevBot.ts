@@ -4,7 +4,8 @@ import hre from "hardhat"
 
 import { wssUrl } from "../hardhat.config"
 import { networkConfig, targetContractItem } from "../helper-hardhat-config"
-import { logger } from "./utils/logger"
+import { logHumanReadable } from "./logHumanReadable"
+import { logger, mevBotTransportFile } from "./utils/logger"
 
 const { ethers, network } = hre
 const chainId = network.config.chainId!
@@ -21,9 +22,9 @@ async function mevBot() {
     WssProvider: wssProvider.connection.url,
   })
 
-  // mevBotTransportFile.on("logged", async function (info) {
-  //   await logHumanReadable(info)
-  // })
+  mevBotTransportFile.on("logged", async function (info) {
+    await logHumanReadable(info)
+  })
 
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
