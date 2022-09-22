@@ -13,7 +13,6 @@ export interface addressMatchInfo {
 export interface networkConfigItem {
   name?: string
   blockConfirmations?: number
-  websocket: string
   targetContracts: targetContractInfo
 }
 
@@ -36,13 +35,11 @@ export const networkConfig: networkConfigInfo = {
   31337: {
     name: "hardhat",
     blockConfirmations: 1,
-    websocket: "",
     targetContracts: {},
   },
   1284: {
     name: "moonbeam",
     blockConfirmations: 1,
-    websocket: process.env.MOONBEAM_WS_URL || "ws://127.0.0.1:9944",
     targetContracts: {
       "0x59ddC0C8d067dEB508b36d69254Ac6bafD260575": {
         name: "Target[1]",
@@ -187,7 +184,3 @@ export const networkConfig: networkConfigInfo = {
 }
 
 export const developmentChains = ["hardhat", "localhost"]
-
-export const moonbeamWsUrl: string | undefined = "ws://127.0.0.1:9944"
-
-export const moonbeamBlastWssUrl: string | undefined = "wss://moonbeam-rpc.dwellir.com"

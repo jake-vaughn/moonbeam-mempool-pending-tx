@@ -23,10 +23,9 @@ const moonbeamRpcUrl: string | undefined = process.env.MOONBEAM_RPC_URL
 if (!moonbeamRpcUrl) {
   throw new Error("Please set your MOONBEAM_RPC_URL in a .env file")
 }
-
-const moonbeamBlastRpcUrl: string | undefined = "https://moonbeam.blastapi.io/90eb6533-6c40-4237-8091-ae1db7c7a84f"
-if (!moonbeamBlastRpcUrl) {
-  throw new Error("Please set your MOONBEAM_RPC_BLAST_URL in a .env file")
+const moonbeamWssUrl: string | undefined = process.env.MOONBEAM_WSS_URL
+if (!moonbeamWssUrl) {
+  throw new Error("Please set your MOONBEAM_WSS_URL in a .env file")
 }
 
 const infuraApiKey: string | undefined = process.env.INFURA_API_KEY
@@ -34,9 +33,7 @@ if (!infuraApiKey) {
   throw new Error("Please set your INFURA_API_KEY in a .env file")
 }
 
-// Your API key for Etherscan, obtain one at https://etherscan.io/
-const MOONSCAN_API_KEY = process.env.MOONSCAN_API_KEY || "Your etherscan API key"
-const REPORT_GAS = process.env.REPORT_GAS || false
+export let wssUrl: string = ""
 
 const chainIds = {
   "arbitrum-mainnet": 42161,
@@ -46,7 +43,6 @@ const chainIds = {
   hardhat: 31337,
   mainnet: 1,
   moonbeam: 1284,
-  moonbeamBlast: 1284,
   "optimism-mainnet": 10,
   "polygon-mainnet": 137,
   "polygon-mumbai": 80001,
@@ -63,16 +59,14 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
       break
     case "moonbeam":
       jsonRpcUrl = moonbeamRpcUrl!
-      break
-    case "moonbeamBlast":
-      jsonRpcUrl = moonbeamBlastRpcUrl!
+      wssUrl = moonbeamWssUrl!
       break
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey
   }
   return {
     accounts: {
-      count: 150,
+      count: 120,
       mnemonic,
       path: "m/44'/60'/0'/0",
     },
@@ -83,29 +77,6 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
-  etherscan: {
-    apiKey: {
-      arbitrumOne: process.env.ARBISCAN_API_KEY || "",
-      avalanche: process.env.SNOWTRACE_API_KEY || "",
-      bsc: process.env.BSCSCAN_API_KEY || "",
-      goerli: process.env.ETHERSCAN_API_KEY || "",
-      mainnet: process.env.ETHERSCAN_API_KEY || "",
-      moonbeam: process.env.MOONSCAN_API_KEY || "",
-      optimisticEthereum: process.env.OPTIMISM_API_KEY || "",
-      polygon: process.env.POLYGONSCAN_API_KEY || "",
-      polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
-    },
-  },
-  gasReporter: {
-    // coinmarketcap: process.env.COINMARKETCAP_API_KEY,
-    currency: "USD",
-    enabled: process.env.REPORT_GAS ? true : false,
-    excludeContracts: [],
-    noColors: true,
-    outputFile: "gas-report.txt",
-    src: "./contracts",
-    // token: MATIC
-  },
   mocha: {
     timeout: 200000, // 200 seconds max for running tests
   },
@@ -131,7 +102,6 @@ const config: HardhatUserConfig = {
     goerli: getChainConfig("goerli"),
     mainnet: getChainConfig("mainnet"),
     moonbeam: getChainConfig("moonbeam"),
-    moonbeamBlast: getChainConfig("moonbeamBlast"),
     optimism: getChainConfig("optimism-mainnet"),
     "polygon-mainnet": getChainConfig("polygon-mainnet"),
     "polygon-mumbai": getChainConfig("polygon-mumbai"),

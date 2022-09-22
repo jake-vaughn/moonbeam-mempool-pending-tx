@@ -2,13 +2,14 @@ import { TransactionResponse } from "@ethersproject/providers"
 import { BigNumber, utils } from "ethers"
 import hre from "hardhat"
 
-import { moonbeamBlastWssUrl, moonbeamWsUrl, networkConfig, targetContractItem } from "../helper-hardhat-config"
-import { logHumanReadable } from "./logHumanReadable"
-import { logger, mevBotTransportFile } from "./utils/logger"
+import { wssUrl } from "../hardhat.config"
+import { networkConfig, targetContractItem } from "../helper-hardhat-config"
+import { logger } from "./utils/logger"
 
 const { ethers, network } = hre
 const chainId = network.config.chainId!
-const wsProvider = new ethers.providers.WebSocketProvider(moonbeamBlastWssUrl!)
+
+const wssProvider = new ethers.providers.WebSocketProvider(wssUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
 let txFound: number = 0
 let txReported: number = 0
@@ -17,14 +18,14 @@ async function mevBot() {
   console.log("debug", `Running: mevBot `, {
     Chain: networkConfig[chainId].name,
     RpcProvider: ethers.provider.connection.url,
-    WsProvider: networkConfig[chainId].websocket,
+    WssProvider: wssProvider.connection.url,
   })
 
   // mevBotTransportFile.on("logged", async function (info) {
   //   await logHumanReadable(info)
   // })
 
-  wsProvider.on("pending", txHash => {
+  wssProvider.on("pending", txHash => {
     // console.log(txHash)
     ethers.provider.getTransaction(txHash).then(async function (memPoolTx) {
       if (memPoolTx != null && memPoolTx.to! in targetContracts && targetContracts[memPoolTx.to!].active) {
