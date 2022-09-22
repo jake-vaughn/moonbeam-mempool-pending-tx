@@ -22,6 +22,7 @@ export async function logHumanReadable(info: any) {
         memHash: memReceipt.transactionHash,
         errMsg: getErrorMessage(md.error),
       })
+      return
     }
 
     const [receipt1, receipt2] = await Promise.all([
@@ -73,7 +74,7 @@ async function receiptWaitHandler(
       startBlock,
     }
 
-    const receipt = await ethers.provider._waitForTransaction(response.hash, 6, 600000, replacement)
+    const receipt = await ethers.provider._waitForTransaction(response.hash, 6, 3000000, replacement)
     if (receipt.logs.length == 0) {
       return [receipt, "🔴"]
     }
