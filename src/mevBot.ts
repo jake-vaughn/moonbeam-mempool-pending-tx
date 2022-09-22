@@ -8,7 +8,7 @@ import { logger, mevBotTransportFile } from "./utils/logger"
 
 const { ethers, network } = hre
 const chainId = network.config.chainId!
-const wsProvider = new ethers.providers.WebSocketProvider(moonbeamWsUrl!)
+const wsProvider = new ethers.providers.WebSocketProvider(moonbeamBlastWssUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
 let txFound: number = 0
 let txReported: number = 0
