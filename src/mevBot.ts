@@ -8,7 +8,7 @@ import { logger, mevBotTransportFile } from "./utils/logger"
 
 const { ethers, network } = hre
 const chainId = network.config.chainId!
-const wsProvider = new ethers.providers.WebSocketProvider(moonbeamBlastWssUrl!)
+const wsProvider = new ethers.providers.WebSocketProvider(moonbeamWsUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
 let txFound: number = 0
 let txReported: number = 0
@@ -20,9 +20,9 @@ async function mevBot() {
     WsProvider: networkConfig[chainId].websocket,
   })
 
-  mevBotTransportFile.on("logged", async function (info) {
-    await logHumanReadable(info)
-  })
+  // mevBotTransportFile.on("logged", async function (info) {
+  //   await logHumanReadable(info)
+  // })
 
   wsProvider.on("pending", txHash => {
     // console.log(txHash)
