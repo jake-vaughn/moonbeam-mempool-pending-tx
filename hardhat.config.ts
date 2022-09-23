@@ -14,25 +14,13 @@ const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env"
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
 
 // Ensure that we have all the environment variables we need.
-const mnemonic: string | undefined = process.env.MNEMONIC
-if (!mnemonic) {
-  throw new Error("Please set your MNEMONIC in a .env file")
-}
+const mnemonic: string = process.env.MNEMONIC || "MNEMONIC NA"
 
-const moonbeamRpcUrl: string | undefined = process.env.MOONBEAM_RPC_URL
-if (!moonbeamRpcUrl) {
-  throw new Error("Please set your MOONBEAM_RPC_URL in a .env file")
-}
+const moonbeamRpcUrl: string = process.env.MOONBEAM_RPC_URL || "MOONBEAM_RPC_URL NA"
 
-const moonbeamWssUrl: string | undefined = process.env.MOONBEAM_WSS_URL
-if (!moonbeamWssUrl) {
-  throw new Error("Please set your MOONBEAM_WSS_URL in a .env file")
-}
+const moonbeamWssUrl: string = process.env.MOONBEAM_WSS_URL || "MOONBEAM_WSS_URL NA"
 
-const infuraApiKey: string | undefined = process.env.INFURA_API_KEY
-if (!infuraApiKey) {
-  throw new Error("Please set your INFURA_API_KEY in a .env file")
-}
+const infuraApiKey: string = process.env.INFURA_API_KEY || "INFURA_API_KEY NA"
 
 export let wssUrl: string = ""
 
@@ -59,8 +47,8 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
       jsonRpcUrl = "https://bsc-dataseed1.binance.org"
       break
     case "moonbeam":
-      jsonRpcUrl = moonbeamRpcUrl!
-      wssUrl = moonbeamWssUrl!
+      jsonRpcUrl = moonbeamRpcUrl
+      wssUrl = moonbeamWssUrl
       break
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey
