@@ -19,15 +19,15 @@ if (!mnemonic) {
   throw new Error("Please set your MNEMONIC in a .env file")
 }
 
-// const moonbeamRpcUrl: string | undefined = process.env.MOONBEAM_RPC_URL
-// if (!moonbeamRpcUrl) {
-//   throw new Error("Please set your MOONBEAM_RPC_URL in a .env file")
-// }
+const moonbeamRpcUrl: string | undefined = process.env.MOONBEAM_RPC_URL
+if (!moonbeamRpcUrl) {
+  throw new Error("Please set your MOONBEAM_RPC_URL in a .env file")
+}
 
-// const moonbeamWssUrl: string | undefined = process.env.MOONBEAM_WSS_URL
-// if (!moonbeamWssUrl) {
-//   throw new Error("Please set your MOONBEAM_WSS_URL in a .env file")
-// }
+const moonbeamWssUrl: string | undefined = process.env.MOONBEAM_WSS_URL
+if (!moonbeamWssUrl) {
+  throw new Error("Please set your MOONBEAM_WSS_URL in a .env file")
+}
 
 const infuraApiKey: string | undefined = process.env.INFURA_API_KEY
 if (!infuraApiKey) {
@@ -59,8 +59,8 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
       jsonRpcUrl = "https://bsc-dataseed1.binance.org"
       break
     case "moonbeam":
-      jsonRpcUrl = "" // moonbeamRpcUrl!
-      wssUrl = "" //moonbeamWssUrl!
+      jsonRpcUrl = moonbeamRpcUrl!
+      wssUrl = moonbeamWssUrl!
       break
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey

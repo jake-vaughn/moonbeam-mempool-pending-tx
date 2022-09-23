@@ -20,6 +20,7 @@ coverage
 coverage.json
 typechain
 typechain-types
+src/types/
 
 # don't push the environment vars!
 .env
