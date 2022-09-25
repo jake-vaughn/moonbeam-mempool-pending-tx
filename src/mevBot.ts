@@ -113,7 +113,7 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
     if (functionHash != "0xa2abe54e") throw new Error("FunctionHash was not 0xa2abe54e")
 
     const wadSentHex = utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
-    if (BigNumber.from(wadSentHex).gt(BigNumber.from("1657000000000000000000")))
+    if (BigNumber.from(wadSentHex).gt(BigNumber.from("1681000000000000000000")))
       throw new Error(`Skipped ${utils.formatEther(wadSentHex)}`)
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
