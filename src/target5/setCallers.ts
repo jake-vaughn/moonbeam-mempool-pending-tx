@@ -26,15 +26,15 @@ async function setCallers() {
 
     console.log(inputData)
 
-    // const tx = await deploySig.sendTransaction({
-    //   to: target.copyContractAddr,
-    //   data: inputData,
-    //   maxFeePerGas: 102000000000,
-    //   maxPriorityFeePerGas: 1000000000,
-    // })
+    const tx = await deploySig.sendTransaction({
+      to: target.copyContractAddr,
+      data: inputData,
+      maxFeePerGas: 102000000000,
+      maxPriorityFeePerGas: 1000000000,
+    })
 
-    // const txReceipt = await tx.wait()
-    // console.log(`Transaction hash: ${txReceipt.transactionHash}`)
+    const txReceipt = await tx.wait()
+    console.log(`Transaction hash: ${txReceipt.transactionHash}`)
   }
 }
 

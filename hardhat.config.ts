@@ -55,7 +55,7 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
   }
   return {
     accounts: {
-      count: 120,
+      count: 140,
       mnemonic,
       path: "m/44'/60'/0'/0",
     },
@@ -72,7 +72,7 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {
       accounts: {
-        count: 100,
+        count: 140,
         mnemonic,
         path: "m/44'/60'/0'/0",
       },
