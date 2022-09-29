@@ -128,7 +128,7 @@ export const networkConfig: networkConfigInfo = {
         active: false,
       },
       "0x2541300Dff59926F0855016e861A1426fb547037": {
-        name: "Target[3]",
+        name: "Target3️⃣",
         type: 3,
         copyContractAddr: "0x5F31BAaE1B7adb9E28C33010B7b923C031a963B8",
         signers: {
@@ -205,21 +205,21 @@ export const networkConfig: networkConfigInfo = {
         active: false,
       },
       "0x2b731E8e2C72cC14628346EB1Bc11ebF1A4ef2e6": {
-        name: "Target[5]",
+        name: "Target5️⃣",
         type: 1,
         copyContractAddr: "0xfda140A05F78DBFB3381C9E878cCdb66043B65BC",
         signers: backBurnerSigs,
         active: true,
       },
       "0x8B6784b18d534b98d738719F05B0a8a54bB4C098": {
-        name: "Target[6]",
+        name: "Target6️⃣",
         type: 1,
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
         signers: backBurnerSigs,
         active: true,
       },
       "0x08a025B3AF7f175E95Fa304218aCDDB87f150F20": {
-        name: "Target[7]",
+        name: "Target7️⃣",
         type: 1,
         copyContractAddr: "0x050e3BAa8fd3747db1Ea89f778c54cDeC82D499F",
         signers: backBurnerSigs,
