@@ -32,7 +32,7 @@ export interface targetContractItem {
 }
 
 const backBurnerSigs = {
-  // 31 addresses
+  // 60 addresses
   "0x90FC9647B848e720Cb8Cc95FA44885B370328002": 71,
   "0x364bB62cf4dcc7E43B4BE9A4A7eB8a660Ad9C4cE": 72,
   "0x102208793a9CA523dBc01614FD90f3FC882Bb562": 73,
@@ -221,7 +221,7 @@ export const networkConfig: networkConfigInfo = {
       "0x08a025B3AF7f175E95Fa304218aCDDB87f150F20": {
         name: "Target[7]",
         type: 1,
-        copyContractAddr: "",
+        copyContractAddr: "0x050e3BAa8fd3747db1Ea89f778c54cDeC82D499F",
         signers: backBurnerSigs,
         active: true,
       },
