@@ -1,12 +1,12 @@
-import { network } from "hardhat"
+import hre from "hardhat"
 
-import { networkConfig } from "../../../helper-hardhat-config"
-import { IERC20, ITarget3 } from "../../../typechain-types/interfaces"
+import { networkConfig } from "../../helper-hardhat-config"
+import { IERC20, ITarget3 } from "../../typechain-types/interfaces"
 
-const rpcProvider = ethers.provider
+const { ethers, network, getNamedAccounts } = hre
 const chainId = network.config.chainId!
 const targetContracts = networkConfig[chainId].targetContracts
-const target = targetContracts["0x2541300Dff59926F0855016e861A1426fb547037"]
+const target = targetContracts["0xB96dE8B07764969C7AF521cA546112ea1e191580"]
 const CONTRACT_ADDRESS = target.copyContractAddr
 
 async function withdrawTokenAll() {

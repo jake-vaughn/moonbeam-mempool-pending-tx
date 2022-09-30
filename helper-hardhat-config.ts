@@ -127,10 +127,10 @@ export const networkConfig: networkConfigInfo = {
         },
         active: false,
       },
-      "0x2541300Dff59926F0855016e861A1426fb547037": {
+      "0xB96dE8B07764969C7AF521cA546112ea1e191580": {
         name: "Target(3)🔳",
         type: 3,
-        copyContractAddr: "0x5F31BAaE1B7adb9E28C33010B7b923C031a963B8",
+        copyContractAddr: "0xFC663060e6d9D8547c32e9F101B69FEbcC66398B",
         signers: {
           // 50 addresses
           "0xd7178258b69Bcace33502285fe0D5094611dD4e1": 11,
