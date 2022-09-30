@@ -6,9 +6,9 @@ const { format, transports } = winston
 
 const logFormat = format.printf(
   info =>
-    `${info.message}` +
-    (info.metadata.Chain ? ` Chain: ` + info.metadata.Chain : "") +
-    (info.metadata.name ? ` name: ` + info.metadata.name : "") +
+    `${info.timestamp}` +
+    ` - ${info.message}` +
+    (info.metadata.name ? ` ` + info.metadata.name : "") +
     (info.metadata.blockFound ? ` blockFound: ` + info.metadata.blockFound : ""),
   // (info.metadata.memPoolHash ? `\nmemPoolHash: ` + chalk.cyanBright(info.metadata.memPoolHash) : "") +
   // (info.metadata.mevBotHash ? `\nmevBotHash: ` + chalk.cyanBright(info.metadata.mevBotHash) : ""),

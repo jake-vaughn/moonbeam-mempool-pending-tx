@@ -137,7 +137,7 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
 
 async function tempLog(target: targetContractItem, memPoolTx: TransactionResponse, mevBotTx: TransactionResponse) {
   txReported++
-  logger.debug(`${txReported}/${txFound}:`, {
+  logger.debug(`${txReported}/${txFound}`, {
     memPoolTx: memPoolTx,
     mevBotTx: mevBotTx,
     blockFound: ethers.provider.blockNumber,
@@ -151,7 +151,7 @@ async function tempLog(target: targetContractItem, memPoolTx: TransactionRespons
 
 async function tempErrorLog(err: unknown, target: targetContractItem, memPoolTx: TransactionResponse) {
   txReported++
-  logger.error(`error: ${txReported}/${txFound}`, {
+  logger.error(`error ${txReported}/${txFound}`, {
     memPoolTx: memPoolTx,
     blockFound: ethers.provider.blockNumber,
     txReported: txReported,
