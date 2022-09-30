@@ -13,7 +13,7 @@ const signers = target.signers
 async function sendEth() {
   const { deployer } = await getNamedAccounts()
   const deploySig = rpcProvider.getSigner(deployer)
-  const amountWei = utils.parseEther("200")
+  const amountWei = utils.parseEther("0")
 
   transferWglmr(target.copyContractAddr, amountWei, deploySig)
 }
