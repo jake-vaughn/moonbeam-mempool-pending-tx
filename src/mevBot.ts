@@ -44,49 +44,49 @@ async function mevBot() {
             break
         }
       }
-      if (memPoolTx != null) {
-        try {
-          const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
-          // if (functionHash == "0x7ff36ab5") {
-          //   console.log("swapExactETHForTokens ", memPoolTx.hash, ethers.provider.blockNumber)
-          // }
-          // if (functionHash == "0x18cbafe5") {
-          //   console.log("swapExactTokensForETH ", memPoolTx.hash, ethers.provider.blockNumber)
-          // }
-          // if (functionHash == "0x8803dbee") {
-          //   console.log("swapTokensForExactTokens ", memPoolTx.hash, ethers.provider.blockNumber)
-          // }
-          // if (functionHash == "0xfb3bdb41") {
-          //   console.log("swapETHForExactTokens ", memPoolTx.hash, ethers.provider.blockNumber)
-          // }
-          // if (functionHash == "0x38ed1739") {
-          //   console.log("swapExactTokensForTokens ", memPoolTx.hash, ethers.provider.blockNumber)
-          // }
-          if (
-            functionHash == "0x38ed1739" ||
-            functionHash == "0x7ff36ab5" ||
-            functionHash == "0x18cbafe5" ||
-            functionHash == "0xfb3bdb41" ||
-            functionHash == "0xfb3bdb41"
-          ) {
-            txFound++
+      // if (memPoolTx != null) {
+      //   try {
+      //     const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
+      //     // if (functionHash == "0x7ff36ab5") {
+      //     //   console.log("swapExactETHForTokens ", memPoolTx.hash, ethers.provider.blockNumber)
+      //     // }
+      //     // if (functionHash == "0x18cbafe5") {
+      //     //   console.log("swapExactTokensForETH ", memPoolTx.hash, ethers.provider.blockNumber)
+      //     // }
+      //     // if (functionHash == "0x8803dbee") {
+      //     //   console.log("swapTokensForExactTokens ", memPoolTx.hash, ethers.provider.blockNumber)
+      //     // }
+      //     // if (functionHash == "0xfb3bdb41") {
+      //     //   console.log("swapETHForExactTokens ", memPoolTx.hash, ethers.provider.blockNumber)
+      //     // }
+      //     // if (functionHash == "0x38ed1739") {
+      //     //   console.log("swapExactTokensForTokens ", memPoolTx.hash, ethers.provider.blockNumber)
+      //     // }
+      //     if (
+      //       functionHash == "0x38ed1739" ||
+      //       functionHash == "0x7ff36ab5" ||
+      //       functionHash == "0x18cbafe5" ||
+      //       functionHash == "0xfb3bdb41" ||
+      //       functionHash == "0xfb3bdb41"
+      //     ) {
+      //       txFound++
 
-            console.log("swap ", memPoolTx.hash, ethers.provider.blockNumber)
+      //       console.log("swap ", memPoolTx.hash, ethers.provider.blockNumber)
 
-            const mevBotSigner = ethers.provider.getSigner(Math.floor(Math.random() * 131))
-            const addr = await mevBotSigner.getAddress()
-            const mevBotTx = await mevBotSigner.sendTransaction({
-              to: addr,
-              nonce: await mevBotSigner.getTransactionCount(),
-              maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
-              maxFeePerGas: memPoolTx.maxFeePerGas,
-            })
-            await tempLog(targetContracts["0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C"], memPoolTx, mevBotTx)
-          }
-        } catch (err) {
-          await tempErrorLog(err, targetContracts["0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C"], memPoolTx)
-        }
-      }
+      //       const mevBotSigner = ethers.provider.getSigner(Math.floor(Math.random() * 131))
+      //       const addr = await mevBotSigner.getAddress()
+      //       const mevBotTx = await mevBotSigner.sendTransaction({
+      //         to: addr,
+      //         nonce: await mevBotSigner.getTransactionCount(),
+      //         maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+      //         maxFeePerGas: memPoolTx.maxFeePerGas,
+      //       })
+      //       await tempLog(targetContracts["0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C"], memPoolTx, mevBotTx)
+      //     }
+      //   } catch (err) {
+      //     await tempErrorLog(err, targetContracts["0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C"], memPoolTx)
+      //   }
+      // }
     })
   })
 }
