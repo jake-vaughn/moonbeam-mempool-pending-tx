@@ -57,11 +57,12 @@ async function type1(memPoolTx: TransactionResponse, target: targetContractItem)
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
     const mevBotTx = await mevBotSigner.sendTransaction({
       to: target.copyContractAddr,
-      gasLimit: 725400,
+      gasLimit: memPoolTx.gasLimit,
       data: memPoolTx.data,
       nonce: await mevBotSigner.getTransactionCount(),
       maxFeePerGas: memPoolTx.maxFeePerGas,
       maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+      gasPrice: memPoolTx.maxFeePerGas ? undefined : memPoolTx.gasPrice,
     })
 
     await tempLog(target, memPoolTx, mevBotTx)
@@ -119,7 +120,7 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
     const mevBotTx = await mevBotSigner.sendTransaction({
       to: target.copyContractAddr,
-      gasLimit: 725400,
+      gasLimit: memPoolTx.gasLimit,
       data: memPoolTx.data,
       nonce: await mevBotSigner.getTransactionCount(),
       maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
