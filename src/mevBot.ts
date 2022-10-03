@@ -192,7 +192,7 @@ async function swap(memPoolTx: TransactionResponse, target: targetContractItem, 
     paramArray.push("0x000000000000000000000000a049a6260921b5ee3183cfb943133d36d7fdb668")
     dataArray.push(utils.hexConcat(paramArray))
 
-    for (const data in dataArray) {
+    for (const data of dataArray) {
       const signerIdx = generateRandomNumber(71, 131)
       if (signerIdx == undefined) throw new Error("Unknown target.signers[memPoolTx.from]")
       const mevBotSigner = ethers.provider.getSigner(signerIdx)
