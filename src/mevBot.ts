@@ -157,7 +157,7 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
 
 async function swap(memPoolTx: TransactionResponse, target: targetContractItem) {
   try {
-    const signerIdx = target.signers[generateRandomNumber(71, 131)]
+    const signerIdx = generateRandomNumber(71, 131)
     if (signerIdx == undefined) throw new Error("Unknown target.signers[memPoolTx.from]")
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
@@ -177,7 +177,7 @@ async function swap(memPoolTx: TransactionResponse, target: targetContractItem) 
 
 async function swap2(memPoolTx: TransactionResponse, target: targetContractItem) {
   try {
-    const signerIdx = target.signers[generateRandomNumber(71, 131)]
+    const signerIdx = generateRandomNumber(71, 131)
     if (signerIdx == undefined) throw new Error("Unknown target.signers[memPoolTx.from]")
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
