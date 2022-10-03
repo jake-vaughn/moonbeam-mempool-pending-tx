@@ -24,7 +24,7 @@ export async function logHumanReadable(info: any) {
       })
       return
     }
-
+    await delay(72000)
     const [receipt1, receipt2] = await Promise.all([
       receiptWaitHandler(md.memPoolTx, md.blockFound),
       receiptWaitHandler(md.mevBotTx, md.blockFound),
@@ -97,6 +97,9 @@ async function receiptWaitHandler(
   }
 }
 
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 // function receiptLogParse(logs: Log[]): [string, string] {
 //   let wadSent = "0"
 //   if (logs.length == 0) {
