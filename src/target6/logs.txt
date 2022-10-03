@@ -11607,3 +11607,1845 @@ maxFeePerGas: undefined
 maxPriorityFeePerGas: undefined
 gasPrice: 200.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x370b76ce3651baa72f53126e86a4ec670429bd054ca4f8b2ffb5a01ca65afc19 2000421 stellaRouter
+POOP
+WGLMR
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0x10017a77176ee8d9da548e19f8ab3f9ffdb0f4cae7c5d9d70a2706dcca3923d9 2000421 stellaRouter
+STELLA
+WGLMR
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0xb741f5a430cd7a187cfe1282d11054b36614790b7861cbaae01add65034e49a0 2000428 beamRouter
+USDC
+WGLMR
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0x3d722776df7171c709cc967d66c42f453c662f794ef697cc81d2889b55ff49df 2000428
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x31e569a47e3d6e5438c2e7100d9eea6bf445135a62bc7685a8a964ef9d69a2f6 2000428
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x768ebb5e2a0980b24a2040d190a9f45a3703b9089f5389c5bc272b5cc7f8c9f4 2000428
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x79b89e7fa29fd2eba6007d7edaf9bc6c74184513c99293031f19a94cdae370ff 2000428
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xd5707be43bf5fd0acadf162371fca3403c736c8b16d9eb07ed12da26040c10f5 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xa00bba4a5ade4f20a106d00f2c0c7061f35df2f00bf0b5f651cdb71a293d2047 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x322524dcbecb8687f62ebaec9f37d6e80cecad89fed6c72abc91a4a29919ceb3 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xf670ce15bd845b653513617060b34db92f0b05dc50722c1c4d39916c518a283c 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x9c4c92131fb5fa732a27e6629867f61f38f6f16c00cbb49b9ecbdbf3c1d4df6b 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xfce63ec543120acd7768c4e4f14aa5b58dbf60d4d33aeba2047d6aae2793a19d 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x36f0a2cf8db331ca47d8d7534f19c0642a1f8b66ee730bebdbc6ef02ec6be0be 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x66337c77e0558ff187eabb709ed3e6500fba7d0a440f58c74d7b39065db309dd 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xf3cccd297ec4cb91f4a6782a113799d0999cc17ff6ddf475c3f9dd38d133c5f2 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x913d6e6677ae11d5c5dfa5cfd0423c6ab8c8b93c3fec9981123a02e51fd5104a 2000429
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+xcIBTC
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+xcIbtc-usdc beam
+xcIbtc-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0xbc873275ccca67e8ec3ab4d7511d76e6b8e7416b67860637445d502670047916 2000429 stellaRouter
+WGLMR
+ETH
+maxFeePerGas: 2000.0
+maxPriorityFeePerGas: 1.499999999
+gasPrice: 2000.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0x0643c0fbf1ded6c12e025dff8241e1776b32e75324d932c8ea7af2fc0bb84343 2000430
+1600,0,0,0,0,0,0,32006898
+zero
+USDC
+USDT
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x7553e7048901a54eb0e43e4c98ad55e4a96762c0804fcc4818da5024c5e968d6 2000430 beamRouter
+WGLMR
+USDC
+maxFeePerGas: 700.0
+maxPriorityFeePerGas: 505.0
+gasPrice: 700.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0x9eff6b8c0bab92862abdf48d7bd9f475f65da3ce92edbac956c9b970ee870cba 2000430
+1600,0,0,0,0,0,0,32006898
+zero
+USDC
+USDT
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0xe0a2f575e7ec0a63fdcf775b56997a4a563557e651e3cc193ad3d040d2bc4ee9 2000430 beamRouter
+WGLMR
+USDC
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 105.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0xd3acd47b6ae75db86be6639fbc1516859d8cd69875b31bd57c5cada3615067f6 2000430
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+USDT
+zero
+3--------------
+beam
+beam
+beam
+3--------------
+usdc-wglmr beam
+NA
+NA
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 105.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x365968c41b2380d34636dc98d12a0f398c760b53bc508039844af5d47813de9f 2000430
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+USDT
+zero
+3--------------
+beam
+beam
+beam
+3--------------
+usdc-wglmr beam
+NA
+NA
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 105.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x355d0b69e10b903bfa96c1e75dd7eb549dc5b371b894cb02f57833986eea8bd5 2000430
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+USDT
+zero
+3--------------
+beam
+beam
+beam
+3--------------
+usdc-wglmr beam
+NA
+NA
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 105.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0xdd8a5250265e45c3bdf39233104a0206d9c032c84651767e8f4b1657b05d0558 2000430 beamRouter
+WGLMR
+USDC
+maxFeePerGas: 1700.0
+maxPriorityFeePerGas: 1700.0
+gasPrice: 1700.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0xcb4b771f0b4ebeed6cf82e6586c0089ebc01d6e7cbc2324f55694456cafc5b54 2000430 stellaRouter
+xcDOT
+WGLMR
+BUSD
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0x1332cb58a04490bdf8b794e1a81badf0714d95409cd9acf1c332588be204c31f 2000431 stellaRouter
+xcaUSD
+WGLMR
+BUSD
+maxFeePerGas: 200.0
+maxPriorityFeePerGas: 0.0
+gasPrice: 200.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0xe86bde7a3542262e806ea4d6be8796250c63f97be0c3f8397cc53bfc89380cf2 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+beam
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr alpha
+maxFeePerGas: 200.0
+maxPriorityFeePerGas: 0.0
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x301bee8b42b7528ed67490bba820ea1f7b949bb80deee0efdeb29be814ca0940 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+beam
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr alpha
+maxFeePerGas: 200.0
+maxPriorityFeePerGas: 0.0
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x02eb4c36108e1f486e89ee0035692f9da2969d90bf93002c68921dd24585cb04 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+beam
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr alpha
+maxFeePerGas: 200.0
+maxPriorityFeePerGas: 0.0
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xfaaa9d943f92238ffa41f7cd0fd38d2c6aa5c9c13d694d67e0b1e484c7f8e312 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+beam
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr alpha
+maxFeePerGas: 200.0
+maxPriorityFeePerGas: 0.0
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x915d6258334922f7992fad3b6767c7127f2ea39f697b9d05783674c2071520f2 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+beam
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr alpha
+maxFeePerGas: 200.0
+maxPriorityFeePerGas: 0.0
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x1edd1d96a4ebc263ef46b9f4a0b7cd8f3366739e313fa7b9db2c6064d85fc8ec 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+beam
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr alpha
+maxFeePerGas: 200.0
+maxPriorityFeePerGas: 0.0
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x82d61a4fa307220b4e0477d6f29ad2b00bebe16f84a08ded7331bac0d99de399 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+beam
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr alpha
+maxFeePerGas: 200.0
+maxPriorityFeePerGas: 0.0
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x0bc0d9ee27a474333a54277340382c20646c1439fb4cfb0f4e800fd056061b6a 2000431 stellaRouter
+WGLMR
+BUSD
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0x1ee1d684666f2adce4c846cf314377827615ad21be372a74e8b3299f1c1d21c9 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x385c8ac9bd1e535e4451bdb11f0636353f6e98bc743896b2422feb5da9e9baa4 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x129ed6c8053ffb413e08e85938a6ae23ed895b0de8dcce14d400bd2e9803205c 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xf85583301ecb25c5baa1f3930b8fb1ab607146a110d284b02f359efb04d1a75b 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xdb0f207cd80e2f8c36fabeafda986dd052f4920f0e2d45f0505535b34e2f8f47 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xd2c5371b56616ec58e689a65e9eceb0d90c57dd2519d1e6ae4744c2c6dbdfe83 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x06bc8b48690d94458530758a184c337a2f668c34346de98d177e1d3d38e15673 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x30c6c93d007e23d971d518f174cf744a7cbf649cd7bb6ee3d9eb0671c117c48c 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x8bf84b2d36eff0f7c89a13fb536916d3689606fa8d1b8e57070e52467face16c 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x77f504d72a3e9a7b62d69fccbb3d53011dee78f3a64469e2fc57cffdfc34c027 2000431 stellaRouter
+WGLMR
+USDC
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0x3b633e5b4cf04ae9fba20017e38f9a68a2a5692b2f8f906c8288028e00075653 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+stella
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xc15b6cbee4e9b314979268df2542d80d44071dc9a505c996f3fd94a186aab443 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+stella
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xbbd697c75631e4479cc1c791ee438ccde94088e0ef1fc134d023ddfe609ae0fe 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+stella
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x6dc803512381965b6bbd4791917b0c293c14dc6dfc1417c365b5f960c6a22942 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+stella
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xa158817dfd287a460559a668411aaf336c89a8985a83df87562c4b7a6f791610 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+stella
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x5b3976169dba318e9afc904187763a608defe370e8cae8385e235f9b50393d5d 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+stella
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x053303006fa7b298648757c6db023d1003fbcdfea2a691a10357efb627c0d71a 2000431
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3
+USDC
+zero
+4--------------
+stella
+pad
+pad
+stella
+4--------------
+busd-wglmr stella
+0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761
+0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x882adcce1dc60c131a9f1578322c0d15195778abbad0a620f2be39a394b3fe62 2000431
+1600,0,0,0,0,1600,1968,10
+zero
+USDC
+FLARE
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: 100.0
+maxPriorityFeePerGas: 100.0
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x699d6cdb073110ee919cb6e4ff8221f3de8830c76f3fb78371865dddc8d33c44 2000431 solarflareRouter
+WGLMR
+FLARE
+maxFeePerGas: 100.0
+maxPriorityFeePerGas: 100.0
+gasPrice: 100.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0xc3559f21cc5395f2d67f0f53392dd496ebae177e211b8fa1b58a6e3e3178548a 2000431
+1600,0,0,0,0,1600,1968,10
+zero
+USDC
+FLARE
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: 100.0
+maxPriorityFeePerGas: 100.0
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xd8297c3a0c89932327169c998790f3716b285babab4131a1fb9cec77ae053e48 2000431
+1600,0,0,0,0,1600,1968,10
+zero
+USDC
+FLARE
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: 100.0
+maxPriorityFeePerGas: 100.0
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xbf2067c0c15f1e996ca20ad7a8db3c29d006211375e5408240b3f027dbf88070 2000431
+1600,0,0,0,0,1600,1968,10
+zero
+USDC
+FLARE
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: 100.0
+maxPriorityFeePerGas: 100.0
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x67dc57717bdd80618348e99cd1692f3e20357ac5b61a7f3becff79cb3ba12d5b 2000431
+1600,0,0,0,0,1600,1968,10
+zero
+USDC
+FLARE
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: 100.0
+maxPriorityFeePerGas: 100.0
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x936ee4efe000b3caf53008c4e080a5a98f872a9a6bf92cb53d1679fa49b64239 2000431
+1600,0,0,0,0,1600,1968,10
+zero
+USDC
+FLARE
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: 100.0
+maxPriorityFeePerGas: 100.0
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x3b0ad07d3263fa3db023d84683c157d39457e15f91e8933684e3af4067bf9147 2000431
+1600,0,0,0,0,1600,1968,10
+zero
+USDC
+FLARE
+zero
+3--------------
+zen
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: 100.0
+maxPriorityFeePerGas: 100.0
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x80eb62f1171b645ecedaf8c6ab5896ae6ac9122284bc0eb834f7c87e072a2c14 2000431 beamRouter
+WGLMR
+USDC
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 1040.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0x59c6a3f1d6936f90a24a05230d67540eea0c55f788af935c690edc8a9514e302 2000432 beamRouter
+POOP
+WGLMR
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0x58dac30c4f3dcaebb142b30f7a0f4b9a1c30b2a86593440e02933a62ee18e55c 2000432
+1600,0,0,0,0,0,0,32006929
+zero
+xcIBTC
+USDC
+BUSD
+zero
+4--------------
+stella
+beam
+beam
+stella
+4--------------
+xcIbtc-wglmr stella
+xcIbtc-usdc beam
+NA
+busd-wglmr stella
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 1590.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0xcb4e86c60c092e9ae49e3db4068772948ce87565cd9b0edcbfca17dff96b7821 2000432 beamRouter
+USDC
+WGLMR
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0xbdf076848ddcc6132f83e146797fdc3ee2295c666cfa6109fd38eba349a1f27a 2000432
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xfd75c0a080c161eaaa380b8fe4fd81fac9e1bdd93ce438033ab86f13340547ab 2000432
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xaad2236448964a04fe0e6002100f97971a30ea9be49d6c28c87859c3fcdef3e6 2000432
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x838a4f408850d3f7ae54c57887b91bb08f725e45a52b193c2f02fde6b70550ab 2000432
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xd586f90511ee7aa7c775ca048d226bd3523e6feab23ade25a47e4435c4b13bd9 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x426052a2907b995bb996e8dc4334b9e3931dda6546d52cf74a54004b767c914a 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x96bcb34002d8cfc0c210940e81f4d471380e0bc7c9bf05ea73e94230d0102b09 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x72bf450e38197cdf18340410872e4e01328ae0042e85455aa6a800fa837c647c 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x49b02d7b556e20d53863cee6c78cf98eb09e88b23a326560cdb7ee5c8242efb8 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x12da850a735423e7467861551be60ac73582e92e60d7df0410cba870c4424ce9 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xa49595c49fb9224e753915823af7375517c9ebedd34c204dd632974139cf5392 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xd202a34a01947f97a6c929d4c2902a7d126b2227786c85134d747bec185e091f 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xcb7b12867be4939f502a3f2c3ec540235d5037480fcbfbd328fe3523ca1d484c 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xecacae4e74bef8dba12049d756cf1730c3fbf2f14badf8a6cb9daf5fdb121924 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+USDC
+BUSD
+zero
+3--------------
+beam
+beam
+stella
+3--------------
+usdc-wglmr beam
+NA
+busd-wglmr stella
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x0b461524303bcf2981ff1c92bfa55ebc074f4966258389423b5c3e8ce79c896b 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x53810b28b07bdbfd263a72a398ab0ac942f3b2b9f191757bc6e2b4fb46756cf5 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x8cc806f0bbd4f3e0e11aff4a08acfa65208672ed55f92626b32cbf57cba44de2 2000434 beamRouter
+POOP
+WGLMR
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0xd11742e42a576de7661bc6ff425838d73170cc8f04487b74110a4f1274239b22 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x806dbf2491cb53ef408f5295380e5b183dbecb44fd9334b270ca0a515e017540 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xc0a4446b2e4d3493e94c5ae606bc9734c9edfaef9b360ab38b20b72f8032c044 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x0dea7c8bff182bb3e4629efd2f7979f867f5b9f77726fc56c691663010bf3a76 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xcb2e3f2e12c81daadfd3480a38efd42367e90c1ec638126b7dc3b317f3d3780d 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xcc0fcde3c44cb77b35b70d7e6ac5a0587aa278d41b61f84bda825f498b62d5dc 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x8db2ae83071fe235dd5f5aaf23fcdbb4a742f630c835901c84a1943a770e7a82 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x3f135c573fa1768fb6dafa583fff1b5c05380e3a331582b6128257bfb091a0fe 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xa11619134ad59042e2609f88990f87f385bf4487de18dda6d905c7e6bdc1cdfd 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xb76695366eb8ef1137c486e1783984214defe7c153056267a8ace6b67bf46ede 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xa65511c384d76d4c7b05c34bd2221f4763fe8168f8c886bbb1c0ad41b6126c2b 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xdcb5ff691431ab08e958776c8ad29e8c65795f96f96d83b88e66f960f8ae0172 2000434
+1600,0,0,0,0,1600,1968,9
+zero
+POOP
+zero
+2--------------
+beam
+stella
+2--------------
+NA
+NA
+maxFeePerGas: 121.5
+maxPriorityFeePerGas: 1.5
+gasPrice: 121.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x20a07c4b2132d9fa52dda9ea7c3889d2e0b7cc427ed0a3be2f3cb59221eb1f61 2000434
+1600,0,0,0,0,0,0,32006960
+zero
+USDC
+NA
+zero
+3--------------
+beam
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x4657aae77b61dae3bf4a9f15a251b3a615e89115d1bb635057bccb27ebc851fa 2000434 beamRouter
+WGLMR
+USDC
+maxFeePerGas: 700.0
+maxPriorityFeePerGas: 505.0
+gasPrice: 700.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0xd511b2a71f51dc921ee6573f950acb2164170def67621304b8a1d8f1e94bc9f0 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+axlATOM
+USDC
+zero
+3--------------
+stella
+stella
+beam
+3--------------
+NA
+NA
+usdc-wglmr beam
+maxFeePerGas: 700.0
+maxPriorityFeePerGas: 505.0
+gasPrice: 700.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xcb09f525a4d8fb2c1738576a483586ea04e64425ef3e9c6ea953d8c4e83bfa96 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+axlATOM
+USDC
+zero
+3--------------
+stella
+stella
+beam
+3--------------
+NA
+NA
+usdc-wglmr beam
+maxFeePerGas: 700.0
+maxPriorityFeePerGas: 505.0
+gasPrice: 700.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x1feda9b6e33f4df407b80cba1e46ff073bdda37a9b8eb76094e9bd88a19ef1b5 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+axlATOM
+USDC
+zero
+3--------------
+stella
+stella
+beam
+3--------------
+NA
+NA
+usdc-wglmr beam
+maxFeePerGas: 700.0
+maxPriorityFeePerGas: 505.0
+gasPrice: 700.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xcd1e16d37f7be8553e30a27a4a0728805dd5dd13abe9aadc17b8ced52eb8562f 2000434
+1600,0,0,0,0,1600,1968,8
+zero
+axlATOM
+USDC
+zero
+3--------------
+stella
+stella
+beam
+3--------------
+NA
+NA
+usdc-wglmr beam
+maxFeePerGas: 700.0
+maxPriorityFeePerGas: 505.0
+gasPrice: 700.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xe16c7923c32be67b0903b89f494aa5d3bfe58b7ab1167ca1a21e55572ace9afa 2000434
+1600,0,0,0,0,0,0,32006960
+zero
+USDC
+NA
+zero
+3--------------
+beam
+beam
+beam
+3--------------
+NA
+NA
+NA
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0x511179bd65783d30a2e2179c697a141e21339f7b22d463d727cba0d203b89c4c 2000434 stellaRouter
+WGLMR
+USDC
+maxFeePerGas: 1700.0
+maxPriorityFeePerGas: 1700.0
+gasPrice: 1700.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0xb6057da9cbbefdb92a24bdc34bd26640c7753c6117f329465da2e99391d3947f 2000434 beamRouter
+WGLMR
+USDC
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 105.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0x3691e8b8f61ded1d3d53c431edf590595878200c3fc00d6ba48bd10abf5931ed 2000434 stellaRouter
+WGLMR
+USDC
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0xde9538b12354180514f30724fe4f45a2a8723e4d776a1ccfd257d5a9af60ad75 2000435
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+USDC
+zero
+3--------------
+stella
+beam
+stella
+3--------------
+busd-wglmr stella
+NA
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x69258d5abb15e1956f03b26e260ec769e12fda3f56b4fbb324876759957dd6e7 2000435
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+USDC
+zero
+3--------------
+stella
+beam
+stella
+3--------------
+busd-wglmr stella
+NA
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x5134c4d7b95e1b9534fdc9fe75def40b49fbd7c66de4430b2b387c1dff77061c 2000435
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+USDC
+zero
+3--------------
+stella
+beam
+stella
+3--------------
+busd-wglmr stella
+NA
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xee8bd22d45774c5e964869502e8ca00df7a15270bea2a2dfc8a0717b0598dae5 2000435
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+USDC
+zero
+3--------------
+stella
+beam
+stella
+3--------------
+busd-wglmr stella
+NA
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0xe8aefca04ec571a48652af57dedf8af7b4875f7904f0a5df3089ce134a6539fc 2000435
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+USDC
+zero
+3--------------
+stella
+beam
+stella
+3--------------
+busd-wglmr stella
+NA
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x2a09cad4453a3b6dd718180b1897d81120c694e66721eb696396df6f54789b0a 2000435
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+USDC
+zero
+3--------------
+stella
+beam
+stella
+3--------------
+busd-wglmr stella
+NA
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x248e7179c8ce4350d04d7891ef366102ab7bdb59d1336b91cd23cc16734b3a79 2000435
+1600,0,0,0,0,1600,1968,8
+zero
+BUSD
+USDC
+zero
+3--------------
+stella
+beam
+stella
+3--------------
+busd-wglmr stella
+NA
+usdc-wglmr stella
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap 0xc49b523e5f1a2ea4128253903e3914e91bd2dd8fe253499f2791dda5f442215f 2000435 stellaRouter
+WGLMR
+BUSD
+maxFeePerGas: 122.0
+maxPriorityFeePerGas: 2.0
+gasPrice: 122.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0x7a4dc8afc8bf51b1dee356d08b3e9a953445e5ae018bc449d5b30c60e6adbb46 2000435 beamRouter
+WGLMR
+USDC
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 1040.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0xa762ef68014b08e99ebedf21dfbc76b4d27355ccb42d083b5b2f6754997a2566 2000435 stellaRouter
+WGLMR
+ETH
+maxFeePerGas: 2000.0
+maxPriorityFeePerGas: 1.999999999
+gasPrice: 2000.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+swap 0xa6ae5d20ad95cfe352fac8047032e996acf14aaa7c110f6a4bd33c99120d0171 2000435 beamRouter
+xcDOT
+WGLMR
+BUSD
+maxFeePerGas: 350.0
+maxPriorityFeePerGas: 150.0
+gasPrice: 350.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+arb 0xb889be46fdae3ab5b9b95a6b57620281d117633851f9987e1611cb9f206ffc5d 2000436
+1600,0,0,0,0,0,0,32006994
+zero
+USDC
+zero
+2--------------
+zen
+stella
+2--------------
+NA
+usdc-wglmr stella
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 100.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arb 0x4e269e2c82be7b6e1b9a3a3781f97c9b3ca2d42c3ec485c45aa3fc011f8bdc1d 2000436
+1600,0,0,0,0,0,0,32006994
+zero
+USDC
+zero
+2--------------
+zen
+stella
+2--------------
+NA
+usdc-wglmr stella
+maxFeePerGas: undefined
+maxPriorityFeePerGas: undefined
+gasPrice: 200.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
