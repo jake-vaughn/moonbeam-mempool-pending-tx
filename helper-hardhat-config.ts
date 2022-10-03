@@ -225,6 +225,13 @@ export const networkConfig: networkConfigInfo = {
         signers: backBurnerSigs,
         active: true,
       },
+      "Target6 Arb": {
+        name: "Arbing(6)🍞",
+        type: 6,
+        copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
+        signers: backBurnerSigs,
+        active: true,
+      },
     },
   },
 }

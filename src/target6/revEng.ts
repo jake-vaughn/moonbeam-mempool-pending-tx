@@ -76,12 +76,13 @@ async function mevBot() {
               (memPoolTx.gasPrice ? utils.formatUnits(memPoolTx.gasPrice!, "gwei") : memPoolTx.gasPrice)
             parsedData += `\n` + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
             console.log(parsedData)
-            await asyncWriteFile("./swap.log", parsedData)
+            await asyncWriteFile("./swaps.log", parsedData)
 
             // await tempLog(targetContracts["0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C"], memPoolTx, mevBotTx)
           }
         } catch (err) {
           console.log(err)
+          await asyncWriteFile("./swaps.log", "ERROR " + memPoolTx.hash)
 
           //   await tempErrorLog(err, targetContracts["0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C"], memPoolTx)
         }
@@ -163,7 +164,7 @@ async function type1(memPoolTx: TransactionResponse, target: targetContractItem)
 
     parsedData += `\n` + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     console.log(parsedData)
-    await asyncWriteFile("./swaps.log", parsedData)
+    await asyncWriteFile("./target6.log", parsedData)
 
     // await tempLog(target, memPoolTx)
     return

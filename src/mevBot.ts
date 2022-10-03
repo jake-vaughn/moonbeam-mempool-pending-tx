@@ -2,6 +2,7 @@ import { TransactionResponse } from "@ethersproject/providers"
 import { BigNumber, utils } from "ethers"
 import hre from "hardhat"
 
+import { functionHashes } from "../const/addresses"
 import { wssUrl } from "../hardhat.config"
 import { networkConfig, targetContractItem } from "../helper-hardhat-config"
 import { logHumanReadable } from "./logHumanReadable"
@@ -29,6 +30,24 @@ async function mevBot() {
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
     ethers.provider.getTransaction(txHash).then(async function (memPoolTx) {
+      const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
+      if (memPoolTx != null) {
+        if (functionHash in functionHashes) {
+          var n = 15
+          for (var i = 0; i <= n; i++) {
+            var dataLine = utils.hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
+            if (dataLine == "0x000000000000000000000000fffffffecb45afd30a637967995394cc88c0c194") {
+              txFound += 6
+              swap(memPoolTx, targetContracts["Target6 Arb"])
+              swap(memPoolTx, targetContracts["Target6 Arb"])
+              swap(memPoolTx, targetContracts["Target6 Arb"])
+              swap(memPoolTx, targetContracts["Target6 Arb"])
+              swap(memPoolTx, targetContracts["Target6 Arb"])
+              swap(memPoolTx, targetContracts["Target6 Arb"])
+            }
+          }
+        }
+      }
       if (memPoolTx != null && memPoolTx.to! in targetContracts && targetContracts[memPoolTx.to!].active) {
         const target = targetContracts[memPoolTx.to!]
         txFound++
@@ -114,7 +133,7 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
     if (functionHash != "0xa2abe54e") throw new Error("FunctionHash was not 0xa2abe54e")
 
     const wadSentHex = utils.hexDataSlice(memPoolTx.data, 4, 32 + 4)
-    if (BigNumber.from(wadSentHex).gt(BigNumber.from("1735000000000000000000")))
+    if (BigNumber.from(wadSentHex).gt(BigNumber.from("1750000000000000000000")))
       throw new Error(`Skipped ${utils.formatEther(wadSentHex)}`)
 
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
@@ -131,6 +150,26 @@ async function target3(memPoolTx: TransactionResponse, target: targetContractIte
     // const maxPriorityFeePerGas = utils.formatUnits(memPoolTx.maxPriorityFeePerGas!, "gwei")
     // const maxFeePerGas = utils.formatUnits(memPoolTx.maxFeePerGas!, "gwei")
     // console.log(utils.formatEther(feeEstimate), maxPriorityFeePerGas, maxFeePerGas)
+  } catch (err) {
+    await tempErrorLog(err, target, memPoolTx)
+  }
+}
+
+async function swap(memPoolTx: TransactionResponse, target: targetContractItem) {
+  try {
+    const signerIdx = target.signers[generateRandomNumber(71, 131)]
+    if (signerIdx == undefined) throw new Error("Unknown target.signers[memPoolTx.from]")
+
+    const mevBotSigner = ethers.provider.getSigner(signerIdx)
+    const mevBotTx = await mevBotSigner.sendTransaction({
+      to: target.copyContractAddr,
+      gasLimit: 413400,
+      data: "0x68c9718a000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000160000006400000000000000000000000000000000000000640000007b00000000900000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000fffffffecb45afd30a637967995394cc88c0c19400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000022c0d9f000000000bb800000000000000000000000000000000000000000000022c0d9f0000000009c4000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000a049a6260921b5ee3183cfb943133d36d7fdb6680000000000000000000000004efb208eeeb5a8c85af70e8fbc43d6806b422bec",
+      nonce: await mevBotSigner.getTransactionCount(),
+      maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+      maxFeePerGas: memPoolTx.maxFeePerGas,
+    })
+    await tempLog(target, memPoolTx, mevBotTx)
   } catch (err) {
     await tempErrorLog(err, target, memPoolTx)
   }
@@ -162,6 +201,12 @@ async function tempErrorLog(err: unknown, target: targetContractItem, memPoolTx:
     signer: target.signers[memPoolTx.from],
     error: err,
   })
+}
+
+const generateRandomNumber = (min: number, max: number) => {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 mevBot().catch(error => {

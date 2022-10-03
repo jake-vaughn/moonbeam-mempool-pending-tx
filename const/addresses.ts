@@ -1,8 +1,27 @@
-export interface addressesNames {
+export interface addressesNamesItem {
   [targetAddr: string]: string
 }
 
-export const lpAddresses: addressesNames = {
+export interface blindArbItem {
+  [targetAddr: string]: arbItem
+}
+
+export interface arbItem {
+  symbol?: string
+  factories: string[]
+}
+
+export const blindArb: blindArbItem = {
+  "0x000000000000000000000000fffffffecb45afd30a637967995394cc88c0c194": {
+    symbol: "POOP",
+    factories: [
+      "0x0000000000000000000000004efb208eeeb5a8c85af70e8fbc43d6806b422bec",
+      "0x000000000000000000000000a049a6260921b5ee3183cfb943133d36d7fdb668",
+    ],
+  },
+}
+
+export const lpAddresses: addressesNamesItem = {
   "0x000000000000000000000000b929914b89584b4081c7966ac6287636f7efd053": "usdc-wglmr beam",
   "0x000000000000000000000000555b74dafc4ef3a5a1640041e3244460dc7610d1": "usdc-wglmr stella",
   "0x0000000000000000000000001eb802dfcc9e6d0b553c99c461f27d4000b46cef": "usdc-wglmr zen",
@@ -34,8 +53,8 @@ export const lpAddresses: addressesNames = {
   "0x00000000000000000000000026a2abd79583155ea5d34443b62399879d42748a": "NA",
   "0x0000000000000000000000007f5ac0fc127bcf1eaf54e3cd01b00300a0861a62": "stella-wglmr stella",
   "0x00000000000000000000000081e11a9374033d11cc7e7485a7192ae37d0795d6": "stella-usdc stella",
-  "0x0000000000000000000000004efb208eeeb5a8c85af70e8fbc43d6806b422bec": "NA",
-  "0x000000000000000000000000a049a6260921b5ee3183cfb943133d36d7fdb668": "NA",
+  "0x0000000000000000000000004efb208eeeb5a8c85af70e8fbc43d6806b422bec": "poop-wglmr stella",
+  "0x000000000000000000000000a049a6260921b5ee3183cfb943133d36d7fdb668": "poop-wglmr beam",
   "0x000000000000000000000000a35b2c07cb123ea5e1b9c7530d0812e7e03ec3c1": "NA",
   "0x000000000000000000000000f4c10263f2a4b1f75b8a5fd5328fb61605321639": "NA",
   "0x000000000000000000000000051fcf8986b30860a1341e0031e5622bd18d8a85": "NA",
@@ -73,9 +92,14 @@ export const lpAddresses: addressesNames = {
   "0x00000000000000000000000099588867e817023162f4d4829995299054a5fc57": "NA",
   "0x00000000000000000000000061b4cec9925b1397b64dece8f898047eed0f7a07": "NA",
   "0x000000000000000000000000ab89ed43d10c7ce0f4d6f21616556aecb71b9c5f": "NA",
+  "0x000000000000000000000000713081a4b9d51fba1e8fa29247b77d7aa8ed6551": "NA",
+  "0x000000000000000000000000fd0468f209a9f99a4bc8beb26816dc333dd7f1f8": "NA",
+  "0x000000000000000000000000e3db50049c74de2f7d7269823af3178cf22fd5e3": "NA",
+  "0x00000000000000000000000033d0271cc9615d665c81115aabaedd0b1d098761": "NA",
+  "0x0000000000000000000000005e3ebf3813ece2ce3090c2ce36cc567dd0b279fd": "NA",
 }
 
-export const tokenAddresses: addressesNames = {
+export const tokenAddresses: addressesNamesItem = {
   "0x0000000000000000000000000000000000000000000000000000000000000000": "zero",
   "0x000000000000000000000000acc15dc74880c9944775448304b263d191c6077f": "WGLMR",
   "0x0000000000000000000000008f552a71efe5eefc207bf75485b356a0b3f01ec9": "madUSDC",
@@ -106,14 +130,14 @@ export const tokenAddresses: addressesNames = {
   "0x00000000000000000000000030d2a9f5fdf90ace8c17952cbb4ee48a55d916a7": "madETH",
 }
 
-export const exchanges: addressesNames = {
+export const exchanges: addressesNamesItem = {
   "0x000000000000000000000000000000000000022c0d9f0000000009c400000000": "stella",
   "0x000000000000000000000000000000000000022c0d9f000000000bb800000000": "beam",
   "0x000000000000000000000000000000000000022c0d9f0000000007d000000000": "pad",
   "0x0000000000000000000000000000000000006d9a640a000000000bb800000000": "zen",
 }
 
-export const functionHashes: addressesNames = {
+export const functionHashes: addressesNamesItem = {
   "0x38ed1739": "swapExactTokensForTokens",
   "0x7ff36ab5": "swapExactETHForTokens",
   "0x18cbafe5": "swapExactTokensForETH",
@@ -121,7 +145,7 @@ export const functionHashes: addressesNames = {
   "0xfb3bdb41": "swapETHForExactTokens",
 }
 
-export const routers: addressesNames = {
+export const routers: addressesNamesItem = {
   "0x96b244391D98B62D19aE89b1A4dCcf0fc56970C7": "beamRouter",
   "0x70085a09D30D6f8C4ecF6eE10120d1847383BB57": "stellaRouter",
   "0x40F1fEF0Fe68Fd10ff904070ee00a7769EE7fe34": "padRouter",
