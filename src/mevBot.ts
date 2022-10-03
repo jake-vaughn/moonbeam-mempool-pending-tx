@@ -30,8 +30,8 @@ async function mevBot() {
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
     ethers.provider.getTransaction(txHash).then(async function (memPoolTx) {
-      const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
       if (memPoolTx != null) {
+        const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
         if (functionHash in functionHashes) {
           var n = 15
           for (var i = 0; i <= n; i++) {
@@ -41,9 +41,9 @@ async function mevBot() {
               swap(memPoolTx, targetContracts["Target6 Arb"])
               swap(memPoolTx, targetContracts["Target6 Arb"])
               swap(memPoolTx, targetContracts["Target6 Arb"])
-              swap(memPoolTx, targetContracts["Target6 Arb"])
-              swap(memPoolTx, targetContracts["Target6 Arb"])
-              swap(memPoolTx, targetContracts["Target6 Arb"])
+              swap2(memPoolTx, targetContracts["Target6 Arb"])
+              swap2(memPoolTx, targetContracts["Target6 Arb"])
+              swap2(memPoolTx, targetContracts["Target6 Arb"])
             }
           }
         }
@@ -165,6 +165,26 @@ async function swap(memPoolTx: TransactionResponse, target: targetContractItem) 
       to: target.copyContractAddr,
       gasLimit: 413400,
       data: "0x68c9718a000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000160000006400000000000000000000000000000000000000640000007b00000000900000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000fffffffecb45afd30a637967995394cc88c0c19400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000022c0d9f000000000bb800000000000000000000000000000000000000000000022c0d9f0000000009c4000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000a049a6260921b5ee3183cfb943133d36d7fdb6680000000000000000000000004efb208eeeb5a8c85af70e8fbc43d6806b422bec",
+      nonce: await mevBotSigner.getTransactionCount(),
+      maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+      maxFeePerGas: memPoolTx.maxFeePerGas,
+    })
+    await tempLog(target, memPoolTx, mevBotTx)
+  } catch (err) {
+    await tempErrorLog(err, target, memPoolTx)
+  }
+}
+
+async function swap2(memPoolTx: TransactionResponse, target: targetContractItem) {
+  try {
+    const signerIdx = target.signers[generateRandomNumber(71, 131)]
+    if (signerIdx == undefined) throw new Error("Unknown target.signers[memPoolTx.from]")
+
+    const mevBotSigner = ethers.provider.getSigner(signerIdx)
+    const mevBotTx = await mevBotSigner.sendTransaction({
+      to: target.copyContractAddr,
+      gasLimit: 413400,
+      data: "0x68c9718a000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000160000006400000000000000000000000000000000000000640000007b00000000900000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000fffffffecb45afd30a637967995394cc88c0c19400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000022c0d9f0000000009c400000000000000000000000000000000000000000000022c0d9f000000000bb80000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000004efb208eeeb5a8c85af70e8fbc43d6806b422bec000000000000000000000000a049a6260921b5ee3183cfb943133d36d7fdb668",
       nonce: await mevBotSigner.getTransactionCount(),
       maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
       maxFeePerGas: memPoolTx.maxFeePerGas,
