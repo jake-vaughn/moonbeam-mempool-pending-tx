@@ -3,12 +3,11 @@ import hre from "hardhat"
 
 import { networkConfig } from "../../helper-hardhat-config"
 
-const rpcProvider = hre.ethers.provider
 const chainId = hre.network.config.chainId!
 const targetContracts = networkConfig[chainId].targetContracts
 const target = targetContracts["0x8B6784b18d534b98d738719F05B0a8a54bB4C098"]
 
-async function withdrawDot() {
+async function withdrawWglmr() {
   const { getNamedAccounts, ethers } = hre
   const { deployer } = await getNamedAccounts()
 
@@ -16,10 +15,10 @@ async function withdrawDot() {
 
   let inputData = ""
   const functionHash = "0xc7e42b1b"
-  const dotAddr = ""
+  const wglmrAddr = "0xAcc15dC74880C9944775448304B263D191c6077F"
 
-  const dotAddrPadded = utils.hexZeroPad(dotAddr, 32)
-  inputData = utils.hexConcat([functionHash, dotAddrPadded])
+  const wglmrAddrPadded = utils.hexZeroPad(wglmrAddr, 32)
+  inputData = utils.hexConcat([functionHash, wglmrAddrPadded])
 
   console.log(inputData)
 
@@ -34,7 +33,7 @@ async function withdrawDot() {
   console.log(`Transaction hash: ${txReceipt.transactionHash}`)
 }
 
-withdrawDot().catch(error => {
+withdrawWglmr().catch(error => {
   console.error(error)
   process.exitCode = 1
 })
