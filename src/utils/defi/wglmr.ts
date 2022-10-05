@@ -1,13 +1,14 @@
 import { JsonRpcSigner } from "@ethersproject/providers"
 import { BigNumberish } from "ethers"
-import { ethers } from "hardhat"
+import { HardhatRuntimeEnvironment } from "hardhat/types"
 
 import { PromiseOrValue } from "../../../typechain-types/common"
 import { WETH9 } from "../../../typechain-types/tokens/WGLMR.sol"
 
 const WGLMR_ADDRESS = "0xAcc15dC74880C9944775448304B263D191c6077F"
 
-async function wrapGlmr(amountWei: BigNumberish, signer: JsonRpcSigner) {
+async function wrapGlmr(amountWei: BigNumberish, signer: JsonRpcSigner, hre: HardhatRuntimeEnvironment) {
+  const { ethers } = hre
   const wglmr: WETH9 = await ethers.getContractAt("WETH9", WGLMR_ADDRESS, signer)
 
   console.log(`Wrapping ${ethers.utils.formatEther(amountWei)} GLMR`)
@@ -18,12 +19,37 @@ async function wrapGlmr(amountWei: BigNumberish, signer: JsonRpcSigner) {
     maxPriorityFeePerGas: 1000000000,
   })
   await tx.wait()
-  const wglmrBalance = await wglmr.balanceOf(await signer.getAddress())
+  const wglmrBalance = await getWglmrBalance(signer, hre)
 
   console.log(`Balance of ${ethers.utils.formatEther(wglmrBalance)} WGLMR`)
 }
 
-async function transferWglmr(dst: PromiseOrValue<string>, amountWei: BigNumberish, signer: JsonRpcSigner) {
+async function unwrapWglmr(amountWei: BigNumberish, signer: JsonRpcSigner, hre: HardhatRuntimeEnvironment) {
+  const { ethers } = hre
+
+  const wglmr: WETH9 = await ethers.getContractAt("WETH9", WGLMR_ADDRESS, signer)
+
+  console.log(`Unwrapping ${ethers.utils.formatEther(amountWei)} WGLMR`)
+
+  const tx = await wglmr.withdraw(amountWei, {
+    maxFeePerGas: 102000000000,
+    maxPriorityFeePerGas: 1000000000,
+  })
+  const txReceipt = await tx.wait()
+  const wglmrBalance = await getWglmrBalance(signer, hre)
+  console.log(`Balance of ${ethers.utils.formatEther(wglmrBalance)} WGLMR`)
+
+  return txReceipt
+}
+
+async function transferWglmr(
+  dst: PromiseOrValue<string>,
+  amountWei: BigNumberish,
+  signer: JsonRpcSigner,
+  hre: HardhatRuntimeEnvironment,
+) {
+  const { ethers } = hre
+
   const wglmr: WETH9 = await ethers.getContractAt("WETH9", WGLMR_ADDRESS, signer)
 
   console.log(`Transferring ${ethers.utils.formatEther(amountWei)} WGLMR`)
@@ -39,4 +65,14 @@ async function transferWglmr(dst: PromiseOrValue<string>, amountWei: BigNumberis
   console.log(`Dst Balance of ${ethers.utils.formatEther(wglmrBalance)} WGLMR`)
 }
 
-export { wrapGlmr, transferWglmr }
+async function getWglmrBalance(signer: JsonRpcSigner, hre: HardhatRuntimeEnvironment) {
+  const { ethers } = hre
+
+  const wglmr: WETH9 = await ethers.getContractAt("WETH9", WGLMR_ADDRESS, signer)
+
+  const wglmrBalance = await wglmr.balanceOf(await signer.getAddress())
+
+  return wglmrBalance
+}
+
+export { wrapGlmr, unwrapWglmr, transferWglmr, getWglmrBalance }

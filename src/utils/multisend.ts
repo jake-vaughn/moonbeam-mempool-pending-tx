@@ -4,7 +4,7 @@ import { formatEther } from "ethers/lib/utils"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import yesno from "yesno"
 
-import { BulkSend } from "./types"
+import { BulkSend } from "../types"
 
 export async function topUpEth(
   addresses: string[],

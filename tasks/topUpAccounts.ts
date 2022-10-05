@@ -3,7 +3,7 @@ import { task } from "hardhat/config"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 
 import { networkConfig } from "../helper-hardhat-config"
-import { topUpEth } from "../src/multisend"
+import { topUpEth } from "../src/utils/multisend"
 
 task("topUpAccounts", "Sends 0.01 eth to all active signers", async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
   const targets = networkConfig[hre.network.config.chainId!].targetContracts
