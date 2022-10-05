@@ -1,9 +1,10 @@
 import { utils } from "ethers"
-import { ethers, getNamedAccounts, network } from "hardhat"
+import hre from "hardhat"
 
 import { networkConfig } from "../../../helper-hardhat-config"
 import { transferWglmr } from "./wglmr"
 
+const { ethers, getNamedAccounts, network } = hre
 const rpcProvider = ethers.provider
 const chainId = network.config.chainId!
 const targetContracts = networkConfig[chainId].targetContracts
@@ -15,7 +16,7 @@ async function sendEth() {
   const deploySig = rpcProvider.getSigner(deployer)
   const amountWei = utils.parseEther("0")
 
-  transferWglmr(target.copyContractAddr, amountWei, deploySig)
+  transferWglmr(target.copyContractAddr, amountWei, deploySig, hre)
 }
 
 sendEth().catch(error => {

@@ -13,9 +13,9 @@ task(
   async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
     const { deployer } = await hre.getNamedAccounts()
     const deploySig = await hre.ethers.provider.getSigner(deployer)
-    const unwrapAmount = parseEther("100")
+    const unwrapAmount = parseEther("633.201879740654698125")
 
-    const wglmrBalance = getWglmrBalance(deploySig, hre)
+    const wglmrBalance = formatEther(await getWglmrBalance(deploySig, hre))
     console.log(`Balance of ${await deploySig.getAddress()} is ${wglmrBalance} Wglmr`)
 
     const ok = await yesno({

@@ -9,7 +9,7 @@ task("topUpAccounts", "Sends 0.01 eth to all active signers", async (_taskArgs, 
   const targets = networkConfig[hre.network.config.chainId!].targetContracts
   const addressList: string[] = []
   const addrMap = new Map<string, boolean>()
-  const AMOUNT_TO_SEND = parseEther("5")
+  const AMOUNT_TO_SEND = parseEther("10")
   const { deployer } = await hre.getNamedAccounts()
   const deploySig = await hre.ethers.provider.getSigner(deployer)
 
