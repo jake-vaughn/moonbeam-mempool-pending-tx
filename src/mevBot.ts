@@ -31,19 +31,19 @@ async function mevBot() {
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
     ethers.provider.getTransaction(txHash).then(async function (memPoolTx) {
-      if (memPoolTx != null) {
-        const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
-        if (functionHash in functionHashes) {
-          var n = 15
-          for (var i = 0; i <= n; i++) {
-            var dataLine = utils.hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
-            if (dataLine == "0x000000000000000000000000fffffffecb45afd30a637967995394cc88c0c194") {
-              txFound += 2
-              swap(memPoolTx, targetContracts["Target6 Arb"], dataLine)
-            }
-          }
-        }
-      }
+      // if (memPoolTx != null) {
+      //   const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
+      //   if (functionHash in functionHashes) {
+      //     var n = 15
+      //     for (var i = 0; i <= n; i++) {
+      //       var dataLine = utils.hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
+      //       if (dataLine == "0x000000000000000000000000fffffffecb45afd30a637967995394cc88c0c194") {
+      //         txFound += 2
+      //         swap(memPoolTx, targetContracts["Target6 Arb"], dataLine)
+      //       }
+      //     }
+      //   }
+      // }
       if (memPoolTx != null && memPoolTx.to! in targetContracts && targetContracts[memPoolTx.to!].active) {
         const target = targetContracts[memPoolTx.to!]
         txFound++
@@ -66,9 +66,8 @@ async function mevBot() {
 async function type1(memPoolTx: TransactionResponse, target: targetContractItem) {
   try {
     const signerIdx = target.signers[memPoolTx.from]
-    if (signerIdx == undefined) {
-      throw new Error("Unknown From Address")
-    }
+    if (signerIdx == undefined) throw new Error("Unknown From Address")
+
     const mevBotSigner = ethers.provider.getSigner(signerIdx)
     const mevBotTx = await mevBotSigner.sendTransaction({
       to: target.copyContractAddr,
@@ -123,7 +122,7 @@ async function target2(memPoolTx: TransactionResponse, target: targetContractIte
 async function target3(memPoolTx: TransactionResponse, target: targetContractItem) {
   try {
     const signerIdx = target.signers[memPoolTx.from]
-    if (signerIdx == undefined) throw new Error("Unknown target.signers[memPoolTx.from]")
+    if (signerIdx == undefined) throw new Error(`Unknown target.signers[${memPoolTx.from}]`)
 
     const functionHash = utils.hexDataSlice(memPoolTx.data, 0, 4)
     if (functionHash != "0xa2abe54e") throw new Error("FunctionHash was not 0xa2abe54e")

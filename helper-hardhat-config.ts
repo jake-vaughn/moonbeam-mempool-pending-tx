@@ -129,7 +129,7 @@ export const networkConfig: networkConfigInfo = {
       },
       "0xB96dE8B07764969C7AF521cA546112ea1e191580": {
         name: "Target(3)🔳",
-        type: 3,
+        type: 1,
         copyContractAddr: "0xFC663060e6d9D8547c32e9F101B69FEbcC66398B",
         signers: {
           // 50 addresses
