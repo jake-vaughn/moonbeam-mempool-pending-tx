@@ -16,6 +16,7 @@ export interface networkConfigItem {
   name?: string
   blockConfirmations?: number
   targetContracts: targetContractInfo
+  targetArbs: targetContractInfo
 }
 
 export interface targetContractItem {
@@ -29,8 +30,6 @@ export interface targetContractItem {
   copyContractAddr: string
   // Signers root (Signers should not overlap)
   signers: addressMatchInfo
-  // Enable Disable Target
-  active: boolean
 }
 
 export const networkConfig: networkConfigInfo = {
@@ -38,6 +37,7 @@ export const networkConfig: networkConfigInfo = {
     name: "hardhat",
     blockConfirmations: 1,
     targetContracts: {},
+    targetArbs: {},
   },
   1284: {
     name: "moonbeam",
@@ -52,7 +52,6 @@ export const networkConfig: networkConfigInfo = {
       //     "0xBa5aCE2Bf8a96bCcC8Bf58b9Fb8b89a16AA86f58": 8,
       //     "0xd3870F9A418f11Bab18D3A5d89BC1Ae8eBee0551": 9,
       //   },
-      //   active: false,
       // },
       // "0x2372AA79d0f35310E3Cd3525ecff352922bdAf7C": {
       //   name: "Target(2)",
@@ -62,14 +61,12 @@ export const networkConfig: networkConfigInfo = {
       //     // 1 address for Second Target
       //     "0xE4ef74629a9da7DFd2a940c4BFBA56D3B8110769": 10,
       //   },
-      //   active: false,
       // },
       "0xB96dE8B07764969C7AF521cA546112ea1e191580": {
         name: "Target(3)🔳",
         type: 1,
         copyContractAddr: "0xFC663060e6d9D8547c32e9F101B69FEbcC66398B",
         signers: target3Sigs,
-        active: true,
       },
       // "0xAb9C7a8654b9224E3A741Dc3A4991F2d1b82307A": {
       //   name: "Target(4)",
@@ -87,35 +84,32 @@ export const networkConfig: networkConfigInfo = {
       //     // "0x6df2eA5Ecc8d604A554FcF092A9F939cd8b7F09E": 68,
       //     // "0x6df2eA5Ecc8d604A554FcF092A9F939cd8b7F09E": 69,
       //   },
-      //   active: false,
       // },
       "0x2b731E8e2C72cC14628346EB1Bc11ebF1A4ef2e6": {
         name: "Target(5)💓",
         type: 1,
         copyContractAddr: "0xfda140A05F78DBFB3381C9E878cCdb66043B65BC",
         signers: backBurnerSigs,
-        active: true,
       },
       "0x8B6784b18d534b98d738719F05B0a8a54bB4C098": {
         name: "Target(6)⏪",
         type: 1,
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
         signers: backBurnerSigs,
-        active: true,
       },
       "0x08a025B3AF7f175E95Fa304218aCDDB87f150F20": {
         name: "Target(7)🔄",
         type: 1,
         copyContractAddr: "0x050e3BAa8fd3747db1Ea89f778c54cDeC82D499F",
         signers: backBurnerSigs,
-        active: true,
       },
+    },
+    targetArbs: {
       "0x7ff36ab5": {
-        name: "Arbing(6)🍞",
-        type: 6,
+        name: "SwapExactETHForTokens🍞",
+        type: 1,
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
         signers: backBurnerSigs,
-        active: true,
       },
     },
   },
