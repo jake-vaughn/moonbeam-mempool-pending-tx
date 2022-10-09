@@ -18,7 +18,7 @@ export async function logHumanReadable(info: any) {
 
       await loggerHumanReadable.error(`${md.name}:`, {
         status: `${memSuccess}`,
-        logId: `${md.txReported}/${md.txFound}`,
+        logId: `${md.txReported}`,
         memHash: memReceipt.transactionHash,
         errMsg: getErrorMessage(md.error),
       })
@@ -49,7 +49,7 @@ export async function logHumanReadable(info: any) {
     await loggerHumanReadable.debug(`${md.name}:`, {
       status: `${memSuccess} ${mevSuccess}`,
       blockPosition: blockPosition,
-      logId: `${md.txReported}/${md.txFound}`,
+      logId: `${md.txReported}`,
       memHash: memReceipt.transactionHash,
       mevHash: mevReceipt.transactionHash,
     })

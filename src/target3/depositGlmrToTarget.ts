@@ -10,13 +10,13 @@ const targetContracts = networkConfig[chainId].targetContracts
 const target = targetContracts["0xB96dE8B07764969C7AF521cA546112ea1e191580"]
 
 const COPY_CONTRACT_ADDRESS = target.copyContractAddr
-const AMOUNT_TO_SEND = ethers.utils.parseEther("999.95")
 
 async function depositGlmrToTarget() {
   const { deployer } = await getNamedAccounts()
   const deploySig = ethers.provider.getSigner(deployer)
+  const AMOUNT_TO_SEND = ethers.utils.parseEther("2189")
 
-  // await wrapGlmr(AMOUNT_TO_SEND, deploySig, hre)
+  await wrapGlmr(AMOUNT_TO_SEND, deploySig, hre)
   await transferWglmr(COPY_CONTRACT_ADDRESS, AMOUNT_TO_SEND, deploySig, hre)
   console.log("Glmr Transferred")
 }
