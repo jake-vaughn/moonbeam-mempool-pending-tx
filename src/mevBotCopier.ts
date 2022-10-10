@@ -1,4 +1,5 @@
 import { TransactionResponse } from "@ethersproject/providers"
+import { BigNumber } from "ethers"
 import hre from "hardhat"
 
 import { wssUrl } from "../hardhat.config"
@@ -37,7 +38,9 @@ async function mevBotCopier() {
           data: memPoolTx.data,
           nonce: await mevBotSigner.getTransactionCount(),
           maxFeePerGas: memPoolTx.maxFeePerGas,
-          maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+          maxPriorityFeePerGas: memPoolTx.maxFeePerGas
+            ? memPoolTx.maxPriorityFeePerGas?.add(BigNumber.from(1))
+            : undefined,
           gasPrice: memPoolTx.maxFeePerGas ? undefined : memPoolTx.gasPrice,
         })
         await tempLog(target, memPoolTx, mevBotTx)
