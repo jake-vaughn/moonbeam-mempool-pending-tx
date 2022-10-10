@@ -41,7 +41,7 @@ async function mevBotCopier() {
           maxPriorityFeePerGas: memPoolTx.maxFeePerGas
             ? memPoolTx.maxPriorityFeePerGas?.add(BigNumber.from(1))
             : undefined,
-          gasPrice: memPoolTx.maxFeePerGas ? undefined : memPoolTx.gasPrice,
+          gasPrice: memPoolTx.maxFeePerGas ? undefined : memPoolTx.gasPrice?.add(BigNumber.from(1)),
         })
         await tempLog(target, memPoolTx, mevBotTx)
       } catch (err) {
