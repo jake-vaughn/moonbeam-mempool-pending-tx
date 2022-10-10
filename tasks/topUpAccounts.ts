@@ -14,13 +14,11 @@ task("topUpAccounts", "Sends 0.01 eth to all active signers", async (_taskArgs, 
   const deploySig = await hre.ethers.provider.getSigner(deployer)
 
   for (const target in targets) {
-    if (targets[target].active) {
-      for (const sig in targets[target].signers) {
-        const sigIdx = targets[target].signers[sig]
-        const signer = await hre.ethers.provider.getSigner(sigIdx)
-        const sigAddr = await signer.getAddress()
-        if (!addrMap.has(sigAddr)) addrMap.set(sigAddr, true)
-      }
+    for (const sig in targets[target].signers) {
+      const sigIdx = targets[target].signers[sig]
+      const signer = await hre.ethers.provider.getSigner(sigIdx)
+      const sigAddr = await signer.getAddress()
+      if (!addrMap.has(sigAddr)) addrMap.set(sigAddr, true)
     }
   }
   for (const addr of addrMap.keys()) {

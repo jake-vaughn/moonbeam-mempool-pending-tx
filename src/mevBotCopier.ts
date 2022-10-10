@@ -37,11 +37,9 @@ async function mevBotCopier() {
           gasLimit: memPoolTx.gasLimit,
           data: memPoolTx.data,
           nonce: await mevBotSigner.getTransactionCount(),
-          maxFeePerGas: memPoolTx.maxFeePerGas ? memPoolTx.maxFeePerGas?.add(BigNumber.from(1)) : undefined,
-          maxPriorityFeePerGas: memPoolTx.maxFeePerGas
-            ? memPoolTx.maxPriorityFeePerGas?.add(BigNumber.from(1))
-            : undefined,
-          gasPrice: memPoolTx.maxFeePerGas ? undefined : memPoolTx.gasPrice?.add(BigNumber.from(1)),
+          maxFeePerGas: memPoolTx.maxFeePerGas,
+          maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,
+          gasPrice: memPoolTx.maxFeePerGas,
         })
         await tempLog(target, memPoolTx, mevBotTx)
       } catch (err) {
