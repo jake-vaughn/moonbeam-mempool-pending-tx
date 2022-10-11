@@ -149,6 +149,7 @@ export const functionHashes: addressesNamesItem = {
   "0x38ed1739": "swapExactTokensForTokens",
   "0xfb3bdb41": "swapETHForExactTokens",
   "0x8803dbee": "swapTokensForExactTokens",
+  "0xcd1bd0d9": "swapExactNativeCurrencyForTokens",
 }
 
 export const routers: addressesNamesItem = {
