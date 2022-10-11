@@ -1,8 +1,11 @@
-import chalk from "chalk"
+import { TransactionResponse } from "@ethersproject/providers"
 import path from "path"
 import winston from "winston"
 
+import { targetContractItem } from "../../helper-hardhat-config"
+
 const { format, transports } = winston
+let txReported: number = 0
 
 const logFormat = format.printf(
   info =>
@@ -35,38 +38,38 @@ export const logger = winston.createLogger({
   exitOnError: false,
 })
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Human Readable
-const logFormatHumanReadable = format.printf(
-  info =>
-    `${info.timestamp} ` +
-    `${info.message}` +
-    (info.metadata.status ? ` ${info.metadata.status}` : "") +
-    (info.metadata.blockPosition ? ` ${info.metadata.blockPosition}` : "") +
-    (info.metadata.logId ? ` ${info.metadata.logId}` : "") +
-    (info.metadata.errMsg ? ` ${info.metadata.errMsg}` : "") +
-    (info.metadata.memHash ? ` https://moonscan.io/tx/` + info.metadata.memHash : "") +
-    (info.metadata.mevHash ? ` https://moonscan.io/tx/` + info.metadata.mevHash : ""),
-)
+export async function tempLog(
+  target: targetContractItem,
+  memPoolTx: TransactionResponse,
+  mevBotTx: TransactionResponse,
+  blockFound: number,
+) {
+  txReported++
+  logger.debug(`${txReported}`, {
+    memPoolTx: memPoolTx,
+    mevBotTx: mevBotTx,
+    blockFound: blockFound,
+    txReported: txReported,
+    name: target.name,
+    type: target.type,
+    signer: target.signers[memPoolTx.from],
+  })
+}
 
-export const logHumanReadableTransportFile = new transports.File({
-  filename: "logs/mevBotReceipts.log",
-  format: format.combine(logFormatHumanReadable),
-})
-
-export const target3Transport = new transports.File({
-  filename: "logs/target3Receipts.log",
-  format: format.combine(logFormatHumanReadable),
-})
-
-export const loggerHumanReadable = winston.createLogger({
-  level: process.env.NODE_ENV === "production" ? "info" : "debug",
-  format: format.combine(
-    format.label({ label: path.basename("../mevBot", ".ts") }),
-    format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-    // Format the metadata object
-    format.metadata({ fillExcept: ["message", "level", "timestamp", "label"] }),
-  ),
-  transports: [logHumanReadableTransportFile],
-  exitOnError: false,
-})
+export async function tempErrorLog(
+  err: unknown,
+  target: targetContractItem,
+  memPoolTx: TransactionResponse,
+  blockFound: number,
+) {
+  txReported++
+  logger.error(`error ${txReported}`, {
+    memPoolTx: memPoolTx,
+    blockFound: blockFound,
+    txReported: txReported,
+    name: target.name,
+    type: target.type,
+    signer: target.signers[memPoolTx.from],
+    error: err,
+  })
+}

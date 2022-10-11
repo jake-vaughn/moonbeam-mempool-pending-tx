@@ -1,19 +1,50 @@
 import { TransactionReceipt, TransactionResponse } from "@ethersproject/providers"
-import hre from "hardhat"
+import { HardhatRuntimeEnvironment } from "hardhat/types"
+import path from "path"
+import winston from "winston"
 
 import { getErrorMessage } from "./utils/getErrorMessage"
-// import { networkConfig, targetContractItem } from "../../helper-hardhat-config"
-import { loggerHumanReadable } from "./utils/logger"
 
-const ethers = hre.ethers
+const { format, transports } = winston
 
-export async function logHumanReadable(info: any) {
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Human Readable
+const logFormatHumanReadable = format.printf(
+  info =>
+    `${info.timestamp} ` +
+    `${info.message}` +
+    (info.metadata.status ? ` ${info.metadata.status}` : "") +
+    (info.metadata.blockPosition ? ` ${info.metadata.blockPosition}` : "") +
+    (info.metadata.logId ? ` ${info.metadata.logId}` : "") +
+    (info.metadata.errMsg ? ` ${info.metadata.errMsg}` : "") +
+    (info.metadata.memHash ? ` https://moonscan.io/tx/` + info.metadata.memHash : "") +
+    (info.metadata.mevHash ? ` https://moonscan.io/tx/` + info.metadata.mevHash : ""),
+)
+
+export const logHumanReadableTransportFile = new transports.File({
+  filename: "logs/mevBotReceipts.log",
+  format: format.combine(logFormatHumanReadable),
+})
+
+export const loggerHumanReadable = winston.createLogger({
+  level: process.env.NODE_ENV === "production" ? "info" : "debug",
+  format: format.combine(
+    format.label({ label: path.basename("../mevBot", ".ts") }),
+    format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+    // Format the metadata object
+    format.metadata({ fillExcept: ["message", "level", "timestamp", "label"] }),
+  ),
+  transports: [logHumanReadableTransportFile],
+  exitOnError: false,
+})
+
+export async function logHumanReadable(info: any, hre: HardhatRuntimeEnvironment) {
   try {
     // console.log(info.message, md)
     const md = info.metadata
 
     if ("error" in md) {
-      const receipt1 = await receiptWaitHandler(md.memPoolTx, md.blockFound)
+      const receipt1 = await receiptWaitHandler(md.memPoolTx, md.blockFound, hre)
       const [memReceipt, memSuccess] = receipt1
 
       await loggerHumanReadable.error(`${md.name}:`, {
@@ -26,8 +57,8 @@ export async function logHumanReadable(info: any) {
     }
     await delay(72000)
     const [receipt1, receipt2] = await Promise.all([
-      receiptWaitHandler(md.memPoolTx, md.blockFound),
-      receiptWaitHandler(md.mevBotTx, md.blockFound),
+      receiptWaitHandler(md.memPoolTx, md.blockFound, hre),
+      receiptWaitHandler(md.mevBotTx, md.blockFound, hre),
     ])
     const [memReceipt, memSuccess] = receipt1
     const [mevReceipt, mevSuccess] = receipt2
@@ -62,8 +93,10 @@ export async function logHumanReadable(info: any) {
 async function receiptWaitHandler(
   response: TransactionResponse,
   startBlock: number,
+  hre: HardhatRuntimeEnvironment,
 ): Promise<[TransactionReceipt, string]> {
   try {
+    const { ethers } = hre
     let replacement = undefined
     replacement = {
       data: response.data,
@@ -100,6 +133,7 @@ async function receiptWaitHandler(
 function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
+
 // function receiptLogParse(logs: Log[]): [string, string] {
 //   let wadSent = "0"
 //   if (logs.length == 0) {

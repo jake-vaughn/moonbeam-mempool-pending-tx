@@ -9,6 +9,7 @@ import "./tasks/accounts"
 import "./tasks/addressMapping"
 import "./tasks/sendEth"
 import "./tasks/topUpAccounts"
+import "./tasks/transferErc20"
 import "./tasks/unwrapWglmr"
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env"
