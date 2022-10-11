@@ -75,21 +75,24 @@ async function arbSwapExactETHForTokens(target: targetContractItem, memPoolTx: T
     var hexNum = hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
     var n = BigNumber.from(hexNum).toNumber()
     i++
-    for (i = 0; i <= n; i++) {
+    for (i; i <= n + 4; i++) {
       path.push(hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4))
     }
 
+    console.log(memPoolTx.hash)
     console.log(formatEther(memPoolTx.value))
     console.log(amountOutMin)
     console.log(na1)
     console.log(to)
-    console.log(deadline)
-    console.log(hexNum)
-    console.log(path)
+    // console.log(BigNumber.from(deadline).toString())
+    console.log(n)
+    // console.log(path)
     for (const addr of path) {
       console.log(tokenAddresses[addr])
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 async function tarbSwapExactETHForTokens(target: targetContractItem, memPoolTx: TransactionResponse) {
