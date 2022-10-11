@@ -31,18 +31,8 @@ export async function topUpEth(
 
   console.log(`Total cost will be ${formatEther(totalSendAmount)}`)
 
-  if (totalSendAmount.isZero()) {
-    console.log("nothing sent all accounts are topped up")
-    return
-  }
-
-  const ok = await yesno({
-    question: "Do you want to initiate multisend?",
-  })
-
-  if (!ok) {
-    return
-  }
+  const ok = await yesno({ question: "Do you want to initiate multisend?" })
+  if (!ok) return
 
   const tx = await bulkSend.bulkSendEth(addrList, amountList, {
     value: totalSendAmount,

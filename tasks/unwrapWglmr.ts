@@ -13,20 +13,15 @@ task(
   async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
     const { deployer } = await hre.getNamedAccounts()
     const deploySig = await hre.ethers.provider.getSigner(deployer)
-    const unwrapAmount = parseEther("633.201879740654698125")
+    const unwrapSpecificAmount = parseEther("633.201879740654698125")
 
-    const wglmrBalance = formatEther(await getWglmrBalance(deploySig, hre))
-    console.log(`Balance of ${await deploySig.getAddress()} is ${wglmrBalance} Wglmr`)
+    const wglmrBalance = await getWglmrBalance(deploySig, hre)
+    console.log(`Balance of deployer is ${formatEther(wglmrBalance)} Wglmr`)
 
-    const ok = await yesno({
-      question: `Do you want to unwrap ${formatEther(unwrapAmount)} Wglmr?`,
-    })
+    const ok = await yesno({ question: `Do you want to unwrap ${formatEther(wglmrBalance)} Wglmr?` })
+    if (!ok) return
 
-    if (!ok) {
-      return
-    }
-
-    const txReceipt = await unwrapWglmr(unwrapAmount, deploySig, hre)
+    const txReceipt = await unwrapWglmr(wglmrBalance, deploySig, hre)
     if (txReceipt != undefined) console.log(`Success ${txReceipt.transactionHash}`)
   },
 )

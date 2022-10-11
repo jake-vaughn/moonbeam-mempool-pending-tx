@@ -21,9 +21,9 @@ async function mevBotCopier() {
     WssProvider: wssProvider.connection.url,
   })
 
-  mevBotTransportFile.on("logged", async function (info) {
-    await logHumanReadable(info)
-  })
+  // mevBotTransportFile.on("logged", async function (info) {
+  //   await logHumanReadable(info)
+  // })
 
   wssProvider.on("pending", txHash => {
     // console.log(txHash)

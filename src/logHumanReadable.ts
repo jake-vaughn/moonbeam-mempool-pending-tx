@@ -74,7 +74,7 @@ async function receiptWaitHandler(
       startBlock,
     }
 
-    const receipt = await ethers.provider._waitForTransaction(response.hash, 6, 3000000, replacement)
+    const receipt = await ethers.provider._waitForTransaction(response.hash, 6, 600000, replacement)
     if (receipt.logs.length == 0) {
       return [receipt, "🔴"]
     }

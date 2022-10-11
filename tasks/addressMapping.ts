@@ -13,16 +13,14 @@ task(
     const deploySig = await hre.ethers.provider.getSigner(deployer)
 
     for (const target in targets) {
-      if (targets[target].active) {
-        for (const sig in targets[target].signers) {
-          const sigIdx = targets[target].signers[sig]
-          const signer = await hre.ethers.provider.getSigner(sigIdx)
-          const sigAddr = await signer.getAddress()
+      for (const sig in targets[target].signers) {
+        const sigIdx = targets[target].signers[sig]
+        const signer = await hre.ethers.provider.getSigner(sigIdx)
+        const sigAddr = await signer.getAddress()
 
-          console.log(`https://moonscan.io/address/${sig}`, sigIdx, `https://moonscan.io/address/${sigAddr}`)
+        console.log(`https://moonscan.io/address/${sig}`, sigIdx, `https://moonscan.io/address/${sigAddr}`)
 
-          //   console.log(addr, await formatEther(await hre.ethers.provider.getBalance(sigAddr)))
-        }
+        //   console.log(addr, await formatEther(await hre.ethers.provider.getBalance(sigAddr)))
       }
     }
   },
