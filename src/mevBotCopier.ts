@@ -1,6 +1,7 @@
 import { TransactionResponse } from "@ethersproject/providers"
 import { BigNumber } from "ethers"
 import hre from "hardhat"
+import yesno from "yesno"
 
 import { wssUrl } from "../hardhat.config"
 import { networkConfig, targetContractItem } from "../helper-hardhat-config"
@@ -12,7 +13,7 @@ const chainId = network.config.chainId!
 
 const wssProvider = new ethers.providers.WebSocketProvider(wssUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
-let txReported: number = 0
+let txReported = 0
 
 async function mevBotCopier() {
   console.log("debug", `Running: mevBotCopier `, {
@@ -21,9 +22,12 @@ async function mevBotCopier() {
     WssProvider: wssProvider.connection.url,
   })
 
-  // mevBotTransportFile.on("logged", async function (info) {
-  //   await logHumanReadable(info)
-  // })
+  const ok = await yesno({ question: `Enable Logging?` })
+  if (ok) {
+    mevBotTransportFile.on("logged", async function (info) {
+      await logHumanReadable(info)
+    })
+  }
 
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
