@@ -4,6 +4,7 @@ import yesno from "yesno"
 import { wssUrl } from "../hardhat.config"
 import { networkConfig, targetContractItem } from "../helper-hardhat-config"
 import { logHumanReadable } from "./logHumanReadable"
+import { mevBotReverse } from "./revEng/mevBotReverse"
 import { logger, mevBotTransportFile, tempErrorLog, tempLog } from "./utils/logger"
 
 const { ethers, network } = hre
@@ -12,7 +13,7 @@ const chainId = network.config.chainId!
 const wssProvider = new ethers.providers.WebSocketProvider(wssUrl!)
 const targetContracts = networkConfig[chainId].targetContracts
 
-async function mevBotCopier() {
+async function mevBot() {
   console.log("debug", `Running: mevBotCopier `, {
     Chain: networkConfig[chainId].name,
     RpcProvider: ethers.provider.connection.url,
@@ -25,8 +26,9 @@ async function mevBotCopier() {
       await logHumanReadable(info, hre)
     })
   }
-
   console.log(`Waiting for transactions...`)
+
+  mevBotReverse()
 
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
@@ -58,7 +60,7 @@ async function mevBotCopier() {
   })
 }
 
-mevBotCopier().catch(error => {
+mevBot().catch(error => {
   logger.error(error)
   // process.exitCode = 1
 })

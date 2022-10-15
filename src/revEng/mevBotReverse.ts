@@ -18,7 +18,7 @@ const wssProvider = new ethers.providers.WebSocketProvider(wssUrl!)
 const chainId = network.config.chainId!
 const targetArbs = networkConfig[chainId].targetArbs
 
-async function mevBotReverse() {
+export async function mevBotReverse() {
   const mevBotSigner = rpcProvider.getSigner(72)
   console.log(formatEther(await rpcProvider.getBalance(await mevBotSigner.getAddress())))
 
