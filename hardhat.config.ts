@@ -8,7 +8,7 @@ import { resolve } from "path"
 import "./tasks/accounts"
 import "./tasks/addressMapping"
 import "./tasks/sendEth"
-import "./tasks/topUpAccounts"
+import "./tasks/topUp"
 import "./tasks/transferErc20"
 import "./tasks/unwrapWglmr"
 

@@ -106,7 +106,13 @@ export const networkConfig: networkConfigInfo = {
     },
     targetArbs: {
       "0x7ff36ab5": {
-        name: "SwapExactETHForTokens🍞",
+        name: "arbSwapExactETHForTokens🍞",
+        type: 1,
+        copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
+        signers: backBurnerSigs,
+      },
+      "0x18cbafe5": {
+        name: "arbSwapExactTokensForETH",
         type: 1,
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
         signers: backBurnerSigs,

@@ -5,7 +5,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { networkConfig } from "../helper-hardhat-config"
 import { topUpEth } from "../src/utils/multisend"
 
-task("topUpAccounts", "Sends 0.01 eth to all active signers", async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
+task("topUp", "Sends 0.01 eth to all active signers", async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
   const targets = networkConfig[hre.network.config.chainId!].targetContracts
   const addressList: string[] = []
   const addrMap = new Map<string, boolean>()
