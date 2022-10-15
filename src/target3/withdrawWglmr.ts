@@ -10,7 +10,7 @@ import { unwrapWglmr } from "../utils/defi/wglmr"
 const { ethers, network, getNamedAccounts } = hre
 const chainId = network.config.chainId!
 const targetContracts = networkConfig[chainId].targetContracts
-const target = targetContracts["0xB96dE8B07764969C7AF521cA546112ea1e191580"]
+const target = targetContracts["0xb23Fbd367A95e498d97820e5ddBeb3B683E35649"]
 const CONTRACT_ADDRESS = target.copyContractAddr
 
 async function withdrawWglmr() {
@@ -21,7 +21,7 @@ async function withdrawWglmr() {
   const iWglmr: IERC20 = await ethers.getContractAt("IERC20", "0xAcc15dC74880C9944775448304B263D191c6077F")
 
   const wglmrBalance = await iWglmr.balanceOf(iTarget3.address)
-  const withdrawAmount = wglmrBalance.sub(BigNumber.from(parseEther("5000")))
+  const withdrawAmount = wglmrBalance.sub(BigNumber.from(parseEther("0")))
 
   // Withdraw
   console.log(`Balance of ${formatEther(wglmrBalance)} WGLMR`)

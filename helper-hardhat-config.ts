@@ -62,10 +62,10 @@ export const networkConfig: networkConfigInfo = {
       //     "0xE4ef74629a9da7DFd2a940c4BFBA56D3B8110769": 10,
       //   },
       // },
-      "0xB96dE8B07764969C7AF521cA546112ea1e191580": {
+      "0xb23Fbd367A95e498d97820e5ddBeb3B683E35649": {
         name: "Target(3)🔳",
         type: 1,
-        copyContractAddr: "0xFC663060e6d9D8547c32e9F101B69FEbcC66398B",
+        copyContractAddr: "0xe5b20f223377b43dB28D4856091013Bcc99d66e9",
         signers: target3Sigs,
       },
       // "0xAb9C7a8654b9224E3A741Dc3A4991F2d1b82307A": {

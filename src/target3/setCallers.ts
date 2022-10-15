@@ -5,7 +5,7 @@ import { networkConfig } from "../../helper-hardhat-config"
 const rpcProvider = ethers.provider
 const chainId = network.config.chainId!
 const targetContracts = networkConfig[chainId].targetContracts
-const target = targetContracts["0xB96dE8B07764969C7AF521cA546112ea1e191580"]
+const target = targetContracts["0xb23Fbd367A95e498d97820e5ddBeb3B683E35649"]
 const signers = target.signers
 
 async function setCallers() {
