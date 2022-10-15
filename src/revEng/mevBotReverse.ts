@@ -84,7 +84,7 @@ async function arbSwapExactETHForTokens(target: targetContractItem, memPoolTx: T
     console.log(amountOutMin)
     console.log(na1)
     console.log(to)
-    // console.log(BigNumber.from(deadline).toString())
+    console.log(BigNumber.from(deadline).toString())
     console.log(n)
     // console.log(path)
     for (const addr of path) {
