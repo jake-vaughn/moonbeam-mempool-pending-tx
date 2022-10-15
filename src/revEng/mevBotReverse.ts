@@ -28,12 +28,12 @@ export async function mevBotReverse() {
     WssProvider: wssProvider.connection.url,
   })
 
-  const ok = await yesno({ question: `Enable Logging?` })
-  if (ok) {
-    mevBotTransportFile.on("logged", async function (info) {
-      await logHumanReadable(info, hre)
-    })
-  }
+  // const ok = await yesno({ question: `Enable Logging?` })
+  // if (ok) {
+  //   mevBotTransportFile.on("logged", async function (info) {
+  //     await logHumanReadable(info, hre)
+  //   })
+  // }
 
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
