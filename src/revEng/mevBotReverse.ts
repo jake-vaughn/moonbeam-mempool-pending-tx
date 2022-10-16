@@ -50,6 +50,7 @@ export async function mevBotReverse() {
     })
   })
 }
+
 async function arbSwapExactETHForTokens(target: targetContractItem, memPoolTx: TransactionResponse) {
   try {
     const path: string[] = []
@@ -155,7 +156,7 @@ async function arbSwapExactTokensForETH(target: targetContractItem, memPoolTx: T
   }
 }
 
-mevBotReverse().catch(error => {
-  logger.error(error)
-  // process.exitCode = 1
-})
+// mevBotReverse().catch(error => {
+//   logger.error(error)
+//   // process.exitCode = 1
+// })

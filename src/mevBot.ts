@@ -20,13 +20,15 @@ async function mevBot() {
     WssProvider: wssProvider.connection.url,
   })
 
-  const ok = await yesno({ question: `Enable Logging?` })
-  if (ok) {
+  const okLogging = await yesno({ question: `Enable Logging?` })
+  if (okLogging) {
     mevBotTransportFile.on("logged", async function (info) {
       await logHumanReadable(info, hre)
     })
   }
-  mevBotReverse()
+  const okRev = await yesno({ question: `Attach mevBotReverse?` })
+  if (okRev) await mevBotReverse()
+
   console.log(`Waiting for transactions...`)
 
   wssProvider.on("pending", txHash => {
