@@ -19,6 +19,8 @@ const chainId = network.config.chainId!
 const targetArbs = networkConfig[chainId].targetArbs
 
 export async function mevBotReverse() {
+  console.log(`mevBotReverse Attatched`)
+
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
     wssProvider.getTransaction(txHash).then(async function (memPoolTx) {

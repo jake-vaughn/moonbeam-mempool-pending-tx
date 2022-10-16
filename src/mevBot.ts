@@ -14,7 +14,7 @@ const chainId = network.config.chainId!
 const targetContracts = networkConfig[chainId].targetContracts
 
 async function mevBot() {
-  console.log(`Running: mevBotCopier `, {
+  console.log(`Running: mevBot`, {
     Chain: networkConfig[chainId].name,
     RpcProvider: rpcProvider.connection.url,
     WssProvider: wssProvider.connection.url,
@@ -26,9 +26,8 @@ async function mevBot() {
       await logHumanReadable(info, hre)
     })
   }
-  console.log(`Waiting for transactions...`)
-
   mevBotReverse()
+  console.log(`Waiting for transactions...`)
 
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
