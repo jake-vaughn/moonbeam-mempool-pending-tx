@@ -19,22 +19,6 @@ const chainId = network.config.chainId!
 const targetArbs = networkConfig[chainId].targetArbs
 
 export async function mevBotReverse() {
-  const mevBotSigner = rpcProvider.getSigner(72)
-  console.log(formatEther(await rpcProvider.getBalance(await mevBotSigner.getAddress())))
-
-  console.log("debug", `Running: mevBot `, {
-    Chain: networkConfig[chainId].name,
-    RpcProvider: rpcProvider.connection.url,
-    WssProvider: wssProvider.connection.url,
-  })
-
-  // const ok = await yesno({ question: `Enable Logging?` })
-  // if (ok) {
-  //   mevBotTransportFile.on("logged", async function (info) {
-  //     await logHumanReadable(info, hre)
-  //   })
-  // }
-
   wssProvider.on("pending", txHash => {
     // console.log(txHash)
     wssProvider.getTransaction(txHash).then(async function (memPoolTx) {
