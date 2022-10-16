@@ -56,7 +56,7 @@ export async function logHumanReadable(info: any, hre: HardhatRuntimeEnvironment
       return
     }
 
-    await delay(100000 + md.txReported * 50)
+    await delay(100000 + md.txReported * 10)
     const [receipt1, receipt2] = await Promise.all([
       receiptWaitHandler(md.memPoolTx, md.blockFound, hre),
       receiptWaitHandler(md.mevBotTx, md.blockFound, hre),
