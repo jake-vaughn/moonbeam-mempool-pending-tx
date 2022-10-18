@@ -1,4 +1,5 @@
 import { TransactionReceipt, TransactionResponse } from "@ethersproject/providers"
+import { ethers } from "hardhat"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import path from "path"
 import winston from "winston"
@@ -125,6 +126,14 @@ async function receiptWaitHandler(
           return [receipt, "⛔"]
         }
         return [receipt, "🌎"]
+      }
+      if (getErrorMessage(error) == "timeout exceeded (timeout=600000, code=TIMEOUT, version=providers/5.7.0)") {
+        return [
+          await ethers.provider.getTransactionReceipt(
+            "0x78789539aba360cdd8ca2ceddc2ba799f1e05f557b96402323f7bacf006c56b3",
+          ),
+          "🕑",
+        ]
       }
     }
     throw error

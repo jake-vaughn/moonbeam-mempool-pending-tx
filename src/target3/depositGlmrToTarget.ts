@@ -14,7 +14,7 @@ const COPY_CONTRACT_ADDRESS = target.copyContractAddr
 async function depositGlmrToTarget() {
   const { deployer } = await getNamedAccounts()
   const deploySig = ethers.provider.getSigner(deployer)
-  const AMOUNT_TO_SEND = ethers.utils.parseEther("100")
+  const AMOUNT_TO_SEND = ethers.utils.parseEther("900")
 
   // await wrapGlmr(AMOUNT_TO_SEND, deploySig, hre)
   await transferWglmr(COPY_CONTRACT_ADDRESS, AMOUNT_TO_SEND, deploySig, hre)
