@@ -53,6 +53,8 @@ export async function mevBotReverse() {
 
 async function arbSwapExactETHForTokens(target: targetContractItem, memPoolTx: TransactionResponse) {
   try {
+    if (memPoolTx.value.lt("900000000000000000000")) return
+
     const path: string[] = []
     var i = 4
     // var amountOutMin = hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
@@ -105,10 +107,12 @@ async function arbSwapExactETHForTokens(target: targetContractItem, memPoolTx: T
 async function arbSwapExactTokensForETH(target: targetContractItem, memPoolTx: TransactionResponse) {
   try {
     const path: string[] = []
-    var i = 5
+    var i = 1
     // var amountIn = hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
     // i++
-    // var amountOutMin = hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
+    var amountOutMin = hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
+    if (BigNumber.from(amountOutMin).lt(BigNumber.from("900000000000000000000"))) return
+    i = 5
     // i++
     // var code = hexDataSlice(memPoolTx.data, i * 32 + 4, (i + 1) * 32 + 4)
     // i++
