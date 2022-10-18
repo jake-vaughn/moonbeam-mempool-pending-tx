@@ -1,3 +1,4 @@
+import { hexConcat, hexDataSlice } from "@ethersproject/bytes"
 import hre from "hardhat"
 import yesno from "yesno"
 
@@ -38,10 +39,12 @@ async function mevBot() {
         const target = targetContracts[memPoolTx.to!]
         const signerIdx = target.signers[memPoolTx.from]
         const mevBotSigner = rpcProvider.getSigner(signerIdx)
+        const data = hexDataSlice(memPoolTx.data, 4)
+
         const mevBotTx = await mevBotSigner.sendTransaction({
           to: target.copyContractAddr,
           gasLimit: memPoolTx.gasLimit,
-          data: memPoolTx.data,
+          data: hexConcat([target.mainFunc, data]),
           nonce: await mevBotSigner.getTransactionCount(),
           maxFeePerGas: memPoolTx.maxFeePerGas,
           maxPriorityFeePerGas: memPoolTx.maxPriorityFeePerGas,

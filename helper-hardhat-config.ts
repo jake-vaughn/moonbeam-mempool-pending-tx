@@ -29,7 +29,7 @@ export interface targetContractItem {
   // Address that is being copied
   copyContractAddr: string
   // Main signature function hash reversed for use
-  funcHash: string
+  mainFunc: string
   // Signers root (Signers should not overlap)
   signers: addressMatchInfo
 }
@@ -38,7 +38,15 @@ export const networkConfig: networkConfigInfo = {
   31337: {
     name: "hardhat",
     blockConfirmations: 1,
-    targetContracts: {},
+    targetContracts: {
+      "0xAdaaF4999349346935387797c5F79E07C43c12eD": {
+        name: "Target(3)🔳",
+        type: 1,
+        copyContractAddr: "0xCCD3c7C9b6CA00551BeEC7977522e0791f0012eB",
+        mainFunc: "",
+        signers: target3Sigs,
+      },
+    },
     targetArbs: {},
   },
   1284: {
@@ -49,7 +57,7 @@ export const networkConfig: networkConfigInfo = {
       //   name: "Target(1)",
       //   type: 1,
       //   copyContractAddr: "0xc8367169672C4289797a29Bf8Bc7854804EE39F6",
-      //   funcHash: "",
+      //   mainFunc: "",
       //   signers: {
       //     // 2 addresses for First Target
       //     "0xBa5aCE2Bf8a96bCcC8Bf58b9Fb8b89a16AA86f58": 8,
@@ -60,7 +68,7 @@ export const networkConfig: networkConfigInfo = {
       //   name: "Target(2)",
       //   type: 1,
       //   copyContractAddr: "0x726714e8457aCbD729805223616Ec5A6D8C7193A",
-      //   funcHash: "",
+      //   mainFunc: "",
       //   signers: {
       //     // 1 address for Second Target
       //     "0xE4ef74629a9da7DFd2a940c4BFBA56D3B8110769": 10,
@@ -69,15 +77,15 @@ export const networkConfig: networkConfigInfo = {
       "0xAdaaF4999349346935387797c5F79E07C43c12eD": {
         name: "Target(3)🔳",
         type: 1,
-        copyContractAddr: "0xc151bdff72fdAE614F4Afe2a49763C10abCEC08e",
-        funcHash: "",
+        copyContractAddr: "0xA4e4AA5328Bc1224cDFeF6dF994958531D3833B8",
+        mainFunc: "0xb5dd43d9",
         signers: target3Sigs,
       },
       // "0xAb9C7a8654b9224E3A741Dc3A4991F2d1b82307A": {
       //   name: "Target(4)",
       //   type: 1,
       //   copyContractAddr: "0x7Ff769F69CEE5A5FB13afb6E2195313Ce3884981",
-      //   funcHash: "",
+      //   mainFunc: "",
       //   signers: {
       //     // ? addresses
       //     "0x6df2eA5Ecc8d604A554FcF092A9F939cd8b7F09E": 61,
@@ -95,21 +103,21 @@ export const networkConfig: networkConfigInfo = {
         name: "Target(5)💓",
         type: 1,
         copyContractAddr: "0xfda140A05F78DBFB3381C9E878cCdb66043B65BC",
-        funcHash: "",
+        mainFunc: "0x68c9718a",
         signers: backBurnerSigs,
       },
       "0x8B6784b18d534b98d738719F05B0a8a54bB4C098": {
         name: "Target(6)⏪",
         type: 1,
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
-        funcHash: "",
+        mainFunc: "0x68c9718a",
         signers: backBurnerSigs,
       },
       "0x08a025B3AF7f175E95Fa304218aCDDB87f150F20": {
         name: "Target(7)🔄",
         type: 1,
         copyContractAddr: "0x050e3BAa8fd3747db1Ea89f778c54cDeC82D499F",
-        funcHash: "",
+        mainFunc: "0x68c9718a",
         signers: backBurnerSigs,
       },
     },
@@ -118,14 +126,14 @@ export const networkConfig: networkConfigInfo = {
         name: "ASEEFT(6)🍞",
         type: 1,
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
-        funcHash: "",
+        mainFunc: "0x68c9718a",
         signers: backBurnerSigs,
       },
       "0x18cbafe5": {
         name: "ASETFE(6)💩",
         type: 1,
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
-        funcHash: "",
+        mainFunc: "0x68c9718a",
         signers: backBurnerSigs,
       },
     },

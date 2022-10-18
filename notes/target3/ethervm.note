@@ -1,0 +1,284 @@
+contract Contract {
+    function main() {
+        memory[0x40:0x60] = 0x80;
+    
+        if (msg.data.length >= 0x04) {
+            var var0 = msg.data[0x00:0x20] >> 0xe0;
+        
+            if (0xa2abe54e > var0) {
+                if (var0 == 0x58df51ce) {
+                    // Dispatch table entry for 0x58df51ce (unknown)
+                    var var1 = msg.value;
+                
+                    if (var1) { revert(memory[0x00:0x00]); }
+                
+                    var1 = 0x00a0;
+                    var var2 = 0x009b;
+                    var var3 = msg.data.length;
+                    var var4 = 0x04;
+                
+                label_23AE:
+                    var var5 = 0x00;
+                    var var6 = var5;
+                
+                    if (var3 - var4 i< 0x40) { revert(memory[0x00:0x00]); }
+                
+                    var var7 = 0x00;
+                    var var8 = 0x23cd;
+                    var var9 = var3;
+                    var var10 = var4;
+                    var var11 = msg.data[var10:var10 + 0x20];
+                    var var12 = 0x2232;
+                    var var13 = var11;
+                    var var14 = 0x2f6f;
+                    var var15 = var13;
+                    var14 = func_2EFF(var15);
+                
+                    if (var13 != var14) { revert(memory[0x00:0x00]); }
+                
+                    // Error: Could not resolve jump destination!
+                } else if (var0 == 0x5c107515) {
+                    // Dispatch table entry for 0x5c107515 (unknown)
+                    var1 = msg.value;
+                
+                    if (var1) { revert(memory[0x00:0x00]); }
+                
+                    var1 = 0x00a0;
+                    var2 = 0x00bd;
+                    var3 = msg.data.length;
+                    var4 = 0x04;
+                    var5 = 0x00;
+                    var6 = var5;
+                    var7 = 0x00;
+                    var8 = var7;
+                    var9 = 0x00;
+                    var10 = var9;
+                    var11 = 0x00;
+                    var12 = var11;
+                    var13 = 0x00;
+                    var14 = var13;
+                    var15 = 0x00;
+                
+                    if (var3 - var4 i< 0x0140) { revert(memory[0x00:0x00]); }
+                
+                    var var16 = 0x00;
+                    var var17 = 0x24f8;
+                    var var18 = var3;
+                    var var19 = var4;
+                
+                label_236F:
+                    var var20 = msg.data[var19:var19 + 0x20];
+                    var var21 = 0x2232;
+                    var var22 = var20;
+                    func_2F8F(var22);
+                
+                label_2232:
+                    var17 = var20;
+                    // Error: Could not resolve jump destination!
+                } else if (var0 == 0x9e281a98) {
+                    // Dispatch table entry for withdrawToken(address,uint256)
+                    var1 = msg.value;
+                
+                    if (var1) { revert(memory[0x00:0x00]); }
+                
+                    var1 = 0x00a0;
+                    var2 = 0x00dd;
+                    var3 = msg.data.length;
+                    var4 = 0x04;
+                    goto label_23AE;
+                } else { revert(memory[0x00:0x00]); }
+            } else if (var0 == 0xa2abe54e) {
+                // Dispatch table entry for 0xa2abe54e (unknown)
+                var1 = msg.value;
+            
+                if (var1) { revert(memory[0x00:0x00]); }
+            
+                var1 = 0x0102;
+                var2 = 0x00fd;
+                var3 = msg.data.length;
+                var4 = 0x04;
+                var5 = 0x00;
+                var6 = var5;
+                var7 = 0x00;
+                var8 = var7;
+                var9 = 0x00;
+                var10 = var9;
+                var11 = 0x00;
+            
+                if (var3 - var4 i< 0xc0) { revert(memory[0x00:0x00]); }
+            
+                var12 = 0x00;
+                var13 = 0x2617;
+                var14 = var3;
+                var15 = var4;
+                goto label_236F;
+            } else if (var0 == 0xc0ce282a) {
+                // Dispatch table entry for 0xc0ce282a (unknown)
+                var1 = msg.value;
+            
+                if (var1) { revert(memory[0x00:0x00]); }
+            
+                var1 = 0x00a0;
+                var2 = 0x0133;
+                var3 = msg.data.length;
+                var4 = 0x04;
+                var5 = 0x00;
+            
+                if (var3 - var4 i< 0x20) { revert(memory[0x00:0x00]); }
+            
+                var6 = msg.data[var4:var4 + 0x20];
+            
+                if (var6 > 0xffffffffffffffff) { revert(memory[0x00:0x00]); }
+            
+                var7 = 0x2259;
+                var8 = var3;
+                var9 = var4 + var6;
+                var7 = func_2238(var8, var9);
+                var2 = var7;
+                // Error: Could not resolve jump destination!
+            } else if (var0 == 0xc311d049) {
+                // Dispatch table entry for withdrawEth(uint256)
+                var1 = msg.value;
+            
+                if (var1) { revert(memory[0x00:0x00]); }
+            
+                var1 = 0x00a0;
+                var2 = 0x0153;
+                var3 = msg.data.length;
+                var4 = 0x04;
+                var5 = 0x00;
+            
+                if (var3 - var4 i< 0x20) { revert(memory[0x00:0x00]); }
+            
+                var6 = 0x00;
+                var7 = 0x2259;
+                var8 = var3;
+                var9 = var4;
+                goto label_236F;
+            } else if (var0 == 0xf851a440) {
+                // Dispatch table entry for admin()
+                var1 = msg.value;
+            
+                if (var1) { revert(memory[0x00:0x00]); }
+            
+                var1 = 0x016d;
+                var2 = func_0578();
+                var temp0 = var2;
+                var2 = 0x010f;
+                var3 = temp0;
+                var4 = memory[0x40:0x60];
+                var5 = var4 + 0x20;
+                var6 = 0x2232;
+                var7 = var4;
+                var8 = var3;
+                func_26B8(var7, var8);
+                goto label_2232;
+            } else { revert(memory[0x00:0x00]); }
+        } else if (msg.data.length) { revert(memory[0x00:0x00]); }
+        else { stop(); }
+    }
+    
+    function func_0578() returns (var r0) { return storage[0x01] & 0xffffffffffffffffffffffffffffffffffffffff; }
+    
+    function func_2166(var arg0, var arg1, var arg2) returns (var r0) {
+        var var0 = 0x00;
+        var var1 = 0x2179;
+        var var2 = 0x2174;
+        var var3 = arg1;
+        var2 = func_2EC8(var3);
+        var1 = func_2174(var2);
+        var temp0 = var1;
+        var0 = temp0;
+        var temp1 = arg1;
+        memory[var0:var0 + 0x20] = temp1;
+        var1 = var0 + 0x20;
+        var2 = arg2;
+    
+        if (var2 + temp1 * 0x20 > arg0) { revert(memory[0x00:0x00]); }
+    
+        var3 = 0x00;
+    
+        if (var3 >= arg1) { return var0; }
+    
+        var var4 = var2;
+        var var5 = 0x21ae;
+        var var6 = arg0;
+        var var7 = var4;
+        var var8 = msg.data[var7:var7 + 0x20];
+        var var9 = 0x2232;
+        var var10 = var8;
+        var var11 = 0x2f6f;
+        var var12 = var10;
+        var11 = func_2EFF(var12);
+    
+        if (var10 != var11) { revert(memory[0x00:0x00]); }
+    
+        // Error: Could not resolve jump destination!
+    }
+    
+    function func_2174(var arg0) returns (var r0) {
+        var temp0 = memory[0x40:0x60];
+        var var0 = temp0;
+        var temp1 = var0 + arg0;
+        var var1 = temp1;
+    
+        if (!((var1 < var0) | (var1 > 0xffffffffffffffff))) {
+            memory[0x40:0x60] = var1;
+            return var0;
+        } else {
+            var var2 = 0x2ec0;
+            assert();
+        }
+    }
+    
+    function func_2238(var arg0, var arg1) returns (var r0) {
+        var var0 = 0x00;
+    
+        if (arg1 + 0x1f i>= arg0) { revert(memory[0x00:0x00]); }
+    
+        var temp0 = arg1;
+        var var1 = msg.data[temp0:temp0 + 0x20];
+        var var2 = 0x2259;
+        var var3 = arg0;
+        var var4 = var1;
+        var var5 = temp0 + 0x20;
+        return func_2166(var3, var4, var5);
+    }
+    
+    function func_26B8(var arg0, var arg1) {
+        var var0 = 0x26b2;
+        var var1 = arg1;
+        var0 = func_2EFF(var1);
+        memory[arg0:arg0 + 0x20] = var0;
+    }
+    
+    function func_2EC8(var arg0) returns (var r0) {
+        var var0 = 0x00;
+    
+        if (arg0 <= 0xffffffffffffffff) { return arg0 * 0x20 + 0x20; }
+    
+        var var1 = 0x2ee2;
+        assert();
+    }
+    
+    function func_2EFF(var arg0) returns (var r0) {
+        var var0 = 0x00;
+        var var1 = 0x2232;
+        var var2 = arg0;
+        return func_2F16(var2);
+    }
+    
+    function func_2F16(var arg0) returns (var r0) { return arg0 & 0xffffffffffffffffffffffffffffffffffffffff; }
+    
+    function func_2F2F(var arg0) returns (var r0) { return arg0; }
+    
+    function func_2F8F(var arg0) {
+        var var0 = 0x2f6f;
+        var var1 = arg0;
+        var0 = func_2F2F(var1);
+    
+        if (arg0 == var0) { return; }
+        else { revert(memory[0x00:0x00]); }
+    }
+}
+
