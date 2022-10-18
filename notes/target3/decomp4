@@ -1,0 +1,2053 @@
+# Palkeoramix decompiler. 
+
+def storage:
+  stor0 is mapping of uint8 at storage 0
+  adminAddress is addr at storage 1
+
+def admin(): # not payable
+  return adminAddress
+
+#
+#  Regular functions
+#
+
+def _fallback() payable: # default function
+  revert
+
+def withdrawEth(uint256 _amount): # not payable
+  require calldata.size - 4 >=ΓÇ▓ 32
+  require _amount == _amount
+  require caller == adminAddress
+  call caller with:
+     value _amount wei
+       gas 2300 * is_zero(value) wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+
+def withdrawToken(address _token, uint256 _amount): # not payable
+  require calldata.size - 4 >=ΓÇ▓ 64
+  require _token == _token
+  require _amount == _amount
+  require caller == adminAddress
+  require ext_code.size(_token)
+  call _token.transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args caller, _amount
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+
+def unknown58df51ce(uint256 _param1, uint256 _param2): # not payable
+  require calldata.size - 4 >=ΓÇ▓ 64
+  require _param1 == addr(_param1)
+  require _param2 == _param2
+  if 0xfc28795d257b7a8ab69009a09fa7ebcf6f3a9b3a == caller:
+      require ext_code.size(addr(_param1))
+      call addr(_param1).transfer(address to, uint256 tokens) with:
+           gas gas_remaining wei
+          args caller, _param2
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+
+def unknownc0ce282a(): # not payable
+  require calldata.size - 4 >=ΓÇ▓ 32
+  require cd <= 18446744073709551615
+  require cd <ΓÇ▓ calldata.size
+  require ('cd', 4).length <= 18446744073709551615
+  require (32 * ('cd', 4).length) + 128 >= 96 and (32 * ('cd', 4).length) + 128 <= 18446744073709551615
+  require cd * ('cd', 4).length) + 36 <= calldata.size
+  idx = 0
+  s = cd[4] + 36
+  t = 128
+  while idx < ('cd', 4).length:
+      require cd[s] == addr(cd[s])
+      mem[t] = cd[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  require caller == adminAddress
+  idx = 0
+  while idx < ('cd', 4).length:
+      require idx < ('cd', 4).length
+      if ext_code.size(mem[(32 * idx) + 128]):
+          revert with 0, 'e1'
+      mem[0] = mem[(32 * idx) + 140 len 20]
+      mem[32] = 0
+      stor0[mem[(32 * idx) + 140 len 20]] = 1
+      idx = idx + 1
+      continue 
+
+def unknowna2abe54e(): # not payable
+  require calldata.size - 4 >=ΓÇ▓ 192
+  require cd == cd[4]
+  require cd == cd[36]
+  require cd == bool(cd[68])
+  require cd == bool(cd[100])
+  require cd == uint8(cd)
+  require cd <= 18446744073709551615
+  require cd <ΓÇ▓ calldata.size
+  require ('cd', 164).length <= 18446744073709551615
+  require cd * ('cd', 164).length) + 36 <= calldata.size
+  mem[0] = caller
+  mem[32] = 0
+  require stor0[caller]
+  require ('cd', 164).length - 1 < ('cd', 164).length
+  require cd[((160 * ('cd', 164).length) + cd == addr(cd[((160 * ('cd', 164).length) + cd)
+  require addr(cd[((160 * ('cd', 164).length) + cd) == 0xacc15dc74880c9944775448304b263d191c6077f
+  require ('cd', 164).length <= 18446744073709551615
+  mem[96] = ('cd', 164).length
+  mem[64] = (32 * ('cd', 164).length) + 128
+  if not ('cd', 164).length:
+      idx = 0
+      s = 0xacc15dc74880c9944775448304b263d191c6077f
+      t = 10000
+      u = cd[4]
+      while idx < ('cd', 164).length:
+          require calldata.size + (-160 * idx) + -cd >=ΓÇ▓ 160
+          _631 = mem[64]
+          require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+          mem[64] = mem[64] + 160
+          require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+          mem[_631] = cd[((160 * idx) + cd[164] + 36)]
+          require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+          mem[_631 + 32] = cd[((160 * idx) + cd[164] + 68)]
+          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+          mem[_631 + 64] = cd[((160 * idx) + cd[164] + 100)]
+          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+          mem[_631 + 96] = cd[((160 * idx) + cd[164] + 132)]
+          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+          mem[_631 + 128] = cd[((160 * idx) + cd[164] + 164)]
+          if not uint16(cd[((160 * idx) + cd):
+              mem[mem[64] + 36] = addr(s)
+              mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+              mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+              mem[mem[64] + 132] = uint16(cd[((160 * idx) + cd)
+              mem[mem[64] + 164] = uint16(cd[((160 * idx) + cd)
+              require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+              delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0xb6952f25 with:
+                   gas gas_remaining wei
+                  args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), cd[((160 * idx) + cd << 240, uint16(cd[((160 * idx) + cd)
+              mem[mem[64] len 64] = delegate.return_data[0 len 64]
+              if not delegate.return_code:
+                  revert with ext_call.return_data[0 len return_data.size]
+              _789 = mem[64]
+              mem[64] = mem[64] + ceil32(return_data.size)
+              require return_data.size >=ΓÇ▓ 64
+              _814 = mem[_789]
+              require mem[_789] == mem[_789]
+              require mem[_789 + 32] == bool(mem[_789 + 32])
+              require idx < mem[96]
+              _1014 = mem[(32 * idx) + 128]
+              require idx < mem[96]
+              mem[mem[(32 * idx) + 128] + 32] = bool(mem[_789 + 32])
+              mem[_1014] = _814
+          else:
+              if 8 == uint16(cd[((160 * idx) + cd):
+                  mem[mem[64] + 36] = addr(cd[((160 * idx) + cd)
+                  mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                  mem[mem[64] + 100] = uint16(cd[((160 * idx) + cd)
+                  mem[mem[64] + 132] = uint16(cd[((160 * idx) + cd)
+                  require ext_code.size(0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b)
+                  delegate 0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b.0x659ad184 with:
+                       gas gas_remaining wei
+                      args u, addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), cd[((160 * idx) + cd << 240, uint16(cd[((160 * idx) + cd)
+                  mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                  if not delegate.return_code:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  _769 = mem[64]
+                  mem[64] = mem[64] + ceil32(return_data.size)
+                  require return_data.size >=ΓÇ▓ 64
+                  _776 = mem[_769]
+                  require mem[_769] == mem[_769]
+                  require mem[_769 + 32] == bool(mem[_769 + 32])
+                  require idx < mem[96]
+                  _942 = mem[(32 * idx) + 128]
+                  require idx < mem[96]
+                  mem[mem[(32 * idx) + 128] + 32] = bool(mem[_769 + 32])
+                  mem[_942] = _776
+              else:
+                  if 3 == uint16(cd[((160 * idx) + cd):
+                      mem[mem[64] + 36] = addr(s)
+                      mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                      mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                      mem[mem[64] + 132] = uint16(t)
+                      mem[mem[64] + 164] = uint16(cd[((160 * idx) + cd)
+                      require ext_code.size(0xa74576107d6e34c9999593024630fff0fa2ebb52)
+                      delegate 0xa74576107d6e34c9999593024630fff0fa2ebb52.0xd32f3834 with:
+                           gas gas_remaining wei
+                          args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), t << 240, uint16(cd[((160 * idx) + cd)
+                      mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                      if not delegate.return_code:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      _824 = mem[64]
+                      mem[64] = mem[64] + ceil32(return_data.size)
+                      require return_data.size >=ΓÇ▓ 64
+                      _851 = mem[_824]
+                      require mem[_824] == mem[_824]
+                      require mem[_824 + 32] == bool(mem[_824 + 32])
+                      require idx < mem[96]
+                      _1088 = mem[(32 * idx) + 128]
+                      require idx < mem[96]
+                      mem[mem[(32 * idx) + 128] + 32] = bool(mem[_824 + 32])
+                      mem[_1088] = _851
+                  else:
+                      if 7 == uint16(cd[((160 * idx) + cd):
+                          mem[mem[64] + 36] = addr(s)
+                          mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                          mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                          require ext_code.size(0xbbad4e38742c3974e34a7268d6cf55eabcb26757)
+                          delegate 0xbbad4e38742c3974e34a7268d6cf55eabcb26757.0xc4dc5ff7 with:
+                               gas gas_remaining wei
+                              args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd)
+                          mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                          if not delegate.return_code:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          _768 = mem[64]
+                          mem[64] = mem[64] + ceil32(return_data.size)
+                          require return_data.size >=ΓÇ▓ 64
+                          _775 = mem[_768]
+                          require mem[_768] == mem[_768]
+                          require mem[_768 + 32] == bool(mem[_768 + 32])
+                          require idx < mem[96]
+                          _940 = mem[(32 * idx) + 128]
+                          require idx < mem[96]
+                          mem[mem[(32 * idx) + 128] + 32] = bool(mem[_768 + 32])
+                          mem[_940] = _775
+                      else:
+                          if 11 == uint16(cd[((160 * idx) + cd):
+                              mem[mem[64] + 36] = addr(s)
+                              mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                              mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                              require ext_code.size(0xd3461a4033411cc37b7fa59511045dd633e74ae5)
+                              delegate 0xd3461a4033411cc37b7fa59511045dd633e74ae5.0xc4dc5ff7 with:
+                                   gas gas_remaining wei
+                                  args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd)
+                              mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                              if not delegate.return_code:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              _771 = mem[64]
+                              mem[64] = mem[64] + ceil32(return_data.size)
+                              require return_data.size >=ΓÇ▓ 64
+                              _783 = mem[_771]
+                              require mem[_771] == mem[_771]
+                              require mem[_771 + 32] == bool(mem[_771 + 32])
+                              require idx < mem[96]
+                              _955 = mem[(32 * idx) + 128]
+                              require idx < mem[96]
+                              mem[mem[(32 * idx) + 128] + 32] = bool(mem[_771 + 32])
+                              mem[_955] = _783
+                          else:
+                              if 13 == uint16(cd[((160 * idx) + cd):
+                                  mem[mem[64] + 36] = addr(s)
+                                  mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                                  mem[mem[64] + 100] = 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486
+                                  require ext_code.size(0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008)
+                                  delegate 0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008.0xc4dc5ff7 with:
+                                       gas gas_remaining wei
+                                      args u, addr(s), addr(cd[((160 * idx) + cd), 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486
+                                  mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                                  if not delegate.return_code:
+                                      revert with ext_call.return_data[0 len return_data.size]
+                                  _782 = mem[64]
+                                  mem[64] = mem[64] + ceil32(return_data.size)
+                                  require return_data.size >=ΓÇ▓ 64
+                                  _805 = mem[_782]
+                                  require mem[_782] == mem[_782]
+                                  require mem[_782 + 32] == bool(mem[_782 + 32])
+                                  require idx < mem[96]
+                                  _998 = mem[(32 * idx) + 128]
+                                  require idx < mem[96]
+                                  mem[mem[(32 * idx) + 128] + 32] = bool(mem[_782 + 32])
+                                  mem[_998] = _805
+                              else:
+                                  if 15 == uint16(cd[((160 * idx) + cd):
+                                      mem[mem[64] + 36] = addr(s)
+                                      mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                                      mem[mem[64] + 100] = uint16(cd[((160 * idx) + cd)
+                                      require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+                                      delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0xbc20ca19 with:
+                                           gas gas_remaining wei
+                                          args u, addr(s), addr(cd[((160 * idx) + cd), uint16(cd[((160 * idx) + cd)
+                                      mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                                      if not delegate.return_code:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      _770 = mem[64]
+                                      mem[64] = mem[64] + ceil32(return_data.size)
+                                      require return_data.size >=ΓÇ▓ 64
+                                      _781 = mem[_770]
+                                      require mem[_770] == mem[_770]
+                                      require mem[_770 + 32] == bool(mem[_770 + 32])
+                                      require idx < mem[96]
+                                      _953 = mem[(32 * idx) + 128]
+                                      require idx < mem[96]
+                                      mem[mem[(32 * idx) + 128] + 32] = bool(mem[_770 + 32])
+                                      mem[_953] = _781
+                                  else:
+                                      if 26 == uint16(cd[((160 * idx) + cd):
+                                          require idx < mem[96]
+                                          _720 = mem[(32 * idx) + 128]
+                                          require idx < mem[96]
+                                          mem[mem[(32 * idx) + 128] + 32] = 0
+                                          mem[_720] = u
+                                      else:
+                                          if 35 == uint16(cd[((160 * idx) + cd):
+                                              mem[mem[64] + 36] = addr(s)
+                                              mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                                              mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                                              mem[mem[64] + 132] = uint16(cd[((160 * idx) + cd)
+                                              require ext_code.size(0x31308c34eda89fa0a401b6e4edf878685aabfa1)
+                                              delegate 0x31308c34eda89fa0a401b6e4edf878685aabfa1.0xec4e02ae with:
+                                                   gas gas_remaining wei
+                                                  args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), uint16(cd[((160 * idx) + cd)
+                                              mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                                              if not delegate.return_code:
+                                                  revert with ext_call.return_data[0 len return_data.size]
+                                              _823 = mem[64]
+                                              mem[64] = mem[64] + ceil32(return_data.size)
+                                              require return_data.size >=ΓÇ▓ 64
+                                              _850 = mem[_823]
+                                              require mem[_823] == mem[_823]
+                                              require mem[_823 + 32] == bool(mem[_823 + 32])
+                                              require idx < mem[96]
+                                              _1086 = mem[(32 * idx) + 128]
+                                              require idx < mem[96]
+                                              mem[mem[(32 * idx) + 128] + 32] = bool(mem[_823 + 32])
+                                              mem[_1086] = _850
+                                          else:
+                                              if uint16(cd[((160 * idx) + cd) != 36:
+                                                  revert with 0, 'exchangeType not exist'
+                                              mem[mem[64] + 36] = u
+                                              mem[mem[64] + 68] = addr(s)
+                                              mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                                              mem[mem[64] + 132] = addr(cd[((160 * idx) + cd)
+                                              mem[mem[64] + 164] = uint16(cd[((160 * idx) + cd)
+                                              require ext_code.size(0x546e0bb2b0429c4177e06e17f1c676e7804019cd)
+                                              delegate 0x546e0bb2b0429c4177e06e17f1c676e7804019cd.0x661f6784 with:
+                                                   gas gas_remaining wei
+                                                  args 0xacc15dc74880c9944775448304b263d191c6077f, u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), uint16(cd[((160 * idx) + cd)
+                                              mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                                              if not delegate.return_code:
+                                                  revert with ext_call.return_data[0 len return_data.size]
+                                              _914 = mem[64]
+                                              mem[64] = mem[64] + ceil32(return_data.size)
+                                              require return_data.size >=ΓÇ▓ 64
+                                              _952 = mem[_914]
+                                              require mem[_914] == mem[_914]
+                                              require mem[_914 + 32] == bool(mem[_914 + 32])
+                                              require idx < mem[96]
+                                              _1174 = mem[(32 * idx) + 128]
+                                              require idx < mem[96]
+                                              mem[mem[(32 * idx) + 128] + 32] = bool(mem[_914 + 32])
+                                              mem[_1174] = _952
+          require idx < mem[96]
+          if not mem[mem[(32 * idx) + 128]]:
+              return 0
+          require idx < ('cd', 164).length
+          require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+          require idx < ('cd', 164).length
+          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+          idx = idx + 1
+          s = cd[((160 * idx) + cd[164] + 68)]
+          t = cd[((160 * idx) + cd[164] + 164)]
+          u = mem[mem[(32 * idx) + 128]]
+          continue 
+      require ('cd', 164).length - 1 < mem[96]
+      if mem[mem[(32 * ('cd', 164).length - 1) + 128]] <= cd[4] + cd[36]:
+          return 0
+      mem[mem[64] + 4] = this.address
+      require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+      static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args addr(this.address)
+      mem[mem[64]] = ext_call.return_data[0]
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      _640 = mem[64]
+      mem[64] = mem[64] + ceil32(return_data.size)
+      require return_data.size >=ΓÇ▓ 32
+      require mem[_640] == mem[_640]
+      require 0 < mem[96]
+      _647 = mem[mem[128]]
+      require 0 < ('cd', 164).length
+      require calldata.size + -cd >=ΓÇ▓ 160
+      _651 = mem[64]
+      require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+      mem[64] = mem[64] + 160
+      require ('cd', 164) == addr(('cd', 164))
+      mem[_651] = ('cd', 164)
+      require ('cd', 164) == addr(('cd', 164))
+      mem[_651 + 32] = ('cd', 164)
+      require ('cd', 164) == uint16(('cd', 164))
+      mem[_651 + 64] = ('cd', 164)
+      require ('cd', 164) == uint16(('cd', 164))
+      mem[_651 + 96] = ('cd', 164)
+      require ('cd', 164) == uint16(('cd', 164))
+      mem[_651 + 128] = ('cd', 164)
+      require 1 < mem[96]
+      if mem[mem[160] + 32]:
+          require 1 < ('cd', 164).length
+          require ('cd', 164) == addr(('cd', 164))
+          if not uint16(('cd', 164)):
+              mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+              mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+              require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+              delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0x1d1f04fb with:
+                   gas gas_remaining wei
+                  args 0xacc15dc74880c9944775448304b263d191c6077f, cd_647, addr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164)), bool(cduint16(('cd', 164))
+              if not delegate.return_code:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require 0 < mem[96]
+              require 0 < ('cd', 164).length
+              require ('cd', 164) == addr(('cd', 164))
+          else:
+              if 15 == uint16(('cd', 164)):
+                  mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+                  mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                  require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+                  delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0x1d1f04fb with:
+                       gas gas_remaining wei
+                      args 0xacc15dc74880c9944775448304b263d191c6077f, cd_647, addr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164)), bool(cduint16(('cd', 164))
+                  if not delegate.return_code:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require 0 < mem[96]
+                  require 0 < ('cd', 164).length
+                  require ('cd', 164) == addr(('cd', 164))
+              else:
+                  if 8 == uint16(('cd', 164)):
+                      mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+                      mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                      require ext_code.size(0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b)
+                      delegate 0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b.0x1d1f04fb with:
+                           gas gas_remaining wei
+                          args 0xacc15dc74880c9944775448304b263d191c6077f, cd_647, addr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164)), bool(cduint16(('cd', 164))
+                      if not delegate.return_code:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      require 0 < mem[96]
+                      require 0 < ('cd', 164).length
+                      require ('cd', 164) == addr(('cd', 164))
+                  else:
+                      if 3 == uint16(('cd', 164)):
+                          mem[mem[64]] = 0xfdcba57c00000000000000000000000000000000000000000000000000000000
+                          mem[mem[64] + 4] = cd[4]
+                          require ext_code.size(0xa74576107d6e34c9999593024630fff0fa2ebb52)
+                          delegate 0xa74576107d6e34c9999593024630fff0fa2ebb52.0xfdcba57c with:
+                               gas gas_remaining wei
+                              args cdaddr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164))
+                          if not delegate.return_code:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require 0 < mem[96]
+                          require 0 < ('cd', 164).length
+                          require ('cd', 164) == addr(('cd', 164))
+                          if 1 >= ('cd', 164).length - 1:
+                              require ('cd', 164).length - 1 < mem[96]
+                              require ('cd', 164).length - 1 < ('cd', 164).length
+                              require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                          else:
+                              require 1 < mem[96]
+                              require 1 < ('cd', 164).length
+                              require calldata.size + -cd >=ΓÇ▓ 160
+                      else:
+                          if 7 == uint16(('cd', 164)):
+                              mem[mem[64]] = 0x2f733d7f00000000000000000000000000000000000000000000000000000000
+                              mem[mem[64] + 4] = cd[4]
+                              require ext_code.size(0xbbad4e38742c3974e34a7268d6cf55eabcb26757)
+                              delegate 0xbbad4e38742c3974e34a7268d6cf55eabcb26757.0x2f733d7f with:
+                                   gas gas_remaining wei
+                                  args cd_647, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164))
+                              if not delegate.return_code:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require 0 < mem[96]
+                              require 0 < ('cd', 164).length
+                              require ('cd', 164) == addr(('cd', 164))
+                              if 1 >= ('cd', 164).length - 1:
+                                  require ('cd', 164).length - 1 < mem[96]
+                              else:
+                                  require 1 < mem[96]
+                          else:
+                              if 11 == uint16(('cd', 164)):
+                                  mem[mem[64]] = 0xfdcba57c00000000000000000000000000000000000000000000000000000000
+                                  mem[mem[64] + 4] = cd[4]
+                                  require ext_code.size(0xd3461a4033411cc37b7fa59511045dd633e74ae5)
+                                  delegate 0xd3461a4033411cc37b7fa59511045dd633e74ae5.0xfdcba57c with:
+                                       gas gas_remaining wei
+                                      args cdaddr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164))
+                                  if not delegate.return_code:
+                                      revert with ext_call.return_data[0 len return_data.size]
+                                  require 0 < mem[96]
+                                  require 0 < ('cd', 164).length
+                                  require ('cd', 164) == addr(('cd', 164))
+                                  if 1 >= ('cd', 164).length - 1:
+                                      require ('cd', 164).length - 1 < mem[96]
+                                      require ('cd', 164).length - 1 < ('cd', 164).length
+                                      require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                                  else:
+                                      require 1 < mem[96]
+                                      require 1 < ('cd', 164).length
+                                      require calldata.size + -cd >=ΓÇ▓ 160
+                              else:
+                                  if 13 == uint16(('cd', 164)):
+                                      mem[mem[64]] = 0xf53593700000000000000000000000000000000000000000000000000000000
+                                      mem[mem[64] + 4] = cd[4]
+                                      require ext_code.size(0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008)
+                                      delegate 0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008.0xf535937 with:
+                                           gas gas_remaining wei
+                                          args cdaddr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164)), 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486, 0xa128ba44b2738a558a1fdc06d6303d52d3cef8c1
+                                      if not delegate.return_code:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      require 0 < mem[96]
+                                      require 0 < ('cd', 164).length
+                                      ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                                  if uint16(('cd', 164)) != 26:
+                                      if 35 == uint16(('cd', 164)):
+                                          mem[mem[64]] = 0x1349181d00000000000000000000000000000000000000000000000000000000
+                                          mem[mem[64] + 4] = cd[4]
+                                          require ext_code.size(0x31308c34eda89fa0a401b6e4edf878685aabfa1)
+                                          delegate 0x31308c34eda89fa0a401b6e4edf878685aabfa1.0x1349181d with:
+                                               gas gas_remaining wei
+                                              args cd_647, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164)), uint16(('cd', 164))
+                                          if not delegate.return_code:
+                                              revert with ext_call.return_data[0 len return_data.size]
+                                          require 0 < mem[96]
+                                          require 0 < ('cd', 164).length
+                                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                                      if 36 == uint16(('cd', 164)):
+                                          mem[mem[64]] = 0xe4ef8e9900000000000000000000000000000000000000000000000000000000
+                                          mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                                          require ext_code.size(0x546e0bb2b0429c4177e06e17f1c676e7804019cd)
+                                          delegate 0x546e0bb2b0429c4177e06e17f1c676e7804019cd.0xe4ef8e99 with:
+                                               gas gas_remaining wei
+                                              args 0xacc15dc74880c9944775448304b263d191c6077f, cd_647, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 164)), addr(('cd', 164)), addr(('cd', 164)), uint16(('cd', 164))
+                                          if not delegate.return_code:
+                                              revert with ext_call.return_data[0 len return_data.size]
+                                      else:
+                                          require 0 < mem[96]
+                                          require 0 < ('cd', 164).length
+                                          require ('cd', 164) == addr(('cd', 164))
+                                          if 1 >= ('cd', 164).length - 1:
+                                              require ('cd', 164).length - 1 < mem[96]
+                                              require ('cd', 164).length - 1 < ('cd', 164).length
+                                              require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                                              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                              require cd[((160 * ('cd', 164).length) + cd == addr(cd[((160 * ('cd', 164).length) + cd)
+                                              require cd[((160 * ('cd', 164).length) + cd == addr(cd[((160 * ('cd', 164).length) + cd)
+                                              require cd[((160 * ('cd', 164).length) + cd == uint16(cd[((160 * ('cd', 164).length) + cd)
+                                          else:
+                                              require 1 < mem[96]
+                                              require 1 < ('cd', 164).length
+                                              require calldata.size + -cd >=ΓÇ▓ 160
+                                              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                              require ('cd', 164) == addr(('cd', 164))
+                                              require ('cd', 164) == addr(('cd', 164))
+                                              require ('cd', 164) == uint16(('cd', 164))
+                                  else:
+                                      mem[mem[64]] = 0xa851020d00000000000000000000000000000000000000000000000000000000
+                                      mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                                      require ext_code.size(0x27f930ef30fc63ff6ed1b634ecfdeb5def4081a5)
+                                      delegate 0x27f930ef30fc63ff6ed1b634ecfdeb5def4081a5.0xa851020d with:
+                                           gas gas_remaining wei
+                                          args 0xacc15dc74880c9944775448304b263d191c6077f, cdaddr(('cd', 164)), addr(('cd', 164))
+                                      if not delegate.return_code:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      require 0 < mem[96]
+                                      require 0 < ('cd', 164).length
+                                      require ('cd', 164) == addr(('cd', 164))
+                                      if 1 >= ('cd', 164).length - 1:
+                                          require ('cd', 164).length - 1 < mem[96]
+                                          require ('cd', 164).length - 1 < ('cd', 164).length
+                                          require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                                      else:
+                                          require 1 < mem[96]
+                                          require 1 < ('cd', 164).length
+                                          require calldata.size + -cd >=ΓÇ▓ 160
+      else:
+          if not uint16(('cd', 164)):
+              mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+              mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+              require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+              delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0x1d1f04fb with:
+                   gas gas_remaining wei
+                  args 0xacc15dc74880c9944775448304b263d191c6077f, cd_647, addr(('cd', 164)), addr(('cd', 164)), addr(this.address), bool(cduint16(('cd', 164))
+              if not delegate.return_code:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require 0 < mem[96]
+              require 0 < ('cd', 164).length
+              require ('cd', 164) == addr(('cd', 164))
+              if 1 >= ('cd', 164).length - 1:
+                  if ('cd', 164).length - 1 < mem[96]:
+                      if ('cd', 164).length - 1 < ('cd', 164).length:
+                          require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                          if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                              ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              else:
+                  if 1 < mem[96]:
+                      if 1 < ('cd', 164).length:
+                          require calldata.size + -cd >=ΓÇ▓ 160
+                          if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                              ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              revert
+          if 15 == uint16(('cd', 164)):
+              mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+              mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+              require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+              delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0x1d1f04fb with:
+                   gas gas_remaining wei
+                  args 0xacc15dc74880c9944775448304b263d191c6077f, cd_647, addr(('cd', 164)), addr(('cd', 164)), addr(this.address), bool(cduint16(('cd', 164))
+              if not delegate.return_code:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require 0 < mem[96]
+              require 0 < ('cd', 164).length
+              require ('cd', 164) == addr(('cd', 164))
+              if 1 >= ('cd', 164).length - 1:
+                  require ('cd', 164).length - 1 < mem[96]
+                  require ('cd', 164).length - 1 < ('cd', 164).length
+                  require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+              else:
+                  require 1 < mem[96]
+                  require 1 < ('cd', 164).length
+                  require calldata.size + -cd >=ΓÇ▓ 160
+          else:
+              if 8 == uint16(('cd', 164)):
+                  mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+                  mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                  require ext_code.size(0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b)
+                  delegate 0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b.0x1d1f04fb with:
+                       gas gas_remaining wei
+                      args 0xacc15dc74880c9944775448304b263d191c6077f, cd_647, addr(('cd', 164)), addr(('cd', 164)), addr(this.address), bool(cduint16(('cd', 164))
+                  if not delegate.return_code:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require 0 < mem[96]
+                  require 0 < ('cd', 164).length
+                  require ('cd', 164) == addr(('cd', 164))
+                  if 1 >= ('cd', 164).length - 1:
+                      require ('cd', 164).length - 1 < mem[96]
+                      require ('cd', 164).length - 1 < ('cd', 164).length
+                      require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                  else:
+                      require 1 < mem[96]
+                      require 1 < ('cd', 164).length
+                      require calldata.size + -cd >=ΓÇ▓ 160
+              else:
+                  if 3 == uint16(('cd', 164)):
+                      mem[mem[64]] = 0xfdcba57c00000000000000000000000000000000000000000000000000000000
+                      mem[mem[64] + 4] = cd[4]
+                      require ext_code.size(0xa74576107d6e34c9999593024630fff0fa2ebb52)
+                      delegate 0xa74576107d6e34c9999593024630fff0fa2ebb52.0xfdcba57c with:
+                           gas gas_remaining wei
+                          args cdaddr(('cd', 164)), addr(('cd', 164)), this.address
+                      if not delegate.return_code:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      require 0 < mem[96]
+                      require 0 < ('cd', 164).length
+                      require ('cd', 164) == addr(('cd', 164))
+                      if 1 >= ('cd', 164).length - 1:
+                          require ('cd', 164).length - 1 < mem[96]
+                          require ('cd', 164).length - 1 < ('cd', 164).length
+                          require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                          require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                          require cd[((160 * ('cd', 164).length) + cd == addr(cd[((160 * ('cd', 164).length) + cd)
+                      else:
+                          require 1 < mem[96]
+                          require 1 < ('cd', 164).length
+                          require calldata.size + -cd >=ΓÇ▓ 160
+                          require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                          require ('cd', 164) == addr(('cd', 164))
+                  else:
+                      if 7 == uint16(('cd', 164)):
+                          mem[mem[64]] = 0x2f733d7f00000000000000000000000000000000000000000000000000000000
+                          mem[mem[64] + 4] = cd[4]
+                          require ext_code.size(0xbbad4e38742c3974e34a7268d6cf55eabcb26757)
+                          delegate 0xbbad4e38742c3974e34a7268d6cf55eabcb26757.0x2f733d7f with:
+                               gas gas_remaining wei
+                              args cd_647, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 164)), addr(('cd', 164)), this.address
+                          if not delegate.return_code:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require 0 < mem[96]
+                          require 0 < ('cd', 164).length
+                          require ('cd', 164) == addr(('cd', 164))
+                          if 1 >= ('cd', 164).length - 1:
+                              if ('cd', 164).length - 1 < mem[96]:
+                                  if ('cd', 164).length - 1 < ('cd', 164).length:
+                                      require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                          else:
+                              if 1 < mem[96]:
+                                  if 1 < ('cd', 164).length:
+                                      require calldata.size + -cd >=ΓÇ▓ 160
+                                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                          revert
+                      if 11 == uint16(('cd', 164)):
+                          mem[mem[64]] = 0xfdcba57c00000000000000000000000000000000000000000000000000000000
+                          mem[mem[64] + 4] = cd[4]
+                          require ext_code.size(0xd3461a4033411cc37b7fa59511045dd633e74ae5)
+                          delegate 0xd3461a4033411cc37b7fa59511045dd633e74ae5.0xfdcba57c with:
+                               gas gas_remaining wei
+                              args cdaddr(('cd', 164)), addr(('cd', 164)), this.address
+                          if not delegate.return_code:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require 0 < mem[96]
+                          require 0 < ('cd', 164).length
+                          require ('cd', 164) == addr(('cd', 164))
+                          if 1 >= ('cd', 164).length - 1:
+                              require ('cd', 164).length - 1 < mem[96]
+                              require ('cd', 164).length - 1 < ('cd', 164).length
+                              require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                              require cd[((160 * ('cd', 164).length) + cd == addr(cd[((160 * ('cd', 164).length) + cd)
+                          else:
+                              require 1 < mem[96]
+                              require 1 < ('cd', 164).length
+                              require calldata.size + -cd >=ΓÇ▓ 160
+                              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                              require ('cd', 164) == addr(('cd', 164))
+                      else:
+                          if 13 == uint16(('cd', 164)):
+                              mem[mem[64]] = 0xf53593700000000000000000000000000000000000000000000000000000000
+                              mem[mem[64] + 4] = cd[4]
+                              require ext_code.size(0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008)
+                              delegate 0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008.0xf535937 with:
+                                   gas gas_remaining wei
+                                  args cdaddr(('cd', 164)), addr(('cd', 164)), addr(this.address), 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486, 0xa128ba44b2738a558a1fdc06d6303d52d3cef8c1
+                              if not delegate.return_code:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require 0 < mem[96]
+                              require 0 < ('cd', 164).length
+                              require ('cd', 164) == addr(('cd', 164))
+                          else:
+                              if 26 == uint16(('cd', 164)):
+                                  mem[mem[64]] = 0xa851020d00000000000000000000000000000000000000000000000000000000
+                                  mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                                  require ext_code.size(0x27f930ef30fc63ff6ed1b634ecfdeb5def4081a5)
+                                  delegate 0x27f930ef30fc63ff6ed1b634ecfdeb5def4081a5.0xa851020d with:
+                                       gas gas_remaining wei
+                                      args 0xacc15dc74880c9944775448304b263d191c6077f, cdaddr(('cd', 164)), this.address
+                                  if not delegate.return_code:
+                                      revert with ext_call.return_data[0 len return_data.size]
+                                  require 0 < mem[96]
+                                  require 0 < ('cd', 164).length
+                                  require ('cd', 164) == addr(('cd', 164))
+                                  if 1 >= ('cd', 164).length - 1:
+                                      require ('cd', 164).length - 1 < mem[96]
+                                      require ('cd', 164).length - 1 < ('cd', 164).length
+                                      require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                                      require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                      require cd[((160 * ('cd', 164).length) + cd == addr(cd[((160 * ('cd', 164).length) + cd)
+                                  else:
+                                      require 1 < mem[96]
+                                      require 1 < ('cd', 164).length
+                                      require calldata.size + -cd >=ΓÇ▓ 160
+                                      require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                      require ('cd', 164) == addr(('cd', 164))
+                              else:
+                                  if 35 == uint16(('cd', 164)):
+                                      mem[mem[64]] = 0x1349181d00000000000000000000000000000000000000000000000000000000
+                                      mem[mem[64] + 4] = cd[4]
+                                      require ext_code.size(0x31308c34eda89fa0a401b6e4edf878685aabfa1)
+                                      delegate 0x31308c34eda89fa0a401b6e4edf878685aabfa1.0x1349181d with:
+                                           gas gas_remaining wei
+                                          args cd_647, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 164)), addr(('cd', 164)), addr(this.address), uint16(('cd', 164))
+                                      if not delegate.return_code:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      require 0 < mem[96]
+                                      require 0 < ('cd', 164).length
+                                      require ('cd', 164) == addr(('cd', 164))
+                                      if 1 >= ('cd', 164).length - 1:
+                                          require ('cd', 164).length - 1 < mem[96]
+                                          require ('cd', 164).length - 1 < ('cd', 164).length
+                                          require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                                      else:
+                                          require 1 < mem[96]
+                                          require 1 < ('cd', 164).length
+                                          require calldata.size + -cd >=ΓÇ▓ 160
+                                  else:
+                                      if 36 == uint16(('cd', 164)):
+                                          mem[mem[64]] = 0xe4ef8e9900000000000000000000000000000000000000000000000000000000
+                                          mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                                          require ext_code.size(0x546e0bb2b0429c4177e06e17f1c676e7804019cd)
+                                          delegate 0x546e0bb2b0429c4177e06e17f1c676e7804019cd.0xe4ef8e99 with:
+                                               gas gas_remaining wei
+                                              args 0xacc15dc74880c9944775448304b263d191c6077f, cd_647, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 164)), addr(('cd', 164)), addr(this.address), uint16(('cd', 164))
+                                          if not delegate.return_code:
+                                              revert with ext_call.return_data[0 len return_data.size]
+                                          require 0 < mem[96]
+                                          require 0 < ('cd', 164).length
+                                          require ('cd', 164) == addr(('cd', 164))
+                                      else:
+                                          require 0 < mem[96]
+                                          require 0 < ('cd', 164).length
+                                          require ('cd', 164) == addr(('cd', 164))
+                                          if 1 >= ('cd', 164).length - 1:
+                                              require ('cd', 164).length - 1 < mem[96]
+                                              require ('cd', 164).length - 1 < ('cd', 164).length
+                                              require calldata.size + (-160 * ('cd', 164).length) + -cd >=ΓÇ▓ 160
+                                              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                              require cd[((160 * ('cd', 164).length) + cd == addr(cd[((160 * ('cd', 164).length) + cd)
+                                              require cd[((160 * ('cd', 164).length) + cd == addr(cd[((160 * ('cd', 164).length) + cd)
+                                              require cd[((160 * ('cd', 164).length) + cd == uint16(cd[((160 * ('cd', 164).length) + cd)
+                                              require cd[((160 * ('cd', 164).length) + cd == uint16(cd[((160 * ('cd', 164).length) + cd)
+                                              require cd[((160 * ('cd', 164).length) + cd == uint16(cd[((160 * ('cd', 164).length) + cd)
+                                          else:
+                                              require 1 < mem[96]
+                                              require 1 < ('cd', 164).length
+                                              require calldata.size + -cd >=ΓÇ▓ 160
+                                              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                              require ('cd', 164) == addr(('cd', 164))
+                                              require ('cd', 164) == addr(('cd', 164))
+                                              require ('cd', 164) == uint16(('cd', 164))
+                                              require ('cd', 164) == uint16(('cd', 164))
+                                              require ('cd', 164) == uint16(('cd', 164))
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+def unknown5c107515(): # not payable
+  require calldata.size - 4 >=ΓÇ▓ 320
+  require cd == cd[4]
+  require cd == addr(cd)
+  require cd == addr(cd)
+  require cd == addr(cd)
+  require cd == cd[132]
+  require cd == cd[164]
+  require cd == bool(cd[196])
+  require cd == bool(cd[228])
+  require cd == uint8(cd)
+  require cd <= 18446744073709551615
+  require cd <ΓÇ▓ calldata.size
+  require ('cd', 292).length <= 18446744073709551615
+  require cd * ('cd', 292).length) + 36 <= calldata.size
+  mem[0] = caller
+  mem[32] = 0
+  require stor0[caller]
+  mem[100] = this.address
+  require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+  static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+          gas gas_remaining wei
+         args this.address
+  mem[96] = ext_call.return_data[0]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >=ΓÇ▓ 32
+  require ext_call.return_data == ext_call.return_data[0]
+  mem[ceil32(return_data.size) + 96] = 2
+  mem[ceil32(return_data.size) + 128] = addr(cd)
+  mem[ceil32(return_data.size) + 160] = addr(cd)
+  require ext_code.size(addr(cd))
+  call addr(cd).approve(address spender, uint256 tokens) with:
+       gas gas_remaining wei
+      args addr(cd), cd[4]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  mem[ceil32(return_data.size) + 192] = 0x38ed173900000000000000000000000000000000000000000000000000000000
+  mem[ceil32(return_data.size) + 196] = cd[4]
+  mem[ceil32(return_data.size) + 228] = 0
+  mem[ceil32(return_data.size) + 260] = 160
+  mem[ceil32(return_data.size) + 356] = 2
+  idx = 0
+  s = ceil32(return_data.size) + 128
+  t = ceil32(return_data.size) + 388
+  while idx < 2:
+      mem[t] = mem[s + 12 len 20]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  mem[ceil32(return_data.size) + 292] = this.address
+  mem[ceil32(return_data.size) + 324] = -1
+  require ext_code.size(addr(cd))
+  call addr(cd).0x38ed1739 with:
+       gas gas_remaining wei
+      args cdaddr(this.address), -1, 2, mem[ceil32(return_data.size) + 388 len 64]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  mem[ceil32(return_data.size) + 192 len return_data.size] = ext_call.return_data[0 len return_data.size]
+  mem[64] = (2 * ceil32(return_data.size)) + 192
+  require return_data.size >=ΓÇ▓ 32
+  _26 = mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32
+  require mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32 <= 18446744073709551615
+  require ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32 + 223 <ΓÇ▓ ceil32(return_data.size) + return_data.size + 192
+  _27 = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32 + 192]
+  require mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32 + 192] <= 18446744073709551615
+  require (32 * mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32 + 192]) + 32 >= 0 and (2 * ceil32(return_data.size)) + (32 * mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32 + 192]) + 224 <= 18446744073709551615
+  mem[64] = (2 * ceil32(return_data.size)) + (32 * mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32 + 192]) + 224
+  mem[(2 * ceil32(return_data.size)) + 192] = mem[ceil32(return_data.size) + mem[ceil32(return_data.size) + 192 len 4], Mask(224, 32, cd >> 32 + 192]
+  require _26 + (32 * _27) + 32 <= return_data.size
+  idx = 0
+  s = ceil32(return_data.size) + _26 + 224
+  t = (2 * ceil32(return_data.size)) + 224
+  while idx < _27:
+      require mem[s] == mem[s]
+      mem[t] = mem[s]
+      idx = idx + 1
+      s = s + 32
+      t = t + 32
+      continue 
+  mem[mem[64] + 36] = 0
+  require ext_code.size(addr(cd))
+  call addr(cd).approve(address spender, uint256 tokens) with:
+       gas gas_remaining wei
+      args addr(cd), 0
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  mem[mem[64] + 4] = this.address
+  require ext_code.size(addr(cd))
+  static call addr(cd).balanceOf(address tokenOwner) with:
+          gas gas_remaining wei
+         args addr(this.address)
+  mem[mem[64]] = ext_call.return_data[0]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  _173 = mem[64]
+  mem[64] = mem[64] + ceil32(return_data.size)
+  require return_data.size >=ΓÇ▓ 32
+  require mem[_173] == mem[_173]
+  require ext_code.size(addr(cd))
+  call addr(cd).transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args addr(cd), mem[_173]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  mem[mem[64] + 4] = this.address
+  mem[mem[64] + 36] = 0
+  require ext_code.size(addr(cd))
+  call addr(cd).transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args addr(this.address), 0
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require ('cd', 292).length - 1 < ('cd', 292).length
+  require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+  require addr(cd[((160 * ('cd', 292).length) + cd) == 0xacc15dc74880c9944775448304b263d191c6077f
+  require ('cd', 292).length <= 18446744073709551615
+  _179 = mem[64]
+  mem[mem[64]] = ('cd', 292).length
+  mem[64] = mem[64] + (32 * ('cd', 292).length) + 32
+  if not ('cd', 292).length:
+      idx = 0
+      s = 0xacc15dc74880c9944775448304b263d191c6077f
+      t = 10000
+      u = cd[132]
+      while idx < ('cd', 292).length:
+          require calldata.size + (-160 * idx) + -cd >=ΓÇ▓ 160
+          _485 = mem[64]
+          require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+          mem[64] = mem[64] + 160
+          require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+          mem[_485] = cd[((160 * idx) + cd[292] + 36)]
+          require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+          mem[_485 + 32] = cd[((160 * idx) + cd[292] + 68)]
+          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+          mem[_485 + 64] = cd[((160 * idx) + cd[292] + 100)]
+          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+          mem[_485 + 96] = cd[((160 * idx) + cd[292] + 132)]
+          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+          mem[_485 + 128] = cd[((160 * idx) + cd[292] + 164)]
+          if not uint16(cd[((160 * idx) + cd):
+              mem[mem[64] + 36] = addr(s)
+              mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+              mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+              mem[mem[64] + 132] = uint16(cd[((160 * idx) + cd)
+              mem[mem[64] + 164] = uint16(cd[((160 * idx) + cd)
+              require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+              delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0xb6952f25 with:
+                   gas gas_remaining wei
+                  args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), cd[((160 * idx) + cd << 240, uint16(cd[((160 * idx) + cd)
+              mem[mem[64] len 64] = delegate.return_data[0 len 64]
+              if not delegate.return_code:
+                  revert with ext_call.return_data[0 len return_data.size]
+              _652 = mem[64]
+              mem[64] = mem[64] + ceil32(return_data.size)
+              require return_data.size >=ΓÇ▓ 64
+              _679 = mem[_652]
+              require mem[_652] == mem[_652]
+              require mem[_652 + 32] == bool(mem[_652 + 32])
+              require idx < mem[_179]
+              _884 = mem[(32 * idx) + _179 + 32]
+              require idx < mem[_179]
+              mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_652 + 32])
+              mem[_884] = _679
+              require idx < mem[_179]
+              if mem[mem[(32 * idx) + _179 + 32]]:
+                  require idx < ('cd', 292).length
+                  require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                  require idx < ('cd', 292).length
+                  require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                  idx = idx + 1
+                  s = cd[((160 * idx) + cd[292] + 68)]
+                  t = cd[((160 * idx) + cd[292] + 164)]
+                  u = mem[mem[(32 * idx) + _179 + 32]]
+                  continue 
+              mem[mem[64] + 4] = this.address
+              require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+              static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                      gas gas_remaining wei
+                     args addr(this.address)
+              mem[mem[64]] = ext_call.return_data[0]
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              _1096 = mem[64]
+              mem[64] = mem[64] + ceil32(return_data.size)
+              require return_data.size >=ΓÇ▓ 32
+              require mem[_1096] == mem[_1096]
+              if mem[_1096] <= ext_call.return_data[0]:
+                  revert with 0, 'no profit'
+          else:
+              if 8 == uint16(cd[((160 * idx) + cd):
+                  mem[mem[64] + 36] = addr(cd[((160 * idx) + cd)
+                  mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                  mem[mem[64] + 100] = uint16(cd[((160 * idx) + cd)
+                  mem[mem[64] + 132] = uint16(cd[((160 * idx) + cd)
+                  require ext_code.size(0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b)
+                  delegate 0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b.0x659ad184 with:
+                       gas gas_remaining wei
+                      args u, addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), cd[((160 * idx) + cd << 240, uint16(cd[((160 * idx) + cd)
+                  mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                  if not delegate.return_code:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  _630 = mem[64]
+                  mem[64] = mem[64] + ceil32(return_data.size)
+                  require return_data.size >=ΓÇ▓ 64
+                  _638 = mem[_630]
+                  require mem[_630] == mem[_630]
+                  require mem[_630 + 32] == bool(mem[_630 + 32])
+                  require idx < mem[_179]
+                  _811 = mem[(32 * idx) + _179 + 32]
+                  require idx < mem[_179]
+                  mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_630 + 32])
+                  mem[_811] = _638
+                  require idx < mem[_179]
+                  if mem[mem[(32 * idx) + _179 + 32]]:
+                      require idx < ('cd', 292).length
+                      require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                      require idx < ('cd', 292).length
+                      require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                      idx = idx + 1
+                      s = cd[((160 * idx) + cd[292] + 68)]
+                      t = cd[((160 * idx) + cd[292] + 164)]
+                      u = mem[mem[(32 * idx) + _179 + 32]]
+                      continue 
+                  mem[mem[64] + 4] = this.address
+                  require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                  static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                          gas gas_remaining wei
+                         args addr(this.address)
+                  mem[mem[64]] = ext_call.return_data[0]
+                  if not ext_call.success:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  _1053 = mem[64]
+                  mem[64] = mem[64] + ceil32(return_data.size)
+                  require return_data.size >=ΓÇ▓ 32
+                  require mem[_1053] == mem[_1053]
+                  if mem[_1053] <= ext_call.return_data[0]:
+                      revert with 0, 'no profit'
+              else:
+                  if 3 == uint16(cd[((160 * idx) + cd):
+                      mem[mem[64] + 36] = addr(s)
+                      mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                      mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                      mem[mem[64] + 132] = uint16(t)
+                      mem[mem[64] + 164] = uint16(cd[((160 * idx) + cd)
+                      require ext_code.size(0xa74576107d6e34c9999593024630fff0fa2ebb52)
+                      delegate 0xa74576107d6e34c9999593024630fff0fa2ebb52.0xd32f3834 with:
+                           gas gas_remaining wei
+                          args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), t << 240, uint16(cd[((160 * idx) + cd)
+                      mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                      if not delegate.return_code:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      _689 = mem[64]
+                      mem[64] = mem[64] + ceil32(return_data.size)
+                      require return_data.size >=ΓÇ▓ 64
+                      _717 = mem[_689]
+                      require mem[_689] == mem[_689]
+                      require mem[_689 + 32] == bool(mem[_689 + 32])
+                      require idx < mem[_179]
+                      _958 = mem[(32 * idx) + _179 + 32]
+                      require idx < mem[_179]
+                      mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_689 + 32])
+                      mem[_958] = _717
+                      require idx < mem[_179]
+                      if mem[mem[(32 * idx) + _179 + 32]]:
+                          require idx < ('cd', 292).length
+                          require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                          require idx < ('cd', 292).length
+                          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                          idx = idx + 1
+                          s = cd[((160 * idx) + cd[292] + 68)]
+                          t = cd[((160 * idx) + cd[292] + 164)]
+                          u = mem[mem[(32 * idx) + _179 + 32]]
+                          continue 
+                      mem[mem[64] + 4] = this.address
+                      require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                      static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                              gas gas_remaining wei
+                             args addr(this.address)
+                      mem[mem[64]] = ext_call.return_data[0]
+                      if not ext_call.success:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      _1133 = mem[64]
+                      mem[64] = mem[64] + ceil32(return_data.size)
+                      require return_data.size >=ΓÇ▓ 32
+                      require mem[_1133] == mem[_1133]
+                      if mem[_1133] <= ext_call.return_data[0]:
+                          revert with 0, 'no profit'
+                  else:
+                      if 7 == uint16(cd[((160 * idx) + cd):
+                          mem[mem[64] + 36] = addr(s)
+                          mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                          mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                          require ext_code.size(0xbbad4e38742c3974e34a7268d6cf55eabcb26757)
+                          delegate 0xbbad4e38742c3974e34a7268d6cf55eabcb26757.0xc4dc5ff7 with:
+                               gas gas_remaining wei
+                              args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd)
+                          mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                          if not delegate.return_code:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          _629 = mem[64]
+                          mem[64] = mem[64] + ceil32(return_data.size)
+                          require return_data.size >=ΓÇ▓ 64
+                          _637 = mem[_629]
+                          require mem[_629] == mem[_629]
+                          require mem[_629 + 32] == bool(mem[_629 + 32])
+                          require idx < mem[_179]
+                          _809 = mem[(32 * idx) + _179 + 32]
+                          require idx < mem[_179]
+                          mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_629 + 32])
+                          mem[_809] = _637
+                          require idx < mem[_179]
+                          if mem[mem[(32 * idx) + _179 + 32]]:
+                              require idx < ('cd', 292).length
+                              require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                              require idx < ('cd', 292).length
+                              require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                              idx = idx + 1
+                              s = cd[((160 * idx) + cd[292] + 68)]
+                              t = cd[((160 * idx) + cd[292] + 164)]
+                              u = mem[mem[(32 * idx) + _179 + 32]]
+                              continue 
+                          mem[mem[64] + 4] = this.address
+                          require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                          static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                                  gas gas_remaining wei
+                                 args addr(this.address)
+                          mem[mem[64]] = ext_call.return_data[0]
+                          if not ext_call.success:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          _1052 = mem[64]
+                          mem[64] = mem[64] + ceil32(return_data.size)
+                          require return_data.size >=ΓÇ▓ 32
+                          require mem[_1052] == mem[_1052]
+                          if mem[_1052] <= ext_call.return_data[0]:
+                              revert with 0, 'no profit'
+                      else:
+                          if 11 == uint16(cd[((160 * idx) + cd):
+                              mem[mem[64] + 36] = addr(s)
+                              mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                              mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                              require ext_code.size(0xd3461a4033411cc37b7fa59511045dd633e74ae5)
+                              delegate 0xd3461a4033411cc37b7fa59511045dd633e74ae5.0xc4dc5ff7 with:
+                                   gas gas_remaining wei
+                                  args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd)
+                              mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                              if not delegate.return_code:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              _632 = mem[64]
+                              mem[64] = mem[64] + ceil32(return_data.size)
+                              require return_data.size >=ΓÇ▓ 64
+                              _645 = mem[_632]
+                              require mem[_632] == mem[_632]
+                              require mem[_632 + 32] == bool(mem[_632 + 32])
+                              require idx < mem[_179]
+                              _824 = mem[(32 * idx) + _179 + 32]
+                              require idx < mem[_179]
+                              mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_632 + 32])
+                              mem[_824] = _645
+                              require idx < mem[_179]
+                              if mem[mem[(32 * idx) + _179 + 32]]:
+                                  require idx < ('cd', 292).length
+                                  require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                                  require idx < ('cd', 292).length
+                                  require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                                  idx = idx + 1
+                                  s = cd[((160 * idx) + cd[292] + 68)]
+                                  t = cd[((160 * idx) + cd[292] + 164)]
+                                  u = mem[mem[(32 * idx) + _179 + 32]]
+                                  continue 
+                              mem[mem[64] + 4] = this.address
+                              require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                              static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                                      gas gas_remaining wei
+                                     args addr(this.address)
+                              mem[mem[64]] = ext_call.return_data[0]
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              _1061 = mem[64]
+                              mem[64] = mem[64] + ceil32(return_data.size)
+                              require return_data.size >=ΓÇ▓ 32
+                              require mem[_1061] == mem[_1061]
+                              if mem[_1061] <= ext_call.return_data[0]:
+                                  revert with 0, 'no profit'
+                          else:
+                              if 13 == uint16(cd[((160 * idx) + cd):
+                                  mem[mem[64] + 36] = addr(s)
+                                  mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                                  mem[mem[64] + 100] = 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486
+                                  require ext_code.size(0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008)
+                                  delegate 0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008.0xc4dc5ff7 with:
+                                       gas gas_remaining wei
+                                      args u, addr(s), addr(cd[((160 * idx) + cd), 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486
+                                  mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                                  if not delegate.return_code:
+                                      revert with ext_call.return_data[0 len return_data.size]
+                                  _644 = mem[64]
+                                  mem[64] = mem[64] + ceil32(return_data.size)
+                                  require return_data.size >=ΓÇ▓ 64
+                                  _669 = mem[_644]
+                                  require mem[_644] == mem[_644]
+                                  require mem[_644 + 32] == bool(mem[_644 + 32])
+                                  require idx < mem[_179]
+                                  _867 = mem[(32 * idx) + _179 + 32]
+                                  require idx < mem[_179]
+                                  mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_644 + 32])
+                                  mem[_867] = _669
+                                  require idx < mem[_179]
+                                  if mem[mem[(32 * idx) + _179 + 32]]:
+                                      require idx < ('cd', 292).length
+                                      require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                                      require idx < ('cd', 292).length
+                                      require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                                      idx = idx + 1
+                                      s = cd[((160 * idx) + cd[292] + 68)]
+                                      t = cd[((160 * idx) + cd[292] + 164)]
+                                      u = mem[mem[(32 * idx) + _179 + 32]]
+                                      continue 
+                                  mem[mem[64] + 4] = this.address
+                                  require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                                  static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                                          gas gas_remaining wei
+                                         args addr(this.address)
+                                  mem[mem[64]] = ext_call.return_data[0]
+                                  if not ext_call.success:
+                                      revert with ext_call.return_data[0 len return_data.size]
+                                  _1088 = mem[64]
+                                  mem[64] = mem[64] + ceil32(return_data.size)
+                                  require return_data.size >=ΓÇ▓ 32
+                                  require mem[_1088] == mem[_1088]
+                                  if mem[_1088] <= ext_call.return_data[0]:
+                                      revert with 0, 'no profit'
+                              else:
+                                  if 15 == uint16(cd[((160 * idx) + cd):
+                                      mem[mem[64] + 36] = addr(s)
+                                      mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                                      mem[mem[64] + 100] = uint16(cd[((160 * idx) + cd)
+                                      require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+                                      delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0xbc20ca19 with:
+                                           gas gas_remaining wei
+                                          args u, addr(s), addr(cd[((160 * idx) + cd), uint16(cd[((160 * idx) + cd)
+                                      mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                                      if not delegate.return_code:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      _631 = mem[64]
+                                      mem[64] = mem[64] + ceil32(return_data.size)
+                                      require return_data.size >=ΓÇ▓ 64
+                                      _643 = mem[_631]
+                                      require mem[_631] == mem[_631]
+                                      require mem[_631 + 32] == bool(mem[_631 + 32])
+                                      require idx < mem[_179]
+                                      _822 = mem[(32 * idx) + _179 + 32]
+                                      require idx < mem[_179]
+                                      mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_631 + 32])
+                                      mem[_822] = _643
+                                      require idx < mem[_179]
+                                      if mem[mem[(32 * idx) + _179 + 32]]:
+                                          require idx < ('cd', 292).length
+                                          require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                                          require idx < ('cd', 292).length
+                                          require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                                          idx = idx + 1
+                                          s = cd[((160 * idx) + cd[292] + 68)]
+                                          t = cd[((160 * idx) + cd[292] + 164)]
+                                          u = mem[mem[(32 * idx) + _179 + 32]]
+                                          continue 
+                                      mem[mem[64] + 4] = this.address
+                                      require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                                      static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                                              gas gas_remaining wei
+                                             args addr(this.address)
+                                      mem[mem[64]] = ext_call.return_data[0]
+                                      if not ext_call.success:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      _1060 = mem[64]
+                                      mem[64] = mem[64] + ceil32(return_data.size)
+                                      require return_data.size >=ΓÇ▓ 32
+                                      require mem[_1060] == mem[_1060]
+                                      if mem[_1060] <= ext_call.return_data[0]:
+                                          revert with 0, 'no profit'
+                                  else:
+                                      if 26 == uint16(cd[((160 * idx) + cd):
+                                          require idx < mem[_179]
+                                          _582 = mem[(32 * idx) + _179 + 32]
+                                          require idx < mem[_179]
+                                          mem[mem[(32 * idx) + _179 + 32] + 32] = 0
+                                          mem[_582] = u
+                                          require idx < mem[_179]
+                                          if mem[mem[(32 * idx) + _179 + 32]]:
+                                              require idx < ('cd', 292).length
+                                              require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                                              require idx < ('cd', 292).length
+                                              require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                                              idx = idx + 1
+                                              s = cd[((160 * idx) + cd[292] + 68)]
+                                              t = cd[((160 * idx) + cd[292] + 164)]
+                                              u = mem[mem[(32 * idx) + _179 + 32]]
+                                              continue 
+                                          mem[mem[64] + 4] = this.address
+                                          require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                                          static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                                                  gas gas_remaining wei
+                                                 args addr(this.address)
+                                          mem[mem[64]] = ext_call.return_data[0]
+                                          if not ext_call.success:
+                                              revert with ext_call.return_data[0 len return_data.size]
+                                          _634 = mem[64]
+                                          mem[64] = mem[64] + ceil32(return_data.size)
+                                          require return_data.size >=ΓÇ▓ 32
+                                          require mem[_634] == mem[_634]
+                                          if mem[_634] <= ext_call.return_data[0]:
+                                              revert with 0, 'no profit'
+                                      else:
+                                          if 35 == uint16(cd[((160 * idx) + cd):
+                                              mem[mem[64] + 36] = addr(s)
+                                              mem[mem[64] + 68] = addr(cd[((160 * idx) + cd)
+                                              mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                                              mem[mem[64] + 132] = uint16(cd[((160 * idx) + cd)
+                                              require ext_code.size(0x31308c34eda89fa0a401b6e4edf878685aabfa1)
+                                              delegate 0x31308c34eda89fa0a401b6e4edf878685aabfa1.0xec4e02ae with:
+                                                   gas gas_remaining wei
+                                                  args u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), uint16(cd[((160 * idx) + cd)
+                                              mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                                              if not delegate.return_code:
+                                                  revert with ext_call.return_data[0 len return_data.size]
+                                              _688 = mem[64]
+                                              mem[64] = mem[64] + ceil32(return_data.size)
+                                              require return_data.size >=ΓÇ▓ 64
+                                              _716 = mem[_688]
+                                              require mem[_688] == mem[_688]
+                                              require mem[_688 + 32] == bool(mem[_688 + 32])
+                                              require idx < mem[_179]
+                                              _956 = mem[(32 * idx) + _179 + 32]
+                                              require idx < mem[_179]
+                                              mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_688 + 32])
+                                              mem[_956] = _716
+                                              require idx < mem[_179]
+                                              if mem[mem[(32 * idx) + _179 + 32]]:
+                                                  require idx < ('cd', 292).length
+                                                  require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                                                  require idx < ('cd', 292).length
+                                                  require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                                                  idx = idx + 1
+                                                  s = cd[((160 * idx) + cd[292] + 68)]
+                                                  t = cd[((160 * idx) + cd[292] + 164)]
+                                                  u = mem[mem[(32 * idx) + _179 + 32]]
+                                                  continue 
+                                              mem[mem[64] + 4] = this.address
+                                              require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                                              static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                                                      gas gas_remaining wei
+                                                     args addr(this.address)
+                                              mem[mem[64]] = ext_call.return_data[0]
+                                              if not ext_call.success:
+                                                  revert with ext_call.return_data[0 len return_data.size]
+                                              _1132 = mem[64]
+                                              mem[64] = mem[64] + ceil32(return_data.size)
+                                              require return_data.size >=ΓÇ▓ 32
+                                              require mem[_1132] == mem[_1132]
+                                              if mem[_1132] <= ext_call.return_data[0]:
+                                                  revert with 0, 'no profit'
+                                          else:
+                                              if uint16(cd[((160 * idx) + cd) != 36:
+                                                  revert with 0, 'exchangeType not exist'
+                                              mem[mem[64] + 36] = u
+                                              mem[mem[64] + 68] = addr(s)
+                                              mem[mem[64] + 100] = addr(cd[((160 * idx) + cd)
+                                              mem[mem[64] + 132] = addr(cd[((160 * idx) + cd)
+                                              mem[mem[64] + 164] = uint16(cd[((160 * idx) + cd)
+                                              require ext_code.size(0x546e0bb2b0429c4177e06e17f1c676e7804019cd)
+                                              delegate 0x546e0bb2b0429c4177e06e17f1c676e7804019cd.0x661f6784 with:
+                                                   gas gas_remaining wei
+                                                  args 0xacc15dc74880c9944775448304b263d191c6077f, u, addr(s), addr(cd[((160 * idx) + cd), addr(cd[((160 * idx) + cd), uint16(cd[((160 * idx) + cd)
+                                              mem[mem[64] len 64] = delegate.return_data[0 len 64]
+                                              if not delegate.return_code:
+                                                  revert with ext_call.return_data[0 len return_data.size]
+                                              _781 = mem[64]
+                                              mem[64] = mem[64] + ceil32(return_data.size)
+                                              require return_data.size >=ΓÇ▓ 64
+                                              _821 = mem[_781]
+                                              require mem[_781] == mem[_781]
+                                              require mem[_781 + 32] == bool(mem[_781 + 32])
+                                              require idx < mem[_179]
+                                              _1039 = mem[(32 * idx) + _179 + 32]
+                                              require idx < mem[_179]
+                                              mem[mem[(32 * idx) + _179 + 32] + 32] = bool(mem[_781 + 32])
+                                              mem[_1039] = _821
+                                              require idx < mem[_179]
+                                              if mem[mem[(32 * idx) + _179 + 32]]:
+                                                  require idx < ('cd', 292).length
+                                                  require cd[((160 * idx) + cd == addr(cd[((160 * idx) + cd)
+                                                  require idx < ('cd', 292).length
+                                                  require cd[((160 * idx) + cd == uint16(cd[((160 * idx) + cd)
+                                                  idx = idx + 1
+                                                  s = cd[((160 * idx) + cd[292] + 68)]
+                                                  t = cd[((160 * idx) + cd[292] + 164)]
+                                                  u = mem[mem[(32 * idx) + _179 + 32]]
+                                                  continue 
+                                              mem[mem[64] + 4] = this.address
+                                              require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+                                              static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+                                                      gas gas_remaining wei
+                                                     args addr(this.address)
+                                              mem[mem[64]] = ext_call.return_data[0]
+                                              if not ext_call.success:
+                                                  revert with ext_call.return_data[0 len return_data.size]
+                                              _1216 = mem[64]
+                                              mem[64] = mem[64] + ceil32(return_data.size)
+                                              require return_data.size >=ΓÇ▓ 32
+                                              require mem[_1216] == mem[_1216]
+                                              if mem[_1216] <= ext_call.return_data[0]:
+                                                  revert with 0, 'no profit'
+          stop
+      require ('cd', 292).length - 1 < mem[_179]
+      mem[mem[64] + 4] = this.address
+      require ext_code.size(0xacc15dc74880c9944775448304b263d191c6077f)
+      static call 0xacc15dc74880c9944775448304b263d191c6077f.balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args addr(this.address)
+      mem[mem[64]] = ext_call.return_data[0]
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      if mem[mem[(32 * ('cd', 292).length - 1) + _179 + 32]] <= cd[132] + cd[164]:
+          _494 = mem[64]
+          mem[64] = mem[64] + ceil32(return_data.size)
+          require return_data.size >=ΓÇ▓ 32
+          require mem[_494] == mem[_494]
+          if mem[_494] <= ext_call.return_data[0]:
+              revert with 0, 'no profit'
+          stop
+      _492 = mem[64]
+      mem[64] = mem[64] + ceil32(return_data.size)
+      require return_data.size >=ΓÇ▓ 32
+      require mem[_492] == mem[_492]
+      require 0 < mem[_179]
+      _505 = mem[mem[_179 + 32]]
+      require 0 < ('cd', 292).length
+      require calldata.size + -cd >=ΓÇ▓ 160
+      _510 = mem[64]
+      require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+      mem[64] = mem[64] + 160
+      require ('cd', 292) == addr(('cd', 292))
+      mem[_510] = ('cd', 292)
+      require ('cd', 292) == addr(('cd', 292))
+      mem[_510 + 32] = ('cd', 292)
+      require ('cd', 292) == uint16(('cd', 292))
+      mem[_510 + 64] = ('cd', 292)
+      require ('cd', 292) == uint16(('cd', 292))
+      mem[_510 + 96] = ('cd', 292)
+      require ('cd', 292) == uint16(('cd', 292))
+      mem[_510 + 128] = ('cd', 292)
+      require 1 < mem[_179]
+      if mem[mem[_179 + 64] + 32]:
+          require 1 < ('cd', 292).length
+          require ('cd', 292) == addr(('cd', 292))
+          if not uint16(('cd', 292)):
+              mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+              mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+              mem[mem[64] + 36] = cd[132]
+              mem[mem[64] + 68] = _505
+              mem[mem[64] + 100] = addr(('cd', 292))
+              mem[mem[64] + 132] = addr(('cd', 292))
+              mem[mem[64] + 164] = addr(('cd', 292))
+              mem[mem[64] + 196] = bool(cd[228])
+              mem[mem[64] + 228] = uint16(('cd', 292))
+              require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+              delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0x1d1f04fb with:
+                   gas gas_remaining wei
+                  args 0xacc15dc74880c9944775448304b263d191c6077f, cd_505, addr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292)), bool(cduint16(('cd', 292))
+              if not delegate.return_code:
+                  revert with ext_call.return_data[0 len return_data.size]
+              if 0 < mem[_179]:
+                  if 0 < ('cd', 292).length:
+                      require ('cd', 292) == addr(('cd', 292))
+                      if 1 >= ('cd', 292).length - 1:
+                          if ('cd', 292).length - 1 < mem[_179]:
+                              if ('cd', 292).length - 1 < ('cd', 292).length:
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if 1 < mem[_179]:
+                              if 1 < ('cd', 292).length:
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+          else:
+              if 15 == uint16(('cd', 292)):
+                  mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+                  mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                  mem[mem[64] + 36] = cd[132]
+                  mem[mem[64] + 68] = _505
+                  mem[mem[64] + 100] = addr(('cd', 292))
+                  mem[mem[64] + 132] = addr(('cd', 292))
+                  mem[mem[64] + 164] = addr(('cd', 292))
+                  mem[mem[64] + 196] = bool(cd[228])
+                  mem[mem[64] + 228] = uint16(('cd', 292))
+                  require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+                  delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0x1d1f04fb with:
+                       gas gas_remaining wei
+                      args 0xacc15dc74880c9944775448304b263d191c6077f, cd_505, addr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292)), bool(cduint16(('cd', 292))
+                  if not delegate.return_code:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require 0 < mem[_179]
+                  require 0 < ('cd', 292).length
+                  require ('cd', 292) == addr(('cd', 292))
+                  if 1 >= ('cd', 292).length - 1:
+                      require ('cd', 292).length - 1 < mem[_179]
+                  else:
+                      require 1 < mem[_179]
+                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              if 8 == uint16(('cd', 292)):
+                  mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+                  mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                  mem[mem[64] + 36] = cd[132]
+                  mem[mem[64] + 68] = _505
+                  mem[mem[64] + 100] = addr(('cd', 292))
+                  mem[mem[64] + 132] = addr(('cd', 292))
+                  mem[mem[64] + 164] = addr(('cd', 292))
+                  mem[mem[64] + 196] = bool(cd[228])
+                  mem[mem[64] + 228] = uint16(('cd', 292))
+                  require ext_code.size(0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b)
+                  delegate 0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b.0x1d1f04fb with:
+                       gas gas_remaining wei
+                      args 0xacc15dc74880c9944775448304b263d191c6077f, cd_505, addr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292)), bool(cduint16(('cd', 292))
+                  if not delegate.return_code:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require 0 < mem[_179]
+                  require 0 < ('cd', 292).length
+                  require ('cd', 292) == addr(('cd', 292))
+                  if 1 < ('cd', 292).length - 1:
+                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              if 3 == uint16(('cd', 292)):
+                  mem[mem[64]] = 0xfdcba57c00000000000000000000000000000000000000000000000000000000
+                  mem[mem[64] + 4] = cd[132]
+                  mem[mem[64] + 36] = 0xacc15dc74880c9944775448304b263d191c6077f
+                  mem[mem[64] + 68] = addr(('cd', 292))
+                  mem[mem[64] + 100] = addr(('cd', 292))
+                  mem[mem[64] + 132] = addr(('cd', 292))
+                  require ext_code.size(0xa74576107d6e34c9999593024630fff0fa2ebb52)
+                  delegate 0xa74576107d6e34c9999593024630fff0fa2ebb52.0xfdcba57c with:
+                       gas gas_remaining wei
+                      args cdaddr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292))
+                  if not delegate.return_code:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  if 0 < mem[_179]:
+                      if 0 < ('cd', 292).length:
+                          require ('cd', 292) == addr(('cd', 292))
+                          if 1 >= ('cd', 292).length - 1:
+                              if ('cd', 292).length - 1 < mem[_179]:
+                                  if ('cd', 292).length - 1 < ('cd', 292).length:
+                                      require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                          else:
+                              if 1 < mem[_179]:
+                                  if 1 < ('cd', 292).length:
+                                      require calldata.size + -cd >=ΓÇ▓ 160
+                                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+              else:
+                  if 7 == uint16(('cd', 292)):
+                      mem[mem[64]] = 0x2f733d7f00000000000000000000000000000000000000000000000000000000
+                      mem[mem[64] + 4] = cd[132]
+                      mem[mem[64] + 36] = _505
+                      mem[mem[64] + 68] = 0xacc15dc74880c9944775448304b263d191c6077f
+                      mem[mem[64] + 100] = addr(('cd', 292))
+                      mem[mem[64] + 132] = addr(('cd', 292))
+                      mem[mem[64] + 164] = addr(('cd', 292))
+                      require ext_code.size(0xbbad4e38742c3974e34a7268d6cf55eabcb26757)
+                      delegate 0xbbad4e38742c3974e34a7268d6cf55eabcb26757.0x2f733d7f with:
+                           gas gas_remaining wei
+                          args cd_505, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292))
+                      if not delegate.return_code:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      require 0 < mem[_179]
+                      require 0 < ('cd', 292).length
+                      require ('cd', 292) == addr(('cd', 292))
+                      if 1 >= ('cd', 292).length - 1:
+                          require ('cd', 292).length - 1 < mem[_179]
+                          require ('cd', 292).length - 1 < ('cd', 292).length
+                          require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                      else:
+                          require 1 < mem[_179]
+                          require 1 < ('cd', 292).length
+                          require calldata.size + -cd >=ΓÇ▓ 160
+                      ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                  if 11 == uint16(('cd', 292)):
+                      mem[mem[64]] = 0xfdcba57c00000000000000000000000000000000000000000000000000000000
+                      mem[mem[64] + 4] = cd[132]
+                      mem[mem[64] + 36] = 0xacc15dc74880c9944775448304b263d191c6077f
+                      mem[mem[64] + 68] = addr(('cd', 292))
+                      mem[mem[64] + 100] = addr(('cd', 292))
+                      mem[mem[64] + 132] = addr(('cd', 292))
+                      require ext_code.size(0xd3461a4033411cc37b7fa59511045dd633e74ae5)
+                      delegate 0xd3461a4033411cc37b7fa59511045dd633e74ae5.0xfdcba57c with:
+                           gas gas_remaining wei
+                          args cdaddr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292))
+                      if not delegate.return_code:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      if 0 < mem[_179]:
+                          if 0 < ('cd', 292).length:
+                              require ('cd', 292) == addr(('cd', 292))
+                              if 1 >= ('cd', 292).length - 1:
+                                  if ('cd', 292).length - 1 < mem[_179]:
+                                      if ('cd', 292).length - 1 < ('cd', 292).length:
+                                          require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                                          if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                              ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              else:
+                                  if 1 < mem[_179]:
+                                      if 1 < ('cd', 292).length:
+                                          require calldata.size + -cd >=ΓÇ▓ 160
+                                          if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                              ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                  else:
+                      if 13 == uint16(('cd', 292)):
+                          mem[mem[64]] = 0xf53593700000000000000000000000000000000000000000000000000000000
+                          mem[mem[64] + 4] = cd[132]
+                          mem[mem[64] + 36] = 0xacc15dc74880c9944775448304b263d191c6077f
+                          mem[mem[64] + 68] = addr(('cd', 292))
+                          mem[mem[64] + 100] = addr(('cd', 292))
+                          mem[mem[64] + 132] = addr(('cd', 292))
+                          mem[mem[64] + 164] = 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486
+                          mem[mem[64] + 196] = 0xa128ba44b2738a558a1fdc06d6303d52d3cef8c1
+                          require ext_code.size(0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008)
+                          delegate 0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008.0xf535937 with:
+                               gas gas_remaining wei
+                              args cdaddr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292)), 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486, 0xa128ba44b2738a558a1fdc06d6303d52d3cef8c1
+                          if not delegate.return_code:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          if 0 < mem[_179]:
+                              if 0 < ('cd', 292).length:
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      else:
+                          if uint16(('cd', 292)) != 26:
+                              if 35 == uint16(('cd', 292)):
+                                  mem[mem[64]] = 0x1349181d00000000000000000000000000000000000000000000000000000000
+                                  mem[mem[64] + 4] = cd[132]
+                                  mem[mem[64] + 36] = _505
+                                  mem[mem[64] + 68] = 0xacc15dc74880c9944775448304b263d191c6077f
+                                  mem[mem[64] + 100] = addr(('cd', 292))
+                                  mem[mem[64] + 132] = addr(('cd', 292))
+                                  mem[mem[64] + 164] = addr(('cd', 292))
+                                  mem[mem[64] + 196] = uint16(('cd', 292))
+                                  require ext_code.size(0x31308c34eda89fa0a401b6e4edf878685aabfa1)
+                                  delegate 0x31308c34eda89fa0a401b6e4edf878685aabfa1.0x1349181d with:
+                                       gas gas_remaining wei
+                                      args cd_505, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292)), uint16(('cd', 292))
+                                  if not delegate.return_code:
+                                      revert with ext_call.return_data[0 len return_data.size]
+                                  require 0 < mem[_179]
+                                  require 0 < ('cd', 292).length
+                                  require ('cd', 292) == addr(('cd', 292))
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              if uint16(('cd', 292)) != 36:
+                                  require 0 < mem[_179]
+                                  require 0 < ('cd', 292).length
+                                  require ('cd', 292) == addr(('cd', 292))
+                                  if 1 >= ('cd', 292).length - 1:
+                                      require ('cd', 292).length - 1 < mem[_179]
+                                      require ('cd', 292).length - 1 < ('cd', 292).length
+                                      require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                                      require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                      require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+                                      require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+                                      require cd[((160 * ('cd', 292).length) + cd == uint16(cd[((160 * ('cd', 292).length) + cd)
+                                      require cd[((160 * ('cd', 292).length) + cd == uint16(cd[((160 * ('cd', 292).length) + cd)
+                                  else:
+                                      require 1 < mem[_179]
+                                      require 1 < ('cd', 292).length
+                                      require calldata.size + -cd >=ΓÇ▓ 160
+                                      require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                      require ('cd', 292) == addr(('cd', 292))
+                                      require ('cd', 292) == addr(('cd', 292))
+                                      require ('cd', 292) == uint16(('cd', 292))
+                                      require ('cd', 292) == uint16(('cd', 292))
+                                  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              mem[mem[64]] = 0xe4ef8e9900000000000000000000000000000000000000000000000000000000
+                              mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                              mem[mem[64] + 36] = cd[132]
+                              mem[mem[64] + 68] = _505
+                              mem[mem[64] + 100] = 0xacc15dc74880c9944775448304b263d191c6077f
+                              mem[mem[64] + 132] = addr(('cd', 292))
+                              mem[mem[64] + 164] = addr(('cd', 292))
+                              mem[mem[64] + 196] = addr(('cd', 292))
+                              mem[mem[64] + 228] = uint16(('cd', 292))
+                              require ext_code.size(0x546e0bb2b0429c4177e06e17f1c676e7804019cd)
+                              delegate 0x546e0bb2b0429c4177e06e17f1c676e7804019cd.0xe4ef8e99 with:
+                                   gas gas_remaining wei
+                                  args 0xacc15dc74880c9944775448304b263d191c6077f, cd_505, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 292)), addr(('cd', 292)), addr(('cd', 292)), uint16(('cd', 292))
+                              if not delegate.return_code:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if 0 < mem[_179]:
+                                  if 0 < ('cd', 292).length:
+                                      ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                          else:
+                              mem[mem[64]] = 0xa851020d00000000000000000000000000000000000000000000000000000000
+                              mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                              mem[mem[64] + 36] = cd[132]
+                              mem[mem[64] + 68] = addr(('cd', 292))
+                              mem[mem[64] + 100] = addr(('cd', 292))
+                              require ext_code.size(0x27f930ef30fc63ff6ed1b634ecfdeb5def4081a5)
+                              delegate 0x27f930ef30fc63ff6ed1b634ecfdeb5def4081a5.0xa851020d with:
+                                   gas gas_remaining wei
+                                  args 0xacc15dc74880c9944775448304b263d191c6077f, cdaddr(('cd', 292)), addr(('cd', 292))
+                              if not delegate.return_code:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              if 0 < mem[_179]:
+                                  if 0 < ('cd', 292).length:
+                                      require ('cd', 292) == addr(('cd', 292))
+                                      if 1 >= ('cd', 292).length - 1:
+                                          if ('cd', 292).length - 1 < mem[_179]:
+                                              if ('cd', 292).length - 1 < ('cd', 292).length:
+                                                  require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                                                  if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                                      ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                                      else:
+                                          if 1 < mem[_179]:
+                                              if 1 < ('cd', 292).length:
+                                                  require calldata.size + -cd >=ΓÇ▓ 160
+                                                  if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                                      ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+          revert
+      if not uint16(('cd', 292)):
+          mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+          mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+          mem[mem[64] + 36] = cd[132]
+          mem[mem[64] + 68] = _505
+          mem[mem[64] + 100] = addr(('cd', 292))
+          mem[mem[64] + 132] = addr(('cd', 292))
+          mem[mem[64] + 164] = this.address
+          mem[mem[64] + 196] = bool(cd[228])
+          mem[mem[64] + 228] = uint16(('cd', 292))
+          require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+          delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0x1d1f04fb with:
+               gas gas_remaining wei
+              args 0xacc15dc74880c9944775448304b263d191c6077f, cd_505, addr(('cd', 292)), addr(('cd', 292)), addr(this.address), bool(cduint16(('cd', 292))
+          if not delegate.return_code:
+              revert with ext_call.return_data[0 len return_data.size]
+          require 0 < mem[_179]
+          require 0 < ('cd', 292).length
+          require ('cd', 292) == addr(('cd', 292))
+          if 1 >= ('cd', 292).length - 1:
+              if ('cd', 292).length - 1 < mem[_179]:
+                  if ('cd', 292).length - 1 < ('cd', 292).length:
+                      require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+          else:
+              if 1 < mem[_179]:
+                  if 1 < ('cd', 292).length:
+                      require calldata.size + -cd >=ΓÇ▓ 160
+                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+          revert
+      if 15 == uint16(('cd', 292)):
+          mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+          mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+          mem[mem[64] + 36] = cd[132]
+          mem[mem[64] + 68] = _505
+          mem[mem[64] + 100] = addr(('cd', 292))
+          mem[mem[64] + 132] = addr(('cd', 292))
+          mem[mem[64] + 164] = this.address
+          mem[mem[64] + 196] = bool(cd[228])
+          mem[mem[64] + 228] = uint16(('cd', 292))
+          require ext_code.size(0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a)
+          delegate 0x2af4d324b82a3172dd9d2b877442ab28a1e7a99a.0x1d1f04fb with:
+               gas gas_remaining wei
+              args 0xacc15dc74880c9944775448304b263d191c6077f, cd_505, addr(('cd', 292)), addr(('cd', 292)), addr(this.address), bool(cduint16(('cd', 292))
+          if not delegate.return_code:
+              revert with ext_call.return_data[0 len return_data.size]
+          require 0 < mem[_179]
+          require 0 < ('cd', 292).length
+          require ('cd', 292) == addr(('cd', 292))
+          if 1 >= ('cd', 292).length - 1:
+              if ('cd', 292).length - 1 < mem[_179]:
+                  if ('cd', 292).length - 1 < ('cd', 292).length:
+                      require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+          else:
+              if 1 < mem[_179]:
+                  if 1 < ('cd', 292).length:
+                      require calldata.size + -cd >=ΓÇ▓ 160
+                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+          revert
+      if 8 == uint16(('cd', 292)):
+          mem[mem[64]] = 0x1d1f04fb00000000000000000000000000000000000000000000000000000000
+          mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+          mem[mem[64] + 36] = cd[132]
+          mem[mem[64] + 68] = _505
+          mem[mem[64] + 100] = addr(('cd', 292))
+          mem[mem[64] + 132] = addr(('cd', 292))
+          mem[mem[64] + 164] = this.address
+          mem[mem[64] + 196] = bool(cd[228])
+          mem[mem[64] + 228] = uint16(('cd', 292))
+          require ext_code.size(0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b)
+          delegate 0x2d3cab0d10292419fb2ffe6c012a8e1cf3f9f91b.0x1d1f04fb with:
+               gas gas_remaining wei
+              args 0xacc15dc74880c9944775448304b263d191c6077f, cd_505, addr(('cd', 292)), addr(('cd', 292)), addr(this.address), bool(cduint16(('cd', 292))
+          if not delegate.return_code:
+              revert with ext_call.return_data[0 len return_data.size]
+          require 0 < mem[_179]
+          require 0 < ('cd', 292).length
+          require ('cd', 292) == addr(('cd', 292))
+          if 1 >= ('cd', 292).length - 1:
+              if ('cd', 292).length - 1 < mem[_179]:
+                  if ('cd', 292).length - 1 < ('cd', 292).length:
+                      require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+          else:
+              if 1 < mem[_179]:
+                  if 1 < ('cd', 292).length:
+                      require calldata.size + -cd >=ΓÇ▓ 160
+                      if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+          revert
+      if 3 == uint16(('cd', 292)):
+          mem[mem[64]] = 0xfdcba57c00000000000000000000000000000000000000000000000000000000
+          mem[mem[64] + 4] = cd[132]
+          mem[mem[64] + 36] = 0xacc15dc74880c9944775448304b263d191c6077f
+          mem[mem[64] + 68] = addr(('cd', 292))
+          mem[mem[64] + 100] = addr(('cd', 292))
+          mem[mem[64] + 132] = this.address
+          require ext_code.size(0xa74576107d6e34c9999593024630fff0fa2ebb52)
+          delegate 0xa74576107d6e34c9999593024630fff0fa2ebb52.0xfdcba57c with:
+               gas gas_remaining wei
+              args cdaddr(('cd', 292)), addr(('cd', 292)), this.address
+          if not delegate.return_code:
+              revert with ext_call.return_data[0 len return_data.size]
+          require 0 < mem[_179]
+          require 0 < ('cd', 292).length
+          require ('cd', 292) == addr(('cd', 292))
+          if 1 >= ('cd', 292).length - 1:
+              require ('cd', 292).length - 1 < mem[_179]
+              require ('cd', 292).length - 1 < ('cd', 292).length
+              require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+              require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+          else:
+              require 1 < mem[_179]
+              require 1 < ('cd', 292).length
+              require calldata.size + -cd >=ΓÇ▓ 160
+              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+              require ('cd', 292) == addr(('cd', 292))
+      else:
+          if 7 == uint16(('cd', 292)):
+              mem[mem[64]] = 0x2f733d7f00000000000000000000000000000000000000000000000000000000
+              mem[mem[64] + 4] = cd[132]
+              mem[mem[64] + 36] = _505
+              mem[mem[64] + 68] = 0xacc15dc74880c9944775448304b263d191c6077f
+              mem[mem[64] + 100] = addr(('cd', 292))
+              mem[mem[64] + 132] = addr(('cd', 292))
+              mem[mem[64] + 164] = this.address
+              require ext_code.size(0xbbad4e38742c3974e34a7268d6cf55eabcb26757)
+              delegate 0xbbad4e38742c3974e34a7268d6cf55eabcb26757.0x2f733d7f with:
+                   gas gas_remaining wei
+                  args cd_505, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 292)), addr(('cd', 292)), this.address
+              if not delegate.return_code:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require 0 < mem[_179]
+              require 0 < ('cd', 292).length
+              require ('cd', 292) == addr(('cd', 292))
+              if 1 >= ('cd', 292).length - 1:
+                  require ('cd', 292).length - 1 < mem[_179]
+                  require ('cd', 292).length - 1 < ('cd', 292).length
+                  require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                  require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                  require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+              else:
+                  require 1 < mem[_179]
+                  require 1 < ('cd', 292).length
+                  require calldata.size + -cd >=ΓÇ▓ 160
+                  require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                  require ('cd', 292) == addr(('cd', 292))
+          else:
+              if 11 == uint16(('cd', 292)):
+                  mem[mem[64]] = 0xfdcba57c00000000000000000000000000000000000000000000000000000000
+                  mem[mem[64] + 4] = cd[132]
+                  mem[mem[64] + 36] = 0xacc15dc74880c9944775448304b263d191c6077f
+                  mem[mem[64] + 68] = addr(('cd', 292))
+                  mem[mem[64] + 100] = addr(('cd', 292))
+                  mem[mem[64] + 132] = this.address
+                  require ext_code.size(0xd3461a4033411cc37b7fa59511045dd633e74ae5)
+                  delegate 0xd3461a4033411cc37b7fa59511045dd633e74ae5.0xfdcba57c with:
+                       gas gas_remaining wei
+                      args cdaddr(('cd', 292)), addr(('cd', 292)), this.address
+                  if not delegate.return_code:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require 0 < mem[_179]
+                  require 0 < ('cd', 292).length
+                  require ('cd', 292) == addr(('cd', 292))
+                  if 1 >= ('cd', 292).length - 1:
+                      require ('cd', 292).length - 1 < mem[_179]
+                      require ('cd', 292).length - 1 < ('cd', 292).length
+                      require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                      require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                      require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+                  else:
+                      require 1 < mem[_179]
+                      require 1 < ('cd', 292).length
+                      require calldata.size + -cd >=ΓÇ▓ 160
+                      require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                      require ('cd', 292) == addr(('cd', 292))
+              else:
+                  if 13 == uint16(('cd', 292)):
+                      mem[mem[64]] = 0xf53593700000000000000000000000000000000000000000000000000000000
+                      mem[mem[64] + 4] = cd[132]
+                      mem[mem[64] + 36] = 0xacc15dc74880c9944775448304b263d191c6077f
+                      mem[mem[64] + 68] = addr(('cd', 292))
+                      mem[mem[64] + 100] = addr(('cd', 292))
+                      mem[mem[64] + 132] = this.address
+                      mem[mem[64] + 164] = 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486
+                      mem[mem[64] + 196] = 0xa128ba44b2738a558a1fdc06d6303d52d3cef8c1
+                      require ext_code.size(0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008)
+                      delegate 0xfec1058f6e75ea9c0ad7fe9775b819adf4aca008.0xf535937 with:
+                           gas gas_remaining wei
+                          args cdaddr(('cd', 292)), addr(('cd', 292)), addr(this.address), 0x8f8dd7db1bda5ed3da8c9daf3bfa471c12d58486, 0xa128ba44b2738a558a1fdc06d6303d52d3cef8c1
+                      if not delegate.return_code:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      require 0 < mem[_179]
+                      require 0 < ('cd', 292).length
+                      require ('cd', 292) == addr(('cd', 292))
+                      if 1 >= ('cd', 292).length - 1:
+                          require ('cd', 292).length - 1 < mem[_179]
+                          require ('cd', 292).length - 1 < ('cd', 292).length
+                          require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                      else:
+                          require 1 < mem[_179]
+                          require 1 < ('cd', 292).length
+                          require calldata.size + -cd >=ΓÇ▓ 160
+                  else:
+                      if 26 == uint16(('cd', 292)):
+                          mem[mem[64]] = 0xa851020d00000000000000000000000000000000000000000000000000000000
+                          mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                          mem[mem[64] + 36] = cd[132]
+                          mem[mem[64] + 68] = addr(('cd', 292))
+                          mem[mem[64] + 100] = this.address
+                          require ext_code.size(0x27f930ef30fc63ff6ed1b634ecfdeb5def4081a5)
+                          delegate 0x27f930ef30fc63ff6ed1b634ecfdeb5def4081a5.0xa851020d with:
+                               gas gas_remaining wei
+                              args 0xacc15dc74880c9944775448304b263d191c6077f, cdaddr(('cd', 292)), this.address
+                          if not delegate.return_code:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require 0 < mem[_179]
+                          require 0 < ('cd', 292).length
+                          require ('cd', 292) == addr(('cd', 292))
+                          if 1 >= ('cd', 292).length - 1:
+                              require ('cd', 292).length - 1 < mem[_179]
+                              require ('cd', 292).length - 1 < ('cd', 292).length
+                              require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                              require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+                              require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+                          else:
+                              require 1 < mem[_179]
+                              require 1 < ('cd', 292).length
+                              require calldata.size + -cd >=ΓÇ▓ 160
+                              require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                              require ('cd', 292) == addr(('cd', 292))
+                              require ('cd', 292) == addr(('cd', 292))
+                      else:
+                          if 35 == uint16(('cd', 292)):
+                              mem[mem[64]] = 0x1349181d00000000000000000000000000000000000000000000000000000000
+                              mem[mem[64] + 4] = cd[132]
+                              mem[mem[64] + 36] = _505
+                              mem[mem[64] + 68] = 0xacc15dc74880c9944775448304b263d191c6077f
+                              mem[mem[64] + 100] = addr(('cd', 292))
+                              mem[mem[64] + 132] = addr(('cd', 292))
+                              mem[mem[64] + 164] = this.address
+                              mem[mem[64] + 196] = uint16(('cd', 292))
+                              require ext_code.size(0x31308c34eda89fa0a401b6e4edf878685aabfa1)
+                              delegate 0x31308c34eda89fa0a401b6e4edf878685aabfa1.0x1349181d with:
+                                   gas gas_remaining wei
+                                  args cd_505, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 292)), addr(('cd', 292)), addr(this.address), uint16(('cd', 292))
+                              if not delegate.return_code:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require 0 < mem[_179]
+                              require 0 < ('cd', 292).length
+                              require ('cd', 292) == addr(('cd', 292))
+                              if 1 >= ('cd', 292).length - 1:
+                                  if ('cd', 292).length - 1 < mem[_179]:
+                                      if ('cd', 292).length - 1 < ('cd', 292).length:
+                                          require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                                          if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                              ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              else:
+                                  if 1 < mem[_179]:
+                                      if 1 < ('cd', 292).length:
+                                          require calldata.size + -cd >=ΓÇ▓ 160
+                                          if mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615:
+                                              ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                              revert
+                          if 36 == uint16(('cd', 292)):
+                              mem[mem[64]] = 0xe4ef8e9900000000000000000000000000000000000000000000000000000000
+                              mem[mem[64] + 4] = 0xacc15dc74880c9944775448304b263d191c6077f
+                              mem[mem[64] + 36] = cd[132]
+                              mem[mem[64] + 68] = _505
+                              mem[mem[64] + 100] = 0xacc15dc74880c9944775448304b263d191c6077f
+                              mem[mem[64] + 132] = addr(('cd', 292))
+                              mem[mem[64] + 164] = addr(('cd', 292))
+                              mem[mem[64] + 196] = this.address
+                              mem[mem[64] + 228] = uint16(('cd', 292))
+                              require ext_code.size(0x546e0bb2b0429c4177e06e17f1c676e7804019cd)
+                              delegate 0x546e0bb2b0429c4177e06e17f1c676e7804019cd.0xe4ef8e99 with:
+                                   gas gas_remaining wei
+                                  args 0xacc15dc74880c9944775448304b263d191c6077f, cd_505, 0xacc15dc74880c9944775448304b263d191c6077f, addr(('cd', 292)), addr(('cd', 292)), addr(this.address), uint16(('cd', 292))
+                              if not delegate.return_code:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require 0 < mem[_179]
+                              require 0 < ('cd', 292).length
+                              require ('cd', 292) == addr(('cd', 292))
+                              if 1 >= ('cd', 292).length - 1:
+                                  require ('cd', 292).length - 1 < mem[_179]
+                              else:
+                                  require 1 < mem[_179]
+                          else:
+                              require 0 < mem[_179]
+                              require 0 < ('cd', 292).length
+                              require ('cd', 292) == addr(('cd', 292))
+                              if 1 >= ('cd', 292).length - 1:
+                                  require ('cd', 292).length - 1 < mem[_179]
+                                  require ('cd', 292).length - 1 < ('cd', 292).length
+                                  require calldata.size + (-160 * ('cd', 292).length) + -cd >=ΓÇ▓ 160
+                                  require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                  require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+                                  require cd[((160 * ('cd', 292).length) + cd == addr(cd[((160 * ('cd', 292).length) + cd)
+                                  require cd[((160 * ('cd', 292).length) + cd == uint16(cd[((160 * ('cd', 292).length) + cd)
+                                  require cd[((160 * ('cd', 292).length) + cd == uint16(cd[((160 * ('cd', 292).length) + cd)
+                                  require cd[((160 * ('cd', 292).length) + cd == uint16(cd[((160 * ('cd', 292).length) + cd)
+                              else:
+                                  require 1 < mem[_179]
+                                  require 1 < ('cd', 292).length
+                                  require calldata.size + -cd >=ΓÇ▓ 160
+                                  _1035 = mem[64]
+                                  require mem[64] + 160 >= mem[64] and mem[64] + 160 <= 18446744073709551615
+                                  mem[64] = mem[64] + 160
+                                  require ('cd', 292) == addr(('cd', 292))
+                                  mem[_1035] = ('cd', 292)
+                                  require ('cd', 292) == addr(('cd', 292))
+                                  mem[_1035 + 32] = ('cd', 292)
+                                  require ('cd', 292) == uint16(('cd', 292))
+                                  mem[_1035 + 64] = ('cd', 292)
+                                  require ('cd', 292) == uint16(('cd', 292))
+                                  mem[_1035 + 96] = ('cd', 292)
+                                  require ('cd', 292) == uint16(('cd', 292))
+                                  mem[_1035 + 128] = ('cd', 292)
+                                  require 2 < mem[_179]
+                                  if mem[mem[_179 + 96] + 32]:
+  ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+
+

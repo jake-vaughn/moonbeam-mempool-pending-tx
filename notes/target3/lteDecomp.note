@@ -1,0 +1,86 @@
+mapping (unknown => unknown) mapping1;
+
+if(msg.data.length < 4) {
+    ifmsg.data.length {
+        revert();
+    } else {
+        return;
+    }
+} else {
+    if(a2abe54e > (e0 >>> msg.data)) {
+        if(58df51ce == (e0 >>> msg.data)) {
+            require(((msg.data.length - 4) >= 40));
+            require((_arg0 == _arg0));
+            if(_arg1 == _arg1) goto(2f7a);
+            revert();
+        } else {
+            if(5c107515 == (e0 >>> msg.data)) {
+                require(((msg.data.length - 4) >= 140));
+                require((_arg0 == _arg0));
+                if(_arg1 == _arg1) goto(2f7a);
+                revert();
+            } else {
+                require((9e281a98 == (e0 >>> msg.data)));
+                require((msg.value == 0));
+                require(((msg.data.length - 4) >= 40));
+                require((_arg0 == _arg0));
+                if(_arg1 == _arg1) goto(2f7a);
+                revert();
+            }
+        }
+    } else {
+        if(a2abe54e == (e0 >>> msg.data)) {
+            require(((msg.data.length - 4) >= c0));
+            require((_arg0 == _arg0));
+            goto(2f8f);
+        } else {
+            if(c0ce282a == (e0 >>> msg.data)) {
+                require(((msg.data.length - 4) >= 20));
+                require((_arg0 <= ffffffffffffffff));
+                require((((4 + _arg0) + 1f) < msg.data.length));
+                require((msg.data[(4 + _arg0)] <= ffffffffffffffff));
+                require(((((80 + ((20 * msg.data[(4 + _arg0)]) + 20)) < 80) || ((80 + ((20 * msg.data[(4 + _arg0)]) + 20)) > ffffffffffffffff)) == 0));
+                require(((((4 + _arg0) + 20) + (msg.data[(4 + _arg0)] * 20)) <= msg.data.length));
+                if(0 >= msg.data[(4 + _arg0)]) {
+                    require((msg.sender == storage[1]));
+                    if(0 >= msg.data[(4 + _arg0)]) {
+                        return;
+                    } else {
+                        require((0 < msg.data[(4 + _arg0)]));
+                        if((address((memory[a0])).code.length) == 0) {
+                            mapping1[(memory[a0])] = (1 || (ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00 && mapping1[(memory[a0])]));
+                            if(1 >= msg.data[(4 + _arg0)]) goto(233);
+                            if(1 < msg.data[(4 + _arg0)]) goto(50e);
+                            revert("Invalid instruction (0xfe)");
+                        } else {
+                            memory[(80 + ((20 * msg.data[(4 + _arg0)]) + 20))] = 8c379a000000000000000000000000000000000000000000000000000000000;
+                            memory[((80 + ((20 * msg.data[(4 + _arg0)]) + 20)) + 4)] = 20;
+                            memory[((80 + ((20 * msg.data[(4 + _arg0)]) + 20)) + 24)] = 2;
+                            memory[((80 + ((20 * msg.data[(4 + _arg0)]) + 20)) + 44)] = 6531000000000000000000000000000000000000000000000000000000000000;
+                            revert(memory[(80 + ((20 * msg.data[(4 + _arg0)]) + 20)):((80 + ((20 * msg.data[(4 + _arg0)]) + 20))+(64 + ((80 + ((20 * msg.data[(4 + _arg0)]) + 20)) - (80 + ((20 * msg.data[(4 + _arg0)]) + 20)))))]);
+                        }
+                    }
+                } else {
+                    require((msg.data[((4 + _arg0) + 20)] == msg.data[((4 + _arg0) + 20)]));
+                    if(1 >= msg.data[(4 + _arg0)]) goto(21c4);
+                    goto(2227);
+                }
+            } else {
+                if(c311d049 == (e0 >>> msg.data)) {
+                    require(((msg.data.length - 4) >= 20));
+                    require((_arg0 == _arg0));
+                    require((msg.sender == storage[1]));
+                    if(call((8fc * (_arg0 == 0)),msg.sender,_arg0,80,0,80,0)) {
+                        return;
+                    } else {
+                        revert(memory[0:(0+output.length)]);
+                    }
+                } else {
+                    require((f851a440 == (e0 >>> msg.data)));
+                    require((msg.value == 0));
+                    return(storage[1]);
+                }
+            }
+        }
+    }
+}

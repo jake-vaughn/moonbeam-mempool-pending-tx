@@ -10,7 +10,7 @@ import { unwrapWglmr } from "../utils/defi/wglmr"
 const { ethers, network, getNamedAccounts } = hre
 const chainId = network.config.chainId!
 const targetContracts = networkConfig[chainId].targetContracts
-const target = targetContracts["0xb23Fbd367A95e498d97820e5ddBeb3B683E35649"]
+const target = targetContracts["0xAdaaF4999349346935387797c5F79E07C43c12eD"]
 const CONTRACT_ADDRESS = target.copyContractAddr
 
 async function withdrawWglmr() {

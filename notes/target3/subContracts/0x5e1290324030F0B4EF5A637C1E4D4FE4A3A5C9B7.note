@@ -1,0 +1,1708 @@
+# Palkeoramix decompiler. 
+
+def _fallback() payable: # default function
+  revert
+
+def unknownbc20ca19(uint256 _param1, addr _param2, addr _param3, uint16 _param4) payable: 
+  require calldata.size - 4 >= 128
+  require ext_code.size(_param3)
+  static call _param3.0xf140a35a with:
+          gas gas_remaining wei
+         args _param1, _param2
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  if _param4 == 10000:
+      return ext_call.return_data[0], 1
+  return ext_call.return_data * _param4 / 10000, 1
+
+def unknown0a58d574(addr _param1, uint256 _param2, uint256 _param3, addr _param4, addr _param5, addr _param6, bool _param7, uint16 _param8) payable: 
+  require 0x5e1290324030f0b4ef5a637c1e4d4fe4a3a5c9b7 != this.address
+  require calldata.size - 4 >= 256
+  require ext_code.size(_param4)
+  if not _param7:
+      call _param4.transfer(address to, uint256 tokens) with:
+           gas gas_remaining wei
+          args addr(_param6), _param2
+  else:
+      if _param4 == _param1:
+          call _param4.transfer(address to, uint256 tokens) with:
+               gas gas_remaining wei
+              args addr(_param6), _param2
+      else:
+          static call _param4.balanceOf(address tokenOwner) with:
+                  gas gas_remaining wei
+                 args this.address
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 32
+          require ext_code.size(_param4)
+          call _param4.transfer(address to, uint256 tokens) with:
+               gas gas_remaining wei
+              args addr(_param6), ext_call.return_data[0]
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require ext_code.size(_param6)
+  static call _param6.0xdfe1681 with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  require ext_code.size(_param6)
+  if not _param7:
+      if ext_call.return_data_param5:
+          call _param6.0x22c0d9f with:
+               gas gas_remaining wei
+              args 0, 0, _param3, addr(this.address), 128, 0
+      else:
+          call _param6.0x22c0d9f with:
+               gas gas_remaining wei
+              args 0, uint32(_param3), 0, addr(this.address), 128, 0
+  else:
+      if _param4 == _param1:
+          if ext_call.return_data_param5:
+              call _param6.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, 0, _param3, addr(this.address), 128, 0
+          else:
+              call _param6.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, uint32(_param3), 0, addr(this.address), 128, 0
+      else:
+          if ext_call.return_data == _param5:
+              static call _param6.token1() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+          static call _param6.getReserves() with:
+                  gas gas_remaining wei
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 96
+          require ext_code.size(addr(ext_call.return_data))
+          static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+                  gas gas_remaining wei
+                 args _param6
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 32
+          if addr(ext_call.return_data) == addr(ext_call.return_data):
+              require (ext_call.return_data * _param8) - (Mask(112, 0, ext_call.return_data * _param8) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+              require ext_code.size(_param6)
+              static call _param6.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param6)
+              if ext_call.return_data_param5:
+                  call _param6.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, 0, (ext_call.return_data * _param8 * Mask(112, 0, ext_call.return_data * _param8 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param8) - (Mask(112, 0, ext_call.return_data * _param8) + (10000 * Mask(112, 0, ext_call.return_dataaddr(this.address), 128, 0
+              else:
+                  call _param6.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, uint32((ext_call.return_data * _param8 * Mask(112, 0, ext_call.return_data * _param8 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param8) - (Mask(112, 0, ext_call.return_data * _param8) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(this.address), 128, 0
+          else:
+              require (ext_call.return_data * _param8) - (Mask(112, 0, ext_call.return_data * _param8) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+              require ext_code.size(_param6)
+              static call _param6.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param6)
+              if ext_call.return_data_param5:
+                  call _param6.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, 0, (ext_call.return_data * _param8 * Mask(112, 0, ext_call.return_data * _param8 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param8) - (Mask(112, 0, ext_call.return_data * _param8) + (10000 * Mask(112, 0, ext_call.return_dataaddr(this.address), 128, 0
+              else:
+                  call _param6.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, uint32((ext_call.return_data * _param8 * Mask(112, 0, ext_call.return_data * _param8 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param8) - (Mask(112, 0, ext_call.return_data * _param8) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(this.address), 128, 0
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+
+def unknown75d4ec8a(uint256 _param1, addr _param2, addr _param3, addr _param4, addr _param5, bool _param6, uint16 _param7) payable: 
+  require 0x5e1290324030f0b4ef5a637c1e4d4fe4a3a5c9b7 != this.address
+  require calldata.size - 4 >= 224
+  if _param2 != _param4:
+      require ext_code.size(_param4)
+      static call _param4.0xdfe1681 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      if not _param6:
+          if ext_call.return_data_param3:
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, 0, _param1, addr(_param5), 128, 0
+          else:
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, uint32(_param1), 0, addr(_param5), 128, 0
+      else:
+          if ext_call.return_data == _param3:
+              static call _param4.token1() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+          static call _param4.getReserves() with:
+                  gas gas_remaining wei
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 96
+          require ext_code.size(addr(ext_call.return_data))
+          static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+                  gas gas_remaining wei
+                 args _param4
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 32
+          if addr(ext_call.return_data) == addr(ext_call.return_data):
+              require (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+              require ext_code.size(_param4)
+              static call _param4.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param4)
+              if ext_call.return_data_param3:
+                  call _param4.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, 0, (ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_dataaddr(_param5), 128, 0
+              else:
+                  call _param4.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, uint32((ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(_param5), 128, 0
+          else:
+              require (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+              require ext_code.size(_param4)
+              static call _param4.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param4)
+              if ext_call.return_data_param3:
+                  call _param4.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, 0, (ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_dataaddr(_param5), 128, 0
+              else:
+                  call _param4.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, uint32((ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(_param5), 128, 0
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+  else:
+      require ext_code.size(_param2)
+      static call _param2.balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args this.address
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param2)
+      call _param2.transfer(address to, uint256 tokens) with:
+           gas gas_remaining wei
+          args addr(_param2), ext_call.return_data[0]
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require ext_code.size(_param4)
+      call _param4.burn(address address) with:
+           gas gas_remaining wei
+          args this.address
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 64
+      require ext_code.size(_param4)
+      static call _param4.0xdfe1681 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      static call _param4.token1() with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(addr(ext_call.return_data))
+      static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args this.address
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(addr(ext_call.return_data))
+      call addr(ext_call.return_data).transfer(address to, uint256 tokens) with:
+           gas gas_remaining wei
+          args addr(_param4), ext_call.return_data[0]
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require ext_code.size(_param4)
+      static call _param4.0xdfe1681 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      if ext_call.return_data == _param3:
+          static call _param4.token1() with:
+                  gas gas_remaining wei
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 32
+      static call _param4.getReserves() with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 96
+      require ext_code.size(addr(ext_call.return_data))
+      static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args _param4
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      if _param3 != addr(ext_call.return_data):
+          if addr(ext_call.return_data) == addr(ext_call.return_data):
+              require (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+              require ext_code.size(_param4)
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, 0, (ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_dataaddr(this.address), 128, 0
+          else:
+              require (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+              require ext_code.size(_param4)
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, 0, (ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_dataaddr(this.address), 128, 0
+      else:
+          if addr(ext_call.return_data) == addr(ext_call.return_data):
+              require (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+              require ext_code.size(_param4)
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, uint32((ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(this.address), 128, 0
+          else:
+              require (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+              require ext_code.size(_param4)
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, uint32((ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data * _param7 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param7) - (Mask(112, 0, ext_call.return_data * _param7) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(this.address), 128, 0
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require ext_code.size(_param3)
+      static call _param3.balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args this.address
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      if _param5 != this.address:
+          require ext_code.size(_param3)
+          call _param3.transfer(address to, uint256 tokens) with:
+               gas gas_remaining wei
+              args addr(_param5), ext_call.return_data[0]
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+
+def unknown5d6e7ef5(uint256 _param1, addr _param2, addr _param3, addr _param4, bool _param5, uint16 _param6) payable: 
+  require 0x5e1290324030f0b4ef5a637c1e4d4fe4a3a5c9b7 != this.address
+  require calldata.size - 4 >= 192
+  if _param2 != _param4:
+      if not _param5:
+          if _param2 == _param4:
+              require ext_code.size(_param2)
+              static call _param2.balanceOf(address tokenOwner) with:
+                      gas gas_remaining wei
+                     args this.address
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param2)
+              call _param2.transfer(address to, uint256 tokens) with:
+                   gas gas_remaining wei
+                  args addr(_param2), ext_call.return_data[0]
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+          require ext_code.size(_param4)
+          static call _param4.0xdfe1681 with:
+                  gas gas_remaining wei
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 32
+          require ext_code.size(_param4)
+          if ext_call.return_data_param3:
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, 0, _param1, addr(this.address), 128, 0
+          else:
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, uint32(_param1), 0, addr(this.address), 128, 0
+      else:
+          require ext_code.size(_param4)
+          static call _param4.0xdfe1681 with:
+                  gas gas_remaining wei
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 32
+          require ext_code.size(_param4)
+          if ext_call.return_data == _param3:
+              static call _param4.token1() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+          static call _param4.getReserves() with:
+                  gas gas_remaining wei
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 96
+          require ext_code.size(addr(ext_call.return_data))
+          static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+                  gas gas_remaining wei
+                 args _param4
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 32
+          if addr(ext_call.return_data) == addr(ext_call.return_data):
+              require (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+              if _param2 == _param4:
+                  require ext_code.size(_param2)
+                  static call _param2.balanceOf(address tokenOwner) with:
+                          gas gas_remaining wei
+                         args this.address
+                  if not ext_call.success:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require return_data.size >= 32
+                  require ext_code.size(_param2)
+                  call _param2.transfer(address to, uint256 tokens) with:
+                       gas gas_remaining wei
+                      args addr(_param2), ext_call.return_data[0]
+                  if not ext_call.success:
+                      revert with ext_call.return_data[0 len return_data.size]
+              require ext_code.size(_param4)
+              static call _param4.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param4)
+              if ext_call.return_data_param3:
+                  call _param4.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, 0, (ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_dataaddr(this.address), 128, 0
+              else:
+                  call _param4.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, uint32((ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(this.address), 128, 0
+          else:
+              require (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+              if _param2 == _param4:
+                  require ext_code.size(_param2)
+                  static call _param2.balanceOf(address tokenOwner) with:
+                          gas gas_remaining wei
+                         args this.address
+                  if not ext_call.success:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require return_data.size >= 32
+                  require ext_code.size(_param2)
+                  call _param2.transfer(address to, uint256 tokens) with:
+                       gas gas_remaining wei
+                      args addr(_param2), ext_call.return_data[0]
+                  if not ext_call.success:
+                      revert with ext_call.return_data[0 len return_data.size]
+              require ext_code.size(_param4)
+              static call _param4.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param4)
+              if ext_call.return_data_param3:
+                  call _param4.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, 0, (ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_dataaddr(this.address), 128, 0
+              else:
+                  call _param4.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, uint32((ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(this.address), 128, 0
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+  else:
+      require ext_code.size(_param2)
+      static call _param2.balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args this.address
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param2)
+      call _param2.transfer(address to, uint256 tokens) with:
+           gas gas_remaining wei
+          args addr(_param2), ext_call.return_data[0]
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require ext_code.size(_param4)
+      call _param4.burn(address address) with:
+           gas gas_remaining wei
+          args this.address
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 64
+      require ext_code.size(_param4)
+      static call _param4.0xdfe1681 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      static call _param4.token1() with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(addr(ext_call.return_data))
+      static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args this.address
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(addr(ext_call.return_data))
+      call addr(ext_call.return_data).transfer(address to, uint256 tokens) with:
+           gas gas_remaining wei
+          args addr(_param4), ext_call.return_data[0]
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require ext_code.size(_param4)
+      static call _param4.0xdfe1681 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      if ext_call.return_data == _param3:
+          static call _param4.token1() with:
+                  gas gas_remaining wei
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+          require return_data.size >= 32
+      static call _param4.getReserves() with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 96
+      require ext_code.size(addr(ext_call.return_data))
+      static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args _param4
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      if _param3 != addr(ext_call.return_data):
+          if addr(ext_call.return_data) == addr(ext_call.return_data):
+              require (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+              require ext_code.size(_param4)
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, 0, (ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_dataaddr(this.address), 128, 0
+          else:
+              require (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+              require ext_code.size(_param4)
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, 0, (ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_dataaddr(this.address), 128, 0
+      else:
+          if addr(ext_call.return_data) == addr(ext_call.return_data):
+              require (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+              require ext_code.size(_param4)
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, uint32((ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(this.address), 128, 0
+          else:
+              require (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+              require ext_code.size(_param4)
+              call _param4.0x22c0d9f with:
+                   gas gas_remaining wei
+                  args 0, uint32((ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data * _param6 * Mask(112, 0, ext_call.return_data / (ext_call.return_data * _param6) - (Mask(112, 0, ext_call.return_data * _param6) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(this.address), 128, 0
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require ext_code.size(_param3)
+      static call _param3.balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args this.address
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      if this.address != this.address:
+          require ext_code.size(_param3)
+          call _param3.transfer(address to, uint256 tokens) with:
+               gas gas_remaining wei
+              args addr(this.address), ext_call.return_data[0]
+          if not ext_call.success:
+              revert with ext_call.return_data[0 len return_data.size]
+
+def unknown1d1f04fb(addr _param1, uint256 _param2, uint256 _param3, addr _param4, addr _param5, addr _param6, bool _param7, uint16 _param8) payable: 
+  require 0x5e1290324030f0b4ef5a637c1e4d4fe4a3a5c9b7 != this.address
+  require calldata.size - 4 >= 256
+  require ext_code.size(_param1)
+  call _param1.transfer(address to, uint256 tokens) with:
+       gas gas_remaining wei
+      args addr(_param5), _param2
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require ext_code.size(_param5)
+  if not _param7:
+      static call _param5.0xdfe1681 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param5)
+      if ext_call.return_data_param4:
+          call _param5.0x22c0d9f with:
+               gas gas_remaining wei
+              args 0, 0, _param3, addr(_param6), 128, 0
+      else:
+          call _param5.0x22c0d9f with:
+               gas gas_remaining wei
+              args 0, uint32(_param3), 0, addr(_param6), 128, 0
+  else:
+      static call _param5.getReserves() with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 96
+      require ext_code.size(_param5)
+      static call _param5.0xdfe1681 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      if ext_call.return_data == _param4:
+          if _param1 != _param5:
+              require (_param8 * _param2) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+              require ext_code.size(_param5)
+              static call _param5.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              if ext_call.return_data_param4:
+                  call _param5.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, 0, _param8 * _param2 * Mask(112, 0, ext_call.return_data / (_param8 * _param2) + (10000 * Mask(112, 0, ext_call.return_dataaddr(_param6), 128, 0
+              else:
+                  call _param5.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, uint32(_param8 * _param2 * Mask(112, 0, ext_call.return_data / (_param8 * _param2) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(_param6), 128, 0
+          else:
+              require ext_code.size(_param5)
+              static call _param5.token1() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              static call _param5.totalSupply() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              static call _param5.0x7464fc3d with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              static call _param5.factory() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(addr(ext_call.return_data))
+              static call addr(ext_call.return_data).0x17e7e58 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              static call _param5.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(addr(ext_call.return_data))
+              static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+                      gas gas_remaining wei
+                     args _param5
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(addr(ext_call.return_data))
+              static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+                      gas gas_remaining wei
+                     args _param5
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              if not ext_call.return_data[12 len 20]:
+                  require ext_call.return_data[0]
+                  require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                  require ext_code.size(_param5)
+                  static call _param5.0xdfe1681 with:
+                          gas gas_remaining wei
+                  if not ext_call.success:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require return_data.size >= 32
+                  require ext_code.size(_param5)
+                  if ext_call.return_data_param4:
+                      call _param5.0x22c0d9f with:
+                           gas gas_remaining wei
+                          args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                  else:
+                      call _param5.0x22c0d9f with:
+                           gas gas_remaining wei
+                          args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+              else:
+                  if not ext_call.return_data[0]:
+                      require ext_call.return_data[0]
+                      require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                      require ext_code.size(_param5)
+                      static call _param5.0xdfe1681 with:
+                              gas gas_remaining wei
+                      if not ext_call.success:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      require return_data.size >= 32
+                      require ext_code.size(_param5)
+                      if ext_call.return_data_param4:
+                          call _param5.0x22c0d9f with:
+                               gas gas_remaining wei
+                              args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                      else:
+                          call _param5.0x22c0d9f with:
+                               gas gas_remaining wei
+                              args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                  else:
+                      if Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data > 3:
+                          s = (Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data / 2) + 1
+                          t = Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data[0])
+                          while s < t:
+                              require s
+                              s = (Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data / s) + s / 2
+                              t = s
+                              continue 
+                          if ext_call.return_data <= 3:
+                              if ext_call.return_data[0]:
+                                  if t <= 1:
+                                      require ext_call.return_data[0]
+                                      require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                                      require ext_code.size(_param5)
+                                      static call _param5.0xdfe1681 with:
+                                              gas gas_remaining wei
+                                      if not ext_call.success:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      require return_data.size >= 32
+                                  else:
+                                      require (5 * t) + 1
+                                      if -ext_call.return_datat * ext_call.return_data / (5 * t) + 1:
+                                          require (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0]
+                                          require (_param8 * _param2 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0])
+                                      else:
+                                          require ext_call.return_data[0]
+                                          require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                                          require ext_code.size(_param5)
+                                          static call _param5.0xdfe1681 with:
+                                                  gas gas_remaining wei
+                              else:
+                                  if t <= 0:
+                                      require ext_call.return_data[0]
+                                      require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                                      require ext_code.size(_param5)
+                                      static call _param5.0xdfe1681 with:
+                                              gas gas_remaining wei
+                                      if not ext_call.success:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      require return_data.size >= 32
+                                  else:
+                                      require 5 * t
+                                      if ext_call.return_data * t / 5 * t:
+                                          require (ext_call.return_data * t / 5 * t) + ext_call.return_data[0]
+                                          require (_param8 * _param2 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data[0])
+                                          require ext_code.size(_param5)
+                                          static call _param5.0xdfe1681 with:
+                                                  gas gas_remaining wei
+                                      else:
+                                          require ext_call.return_data[0]
+                                          require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                                          require ext_code.size(_param5)
+                                          static call _param5.0xdfe1681 with:
+                                                  gas gas_remaining wei
+                                          if not ext_call.success:
+                                              revert with ext_call.return_data[0 len return_data.size]
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      if not Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data[0]):
+                          if ext_call.return_data <= 3:
+                              require ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                              require ext_code.size(_param5)
+                              static call _param5.0xdfe1681 with:
+                                      gas gas_remaining wei
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require return_data.size >= 32
+                              require ext_code.size(_param5)
+                              if ext_call.return_data_param4:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                              else:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              stop
+                          s = (ext_call.return_data / 2) + 1
+                          t = ext_call.return_data[0]
+                          while s < t:
+                              require s
+                              s = (ext_call.return_data / s) + s / 2
+                              t = s
+                              continue 
+                          if 0 <= t:
+                              require ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                          else:
+                              require t
+                              if not -1 * ext_call.return_data * t / t:
+                                  require ext_call.return_data[0]
+                                  require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                              else:
+                                  require (-1 * ext_call.return_data * t / t) + ext_call.return_data[0]
+                                  require (_param8 * _param2 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data[0])
+                          require ext_code.size(_param5)
+                          static call _param5.0xdfe1681 with:
+                                  gas gas_remaining wei
+                          if not ext_call.success:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require return_data.size >= 32
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      if ext_call.return_data > 3:
+                          s = (ext_call.return_data / 2) + 1
+                          t = ext_call.return_data[0]
+                          while s < t:
+                              require s
+                              s = (ext_call.return_data / s) + s / 2
+                              t = s
+                              continue 
+                          if 1 <= t:
+                              require ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                          else:
+                              require t + 5
+                              if not ext_call.return_datat * ext_call.return_data / t + 5:
+                                  require ext_call.return_data[0]
+                                  require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                              else:
+                                  require (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0]
+                                  require (_param8 * _param2 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0])
+                          require ext_code.size(_param5)
+                          static call _param5.0xdfe1681 with:
+                                  gas gas_remaining wei
+                          if not ext_call.success:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require return_data.size >= 32
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      if ext_call.return_data[0]:
+                          require ext_call.return_data[0]
+                          require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                          require ext_code.size(_param5)
+                          static call _param5.0xdfe1681 with:
+                                  gas gas_remaining wei
+                          if not ext_call.success:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require return_data.size >= 32
+                          require ext_code.size(_param5)
+                          if ext_call.return_data_param4:
+                              call _param5.0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                          else:
+                              call _param5.0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                      else:
+                          if not ext_call.return_data / 5:
+                              require ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                              require ext_code.size(_param5)
+                              static call _param5.0xdfe1681 with:
+                                      gas gas_remaining wei
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require return_data.size >= 32
+                              require ext_code.size(_param5)
+                              if ext_call.return_data_param4:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                              else:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                          else:
+                              require (ext_call.return_data / 5) + ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data[0])
+                              require ext_code.size(_param5)
+                              static call _param5.0xdfe1681 with:
+                                      gas gas_remaining wei
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require return_data.size >= 32
+                              require ext_code.size(_param5)
+                              if ext_call.return_data_param4:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data / (_param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_dataaddr(_param6), 128, 0
+                              else:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data / (_param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_dataaddr(_param6), 128, 0
+      else:
+          if _param1 != _param5:
+              require (_param8 * _param2) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+              require ext_code.size(_param5)
+              static call _param5.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              if ext_call.return_data_param4:
+                  call _param5.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, 0, _param8 * _param2 * Mask(112, 0, ext_call.return_data / (_param8 * _param2) + (10000 * Mask(112, 0, ext_call.return_dataaddr(_param6), 128, 0
+              else:
+                  call _param5.0x22c0d9f with:
+                       gas gas_remaining wei
+                      args 0, uint32(_param8 * _param2 * Mask(112, 0, ext_call.return_data / (_param8 * _param2) + (10000 * Mask(112, 0, ext_call.return_data), 0, addr(_param6), 128, 0
+          else:
+              require ext_code.size(_param5)
+              static call _param5.token1() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              static call _param5.totalSupply() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              static call _param5.0x7464fc3d with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              static call _param5.factory() with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(addr(ext_call.return_data))
+              static call addr(ext_call.return_data).0x17e7e58 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(_param5)
+              static call _param5.0xdfe1681 with:
+                      gas gas_remaining wei
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(addr(ext_call.return_data))
+              static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+                      gas gas_remaining wei
+                     args _param5
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              require ext_code.size(addr(ext_call.return_data))
+              static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+                      gas gas_remaining wei
+                     args _param5
+              if not ext_call.success:
+                  revert with ext_call.return_data[0 len return_data.size]
+              require return_data.size >= 32
+              if not ext_call.return_data[12 len 20]:
+                  require ext_call.return_data[0]
+                  require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                  require ext_code.size(_param5)
+                  static call _param5.0xdfe1681 with:
+                          gas gas_remaining wei
+                  if not ext_call.success:
+                      revert with ext_call.return_data[0 len return_data.size]
+                  require return_data.size >= 32
+                  require ext_code.size(_param5)
+                  if ext_call.return_data_param4:
+                      call _param5.0x22c0d9f with:
+                           gas gas_remaining wei
+                          args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                  else:
+                      call _param5.0x22c0d9f with:
+                           gas gas_remaining wei
+                          args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+              else:
+                  if not ext_call.return_data[0]:
+                      require ext_call.return_data[0]
+                      require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                      require ext_code.size(_param5)
+                      static call _param5.0xdfe1681 with:
+                              gas gas_remaining wei
+                      if not ext_call.success:
+                          revert with ext_call.return_data[0 len return_data.size]
+                      require return_data.size >= 32
+                      require ext_code.size(_param5)
+                      if ext_call.return_data_param4:
+                          call _param5.0x22c0d9f with:
+                               gas gas_remaining wei
+                              args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                      else:
+                          call _param5.0x22c0d9f with:
+                               gas gas_remaining wei
+                              args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                  else:
+                      if Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data > 3:
+                          s = (Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data / 2) + 1
+                          t = Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data[32])
+                          while s < t:
+                              require s
+                              s = (Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data / s) + s / 2
+                              t = s
+                              continue 
+                          if ext_call.return_data <= 3:
+                              if ext_call.return_data[0]:
+                                  if t <= 1:
+                                      require ext_call.return_data[0]
+                                      require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                                      require ext_code.size(_param5)
+                                      static call _param5.0xdfe1681 with:
+                                              gas gas_remaining wei
+                                      if not ext_call.success:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      require return_data.size >= 32
+                                  else:
+                                      require (5 * t) + 1
+                                      if -ext_call.return_datat * ext_call.return_data / (5 * t) + 1:
+                                          require (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0]
+                                          require (_param8 * _param2 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0])
+                                      else:
+                                          require ext_call.return_data[0]
+                                          require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                                          require ext_code.size(_param5)
+                                          static call _param5.0xdfe1681 with:
+                                                  gas gas_remaining wei
+                              else:
+                                  if t <= 0:
+                                      require ext_call.return_data[0]
+                                      require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                                      require ext_code.size(_param5)
+                                      static call _param5.0xdfe1681 with:
+                                              gas gas_remaining wei
+                                      if not ext_call.success:
+                                          revert with ext_call.return_data[0 len return_data.size]
+                                      require return_data.size >= 32
+                                  else:
+                                      require 5 * t
+                                      if ext_call.return_data * t / 5 * t:
+                                          require (ext_call.return_data * t / 5 * t) + ext_call.return_data[0]
+                                          require (_param8 * _param2 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data[0])
+                                          require ext_code.size(_param5)
+                                          static call _param5.0xdfe1681 with:
+                                                  gas gas_remaining wei
+                                      else:
+                                          require ext_call.return_data[0]
+                                          require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                                          require ext_code.size(_param5)
+                                          static call _param5.0xdfe1681 with:
+                                                  gas gas_remaining wei
+                                          if not ext_call.success:
+                                              revert with ext_call.return_data[0 len return_data.size]
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      if not Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data[32]):
+                          if ext_call.return_data <= 3:
+                              require ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                              require ext_code.size(_param5)
+                              static call _param5.0xdfe1681 with:
+                                      gas gas_remaining wei
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require return_data.size >= 32
+                              require ext_code.size(_param5)
+                              if ext_call.return_data_param4:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                              else:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              stop
+                          s = (ext_call.return_data / 2) + 1
+                          t = ext_call.return_data[0]
+                          while s < t:
+                              require s
+                              s = (ext_call.return_data / s) + s / 2
+                              t = s
+                              continue 
+                          if 0 <= t:
+                              require ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                          else:
+                              require t
+                              if not -1 * ext_call.return_data * t / t:
+                                  require ext_call.return_data[0]
+                                  require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                              else:
+                                  require (-1 * ext_call.return_data * t / t) + ext_call.return_data[0]
+                                  require (_param8 * _param2 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data[0])
+                          require ext_code.size(_param5)
+                          static call _param5.0xdfe1681 with:
+                                  gas gas_remaining wei
+                          if not ext_call.success:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require return_data.size >= 32
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      if ext_call.return_data > 3:
+                          s = (ext_call.return_data / 2) + 1
+                          t = ext_call.return_data[0]
+                          while s < t:
+                              require s
+                              s = (ext_call.return_data / s) + s / 2
+                              t = s
+                              continue 
+                          if 1 <= t:
+                              require ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                          else:
+                              require t + 5
+                              if not ext_call.return_datat * ext_call.return_data / t + 5:
+                                  require ext_call.return_data[0]
+                                  require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                              else:
+                                  require (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0]
+                                  require (_param8 * _param2 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0])
+                          require ext_code.size(_param5)
+                          static call _param5.0xdfe1681 with:
+                                  gas gas_remaining wei
+                          if not ext_call.success:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require return_data.size >= 32
+                          ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
+                      if ext_call.return_data[0]:
+                          require ext_call.return_data[0]
+                          require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                          require ext_code.size(_param5)
+                          static call _param5.0xdfe1681 with:
+                                  gas gas_remaining wei
+                          if not ext_call.success:
+                              revert with ext_call.return_data[0 len return_data.size]
+                          require return_data.size >= 32
+                          require ext_code.size(_param5)
+                          if ext_call.return_data_param4:
+                              call _param5.0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                          else:
+                              call _param5.0x22c0d9f with:
+                                   gas gas_remaining wei
+                                  args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                      else:
+                          if not ext_call.return_data / 5:
+                              require ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data[0])
+                              require ext_code.size(_param5)
+                              static call _param5.0xdfe1681 with:
+                                      gas gas_remaining wei
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require return_data.size >= 32
+                              require ext_code.size(_param5)
+                              if ext_call.return_data_param4:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                              else:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_data * _param8 * _param2 * ext_call.return_data / ext_call.return_data / (_param8 * _param2 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / ext_call.return_data_param2 * ext_call.return_data / ext_call.return_dataaddr(_param6), 128, 0
+                          else:
+                              require (ext_call.return_data / 5) + ext_call.return_data[0]
+                              require (_param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data[0])
+                              require ext_code.size(_param5)
+                              static call _param5.0xdfe1681 with:
+                                      gas gas_remaining wei
+                              if not ext_call.success:
+                                  revert with ext_call.return_data[0 len return_data.size]
+                              require return_data.size >= 32
+                              require ext_code.size(_param5)
+                              if ext_call.return_data_param4:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args 0, ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data / (_param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_dataaddr(_param6), 128, 0
+                              else:
+                                  call _param5.0x22c0d9f with:
+                                       gas gas_remaining wei
+                                      args ((Mask(112, 0, ext_call.return_data * _param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data / (_param8 * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param2 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_dataaddr(_param6), 128, 0
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+
+def unknownb6952f25(uint256 _param1, addr _param2, addr _param3, addr _param4, uint16 _param5, uint16 _param6) payable: 
+  require calldata.size - 4 >= 192
+  require ext_code.size(_param4)
+  static call _param4.getReserves() with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 96
+  require ext_code.size(_param4)
+  static call _param4.0xdfe1681 with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  if ext_call.return_data == _param3:
+      if _param2 != _param4:
+          require (_param5 * _param1) + (10000 * Mask(112, 0, ext_call.return_data[32]))
+          if 10000 == _param6:
+              return _param5 * _param1 * Mask(112, 0, ext_call.return_data / (_param5 * _param1) + (10000 * Mask(112, 0, ext_call.return_data[32])), 
+                     _param2 != _param4
+          return _param5 * _param1 * Mask(112, 0, ext_call.return_data / (_param5 * _param1) + (10000 * Mask(112, 0, ext_call.return_data * _param6 / 10000, 
+                 _param2 != _param4
+      require ext_code.size(_param4)
+      static call _param4.token1() with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      static call _param4.totalSupply() with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      static call _param4.0x7464fc3d with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      static call _param4.factory() with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(addr(ext_call.return_data))
+      static call addr(ext_call.return_data).0x17e7e58 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(_param4)
+      static call _param4.0xdfe1681 with:
+              gas gas_remaining wei
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(addr(ext_call.return_data))
+      static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args _param4
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      require ext_code.size(addr(ext_call.return_data))
+      static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+              gas gas_remaining wei
+             args _param4
+      if not ext_call.success:
+          revert with ext_call.return_data[0 len return_data.size]
+      require return_data.size >= 32
+      if not ext_call.return_data[12 len 20]:
+          require ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      if not ext_call.return_data[0]:
+          require ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      if Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data <= 3:
+          if not Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data[0]):
+              if ext_call.return_data <= 3:
+                  require ext_call.return_data[0]
+                  require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+                  if 10000 == _param6:
+                      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                             _param2 != _param4
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                         _param2 != _param4
+              s = (ext_call.return_data / 2) + 1
+              t = ext_call.return_data[0]
+              while s < t:
+                  require s
+                  s = (ext_call.return_data / s) + s / 2
+                  t = s
+                  continue 
+              if 0 <= t:
+                  require ext_call.return_data[0]
+                  require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+                  if 10000 == _param6:
+                      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                             _param2 != _param4
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                         _param2 != _param4
+              require t
+              if not -1 * ext_call.return_data * t / t:
+                  require ext_call.return_data[0]
+                  require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+                  if 10000 == _param6:
+                      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                             _param2 != _param4
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                         _param2 != _param4
+              require (-1 * ext_call.return_data * t / t) + ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data_param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data_param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data_param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          if ext_call.return_data <= 3:
+              if ext_call.return_data[0]:
+                  require ext_call.return_data[0]
+                  require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+                  if 10000 == _param6:
+                      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                             _param2 != _param4
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                         _param2 != _param4
+              if not ext_call.return_data / 5:
+                  require ext_call.return_data[0]
+                  require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+                  if 10000 == _param6:
+                      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                             _param2 != _param4
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                         _param2 != _param4
+              require (ext_call.return_data / 5) + ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          s = (ext_call.return_data / 2) + 1
+          t = ext_call.return_data[0]
+          while s < t:
+              require s
+              s = (ext_call.return_data / s) + s / 2
+              t = s
+              continue 
+          if 1 <= t:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require t + 5
+          if not ext_call.return_datat * ext_call.return_data / t + 5:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      s = (Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data / 2) + 1
+      t = Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data[0])
+      while s < t:
+          require s
+          s = (Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data / s) + s / 2
+          t = s
+          continue 
+      if ext_call.return_data <= 3:
+          if not ext_call.return_data[0]:
+              if t <= 0:
+                  require ext_call.return_data[0]
+                  require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+                  if 10000 == _param6:
+                      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                             _param2 != _param4
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                         _param2 != _param4
+              require 5 * t
+              if not ext_call.return_data * t / 5 * t:
+                  require ext_call.return_data[0]
+                  require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+                  if 10000 == _param6:
+                      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                             _param2 != _param4
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                         _param2 != _param4
+              require (ext_call.return_data * t / 5 * t) + ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          if t <= 1:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require (5 * t) + 1
+          if not -ext_call.return_datat * ext_call.return_data / (5 * t) + 1:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data_param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data_param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data_param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      s = (ext_call.return_data / 2) + 1
+      u = ext_call.return_data[0]
+      while s < u:
+          require s
+          s = (ext_call.return_data / s) + s / 2
+          u = s
+          continue 
+      if t <= u:
+          require ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      require u + (5 * t)
+      if not (t * ext_call.return_datau * ext_call.return_data / u + (5 * t):
+          require ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      require ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data[0]
+      require (_param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data[0])
+      if 10000 == _param6:
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data_param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data_param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data[0]), 
+                 _param2 != _param4
+      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data_param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * _param6) / 10000, 
+             _param2 != _param4
+  if _param2 != _param4:
+      require (_param5 * _param1) + (10000 * Mask(112, 0, ext_call.return_data[0]))
+      if 10000 == _param6:
+          return _param5 * _param1 * Mask(112, 0, ext_call.return_data / (_param5 * _param1) + (10000 * Mask(112, 0, ext_call.return_data[0])), 
+                 _param2 != _param4
+      return _param5 * _param1 * Mask(112, 0, ext_call.return_data / (_param5 * _param1) + (10000 * Mask(112, 0, ext_call.return_data * _param6 / 10000, 
+             _param2 != _param4
+  require ext_code.size(_param4)
+  static call _param4.token1() with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  require ext_code.size(_param4)
+  static call _param4.totalSupply() with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  require ext_code.size(_param4)
+  static call _param4.0x7464fc3d with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  require ext_code.size(_param4)
+  static call _param4.factory() with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  require ext_code.size(addr(ext_call.return_data))
+  static call addr(ext_call.return_data).0x17e7e58 with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  require ext_code.size(_param4)
+  static call _param4.0xdfe1681 with:
+          gas gas_remaining wei
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  require ext_code.size(addr(ext_call.return_data))
+  static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+          gas gas_remaining wei
+         args _param4
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  require ext_code.size(addr(ext_call.return_data))
+  static call addr(ext_call.return_data).balanceOf(address tokenOwner) with:
+          gas gas_remaining wei
+         args _param4
+  if not ext_call.success:
+      revert with ext_call.return_data[0 len return_data.size]
+  require return_data.size >= 32
+  if not ext_call.return_data[12 len 20]:
+      require ext_call.return_data[0]
+      require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+      if 10000 == _param6:
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                 _param2 != _param4
+      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+             _param2 != _param4
+  if not ext_call.return_data[0]:
+      require ext_call.return_data[0]
+      require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+      if 10000 == _param6:
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                 _param2 != _param4
+      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+             _param2 != _param4
+  if Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data <= 3:
+      if not Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data[32]):
+          if ext_call.return_data <= 3:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          s = (ext_call.return_data / 2) + 1
+          t = ext_call.return_data[0]
+          while s < t:
+              require s
+              s = (ext_call.return_data / s) + s / 2
+              t = s
+              continue 
+          if 0 <= t:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require t
+          if not -1 * ext_call.return_data * t / t:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require (-1 * ext_call.return_data * t / t) + ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data_param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data_param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data_param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (-1 * ext_call.return_data * t / t) + ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      if ext_call.return_data <= 3:
+          if ext_call.return_data[0]:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          if not ext_call.return_data / 5:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require (ext_call.return_data / 5) + ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (ext_call.return_data / 5) + ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      s = (ext_call.return_data / 2) + 1
+      t = ext_call.return_data[0]
+      while s < t:
+          require s
+          s = (ext_call.return_data / s) + s / 2
+          t = s
+          continue 
+      if 1 <= t:
+          require ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      require t + 5
+      if not ext_call.return_datat * ext_call.return_data / t + 5:
+          require ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      require (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0]
+      require (_param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0])
+      if 10000 == _param6:
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data[0]), 
+                 _param2 != _param4
+      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (ext_call.return_datat * ext_call.return_data / t + 5) + ext_call.return_data * _param6) / 10000, 
+             _param2 != _param4
+  s = (Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data / 2) + 1
+  t = Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data[32])
+  while s < t:
+      require s
+      s = (Mask(112, 0, ext_call.return_data * Mask(112, 0, ext_call.return_data / s) + s / 2
+      t = s
+      continue 
+  if ext_call.return_data <= 3:
+      if not ext_call.return_data[0]:
+          if t <= 0:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require 5 * t
+          if not ext_call.return_data * t / 5 * t:
+              require ext_call.return_data[0]
+              require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+              if 10000 == _param6:
+                  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                         _param2 != _param4
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                     _param2 != _param4
+          require (ext_call.return_data * t / 5 * t) + ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data_param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (ext_call.return_data * t / 5 * t) + ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      if t <= 1:
+          require ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      require (5 * t) + 1
+      if not -ext_call.return_datat * ext_call.return_data / (5 * t) + 1:
+          require ext_call.return_data[0]
+          require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+          if 10000 == _param6:
+              return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                     _param2 != _param4
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+                 _param2 != _param4
+      require (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0]
+      require (_param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0])
+      if 10000 == _param6:
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data_param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data_param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data[0]), 
+                 _param2 != _param4
+      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data_param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / (-ext_call.return_datat * ext_call.return_data / (5 * t) + 1) + ext_call.return_data * _param6) / 10000, 
+             _param2 != _param4
+  s = (ext_call.return_data / 2) + 1
+  u = ext_call.return_data[0]
+  while s < u:
+      require s
+      s = (ext_call.return_data / s) + s / 2
+      u = s
+      continue 
+  if t <= u:
+      require ext_call.return_data[0]
+      require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+      if 10000 == _param6:
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                 _param2 != _param4
+      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+             _param2 != _param4
+  require u + (5 * t)
+  if not (t * ext_call.return_datau * ext_call.return_data / u + (5 * t):
+      require ext_call.return_data[0]
+      require (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data[0])
+      if 10000 == _param6:
+          return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data[0]), 
+                 _param2 != _param4
+      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data_param1 * ext_call.return_data / ext_call.return_data * _param5 * _param1 * ext_call.return_data / ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ext_call.return_data * _param6) / 10000, 
+             _param2 != _param4
+  require ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data[0]
+  require (_param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data[0])
+  if 10000 == _param6:
+      return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data_param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data_param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data[0]), 
+             _param2 != _param4
+  return ((Mask(112, 0, ext_call.return_data * _param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data_param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * _param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data / (_param5 * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * Mask(112, 0, ext_call.return_data * _param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * _param6) + (_param1 * ext_call.return_data / ((t * ext_call.return_datau * ext_call.return_data / u + (5 * t)) + ext_call.return_data * _param6) / 10000, 
+         _param2 != _param4
+
+

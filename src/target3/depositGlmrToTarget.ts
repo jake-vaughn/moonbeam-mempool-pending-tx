@@ -7,14 +7,14 @@ import { IERC20 } from "../../typechain-types/interfaces"
 const { ethers, getNamedAccounts, network } = hre
 const chainId = network.config.chainId!
 const targetContracts = networkConfig[chainId].targetContracts
-const target = targetContracts["0xb23Fbd367A95e498d97820e5ddBeb3B683E35649"]
+const target = targetContracts["0xAdaaF4999349346935387797c5F79E07C43c12eD"]
 
 const COPY_CONTRACT_ADDRESS = target.copyContractAddr
 
 async function depositGlmrToTarget() {
   const { deployer } = await getNamedAccounts()
   const deploySig = ethers.provider.getSigner(deployer)
-  const AMOUNT_TO_SEND = ethers.utils.parseEther("5000")
+  const AMOUNT_TO_SEND = ethers.utils.parseEther(".1")
 
   await wrapGlmr(AMOUNT_TO_SEND, deploySig, hre)
   await transferWglmr(COPY_CONTRACT_ADDRESS, AMOUNT_TO_SEND, deploySig, hre)
