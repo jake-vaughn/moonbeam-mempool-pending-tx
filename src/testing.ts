@@ -22,12 +22,12 @@ async function main() {
   //     console.log(transaction.getFunction()) /* Get function */
   //   })
 
-  web3.eth.getCode("0xAdaaF4999349346935387797c5F79E07C43c12eD").then(code => {
+  web3.eth.getCode("0x8b6784b18d534b98d738719f05b0a8a54bb4c098").then(code => {
     /* CryptoKitties contract */
     const evm = new EVM(code)
     console.log(evm.getFunctions()) /* Get functions */
     // console.log(evm.getEvents()) /* Get events */
-    // console.log(evm.decompile()) /* Decompile bytecode */
+    console.log(evm.decompile()) /* Decompile bytecode */
   })
 }
 

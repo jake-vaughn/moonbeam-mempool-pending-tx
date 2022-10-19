@@ -12,10 +12,7 @@ const deployTarget6CopyContract: DeployFunction = async function (hre: HardhatRu
   const target6CopyContractFactory = new ethers.ContractFactory(abi, bytecode, deployerSig)
 
   log("Deploying target6 and waiting for confirmations...")
-  const target6Copy = await target6CopyContractFactory.deploy({
-    maxFeePerGas: 102000000000,
-    maxPriorityFeePerGas: 1000000000,
-  })
+  const target6Copy = await target6CopyContractFactory.deploy({})
 
   log(`target6 deployed at ${target6Copy.address}`)
   const target6CopyDeployTx = await target6Copy.deployTransaction

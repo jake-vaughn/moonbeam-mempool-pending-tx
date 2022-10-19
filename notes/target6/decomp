@@ -122,5 +122,3 @@ def _fallback() payable: # default function
       require (32 * mem[mem[128] + 128]) + 160 >= 128 and ceil32(_param3.length) + (32 * mem[mem[128] + 128]) + 160 <= 18446744073709551615
       require _param3.length + 32 >= mem[128] + (32 * mem[mem[128] + 128]) + 64
   ...  # Decompilation aborted, sorry: ("decompilation didn't finish",)
-
-
