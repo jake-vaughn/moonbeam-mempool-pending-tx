@@ -8,7 +8,7 @@ import { getWglmrBalance, unwrapWglmr } from "../src/utils/defi/wglmr"
 import { topUpEth } from "../src/utils/multisend"
 
 task(
-  "unwrapWglmr",
+  "unwrap",
   "unwraps a set amount of wglmr in Deployer address",
   async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
     const { deployer } = await hre.getNamedAccounts()

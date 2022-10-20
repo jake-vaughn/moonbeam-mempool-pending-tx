@@ -15,7 +15,10 @@ async function setCallers() {
 
   let inputData = ""
 
-  const functionHash = "0x85a909d4"
+  // const functionHash = "0x85a909d4" // original
+  const functionHash = "0x8ca5cbb9" // new
+
+  let nonce = await deploySig.getTransactionCount()
 
   for (const addr in signers) {
     // console.log(signers[addr], await (await rpcProvider.getSigner(signers[addr])).getAddress())
@@ -24,17 +27,14 @@ async function setCallers() {
     const sigAddrPadded = utils.hexZeroPad(sigAddr, 32)
     inputData = utils.hexConcat([functionHash, sigAddrPadded])
 
-    console.log(inputData)
-
     const tx = await deploySig.sendTransaction({
       to: target.copyContractAddr,
       data: inputData,
-      maxFeePerGas: 102000000000,
-      maxPriorityFeePerGas: 1000000000,
+      nonce: nonce,
     })
-
-    const txReceipt = await tx.wait()
-    console.log(`Transaction hash: ${txReceipt.transactionHash}`)
+    console.log(`Nonce: ${nonce} hash: ${tx.hash}`)
+    console.log(inputData)
+    nonce++
   }
 }
 

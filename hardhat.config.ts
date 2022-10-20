@@ -10,7 +10,7 @@ import "./tasks/addressMapping"
 import "./tasks/sendEth"
 import "./tasks/topUp"
 import "./tasks/transferErc20"
-import "./tasks/unwrapWglmr"
+import "./tasks/unwrap"
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env"
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
