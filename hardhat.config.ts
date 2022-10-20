@@ -19,8 +19,10 @@ dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
 const mnemonic: string = process.env.MNEMONIC || "MNEMONIC NA"
 
 const moonbeamRpcUrl: string = process.env.MOONBEAM_RPC_URL || "MOONBEAM_RPC_URL NA"
-
 const moonbeamWssUrl: string = process.env.MOONBEAM_WSS_URL || "MOONBEAM_WSS_URL NA"
+
+const moonriverRpcUrl: string = process.env.MOONRIVER_RPC_URL || "MOONRIVER_RPC_URL NA"
+const moonriverWssUrl: string = process.env.MOONRIVER_WSS_URL || "MOONRIVER_WSS_URL NA"
 
 const infuraApiKey: string = process.env.INFURA_API_KEY || "INFURA_API_KEY NA"
 
@@ -34,6 +36,7 @@ const chainIds = {
   hardhat: 31337,
   mainnet: 1,
   moonbeam: 1284,
+  moonriver: 1285,
   "optimism-mainnet": 10,
   "polygon-mainnet": 137,
   "polygon-mumbai": 80001,
@@ -51,6 +54,10 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
     case "moonbeam":
       jsonRpcUrl = moonbeamRpcUrl
       wssUrl = moonbeamWssUrl
+      break
+    case "moonriver":
+      jsonRpcUrl = moonriverRpcUrl
+      wssUrl = moonriverWssUrl
       break
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey
@@ -93,6 +100,7 @@ const config: HardhatUserConfig = {
     goerli: getChainConfig("goerli"),
     mainnet: getChainConfig("mainnet"),
     moonbeam: getChainConfig("moonbeam"),
+    moonriver: getChainConfig("moonriver"),
     optimism: getChainConfig("optimism-mainnet"),
     "polygon-mainnet": getChainConfig("polygon-mainnet"),
     "polygon-mumbai": getChainConfig("polygon-mumbai"),

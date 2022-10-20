@@ -138,6 +138,56 @@ export const networkConfig: networkConfigInfo = {
       },
     },
   },
+  1285: {
+    name: "moonbeam",
+    blockConfirmations: 1,
+    targetContracts: {
+      "3": {
+        name: "Target(3)🔳",
+        type: 1,
+        copyContractAddr: "",
+        mainFunc: "0xb5dd43d9",
+        signers: target3Sigs,
+      },
+      "5": {
+        name: "Target(5)💓",
+        type: 1,
+        copyContractAddr: "",
+        mainFunc: "0x68c9718a",
+        signers: backBurnerSigs,
+      },
+      "0xee5b3eade0460d91f86584cef73ed9afeb6a034d": {
+        name: "Target(6)⏪",
+        type: 1,
+        copyContractAddr: "",
+        mainFunc: "0x7292dd91",
+        signers: backBurnerSigs,
+      },
+      "7": {
+        name: "Target(7)🔄",
+        type: 1,
+        copyContractAddr: "",
+        mainFunc: "0x68c9718a",
+        signers: backBurnerSigs,
+      },
+    },
+    targetArbs: {
+      "0x7ff36ab5": {
+        name: "ASEEFT(6)🍞",
+        type: 1,
+        copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
+        mainFunc: "0x68c9718a",
+        signers: backBurnerSigs,
+      },
+      "0x18cbafe5": {
+        name: "ASETFE(6)💩",
+        type: 1,
+        copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
+        mainFunc: "0x68c9718a",
+        signers: backBurnerSigs,
+      },
+    },
+  },
 }
 
 export const developmentChains = ["hardhat", "localhost"]
