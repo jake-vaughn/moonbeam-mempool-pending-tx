@@ -37,7 +37,6 @@ export const networkConfig: networkConfigInfo = {
     targetContracts: {
       "0xAdaaF4999349346935387797c5F79E07C43c12eD": {
         name: "Target(3)🔳",
-        type: 1,
         copyContractAddr: "0xCCD3c7C9b6CA00551BeEC7977522e0791f0012eB",
         mainFunc: "",
         signers: target3Sigs,
@@ -108,8 +107,8 @@ export const networkConfig: networkConfigInfo = {
       },
       "0x08a025B3AF7f175E95Fa304218aCDDB87f150F20": {
         name: "T7🔄",
-        copyContractAddr: "0x050e3BAa8fd3747db1Ea89f778c54cDeC82D499F",
-        mainFunc: "0x68c9718a",
+        copyContractAddr: "0xB4644C2170b421117162cb5F16Ac3648A4317122",
+        mainFunc: "0x61b9e895",
         signers: backBurnerSigs,
       },
     },
