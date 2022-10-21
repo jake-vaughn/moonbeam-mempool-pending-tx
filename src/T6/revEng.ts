@@ -7,7 +7,7 @@ import { join } from "path"
 import { exchanges, functionHashes, lpAddresses, routers, tokenAddresses } from "../../const/addresses"
 import { wssUrl } from "../../hardhat.config"
 import { networkConfig, targetContractItem } from "../../helper-hardhat-config"
-import { logHumanReadable } from "../logHumanReadable"
+import { logHumanReadable } from "../utils/logHumanReadable"
 import { logger, mevBotTransportFile } from "../utils/logger"
 
 const { ethers, network } = hre

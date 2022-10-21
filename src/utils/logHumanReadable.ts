@@ -4,7 +4,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types"
 import path from "path"
 import winston from "winston"
 
-import { getErrorMessage } from "./utils/getErrorMessage"
+import { getErrorMessage } from "./getErrorMessage"
 
 const { format, transports } = winston
 

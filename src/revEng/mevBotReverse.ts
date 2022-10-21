@@ -8,8 +8,8 @@ import { tokenAddresses } from "../../const/addresses"
 import { wssUrl } from "../../hardhat.config"
 import { targetContractItem } from "../../helper-hardhat-config"
 import { networkConfig } from "../../helper-hardhat-config"
-import { logHumanReadable } from "../logHumanReadable"
 import { generateRandomNumber } from "../utils/generateRandomNumber"
+import { logHumanReadable } from "../utils/logHumanReadable"
 import { logger, mevBotTransportFile, tempErrorLog, tempLog } from "../utils/logger"
 
 const { ethers, network } = hre

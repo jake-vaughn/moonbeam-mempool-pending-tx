@@ -4,8 +4,8 @@ import yesno from "yesno"
 
 import { wssUrl } from "../hardhat.config"
 import { networkConfig } from "../helper-hardhat-config"
-import { logHumanReadable } from "./logHumanReadable"
 import { mevBotReverse } from "./revEng/mevBotReverse"
+import { logHumanReadable } from "./utils/logHumanReadable"
 import { logger, mevBotTransportFile, tempErrorLog, tempLog } from "./utils/logger"
 
 const { ethers, network } = hre

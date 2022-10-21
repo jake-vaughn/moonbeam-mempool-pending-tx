@@ -1,7 +1,7 @@
 import { DeployFunction } from "hardhat-deploy/types"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 
-import { developmentChains, networkConfig } from "../helper-hardhat-config"
+import { developmentChains, networkConfig } from "../../helper-hardhat-config"
 
 const deployBulkSendContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { network, deployments, getNamedAccounts, ethers } = hre
