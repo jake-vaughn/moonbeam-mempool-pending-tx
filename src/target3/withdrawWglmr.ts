@@ -21,7 +21,7 @@ async function withdrawWglmr() {
   const iWglmr: IERC20 = await ethers.getContractAt("IERC20", "0xAcc15dC74880C9944775448304B263D191c6077F")
 
   const wglmrBalance = await iWglmr.balanceOf(iTarget3.address)
-  const withdrawAmount = wglmrBalance.sub(BigNumber.from(parseEther("0")))
+  const withdrawAmount = wglmrBalance.sub(BigNumber.from(parseEther("5000")))
 
   // Withdraw
   console.log(`Balance of ${formatEther(wglmrBalance)} WGLMR`)

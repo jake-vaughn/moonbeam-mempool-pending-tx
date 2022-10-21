@@ -102,8 +102,8 @@ export const networkConfig: networkConfigInfo = {
       "0x2b731E8e2C72cC14628346EB1Bc11ebF1A4ef2e6": {
         name: "Target(5)💓",
         type: 1,
-        copyContractAddr: "0xfda140A05F78DBFB3381C9E878cCdb66043B65BC",
-        mainFunc: "0x68c9718a",
+        copyContractAddr: "0xe6F1886F7C762aE25778FA3F04CE2dB6f7507ef0",
+        mainFunc: "0x61b9e895",
         signers: backBurnerSigs,
       },
       "0x8B6784b18d534b98d738719F05B0a8a54bB4C098": {

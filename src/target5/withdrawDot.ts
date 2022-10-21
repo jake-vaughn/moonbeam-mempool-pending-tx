@@ -26,8 +26,6 @@ async function withdrawDot() {
   const tx = await deployerSig.sendTransaction({
     to: target.copyContractAddr,
     data: inputData,
-    maxFeePerGas: 102000000000,
-    maxPriorityFeePerGas: 1000000000,
   })
 
   const txReceipt = await tx.wait()
