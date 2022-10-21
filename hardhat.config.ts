@@ -39,7 +39,6 @@ const chainIds = {
   moonriver: 1285,
   "optimism-mainnet": 10,
   "polygon-mainnet": 137,
-  "polygon-mumbai": 80001,
 }
 
 function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
@@ -103,7 +102,6 @@ const config: HardhatUserConfig = {
     moonriver: getChainConfig("moonriver"),
     optimism: getChainConfig("optimism-mainnet"),
     "polygon-mainnet": getChainConfig("polygon-mainnet"),
-    "polygon-mumbai": getChainConfig("polygon-mumbai"),
   },
   namedAccounts: {
     zero: {
