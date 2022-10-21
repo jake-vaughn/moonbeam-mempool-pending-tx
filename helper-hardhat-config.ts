@@ -22,10 +22,6 @@ export interface networkConfigItem {
 export interface targetContractItem {
   // Personal name for target
   name?: string
-  // type 1: Single Signer and contract (funds sent to signer)
-  // type 2: ...
-  // type 99: is a todo
-  type: number
   // Address that is being copied
   copyContractAddr: string
   // Main signature function hash reversed for use
@@ -75,8 +71,7 @@ export const networkConfig: networkConfigInfo = {
       //   },
       // },
       "0xAdaaF4999349346935387797c5F79E07C43c12eD": {
-        name: "Target(3)🔳",
-        type: 1,
+        name: "T3🔳",
         copyContractAddr: "0xA4e4AA5328Bc1224cDFeF6dF994958531D3833B8",
         mainFunc: "0xb5dd43d9",
         signers: target3Sigs,
@@ -100,22 +95,19 @@ export const networkConfig: networkConfigInfo = {
       //   },
       // },
       "0x2b731E8e2C72cC14628346EB1Bc11ebF1A4ef2e6": {
-        name: "Target(5)💓",
-        type: 1,
+        name: "T5💓",
         copyContractAddr: "0xe6F1886F7C762aE25778FA3F04CE2dB6f7507ef0",
         mainFunc: "0x61b9e895",
         signers: backBurnerSigs,
       },
       "0x8B6784b18d534b98d738719F05B0a8a54bB4C098": {
-        name: "Target(6)⏪",
-        type: 1,
+        name: "T6⏪",
         copyContractAddr: "0x157f8cE52B68ba1AF6B56304d44188A6165b9CE0",
         mainFunc: "0x61b9e895",
         signers: backBurnerSigs,
       },
       "0x08a025B3AF7f175E95Fa304218aCDDB87f150F20": {
-        name: "Target(7)🔄",
-        type: 1,
+        name: "T7🔄",
         copyContractAddr: "0x050e3BAa8fd3747db1Ea89f778c54cDeC82D499F",
         mainFunc: "0x68c9718a",
         signers: backBurnerSigs,
@@ -123,15 +115,13 @@ export const networkConfig: networkConfigInfo = {
     },
     targetArbs: {
       "0x7ff36ab5": {
-        name: "ASEEFT(6)🍞",
-        type: 1,
+        name: "EE🍞",
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
         mainFunc: "0x68c9718a",
         signers: backBurnerSigs,
       },
       "0x18cbafe5": {
-        name: "ASETFE(6)💩",
-        type: 1,
+        name: "ET💩",
         copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
         mainFunc: "0x68c9718a",
         signers: backBurnerSigs,
@@ -141,52 +131,8 @@ export const networkConfig: networkConfigInfo = {
   1285: {
     name: "moonbeam",
     blockConfirmations: 1,
-    targetContracts: {
-      "3": {
-        name: "Target(3)🔳",
-        type: 1,
-        copyContractAddr: "",
-        mainFunc: "0xb5dd43d9",
-        signers: target3Sigs,
-      },
-      "5": {
-        name: "Target(5)💓",
-        type: 1,
-        copyContractAddr: "",
-        mainFunc: "0x68c9718a",
-        signers: backBurnerSigs,
-      },
-      "0xee5b3eade0460d91f86584cef73ed9afeb6a034d": {
-        name: "Target(6)⏪",
-        type: 1,
-        copyContractAddr: "",
-        mainFunc: "0x7292dd91",
-        signers: backBurnerSigs,
-      },
-      "7": {
-        name: "Target(7)🔄",
-        type: 1,
-        copyContractAddr: "",
-        mainFunc: "0x68c9718a",
-        signers: backBurnerSigs,
-      },
-    },
-    targetArbs: {
-      "0x7ff36ab5": {
-        name: "ASEEFT(6)🍞",
-        type: 1,
-        copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
-        mainFunc: "0x68c9718a",
-        signers: backBurnerSigs,
-      },
-      "0x18cbafe5": {
-        name: "ASETFE(6)💩",
-        type: 1,
-        copyContractAddr: "0xb094f7ba5361098dfa96FEcA687130d9ef0EF561",
-        mainFunc: "0x68c9718a",
-        signers: backBurnerSigs,
-      },
-    },
+    targetContracts: {},
+    targetArbs: {},
   },
 }
 

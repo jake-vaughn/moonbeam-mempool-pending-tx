@@ -1,7 +1,7 @@
 import { DeployFunction } from "hardhat-deploy/types"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 
-import { abi, bytecode } from "../contractJson/target3Copy"
+import { abi, bytecode } from "../contracts/contractJson/target3Copy"
 import { developmentChains, networkConfig } from "../helper-hardhat-config"
 
 const deployTarget3CopyContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {

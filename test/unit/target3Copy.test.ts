@@ -4,7 +4,7 @@ import { assert, expect } from "chai"
 import { BigNumber, Contract, ContractFactory } from "ethers"
 import hre from "hardhat"
 
-import { abi } from "../../contractJson/target3Copy"
+import { abi } from "../../contracts/contractJson/target3Copy"
 import { developmentChains, networkConfig } from "../../helper-hardhat-config"
 import { ITarget3 } from "../../typechain-types/interfaces"
 

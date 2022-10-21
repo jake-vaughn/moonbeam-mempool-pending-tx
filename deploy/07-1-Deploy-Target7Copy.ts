@@ -1,7 +1,7 @@
 import { DeployFunction } from "hardhat-deploy/types"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 
-import { abi, bytecode } from "../contractJson/target7Copy"
+import { abi, bytecode } from "../contracts/contractJson/target7Copy"
 
 const deployTarget7CopyContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts, ethers } = hre
