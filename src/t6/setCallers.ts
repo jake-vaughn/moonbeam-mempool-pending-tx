@@ -16,9 +16,7 @@ async function setCallers() {
   const { deployer } = await getNamedAccounts()
   const deploySig = rpcProvider.getSigner(deployer)
 
-  let inputData = "0x"
-
-  const functionHash = namedContract.functions!.setFunc.mod!
+  const functionHash = "0x" + namedContract.functions!.setFunc.mod!
 
   let nonce = await deploySig.getTransactionCount()
 
@@ -27,7 +25,7 @@ async function setCallers() {
     const sig = await rpcProvider.getSigner(signers[addr])
     const sigAddr = await sig.getAddress()
     const sigAddrPadded = utils.hexZeroPad(sigAddr, 32)
-    inputData = utils.hexConcat([inputData, functionHash, sigAddrPadded])
+    const inputData = utils.hexConcat([functionHash, sigAddrPadded])
 
     const tx = await deploySig.sendTransaction({
       to: target.copyContractAddr,

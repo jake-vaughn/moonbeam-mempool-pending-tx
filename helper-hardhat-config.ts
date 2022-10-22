@@ -15,6 +15,7 @@ export interface addressMatchInfo {
 export interface networkConfigItem {
   name?: string
   blockConfirmations?: number
+  topUpAmount: string
   targetContracts: targetContractInfo
   targetArbs: targetContractInfo
 }
@@ -34,6 +35,7 @@ export const networkConfig: networkConfigInfo = {
   31337: {
     name: "hardhat",
     blockConfirmations: 1,
+    topUpAmount: "0.1",
     targetContracts: {
       "0xAdaaF4999349346935387797c5F79E07C43c12eD": {
         name: "Target(3)🔳",
@@ -47,6 +49,7 @@ export const networkConfig: networkConfigInfo = {
   1284: {
     name: "moonbeam",
     blockConfirmations: 1,
+    topUpAmount: "10",
     targetContracts: {
       // "0x59ddC0C8d067dEB508b36d69254Ac6bafD260575": {
       //   name: "Target(1)",
@@ -130,10 +133,11 @@ export const networkConfig: networkConfigInfo = {
   1285: {
     name: "moonriver",
     blockConfirmations: 1,
+    topUpAmount: "0.1",
     targetContracts: {
-      "": {
+      "0xee5b3eade0460d91f86584cef73ed9afeb6a034d": {
         name: "T6⏪",
-        copyContractAddr: "",
+        copyContractAddr: "0xB171CE4a0b3882db98951a59c9eaC31326FCF315",
         mainFunc: "0x61b9e895",
         signers: backBurnerSigs,
       },

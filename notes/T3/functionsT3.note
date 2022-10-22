@@ -1,8 +1,0 @@
-// target5
-const attkFunc = "0ab071d1"
-const unkFunc = "8ca5cbb9"
-const withdrawToken = "9e281a98"
-const mainFunc = "b5dd43d9"
-const setFunc = "c6878519"
-const withdrawEth = "c311d049"
-const admin = "f851a440"
