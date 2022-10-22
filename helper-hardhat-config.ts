@@ -128,9 +128,16 @@ export const networkConfig: networkConfigInfo = {
     },
   },
   1285: {
-    name: "moonbeam",
+    name: "moonriver",
     blockConfirmations: 1,
-    targetContracts: {},
+    targetContracts: {
+      "": {
+        name: "T6⏪",
+        copyContractAddr: "",
+        mainFunc: "0x61b9e895",
+        signers: backBurnerSigs,
+      },
+    },
     targetArbs: {},
   },
 }

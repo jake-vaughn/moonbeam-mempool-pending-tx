@@ -1,21 +1,25 @@
 import { utils } from "ethers"
 import hre from "hardhat"
 
+import "../../const/namedContracts"
+import { namedContracts } from "../../const/namedContracts"
 import { networkConfig } from "../../helper-hardhat-config"
 
+const { ethers, getNamedAccounts } = hre
 const rpcProvider = hre.ethers.provider
 const chainId = hre.network.config.chainId!
-const targetContracts = networkConfig[chainId].targetContracts
-const target = targetContracts["0x08a025B3AF7f175E95Fa304218aCDDB87f150F20"]
+const namedContract = namedContracts[chainId].t6
+const target = networkConfig[chainId].targetContracts[namedContract.addr]
 const signers = target.signers
 
 async function setCallers() {
-  const { deployer } = await hre.getNamedAccounts()
+  const { deployer } = await getNamedAccounts()
   const deploySig = rpcProvider.getSigner(deployer)
 
-  let inputData = ""
-  // const functionHash = "0x85a909d4" // original
-  const functionHash = "0x8ca5cbb9" // new
+  let inputData = "0x"
+
+  const functionHash = namedContract.functions!.setFunc.mod!
+
   let nonce = await deploySig.getTransactionCount()
 
   for (const addr in signers) {
@@ -23,14 +27,13 @@ async function setCallers() {
     const sig = await rpcProvider.getSigner(signers[addr])
     const sigAddr = await sig.getAddress()
     const sigAddrPadded = utils.hexZeroPad(sigAddr, 32)
-    inputData = utils.hexConcat([functionHash, sigAddrPadded])
+    inputData = utils.hexConcat([inputData, functionHash, sigAddrPadded])
 
     const tx = await deploySig.sendTransaction({
       to: target.copyContractAddr,
       data: inputData,
       nonce: nonce,
     })
-
     console.log(`Nonce: ${nonce} hash: ${tx.hash}`)
     console.log(inputData)
     nonce++

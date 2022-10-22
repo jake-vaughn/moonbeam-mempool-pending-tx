@@ -18,10 +18,10 @@ dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
 // Ensure that we have all the environment variables we need.
 const mnemonic: string = process.env.MNEMONIC || "MNEMONIC NA"
 
-const moonbeamRpcUrl: string = process.env.MOONBEAM_RPC_URL || "MOONBEAM_RPC_URL NA"
+const moonbeamRpcUrl: string = process.env.MOONBEAM_RPC_URL || "https://rpc.api.moonbeam.network"
 const moonbeamWssUrl: string = process.env.MOONBEAM_WSS_URL || "MOONBEAM_WSS_URL NA"
 
-const moonriverRpcUrl: string = process.env.MOONRIVER_RPC_URL || "MOONRIVER_RPC_URL NA"
+const moonriverRpcUrl: string = process.env.MOONRIVER_RPC_URL || "https://rpc.api.moonriver.moonbeam.network"
 const moonriverWssUrl: string = process.env.MOONRIVER_WSS_URL || "MOONRIVER_WSS_URL NA"
 
 const infuraApiKey: string = process.env.INFURA_API_KEY || "INFURA_API_KEY NA"

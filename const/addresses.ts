@@ -1,17 +1,4 @@
-export interface addressesNamesItem {
-  [targetAddr: string]: string
-}
-
-export interface blindArbItem {
-  [targetAddr: string]: arbItem
-}
-
-export interface arbItem {
-  symbol?: string
-  factories: string[]
-}
-
-export const blindArb: blindArbItem = {
+export const blindArb = {
   "0x000000000000000000000000fffffffecb45afd30a637967995394cc88c0c194": {
     symbol: "POOP",
     factories: [
@@ -21,7 +8,7 @@ export const blindArb: blindArbItem = {
   },
 }
 
-export const lpAddresses: addressesNamesItem = {
+export const t6LpAddresses = {
   "0x000000000000000000000000b929914b89584b4081c7966ac6287636f7efd053": "usdc-wglmr beam",
   "0x000000000000000000000000555b74dafc4ef3a5a1640041e3244460dc7610d1": "usdc-wglmr stella",
   "0x0000000000000000000000001eb802dfcc9e6d0b553c99c461f27d4000b46cef": "usdc-wglmr zen",
@@ -105,7 +92,7 @@ export const lpAddresses: addressesNamesItem = {
   "0x0000000000000000000000008bc3cceef43392b315ddd92ba30b435f79b66b9e": "NA",
 }
 
-export const tokenAddresses: addressesNamesItem = {
+export const t6TokenAddresses = {
   "0x0000000000000000000000000000000000000000000000000000000000000000": "zero",
   "0x000000000000000000000000acc15dc74880c9944775448304b263d191c6077f": "WGLMR",
   "0x0000000000000000000000008f552a71efe5eefc207bf75485b356a0b3f01ec9": "madUSDC",
@@ -137,14 +124,14 @@ export const tokenAddresses: addressesNamesItem = {
   "0x000000000000000000000000931715fee2d06333043d11f658c8ce934ac61d0c": "unkUSDC",
 }
 
-export const exchanges: addressesNamesItem = {
+export const t6Exchanges = {
   "0x000000000000000000000000000000000000022c0d9f0000000009c400000000": "stella",
   "0x000000000000000000000000000000000000022c0d9f000000000bb800000000": "beam",
   "0x000000000000000000000000000000000000022c0d9f0000000007d000000000": "pad",
   "0x0000000000000000000000000000000000006d9a640a000000000bb800000000": "zen",
 }
 
-export const functionHashes: addressesNamesItem = {
+export const functionHashes = {
   "0x7ff36ab5": "swapExactETHForTokens",
   "0x18cbafe5": "swapExactTokensForETH",
   "0x38ed1739": "swapExactTokensForTokens",
@@ -153,7 +140,7 @@ export const functionHashes: addressesNamesItem = {
   "0xcd1bd0d9": "swapExactNativeCurrencyForTokens",
 }
 
-export const routers: addressesNamesItem = {
+export const routers = {
   "0x96b244391D98B62D19aE89b1A4dCcf0fc56970C7": "beamRouter",
   "0x70085a09D30D6f8C4ecF6eE10120d1847383BB57": "stellaRouter",
   "0x40F1fEF0Fe68Fd10ff904070ee00a7769EE7fe34": "padRouter",
