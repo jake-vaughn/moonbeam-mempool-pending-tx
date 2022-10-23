@@ -1,12 +1,15 @@
 import { TransactionReceipt, TransactionResponse } from "@ethersproject/providers"
-import { ethers } from "hardhat"
+import { ethers, network } from "hardhat"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import path from "path"
 import winston from "winston"
 
+import { networkConfig } from "../../helper-hardhat-config"
 import { getErrorMessage } from "./getErrorMessage"
 
 const { format, transports } = winston
+const chainId = network.config.chainId!
+const netConf = networkConfig[chainId]
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Human Readable
@@ -18,8 +21,8 @@ const logFormatHumanReadable = format.printf(
     (info.metadata.blockPosition ? ` ${info.metadata.blockPosition}` : "") +
     (info.metadata.logId ? ` ${info.metadata.logId}` : "") +
     (info.metadata.errMsg ? ` ${info.metadata.errMsg}` : "") +
-    (info.metadata.memHash ? ` https://moonscan.io/tx/` + info.metadata.memHash : "") +
-    (info.metadata.mevHash ? ` https://moonscan.io/tx/` + info.metadata.mevHash : ""),
+    (info.metadata.memHash ? ` ${netConf.etherScan}` + info.metadata.memHash : "") +
+    (info.metadata.mevHash ? ` ${netConf.etherScan}` + info.metadata.mevHash : ""),
 )
 
 export const logHumanReadableTransportFile = new transports.File({

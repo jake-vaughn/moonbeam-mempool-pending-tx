@@ -15,6 +15,7 @@ export interface addressMatchInfo {
 export interface networkConfigItem {
   name?: string
   blockConfirmations?: number
+  etherScan?: string
   topUpAmount: string
   targetContracts: targetContractInfo
   targetArbs: targetContractInfo
@@ -49,6 +50,7 @@ export const networkConfig: networkConfigInfo = {
   1284: {
     name: "moonbeam",
     blockConfirmations: 1,
+    etherScan: "https://moonscan.io/tx/",
     topUpAmount: "10",
     targetContracts: {
       // "0x59ddC0C8d067dEB508b36d69254Ac6bafD260575": {
@@ -133,6 +135,7 @@ export const networkConfig: networkConfigInfo = {
   1285: {
     name: "moonriver",
     blockConfirmations: 1,
+    etherScan: "https://moonriver.moonscan.io/tx/",
     topUpAmount: "0.1",
     targetContracts: {
       "0xEE5b3EADe0460d91F86584CEf73eD9AfeB6a034D": {
