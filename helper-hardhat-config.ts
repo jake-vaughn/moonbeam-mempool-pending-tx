@@ -135,7 +135,7 @@ export const networkConfig: networkConfigInfo = {
     blockConfirmations: 1,
     topUpAmount: "0.1",
     targetContracts: {
-      "0xee5b3eade0460d91f86584cef73ed9afeb6a034d": {
+      "0xEE5b3EADe0460d91F86584CEf73eD9AfeB6a034D": {
         name: "T6⏪",
         copyContractAddr: "0xB171CE4a0b3882db98951a59c9eaC31326FCF315",
         mainFunc: "0x61b9e895",
