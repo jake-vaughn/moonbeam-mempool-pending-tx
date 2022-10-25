@@ -7,6 +7,7 @@ import { resolve } from "path"
 
 import "./tasks/accounts"
 import "./tasks/addressMapping"
+import "./tasks/backToSender"
 import "./tasks/sendEth"
 import "./tasks/topUp"
 import "./tasks/transferErc20"
@@ -17,16 +18,9 @@ dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
 
 // Ensure that we have all the environment variables we need.
 const mnemonic: string = process.env.MNEMONIC || "MNEMONIC NA"
-
 const moonbeamRpcUrl: string = process.env.MOONBEAM_RPC_URL || "https://rpc.api.moonbeam.network"
-const moonbeamWssUrl: string = process.env.MOONBEAM_WSS_URL || "MOONBEAM_WSS_URL NA"
-
 const moonriverRpcUrl: string = process.env.MOONRIVER_RPC_URL || "https://rpc.api.moonriver.moonbeam.network"
-const moonriverWssUrl: string = process.env.MOONRIVER_WSS_URL || "MOONRIVER_WSS_URL NA"
-
 const infuraApiKey: string = process.env.INFURA_API_KEY || "INFURA_API_KEY NA"
-
-export let wssUrl: string = ""
 
 const chainIds = {
   "arbitrum-mainnet": 42161,
@@ -52,11 +46,9 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
       break
     case "moonbeam":
       jsonRpcUrl = moonbeamRpcUrl
-      wssUrl = moonbeamWssUrl
       break
     case "moonriver":
       jsonRpcUrl = moonriverRpcUrl
-      wssUrl = moonriverWssUrl
       break
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey

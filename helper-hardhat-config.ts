@@ -1,4 +1,7 @@
-import { backBurnerSigs, target3Sigs } from "./const/addresses"
+import { config as dotenvConfig } from "dotenv"
+import { resolve } from "path"
+
+import { backBurnerSigs, bbRiverSigs, target3Sigs } from "./const/addresses"
 
 export interface networkConfigInfo {
   [key: number]: networkConfigItem
@@ -14,6 +17,7 @@ export interface addressMatchInfo {
 
 export interface networkConfigItem {
   name?: string
+  wssUrl: string
   blockConfirmations?: number
   etherScan?: string
   topUpAmount: string
@@ -32,9 +36,13 @@ export interface targetContractItem {
   signers: addressMatchInfo
 }
 
+const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env"
+dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
+
 export const networkConfig: networkConfigInfo = {
   31337: {
     name: "hardhat",
+    wssUrl: "na",
     blockConfirmations: 1,
     topUpAmount: "0.1",
     targetContracts: {
@@ -49,6 +57,7 @@ export const networkConfig: networkConfigInfo = {
   },
   1284: {
     name: "moonbeam",
+    wssUrl: process.env.MOONBEAM_WSS_URL || "MOONBEAM_WSS_URL NA",
     blockConfirmations: 1,
     etherScan: "https://moonscan.io/tx/",
     topUpAmount: "10",
@@ -134,15 +143,16 @@ export const networkConfig: networkConfigInfo = {
   },
   1285: {
     name: "moonriver",
+    wssUrl: process.env.MOONRIVER_WSS_URL || "MOONRIVER_WSS_URL NA",
     blockConfirmations: 1,
     etherScan: "https://moonriver.moonscan.io/tx/",
-    topUpAmount: "0.1",
+    topUpAmount: "1",
     targetContracts: {
       "0xEE5b3EADe0460d91F86584CEf73eD9AfeB6a034D": {
         name: "T6⏪",
         copyContractAddr: "0xB171CE4a0b3882db98951a59c9eaC31326FCF315",
         mainFunc: "0x61b9e895",
-        signers: backBurnerSigs,
+        signers: bbRiverSigs,
       },
     },
     targetArbs: {},

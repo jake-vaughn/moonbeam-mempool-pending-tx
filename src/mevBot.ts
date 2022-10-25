@@ -2,7 +2,6 @@ import { hexConcat, hexDataSlice } from "@ethersproject/bytes"
 import hre from "hardhat"
 import yesno from "yesno"
 
-import { wssUrl } from "../hardhat.config"
 import { networkConfig } from "../helper-hardhat-config"
 import { mevBotReverse } from "./revEng/mevBotReverse"
 import { logHumanReadable } from "./utils/logHumanReadable"
@@ -10,8 +9,8 @@ import { logger, mevBotTransportFile, tempErrorLog, tempLog } from "./utils/logg
 
 const { ethers, network } = hre
 const rpcProvider = ethers.provider
-const wssProvider = new ethers.providers.WebSocketProvider(wssUrl!)
 const chainId = network.config.chainId!
+const wssProvider = new ethers.providers.WebSocketProvider(networkConfig[chainId].wssUrl)
 const targetContracts = networkConfig[chainId].targetContracts
 
 async function mevBot() {

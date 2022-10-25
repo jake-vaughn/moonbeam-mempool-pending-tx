@@ -4,8 +4,6 @@ import { formatEther, hexConcat, hexDataSlice } from "ethers/lib/utils"
 import hre from "hardhat"
 import yesno from "yesno"
 
-import { tokenAddresses } from "../../const/addresses"
-import { wssUrl } from "../../hardhat.config"
 import { targetContractItem } from "../../helper-hardhat-config"
 import { networkConfig } from "../../helper-hardhat-config"
 import { generateRandomNumber } from "../utils/generateRandomNumber"
@@ -14,8 +12,8 @@ import { logger, mevBotTransportFile, tempErrorLog, tempLog } from "../utils/log
 
 const { ethers, network } = hre
 const rpcProvider = ethers.provider
-const wssProvider = new ethers.providers.WebSocketProvider(wssUrl!)
 const chainId = network.config.chainId!
+const wssProvider = new ethers.providers.WebSocketProvider(networkConfig[chainId].wssUrl)
 const targetArbs = networkConfig[chainId].targetArbs
 
 export async function mevBotReverse() {
