@@ -13,7 +13,7 @@ const targetContracts = networkConfig[chainId].targetContracts
 const target = targetContracts["0xAdaaF4999349346935387797c5F79E07C43c12eD"]
 const CONTRACT_ADDRESS = target.copyContractAddr
 
-async function withdrawWglmr() {
+async function withdraw() {
   const { deployer } = await getNamedAccounts()
   const deploySig = await ethers.provider.getSigner(deployer)
 
@@ -40,7 +40,7 @@ async function withdrawWglmr() {
   if (txReceipt != undefined) console.log(`Success ${txReceipt.transactionHash}`)
 }
 
-withdrawWglmr().catch(error => {
+withdraw().catch(error => {
   console.error(error)
   process.exitCode = 1
 })
