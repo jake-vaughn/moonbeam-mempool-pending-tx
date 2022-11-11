@@ -33,7 +33,7 @@ async function mevBot() {
   console.log(`Waiting for transactions...`)
 
   wssProvider.on("pending", txHash => {
-    console.log(txHash)
+    // console.log(txHash)
     wssProvider.getTransaction(txHash).then(async function (memPoolTx: TransactionResponse) {
       try {
         const target = targetContracts[memPoolTx.to!]
