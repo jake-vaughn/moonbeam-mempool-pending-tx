@@ -36,8 +36,6 @@ async function mevBot() {
     console.log(txHash)
     wssProvider.getTransaction(txHash).then(async function (memPoolTx: TransactionResponse) {
       try {
-        // console.log(memPoolTx.from)
-
         const target = targetContracts[memPoolTx.to!]
         const signerIdx = target.signers[memPoolTx.from]
         const mevBotSigner = rpcProvider.getSigner(signerIdx)

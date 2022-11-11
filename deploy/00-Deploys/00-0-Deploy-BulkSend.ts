@@ -13,7 +13,6 @@ const deployBulkSendContract: DeployFunction = async function (hre: HardhatRunti
     from: deployer,
     args: args,
     log: true,
-    // we need to wait if on a live network so we can verify properly
     waitConfirmations: networkConfig[network.config.chainId!].blockConfirmations || 1,
   })
   log("--------------------------------------------------------------------------------------------")

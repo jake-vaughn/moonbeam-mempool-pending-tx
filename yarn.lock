@@ -1483,13 +1483,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers@0.3.0-beta.13, hardhat-deploy-ethers@npm:^0.3.0-beta.13":
-  version: 0.3.0-beta.13
-  resolution: "hardhat-deploy-ethers@npm:0.3.0-beta.13"
+"@nomiclabs/hardhat-ethers@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@nomiclabs/hardhat-ethers@npm:2.2.1"
   peerDependencies:
     ethers: ^5.0.0
     hardhat: ^2.0.0
-  checksum: 45206bf8d088cda08822ecf79d73e4027d8a4777cc23c3ef94568e316c45b8597130d72826fb2417edd32fe4b3dc54097161bef577663769b5c47b8262b983bb
+  checksum: 8cdbf7068f15ee993142ab600074938d05b42af73392a5b12c8eb607a5bca2fac977a6a85955e0b0285541415ad520626e7fb3d33ca7cc112d61ee928358e2f6
   languageName: node
   linkType: hard
 
@@ -1876,10 +1876,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mocha@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "@types/mocha@npm:10.0.0"
-  checksum: 69e3896a63ec93374e22afd03fdea4c2f31d609d6ea111c8403508ede90da9dc0140c7bb2edff8404114d9d980308e104e4236324bf6afac1410b2cfe35f98c6
+"@types/mocha@npm:9.1.1":
+  version: 9.1.1
+  resolution: "@types/mocha@npm:9.1.1"
+  checksum: 516077c0acd9806dc78317f88aaac0df5aaf0bdc2f63dfdadeabdf0b0137953b6ca65472e6ff7c30bc93ce4e0ae76eae70e8d46764b9a8eae4877a928b6ef49a
   languageName: node
   linkType: hard
 
@@ -3110,16 +3110,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "chalk@npm:4.1.2"
-  dependencies:
-    ansi-styles: ^4.1.0
-    supports-color: ^7.1.0
-  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
-  languageName: node
-  linkType: hard
-
 "chalk@npm:^2.0.0, chalk@npm:^2.1.0, chalk@npm:^2.4.1, chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
@@ -3128,6 +3118,16 @@ __metadata:
     escape-string-regexp: ^1.0.5
     supports-color: ^5.3.0
   checksum: ec3661d38fe77f681200f878edbd9448821924e0f93a9cefc0e26a33b145f1027a2084bf19967160d11e1f03bfe4eaffcabf5493b89098b2782c3fe0b03d80c2
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
   languageName: node
   linkType: hard
 
@@ -5753,7 +5753,7 @@ __metadata:
     "@nomicfoundation/hardhat-chai-matchers": ^1.0.4
     "@nomicfoundation/hardhat-network-helpers": ^1.0.6
     "@nomicfoundation/hardhat-toolbox": ^2.0.0
-    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@0.3.0-beta.13"
+    "@nomiclabs/hardhat-ethers": ^2.2.1
     "@nomiclabs/hardhat-etherscan": ^3.1.2
     "@openzeppelin/contracts": ^4.8.0
     "@trivago/prettier-plugin-sort-imports": ^3.4.0
@@ -5761,12 +5761,11 @@ __metadata:
     "@typechain/hardhat": ^6.1.4
     "@types/chai": ^4.3.4
     "@types/fs-extra": ^9.0.13
-    "@types/mocha": ^10.0.0
+    "@types/mocha": 9.1.1
     "@types/node": ^18.11.9
     "@typescript-eslint/eslint-plugin": ^5.42.1
     "@typescript-eslint/parser": ^5.42.1
     chai: ^4.3.7
-    chalk: 4.1.2
     commitizen: ^4.2.5
     cross-env: ^7.0.3
     custom-uniswap-v2-sdk: ^3.2.0
@@ -5779,7 +5778,6 @@ __metadata:
     fs-extra: ^10.1.0
     hardhat: ^2.12.2
     hardhat-deploy: ^0.11.20
-    hardhat-deploy-ethers: ^0.3.0-beta.13
     hardhat-gas-reporter: ^1.0.9
     husky: ^8.0.2
     lint-staged: ^13.0.3

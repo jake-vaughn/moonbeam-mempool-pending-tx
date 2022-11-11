@@ -3,7 +3,7 @@ import { task } from "hardhat/config"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 
 import { networkConfig } from "../helper-hardhat-config"
-import { topUpEth } from "../src/utils/multisend"
+import { bulkSend } from "../src/utils/multisend"
 
 task("refill", "Sends 0.01 eth to all active signers", async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
   const netConf = networkConfig[hre.network.config.chainId!]
@@ -26,6 +26,6 @@ task("refill", "Sends 0.01 eth to all active signers", async (_taskArgs, hre: Ha
     addressList.push(addr)
   }
   console.log(`Topping up ${addressList.length} addresses with ${formatEther(AMOUNT_TO_SEND)} Eth`)
-  const txReceipt = await topUpEth(addressList, AMOUNT_TO_SEND, deploySig, hre)
+  const txReceipt = await bulkSend(addressList, AMOUNT_TO_SEND, deploySig, hre)
   if (txReceipt != undefined) console.log(`Success ${txReceipt.transactionHash}`)
 })

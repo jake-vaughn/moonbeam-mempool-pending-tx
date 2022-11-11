@@ -6,13 +6,14 @@ import yesno from "yesno"
 
 import { BulkSend } from "../types"
 
-export async function topUpEth(
+export async function bulkSend(
   addresses: string[],
   topUpAmount: BigNumber,
   signer: JsonRpcSigner,
   hre: HardhatRuntimeEnvironment,
 ) {
-  const bulkSend: BulkSend = await hre.ethers.getContract("BulkSend", signer)
+  const contract = await hre.deployments.get("BulkSend")
+  const bulkSend: BulkSend = await hre.ethers.getContractAt("BulkSend", contract.address, signer)
 
   const addrList: string[] = []
   const amountList: BigNumber[] = []
