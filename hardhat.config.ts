@@ -18,13 +18,13 @@ dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
 
 // Ensure that we have all the environment variables we need.
 const mnemonic: string = process.env.MNEMONIC || "MNEMONIC NA"
-const moonbeamRpcUrl: string = process.env.MOONBEAM_RPC_URL || "https://rpc.api.moonbeam.network"
-const moonriverRpcUrl: string = process.env.MOONRIVER_RPC_URL || "https://rpc.api.moonriver.moonbeam.network"
+const moonbeamRpcUrl: string = process.env.MOONBEAM_RPC_URL || "Error MOONBEAM_RPC_URL NA"
+const moonriverRpcUrl: string = process.env.MOONRIVER_RPC_URL || "Error MOONRIVER_RPC_URL NA"
 const zkSyncRpcUrl: string = process.env.ZKSYNC_RPC_URL || "error no zkSync RPC URL"
 const infuraApiKey: string = process.env.INFURA_API_KEY || "INFURA_API_KEY NA"
 
 const chainIds = {
-  "arbitrum-mainnet": 42161,
+  arbitrum: 42161,
   avalanche: 43114,
   bsc: 56,
   goerli: 5,
@@ -33,8 +33,8 @@ const chainIds = {
   moonbeam: 1284,
   moonriver: 1285,
   zkSync: 280,
-  "optimism-mainnet": 10,
-  "polygon-mainnet": 137,
+  optimism: 10,
+  polygon: 137,
 }
 
 function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
@@ -90,7 +90,7 @@ const config: HardhatUserConfig = {
     localhost: {
       chainId: 31337,
     },
-    arbitrum: getChainConfig("arbitrum-mainnet"),
+    arbitrum: getChainConfig("arbitrum"),
     avalanche: getChainConfig("avalanche"),
     bsc: getChainConfig("bsc"),
     goerli: getChainConfig("goerli"),
@@ -98,8 +98,8 @@ const config: HardhatUserConfig = {
     moonbeam: getChainConfig("moonbeam"),
     moonriver: getChainConfig("moonriver"),
     zkSync: getChainConfig("zkSync"),
-    optimism: getChainConfig("optimism-mainnet"),
-    "polygon-mainnet": getChainConfig("polygon-mainnet"),
+    optimism: getChainConfig("optimism"),
+    polygon: getChainConfig("polygon"),
   },
   namedAccounts: {
     zero: {
