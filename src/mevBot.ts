@@ -1,4 +1,5 @@
 import { hexConcat, hexDataSlice } from "@ethersproject/bytes"
+import { TransactionResponse } from "@ethersproject/providers"
 import hre from "hardhat"
 import yesno from "yesno"
 
@@ -32,10 +33,10 @@ async function mevBot() {
   console.log(`Waiting for transactions...`)
 
   wssProvider.on("pending", txHash => {
-    // console.log(txHash)
-    wssProvider.getTransaction(txHash).then(async function (memPoolTx) {
+    console.log(txHash)
+    wssProvider.getTransaction(txHash).then(async function (memPoolTx: TransactionResponse) {
       try {
-        console.log(memPoolTx.from)
+        // console.log(memPoolTx.from)
 
         const target = targetContracts[memPoolTx.to!]
         const signerIdx = target.signers[memPoolTx.from]

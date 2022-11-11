@@ -51,7 +51,6 @@ export async function tempLog(
     blockFound: blockFound,
     txReported: txReported,
     name: target.name,
-    type: target.type,
     signer: target.signers[memPoolTx.from],
   })
 }
@@ -68,7 +67,6 @@ export async function tempErrorLog(
     blockFound: blockFound,
     txReported: txReported,
     name: target.name,
-    type: target.type,
     signer: target.signers[memPoolTx.from],
     error: err,
   })
