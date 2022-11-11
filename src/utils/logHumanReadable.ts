@@ -1,3 +1,4 @@
+import { BigNumber } from "@ethersproject/bignumber"
 import { TransactionReceipt, TransactionResponse } from "@ethersproject/providers"
 import { ethers, network } from "hardhat"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
@@ -130,13 +131,8 @@ async function receiptWaitHandler(
         }
         return [receipt, "🌎"]
       }
-      if (getErrorMessage(error) == "timeout exceeded (timeout=600000, code=TIMEOUT, version=providers/5.7.0)") {
-        return [
-          await ethers.provider.getTransactionReceipt(
-            "0x78789539aba360cdd8ca2ceddc2ba799f1e05f557b96402323f7bacf006c56b3",
-          ),
-          "🕑",
-        ]
+      if (getErrorMessage(error) == "timeout exceeded (timeout=600000, code=TIMEOUT, version=providers/5.7.2)") {
+        return [fakeTxReceipt, "🕑"]
       }
     }
     throw error
@@ -147,14 +143,21 @@ function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-// function receiptLogParse(logs: Log[]): [string, string] {
-//   let wadSent = "0"
-//   if (logs.length == 0) {
-//     return ["failed", wadSent]
-//   }
-//   const wadSentHex = logs.at(0)!.data
-//   const amount1OutHex = ethers.utils.hexDataSlice(logs.at(logs.length - 1)!.data, 32 * 3)
-//   // console.log(wadSentHex, `\n`, amount1OutHex)
-//   // console.log(BigNumber.from(wadSentHex).toString(), BigNumber.from(amount1OutHex).toString())
-//   wadSent = ethers.utils.formatEther(BigNumber.from(wadSentHex))
-//   wadSent = wadSent.slice(0, wadSent.length - 16)
+const fakeTxReceipt: TransactionReceipt = {
+  to: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  from: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  contractAddress: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  transactionIndex: 0,
+  gasUsed: BigNumber.from(0),
+  logsBloom: "",
+  blockHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  transactionHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  logs: [],
+  blockNumber: 0,
+  confirmations: 0,
+  cumulativeGasUsed: BigNumber.from(0),
+  effectiveGasPrice: BigNumber.from(0),
+  byzantium: true,
+  type: 0,
+  status: 1,
+}
