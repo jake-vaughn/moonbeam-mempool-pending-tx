@@ -4,7 +4,7 @@ import { formatUnits, parseUnits } from "ethers/lib/utils"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 
 import { PromiseOrValue } from "../../../typechain-types/common"
-import { IERC20 } from "../../types/interfaces"
+import { IERC20 } from "../../types"
 
 async function getErc20Balance(erc20Addr: string, signer: JsonRpcSigner, hre: HardhatRuntimeEnvironment) {
   const { ethers } = hre

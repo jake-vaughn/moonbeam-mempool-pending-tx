@@ -20,6 +20,7 @@ dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) })
 const mnemonic: string = process.env.MNEMONIC || "MNEMONIC NA"
 const moonbeamRpcUrl: string = process.env.MOONBEAM_RPC_URL || "https://rpc.api.moonbeam.network"
 const moonriverRpcUrl: string = process.env.MOONRIVER_RPC_URL || "https://rpc.api.moonriver.moonbeam.network"
+const zkSyncRpcUrl: string = process.env.ZKSYNC_RPC_URL || "error no zkSync RPC URL"
 const infuraApiKey: string = process.env.INFURA_API_KEY || "INFURA_API_KEY NA"
 
 const chainIds = {
@@ -31,6 +32,7 @@ const chainIds = {
   mainnet: 1,
   moonbeam: 1284,
   moonriver: 1285,
+  zkSync: 280,
   "optimism-mainnet": 10,
   "polygon-mainnet": 137,
 }
@@ -49,6 +51,9 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
       break
     case "moonriver":
       jsonRpcUrl = moonriverRpcUrl
+      break
+    case "zkSync":
+      jsonRpcUrl = zkSyncRpcUrl
       break
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey
@@ -92,6 +97,7 @@ const config: HardhatUserConfig = {
     mainnet: getChainConfig("mainnet"),
     moonbeam: getChainConfig("moonbeam"),
     moonriver: getChainConfig("moonriver"),
+    zkSync: getChainConfig("zkSync"),
     optimism: getChainConfig("optimism-mainnet"),
     "polygon-mainnet": getChainConfig("polygon-mainnet"),
   },

@@ -4,7 +4,7 @@ import { task } from "hardhat/config"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 
 const TO_ADDRESS = "0x769A00b6Ef2c67BCCdC5a5c4844cE2223233928D"
-const AMOUNT_TO_SEND = parseEther("0")
+const AMOUNT_TO_SEND = parseEther(".0001")
 
 task(
   "sendEth",
@@ -17,9 +17,6 @@ task(
 
     const tx = await deploySig.sendTransaction({ to: TO_ADDRESS, value: sendAmountSubFee })
 
-    const txReceipt = await tx.wait()
-    if (txReceipt != undefined) {
-      console.log(`Success ${txReceipt.transactionHash}`)
-    }
+    console.log(`Tx Hash: ${tx.hash}`)
   },
 )
