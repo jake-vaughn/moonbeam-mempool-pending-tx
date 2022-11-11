@@ -3,10 +3,13 @@ import { task } from "hardhat/config"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import yesno from "yesno"
 
-import { IERC20 } from "../src/types/interfaces"
+import { IERC20 } from "../src/types"
 
-const ERC20_ADDRESS = "0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080"
-const DESTINATION_ADDRESS = "0xfda140A05F78DBFB3381C9E878cCdb66043B65BC"
+// const ERC20_ADDRESS = "0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080" // DOT
+// const DESTINATION_ADDRESS = "0xe6F1886F7C762aE25778FA3F04CE2dB6f7507ef0" // t5m
+
+const ERC20_ADDRESS = "0x818ec0A7Fe18Ff94269904fCED6AE3DaE6d6dC0b" // USDC
+const DESTINATION_ADDRESS = "0xB4644C2170b421117162cb5F16Ac3648A4317122" // t7m
 const TRANSFER_AMOUNT_ETH = "10"
 
 task("transferErc20", "transfers a given erc20 to destination", async (_taskArgs, hre: HardhatRuntimeEnvironment) => {
@@ -32,6 +35,5 @@ task("transferErc20", "transfers a given erc20 to destination", async (_taskArgs
   if (!ok) return
 
   const tx = await erc20.transfer(DESTINATION_ADDRESS, sendAmount)
-  const txReceipt = await tx.wait()
-  if (txReceipt != undefined) console.log(`Success ${txReceipt.transactionHash}`)
+  console.log(`Tx Hash: ${tx.hash}`)
 })

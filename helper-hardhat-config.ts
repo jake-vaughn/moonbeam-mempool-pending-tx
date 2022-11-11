@@ -157,6 +157,22 @@ export const networkConfig: networkConfigInfo = {
     },
     targetArbs: {},
   },
+  280: {
+    name: "zkSync",
+    wssUrl: process.env.ZKSYNC_WSS_URL || "Error ZKSYNC_WSS_URL NA",
+    blockConfirmations: 1,
+    etherScan: "https://zksync2-testnet.zkscan.io/tx/",
+    topUpAmount: "0.001",
+    targetContracts: {
+      "0xEE5b3EADe0460d91F86584CEf73eD9AfeB6a034D": {
+        name: "T6⏪",
+        copyContractAddr: "0xB171CE4a0b3882db98951a59c9eaC31326FCF315",
+        mainFunc: "0x61b9e895",
+        signers: bbRiverSigs,
+      },
+    },
+    targetArbs: {},
+  },
 }
 
 export const developmentChains = ["hardhat", "localhost"]
