@@ -22,9 +22,5 @@ interface IERC20 {
 
     function transfer(address to, uint256 value) external returns (bool success);
 
-    function transferFrom(
-        address from,
-        address to,
-        uint256 value
-    ) external returns (bool success);
+    function transferFrom(address from, address to, uint256 value) external returns (bool success);
 }

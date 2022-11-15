@@ -4,7 +4,7 @@ import hre from "hardhat"
 import yesno from "yesno"
 
 import { networkConfig } from "../../helper-hardhat-config"
-import { IERC20, ITarget3 } from "../../typechain-types/interfaces"
+import { IERC20, ITarget3 } from "../../typechain/interfaces"
 import { unwrapWglmr } from "../utils/defi/wglmr"
 
 const { ethers, network, getNamedAccounts } = hre
