@@ -5,7 +5,6 @@ import yesno from "yesno"
 
 import { networkConfig } from "../helper-hardhat-config"
 import { getWglmrBalance, unwrapWglmr } from "../src/utils/defi/wglmr"
-import { topUpEth } from "../src/utils/multisend"
 
 task(
   "unwrap",
