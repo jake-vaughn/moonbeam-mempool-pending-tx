@@ -83,12 +83,12 @@ export const networkConfig: networkConfigInfo = {
       //     "0xE4ef74629a9da7DFd2a940c4BFBA56D3B8110769": 10,
       //   },
       // },
-      "0xAdaaF4999349346935387797c5F79E07C43c12eD": {
-        name: "T3🔳",
-        copyContractAddr: "0xA4e4AA5328Bc1224cDFeF6dF994958531D3833B8",
-        mainFunc: "0xb5dd43d9",
-        signers: target3Sigs,
-      },
+      // "0xAdaaF4999349346935387797c5F79E07C43c12eD": {
+      //   name: "T3🔳",
+      //   copyContractAddr: "0xA4e4AA5328Bc1224cDFeF6dF994958531D3833B8",
+      //   mainFunc: "0xb5dd43d9",
+      //   signers: target3Sigs,
+      // },
       // "0xAb9C7a8654b9224E3A741Dc3A4991F2d1b82307A": {
       //   name: "Target(4)",
       //   type: 1,
